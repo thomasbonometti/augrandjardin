@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  fetch('https://thomasbonometti.github.io/augrandjardin/products.json') // Remplacez par le chemin correct vers votre fichier JSON sur GitHub Pages
+  fetch('https://produits.augrandjardin.fr/products.json') // Remplacez par le chemin correct vers votre fichier JSON sur GitHub Pages
     .then(response => response.json())
     .then(data => {
       const container = document.getElementById('products-container');
