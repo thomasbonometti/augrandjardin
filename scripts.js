@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  fetch('https://drive.google.com/uc?export=download&id=1B4nvB-ZmIs0cuBZ-KSBviz9c6dc3_J7V')  // Remplacez FILE_ID par l'ID de votre fichier
+  fetch('https://thomasbonometti.github.io/augrandjardin/products.json') // Remplacez par le chemin correct vers votre fichier JSON sur GitHub Pages
     .then(response => response.json())
     .then(data => {
       const container = document.getElementById('products-container');
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         productCard.className = 'product-card';
 
         const productImage = document.createElement('img');
-        productImage.src = product['IMG']; // Assurez-vous que le champ image est correctement nommé
+        productImage.src = product['Image']; // Assurez-vous que le champ image est correctement nommé
         productCard.appendChild(productImage);
 
         const productName = document.createElement('h2');
@@ -21,5 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         container.appendChild(productCard);
       });
-    });
+    })
+    .catch(error => console.error('Error fetching the JSON:', error));
 });
