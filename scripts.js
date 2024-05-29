@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         productImage.src = product['IMG']; // Assurez-vous que le champ image est correctement nommé
         productCard.appendChild(productImage);
 
-        const productName = document.createElement('h2');
+        const productName = document.createElement('h5');
         productName.textContent = product['Nom du produit'];
         productCard.appendChild(productName);
 
