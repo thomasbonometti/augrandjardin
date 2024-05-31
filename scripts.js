@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         productCard.className = 'product-card';
 
         const productImage = document.createElement('img');
-        productImage.src = product['IMG']; // Assurez-vous que le champ image est correctement nommé
+        productImage.src = img-products/product['IMG'].jpg; // Assurez-vous que le champ image est correctement nommé
         productCard.appendChild(productImage);
 
         const productName = document.createElement('h5');
