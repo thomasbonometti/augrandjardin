@@ -43,10 +43,6 @@ margin: 0;
 line-height: 1.5rem;
 }
 
-.product-card p {
-margin: 0;
-}
-
 .product-card img {
   max-width: 100%;
   border-bottom: 1px solid #ddd;
@@ -59,8 +55,8 @@ margin: 0;
 }
 
 .product-card p {
-  font-size: 14px;
   color: #333;
+  margin: 0;
 }
 
 .product-card span {
