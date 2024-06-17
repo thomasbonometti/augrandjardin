@@ -28,6 +28,8 @@ h1 {
   padding: 1rem;
   width: 40vw;
   max-width: 270px;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 .producteur {
   font-size: 0.8rem;
@@ -42,9 +44,7 @@ line-height: 1.5rem;
 }
 
 .product-card p {
-font-size: 1rem;
 margin: 0;
-line-height: 1.5rem;
 }
 
 .product-card img {
