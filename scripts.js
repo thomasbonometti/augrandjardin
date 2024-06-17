@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         productCard.appendChild(productDescription);
 
         const productProducteur = document.createElement('p');
-        productProducteur.textContent = product['Producteur'];
+        productProducteur.textContent = "Producteur : "+product['Producteur']+" (Origine : France)";
         productCard.appendChild(productProducteur);
 
         container.appendChild(productCard);
