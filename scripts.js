@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
         productDescription.textContent = product['Etiquette'];
         productCard.appendChild(productDescription);
 
+        const productProducteur = document.createElement('p');
+        productProducteur.textContent = product['Producteur'];
+        productCard.appendChild(productProducteur);
+
         container.appendChild(productCard);
       });
     })
