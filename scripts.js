@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const productProducteur = document.createElement('p');
         productProducteur.textContent = "Producteur : "+product['Producteur']+" (Origine : France)";
+        productProducteur.className = 'producteur';
         productCard.appendChild(productProducteur);
 
         container.appendChild(productCard);
