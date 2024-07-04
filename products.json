@@ -2,9 +2,23 @@
   {
     "Nom du produit": "Betterave - Botte",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Betterave - Botte Bio 2.10 € la botte",
+    "Etiquette": "Betterave - Botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/78.jpg"
+  },
+  {
+    "Nom du produit": "Betterave cuite",
+    "En vente": true,
+    "Etiquette": "Betterave cuite Bio 7.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/206.jpg"
+  },
+  {
+    "Nom du produit": "Betterave vrac",
+    "En vente": true,
+    "Etiquette": "Betterave vrac Bio 3.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/4.jpg"
   },
   {
     "Nom du produit": "Blettes - 500g",
@@ -21,25 +35,32 @@
     "IMG": "img-products/76.jpg"
   },
   {
+    "Nom du produit": "Concombre",
+    "En vente": true,
+    "Etiquette": "Concombre Bio 2.90 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/20.jpg"
+  },
+  {
     "Nom du produit": "Courgette verte",
     "En vente": true,
-    "Etiquette": "Courgette verte Bio 2.80 €/kg*",
+    "Etiquette": "Courgette verte Bio 2.80 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/22.jpg"
   },
   {
-    "Nom du produit": "Fenouil",
+    "Nom du produit": "Haricot vert",
     "En vente": true,
-    "Etiquette": "Fenouil Bio 4.20 €/kg*",
+    "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/27.jpg"
+    "IMG": "img-products/84.jpg"
   },
   {
-    "Nom du produit": "Navet botte",
+    "Nom du produit": "Laitue",
     "En vente": true,
-    "Etiquette": "Navet botte Bio 2.10 € la botte",
+    "Etiquette": "Laitue Bio 1.60 €/pièce",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/73.jpg"
+    "IMG": "img-products/32.jpg"
   },
   {
     "Nom du produit": "Radis Rose Botte (25p)",
@@ -49,25 +70,60 @@
     "IMG": "img-products/71.jpg"
   },
   {
+    "Nom du produit": "Chou Cabus Blanc",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Cabus Blanc Bio 3.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/10.jpg"
+  },
+  {
+    "Nom du produit": "Chou Cabus Rouge",
+    "En vente": true,
+    "Etiquette": "Chou Cabus Rouge Bio 3.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/11.jpg"
+  },
+  {
+    "Nom du produit": "Chou Fleur",
+    "En vente": true,
+    "Etiquette": "Chou Fleur Bio 4.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/16.jpg"
+  },
+  {
     "Nom du produit": "Oignon Ciboule",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Oignon Ciboule Bio 2.10 € la botte",
+    "Etiquette": "Oignon Ciboule Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/.jpg"
+    "IMG": "img-products/90.jpg"
   },
   {
-    "Nom du produit": "Fraises (barquette)",
+    "Nom du produit": "Tomate Cerise - barquette",
     "En vente": true,
-    "Etiquette": "Fraises (barquette) Bio 6.50 € la barquette (500g)",
-    "Producteur": "Frui'Thierry",
-    "IMG": "img-products/314.jpg"
+    "Etiquette": "✨ Nouveau : Tomate Cerise - barquette Bio 3.10 € la barquette (440g)*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/58.jpg"
   },
   {
-    "Nom du produit": "Rhubarbe",
+    "Nom du produit": "Tomate variété ancienne",
     "En vente": true,
-    "Etiquette": "Rhubarbe Bio 2.10 € la botte",
+    "Etiquette": "Tomate variété ancienne Bio 4.10 €/kg*",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/117.jpg"
+    "IMG": "img-products/57.jpg"
+  },
+  {
+    "Nom du produit": "Basilic",
+    "En vente": true,
+    "Etiquette": "Basilic Bio 1.30 € le bouquet",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/3.jpg"
+  },
+  {
+    "Nom du produit": "Persil Frisé",
+    "En vente": true,
+    "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/43.jpg"
   },
   {
     "Nom du produit": "Confiture Cerise Bigarreaux",
@@ -95,7 +151,7 @@
     "En vente": true,
     "Etiquette": "Gelée Coing 4.40 € le pot",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/.jpg"
+    "IMG": "img-products/251.jpg"
   },
   {
     "Nom du produit": "Chutney d’oignon",
@@ -109,42 +165,35 @@
     "En vente": true,
     "Etiquette": "Jus de Pomme de la Ferme Bio 3.20 € la bouteille",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/.jpg"
+    "IMG": "img-products/201.jpg"
   },
   {
     "Nom du produit": "Jus de Pomme/Carotte",
     "En vente": true,
     "Etiquette": "Jus de Pomme/Carotte Bio 3.70 € la bouteille",
     "Producteur": "Frui'Thierry",
-    "IMG": "img-products/.jpg"
+    "IMG": "img-products/308.jpg"
   },
   {
     "Nom du produit": "Jus de Pomme/Fraise",
     "En vente": true,
     "Etiquette": "Jus de Pomme/Fraise Bio 4.10 € la bouteille",
     "Producteur": "Frui'Thierry",
-    "IMG": "img-products/.jpg"
-  },
-  {
-    "Nom du produit": "Jus de Pomme/Poire",
-    "En vente": true,
-    "Etiquette": "Jus de Pomme/Poire Bio 3.40 € la bouteille",
-    "Producteur": "Frui'Thierry",
-    "IMG": "img-products/.jpg"
+    "IMG": "img-products/316.jpg"
   },
   {
     "Nom du produit": "Ketchup de betterave",
     "En vente": true,
     "Etiquette": "Ketchup de betterave Bio 4.50 € le pot",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/.jpg"
+    "IMG": "img-products/204.jpg"
   },
   {
     "Nom du produit": "Nectar de Fraise",
     "En vente": true,
     "Etiquette": "Nectar de Fraise Bio 3.80 € la bouteille",
     "Producteur": "Frui'Thierry",
-    "IMG": "img-products/.jpg"
+    "IMG": "img-products/315.jpg"
   },
   {
     "Nom du produit": "Pickles de betterave",
@@ -158,54 +207,33 @@
     "En vente": true,
     "Etiquette": "Tartinade Betterave & Pois Chiche Bio 4.50 € le pot",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/.jpg"
+    "IMG": "img-products/205.jpg"
   },
   {
     "Nom du produit": "Miel Crémeux",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel Crémeux Bio 7.20 € le pot",
+    "Etiquette": "Miel Crémeux 7.20 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
   {
     "Nom du produit": "Miel d’Aubépines",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel d’Aubépines Bio 9.60 € le pot",
+    "Etiquette": "Miel d’Aubépines 9.60 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
   {
     "Nom du produit": "Miel de Fleur printemps",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel de Fleur printemps Bio 8.40 € le pot",
+    "Etiquette": "Miel de Fleur printemps 8.40 € le pot",
     "Producteur": "De La Fleur Au Miel",
-    "IMG": "img-products/.jpg"
-  },
-  {
-    "Nom du produit": "Miel de forêt (liquide)",
-    "En vente": true,
-    "Etiquette": "Miel de forêt (liquide) 11.40 € le pot",
-    "Producteur": "Joël Corre",
-    "IMG": "img-products/.jpg"
-  },
-  {
-    "Nom du produit": "Miel de sapin (liquide)",
-    "En vente": true,
-    "Etiquette": "Miel de sapin (liquide) 12.00 € le pot",
-    "Producteur": "Joël Corre",
-    "IMG": "img-products/.jpg"
-  },
-  {
-    "Nom du produit": "Miel de tilleul (liquide)",
-    "En vente": true,
-    "Etiquette": "Miel de tilleul (liquide) 9.60 € le pot",
-    "Producteur": "Joël Corre",
     "IMG": "img-products/.jpg"
   },
   {
     "Nom du produit": "Miel et Noisette",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel et Noisette Bio 10.80 € le pot",
+    "Etiquette": "Miel et Noisette 10.80 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   }
