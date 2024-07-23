@@ -1,19 +1,5 @@
 [
   {
-    "Nom du produit": "Ail",
-    "En vente": true,
-    "Etiquette": "Ail Bio 3.050 € les 250g",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/1.jpg"
-  },
-  {
-    "Nom du produit": "Aubergine",
-    "En vente": true,
-    "Etiquette": "Aubergine Bio 4.70 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2.jpg"
-  },
-  {
     "Nom du produit": "Betterave - Botte",
     "En vente": true,
     "Etiquette": "Betterave - Botte Bio 2.10 € la botte",
@@ -56,13 +42,6 @@
     "IMG": "img-products/20.jpg"
   },
   {
-    "Nom du produit": "Courgette jaune",
-    "En vente": true,
-    "Etiquette": "Courgette jaune Bio 2.80 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/69.jpg"
-  },
-  {
     "Nom du produit": "Courgette verte",
     "En vente": true,
     "Etiquette": "Courgette verte Bio 2.80 €/kg",
@@ -72,7 +51,7 @@
   {
     "Nom du produit": "Haricot vert",
     "En vente": true,
-    "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)*",
+    "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/84.jpg"
   },
@@ -84,13 +63,6 @@
     "IMG": "img-products/32.jpg"
   },
   {
-    "Nom du produit": "Poivron",
-    "En vente": true,
-    "Etiquette": "Poivron Bio 5.20 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/49.jpg"
-  },
-  {
     "Nom du produit": "Radis Rose Botte (25p)",
     "En vente": true,
     "Etiquette": "Radis Rose Botte (25p) Bio 2.10 € la botte",
@@ -100,7 +72,7 @@
   {
     "Nom du produit": "Chou Cabus Blanc",
     "En vente": true,
-    "Etiquette": "Chou Cabus Blanc Bio 3.20 €/kg",
+    "Etiquette": "✨ Nouveau : Chou Cabus Blanc Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/10.jpg"
   },
@@ -128,7 +100,7 @@
   {
     "Nom du produit": "Tomate Cerise - barquette",
     "En vente": true,
-    "Etiquette": "Tomate Cerise - barquette Bio 3.10 € la barquette (440g)*",
+    "Etiquette": "✨ Nouveau : Tomate Cerise - barquette Bio 3.10 € la barquette (440g)*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/58.jpg"
   },
@@ -152,13 +124,6 @@
     "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/43.jpg"
-  },
-  {
-    "Nom du produit": "Rhubarbe",
-    "En vente": true,
-    "Etiquette": "Rhubarbe Bio 2.10 € la botte*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/117.jpg"
   },
   {
     "Nom du produit": "Confiture Cerise Bigarreaux",
