@@ -14,13 +14,6 @@
     "IMG": "img-products/2.jpg"
   },
   {
-    "Nom du produit": "Betterave - Botte",
-    "En vente": true,
-    "Etiquette": "⌛️ Dernière semaine : Betterave - Botte Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/78.jpg"
-  },
-  {
     "Nom du produit": "Betterave cuite",
     "En vente": true,
     "Etiquette": "Betterave cuite Bio 7.00 €/kg",
@@ -40,6 +33,13 @@
     "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/76.jpg"
+  },
+  {
+    "Nom du produit": "Carottes multicolores en Botte",
+    "En vente": true,
+    "Etiquette": "Carottes multicolores en Botte Bio 2.70 € la botte",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/94.jpg"
   },
   {
     "Nom du produit": "Concombre",
@@ -77,6 +77,13 @@
     "IMG": "img-products/32.jpg"
   },
   {
+    "Nom du produit": "Poire",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Poire Bio 3.80 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/113.jpg"
+  },
+  {
     "Nom du produit": "Poivron",
     "En vente": true,
     "Etiquette": "Poivron Bio 5.20 €/kg",
@@ -86,7 +93,7 @@
   {
     "Nom du produit": "Pomme de terre grenaille (Sachet de 1kg)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
+    "Etiquette": "Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/80.jpg"
   },
@@ -96,13 +103,6 @@
     "Etiquette": "Pomme de terre nouvelle Bio 2.60 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/52.jpg"
-  },
-  {
-    "Nom du produit": "Radis Rose Botte (25p)",
-    "En vente": true,
-    "Etiquette": "Radis Rose Botte (25p) Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/71.jpg"
   },
   {
     "Nom du produit": "Chou Cabus Blanc",
@@ -119,18 +119,11 @@
     "IMG": "img-products/11.jpg"
   },
   {
-    "Nom du produit": "Chou Fleur",
+    "Nom du produit": "Colis Tomate sauce",
     "En vente": true,
-    "Etiquette": "Chou Fleur Bio 4.20 €/kg",
+    "Etiquette": "Colis Tomate sauce Bio 11.00 € le colis (4.6kg)*",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/16.jpg"
-  },
-  {
-    "Nom du produit": "Oignon Ciboule",
-    "En vente": true,
-    "Etiquette": "Oignon Ciboule Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/90.jpg"
+    "IMG": "img-products/86.jpg"
   },
   {
     "Nom du produit": "Tomate Cerise - barquette",
@@ -168,11 +161,11 @@
     "IMG": "img-products/43.jpg"
   },
   {
-    "Nom du produit": "Rhubarbe",
+    "Nom du produit": "Melon",
     "En vente": true,
-    "Etiquette": "Rhubarbe Bio 2.10 € la botte",
+    "Etiquette": "Melon Bio 4.00 €/kg*",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/117.jpg"
+    "IMG": "img-products/35.jpg"
   },
   {
     "Nom du produit": "Confiture Cerise Bigarreaux",
@@ -205,7 +198,7 @@
   {
     "Nom du produit": "Gelée Groseille",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Gelée Groseille 4.40 € le pot",
+    "Etiquette": "Gelée Groseille 4.40 € le pot",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/253.jpg"
   },
@@ -280,6 +273,13 @@
     "IMG": "img-products/.jpg"
   },
   {
+    "Nom du produit": "Miel d’été",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Miel d’été 9.60 € le pot",
+    "Producteur": "De La Fleur Au Miel",
+    "IMG": "img-products/.jpg"
+  },
+  {
     "Nom du produit": "Miel de Châtaignier",
     "En vente": true,
     "Etiquette": "Miel de Châtaignier 10.80 € le pot",
@@ -304,6 +304,13 @@
     "Nom du produit": "Miel de Tilleul",
     "En vente": true,
     "Etiquette": "Miel de Tilleul 10.80 € le pot",
+    "Producteur": "De La Fleur Au Miel",
+    "IMG": "img-products/.jpg"
+  },
+  {
+    "Nom du produit": "Miel de Tournesol",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Miel de Tournesol 8.40 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
