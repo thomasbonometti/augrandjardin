@@ -14,6 +14,13 @@
     "IMG": "img-products/2.jpg"
   },
   {
+    "Nom du produit": "Betterave - Botte",
+    "En vente": true,
+    "Etiquette": "⌛️ Dernière semaine : Betterave - Botte Bio 2.10 € la botte",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/78.jpg"
+  },
+  {
     "Nom du produit": "Betterave cuite",
     "En vente": true,
     "Etiquette": "Betterave cuite Bio 7.00 €/kg",
@@ -33,13 +40,6 @@
     "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/76.jpg"
-  },
-  {
-    "Nom du produit": "Carottes multicolores en Botte",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Carottes multicolores en Botte Bio 2.70 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/94.jpg"
   },
   {
     "Nom du produit": "Concombre",
@@ -86,7 +86,7 @@
   {
     "Nom du produit": "Pomme de terre grenaille (Sachet de 1kg)",
     "En vente": true,
-    "Etiquette": "Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
+    "Etiquette": "✨ Nouveau : Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/80.jpg"
   },
@@ -121,16 +121,16 @@
   {
     "Nom du produit": "Chou Fleur",
     "En vente": true,
-    "Etiquette": "Chou Fleur Bio 4.20 €/kg*",
+    "Etiquette": "Chou Fleur Bio 4.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/16.jpg"
   },
   {
-    "Nom du produit": "Colis Tomate sauce",
+    "Nom du produit": "Oignon Ciboule",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Colis Tomate sauce Bio 11.00 € le colis (4.6kg)*",
+    "Etiquette": "Oignon Ciboule Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/86.jpg"
+    "IMG": "img-products/90.jpg"
   },
   {
     "Nom du produit": "Tomate Cerise - barquette",
@@ -168,11 +168,11 @@
     "IMG": "img-products/43.jpg"
   },
   {
-    "Nom du produit": "Melon",
+    "Nom du produit": "Rhubarbe",
     "En vente": true,
-    "Etiquette": "Melon Bio 4.00 €/kg*",
+    "Etiquette": "Rhubarbe Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/35.jpg"
+    "IMG": "img-products/117.jpg"
   },
   {
     "Nom du produit": "Confiture Cerise Bigarreaux",
@@ -205,7 +205,7 @@
   {
     "Nom du produit": "Gelée Groseille",
     "En vente": true,
-    "Etiquette": "Gelée Groseille 4.40 € le pot",
+    "Etiquette": "✨ Nouveau : Gelée Groseille 4.40 € le pot",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/253.jpg"
   },
