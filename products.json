@@ -14,6 +14,13 @@
     "IMG": "img-products/2.jpg"
   },
   {
+    "Nom du produit": "Betterave - Botte",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Betterave - Botte Bio 2.10 € la botte",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/78.jpg"
+  },
+  {
     "Nom du produit": "Betterave cuite",
     "En vente": true,
     "Etiquette": "Betterave cuite Bio 7.00 €/kg",
@@ -63,6 +70,20 @@
     "IMG": "img-products/22.jpg"
   },
   {
+    "Nom du produit": "Echalion - 250g",
+    "En vente": true,
+    "Etiquette": "Echalion - 250g Bio 2.00 € les 250g",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/24.jpg"
+  },
+  {
+    "Nom du produit": "Echalote - 250g",
+    "En vente": true,
+    "Etiquette": "Echalote - 250g Bio 2.00 € les 250g",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/25.jpg"
+  },
+  {
     "Nom du produit": "Haricot vert",
     "En vente": true,
     "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)",
@@ -75,13 +96,6 @@
     "Etiquette": "Laitue Bio 1.60 €/pièce",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/32.jpg"
-  },
-  {
-    "Nom du produit": "Poire",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Poire Bio 3.80 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/113.jpg"
   },
   {
     "Nom du produit": "Poivron",
@@ -105,6 +119,13 @@
     "IMG": "img-products/52.jpg"
   },
   {
+    "Nom du produit": "Radis Rose Botte (25p)",
+    "En vente": true,
+    "Etiquette": "⌛️ Dernière semaine : Radis Rose Botte (25p) Bio 2.10 € la botte",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/71.jpg"
+  },
+  {
     "Nom du produit": "Chou Cabus Blanc",
     "En vente": true,
     "Etiquette": "Chou Cabus Blanc Bio 3.20 €/kg",
@@ -117,6 +138,20 @@
     "Etiquette": "Chou Cabus Rouge Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/11.jpg"
+  },
+  {
+    "Nom du produit": "Oignon Jaune",
+    "En vente": true,
+    "Etiquette": "Oignon Jaune Bio 3.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/39.jpg"
+  },
+  {
+    "Nom du produit": "Oignon Rouge",
+    "En vente": true,
+    "Etiquette": "Oignon Rouge Bio 3.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/40.jpg"
   },
   {
     "Nom du produit": "Colis Tomate sauce",
@@ -166,6 +201,13 @@
     "Etiquette": "Melon Bio 4.00 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/35.jpg"
+  },
+  {
+    "Nom du produit": "Pomme",
+    "En vente": true,
+    "Etiquette": "Pomme Bio 3.40 €/kg",
+    "Producteur": "Frui'Thierry",
+    "IMG": "img-products/318.jpg"
   },
   {
     "Nom du produit": "Confiture Cerise Bigarreaux",
@@ -275,7 +317,7 @@
   {
     "Nom du produit": "Miel d’été",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel d’été 9.60 € le pot",
+    "Etiquette": "Miel d’été 9.60 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
@@ -294,13 +336,6 @@
     "IMG": "img-products/.jpg"
   },
   {
-    "Nom du produit": "Miel de Ronces",
-    "En vente": true,
-    "Etiquette": "Miel de Ronces 9.60 € le pot",
-    "Producteur": "De La Fleur Au Miel",
-    "IMG": "img-products/.jpg"
-  },
-  {
     "Nom du produit": "Miel de Tilleul",
     "En vente": true,
     "Etiquette": "Miel de Tilleul 10.80 € le pot",
@@ -310,7 +345,7 @@
   {
     "Nom du produit": "Miel de Tournesol",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel de Tournesol 8.40 € le pot",
+    "Etiquette": "Miel de Tournesol 8.40 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
