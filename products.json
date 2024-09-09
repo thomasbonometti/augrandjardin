@@ -63,20 +63,6 @@
     "IMG": "img-products/22.jpg"
   },
   {
-    "Nom du produit": "Echalion - 250g",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Echalion - 250g Bio 2.00 € les 250g",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/24.jpg"
-  },
-  {
-    "Nom du produit": "Echalote - 250g",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Echalote - 250g Bio 2.00 € les 250g",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/25.jpg"
-  },
-  {
     "Nom du produit": "Haricot vert",
     "En vente": true,
     "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)",
@@ -89,6 +75,13 @@
     "Etiquette": "Laitue Bio 1.60 €/pièce",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/32.jpg"
+  },
+  {
+    "Nom du produit": "Poire",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Poire Bio 3.80 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/113.jpg"
   },
   {
     "Nom du produit": "Poivron",
@@ -124,20 +117,6 @@
     "Etiquette": "Chou Cabus Rouge Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/11.jpg"
-  },
-  {
-    "Nom du produit": "Oignon Jaune",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Oignon Jaune Bio 3.20 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/39.jpg"
-  },
-  {
-    "Nom du produit": "Oignon Rouge",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Oignon Rouge Bio 3.20 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/40.jpg"
   },
   {
     "Nom du produit": "Colis Tomate sauce",
@@ -187,13 +166,6 @@
     "Etiquette": "Melon Bio 4.00 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/35.jpg"
-  },
-  {
-    "Nom du produit": "Pomme",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Pomme Bio 3.40 €/kg",
-    "Producteur": "Frui'Thierry",
-    "IMG": "img-products/318.jpg"
   },
   {
     "Nom du produit": "Confiture Cerise Bigarreaux",
@@ -303,7 +275,7 @@
   {
     "Nom du produit": "Miel d’été",
     "En vente": true,
-    "Etiquette": "Miel d’été 9.60 € le pot",
+    "Etiquette": "✨ Nouveau : Miel d’été 9.60 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
@@ -338,7 +310,7 @@
   {
     "Nom du produit": "Miel de Tournesol",
     "En vente": true,
-    "Etiquette": "Miel de Tournesol 8.40 € le pot",
+    "Etiquette": "✨ Nouveau : Miel de Tournesol 8.40 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
