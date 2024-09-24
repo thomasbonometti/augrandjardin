@@ -16,7 +16,7 @@
   {
     "Nom du produit": "Betterave - Botte",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Betterave - Botte Bio 2.10 € la botte",
+    "Etiquette": "Betterave - Botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/78.jpg"
   },
@@ -35,18 +35,18 @@
     "IMG": "img-products/4.jpg"
   },
   {
-    "Nom du produit": "Carotte - Botte",
+    "Nom du produit": "Carotte vrac",
     "En vente": true,
-    "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
+    "Etiquette": "Carotte vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/76.jpg"
+    "IMG": "img-products/6.jpg"
   },
   {
-    "Nom du produit": "Carottes multicolores en Botte",
+    "Nom du produit": "Carottes multicolores en vrac",
     "En vente": true,
-    "Etiquette": "Carottes multicolores en Botte Bio 2.70 € la botte",
+    "Etiquette": "Carottes multicolores en vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/94.jpg"
+    "IMG": "img-products/65.jpg"
   },
   {
     "Nom du produit": "Concombre",
@@ -58,7 +58,7 @@
   {
     "Nom du produit": "Courgette jaune",
     "En vente": true,
-    "Etiquette": "Courgette jaune Bio 2.80 €/kg",
+    "Etiquette": "Courgette jaune Bio 2.80 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/69.jpg"
   },
@@ -91,11 +91,11 @@
     "IMG": "img-products/84.jpg"
   },
   {
-    "Nom du produit": "Laitue",
+    "Nom du produit": "Poireau",
     "En vente": true,
-    "Etiquette": "Laitue Bio 1.60 €/pièce",
+    "Etiquette": "Poireau Bio 3.50 €/kg*",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/32.jpg"
+    "IMG": "img-products/46.jpg"
   },
   {
     "Nom du produit": "Poivron",
@@ -117,13 +117,6 @@
     "Etiquette": "Pomme de terre nouvelle Bio 2.60 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/52.jpg"
-  },
-  {
-    "Nom du produit": "Radis Rose Botte (25p)",
-    "En vente": true,
-    "Etiquette": "⌛️ Dernière semaine : Radis Rose Botte (25p) Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/71.jpg"
   },
   {
     "Nom du produit": "Chou Cabus Blanc",
@@ -194,13 +187,6 @@
     "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/43.jpg"
-  },
-  {
-    "Nom du produit": "Melon",
-    "En vente": true,
-    "Etiquette": "Melon Bio 4.00 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/35.jpg"
   },
   {
     "Nom du produit": "Pomme",
