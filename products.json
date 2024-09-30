@@ -14,13 +14,6 @@
     "IMG": "img-products/2.jpg"
   },
   {
-    "Nom du produit": "Betterave - Botte",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Betterave - Botte Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/78.jpg"
-  },
-  {
     "Nom du produit": "Betterave cuite",
     "En vente": true,
     "Etiquette": "Betterave cuite Bio 7.00 €/kg",
@@ -35,37 +28,44 @@
     "IMG": "img-products/4.jpg"
   },
   {
-    "Nom du produit": "Carotte - Botte",
+    "Nom du produit": "Carotte vrac",
     "En vente": true,
-    "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
+    "Etiquette": "Carotte vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/76.jpg"
+    "IMG": "img-products/6.jpg"
   },
   {
-    "Nom du produit": "Carottes multicolores en Botte",
+    "Nom du produit": "Carottes multicolores en vrac",
     "En vente": true,
-    "Etiquette": "Carottes multicolores en Botte Bio 2.70 € la botte",
+    "Etiquette": "Carottes multicolores en vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/94.jpg"
+    "IMG": "img-products/65.jpg"
+  },
+  {
+    "Nom du produit": "Céleri Rave",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Céleri Rave Bio 3.50 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/8.jpg"
   },
   {
     "Nom du produit": "Concombre",
     "En vente": true,
-    "Etiquette": "Concombre Bio 2.90 €/kg",
+    "Etiquette": "Concombre Bio 2.90 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/20.jpg"
   },
   {
     "Nom du produit": "Courgette jaune",
     "En vente": true,
-    "Etiquette": "Courgette jaune Bio 2.80 €/kg",
+    "Etiquette": "Courgette jaune Bio 2.80 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/69.jpg"
   },
   {
     "Nom du produit": "Courgette verte",
     "En vente": true,
-    "Etiquette": "Courgette verte Bio 2.80 €/kg",
+    "Etiquette": "Courgette verte Bio 2.80 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/22.jpg"
   },
@@ -93,9 +93,23 @@
   {
     "Nom du produit": "Laitue",
     "En vente": true,
-    "Etiquette": "Laitue Bio 1.60 €/pièce",
+    "Etiquette": "✨ Nouveau : Laitue Bio 1.60 €/pièce*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/32.jpg"
+  },
+  {
+    "Nom du produit": "Panais",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Panais Bio 3.80 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/41.jpg"
+  },
+  {
+    "Nom du produit": "Poireau",
+    "En vente": true,
+    "Etiquette": "Poireau Bio 3.50 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/46.jpg"
   },
   {
     "Nom du produit": "Poivron",
@@ -105,25 +119,18 @@
     "IMG": "img-products/49.jpg"
   },
   {
+    "Nom du produit": "Pomme de terre (chair ferme et chair fondante)",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Pomme de terre (chair ferme et chair fondante) 2.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/51.jpg"
+  },
+  {
     "Nom du produit": "Pomme de terre grenaille (Sachet de 1kg)",
     "En vente": true,
     "Etiquette": "Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/80.jpg"
-  },
-  {
-    "Nom du produit": "Pomme de terre nouvelle",
-    "En vente": true,
-    "Etiquette": "Pomme de terre nouvelle Bio 2.60 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/52.jpg"
-  },
-  {
-    "Nom du produit": "Radis Rose Botte (25p)",
-    "En vente": true,
-    "Etiquette": "⌛️ Dernière semaine : Radis Rose Botte (25p) Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/71.jpg"
   },
   {
     "Nom du produit": "Chou Cabus Blanc",
@@ -138,6 +145,20 @@
     "Etiquette": "Chou Cabus Rouge Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/11.jpg"
+  },
+  {
+    "Nom du produit": "Chou Kale",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Kale Bio 5.50 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/17.jpg"
+  },
+  {
+    "Nom du produit": "Chou Milan",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Milan Bio 3.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/13.jpg"
   },
   {
     "Nom du produit": "Oignon Jaune",
@@ -194,13 +215,6 @@
     "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/43.jpg"
-  },
-  {
-    "Nom du produit": "Melon",
-    "En vente": true,
-    "Etiquette": "Melon Bio 4.00 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/35.jpg"
   },
   {
     "Nom du produit": "Pomme",
