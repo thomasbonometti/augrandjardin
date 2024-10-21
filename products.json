@@ -56,20 +56,6 @@
     "IMG": "img-products/20.jpg"
   },
   {
-    "Nom du produit": "Courgette jaune",
-    "En vente": true,
-    "Etiquette": "Courgette jaune Bio 2.80 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/69.jpg"
-  },
-  {
-    "Nom du produit": "Courgette verte",
-    "En vente": true,
-    "Etiquette": "Courgette verte Bio 2.80 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/22.jpg"
-  },
-  {
     "Nom du produit": "Echalion - 250g",
     "En vente": true,
     "Etiquette": "Echalion - 250g Bio 2.00 € les 250g",
@@ -82,13 +68,6 @@
     "Etiquette": "Echalote - 250g Bio 2.00 € les 250g",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/25.jpg"
-  },
-  {
-    "Nom du produit": "Haricot vert",
-    "En vente": true,
-    "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/84.jpg"
   },
   {
     "Nom du produit": "Panais",
@@ -126,6 +105,20 @@
     "IMG": "img-products/80.jpg"
   },
   {
+    "Nom du produit": "Radis Rave",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Radis Rave Bio 3.70 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/95.jpg"
+  },
+  {
+    "Nom du produit": "Chou Broccoli",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Broccoli Bio 4.70 €/kg*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/14.jpg"
+  },
+  {
     "Nom du produit": "Chou Cabus Blanc",
     "En vente": true,
     "Etiquette": "Chou Cabus Blanc Bio 3.20 €/kg",
@@ -156,14 +149,14 @@
   {
     "Nom du produit": "Courge Butternut",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Courge Butternut Bio 2.90 €/kg",
+    "Etiquette": "Courge Butternut Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/21.jpg"
   },
   {
     "Nom du produit": "Courge Carat",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Courge Carat Bio 2.90 €/kg",
+    "Etiquette": "Courge Carat Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/21.jpg"
   },
@@ -177,7 +170,14 @@
   {
     "Nom du produit": "Potiron Bleu de Hongrie",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Potiron Bleu de Hongrie Bio 2.90 €/kg",
+    "Etiquette": "Potiron Bleu de Hongrie Bio 2.90 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/21.jpg"
+  },
+  {
+    "Nom du produit": "Potiron orange",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Potiron orange Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/21.jpg"
   },
@@ -219,7 +219,7 @@
   {
     "Nom du produit": "Tomate variété ancienne",
     "En vente": true,
-    "Etiquette": "Tomate variété ancienne Bio 4.10 €/kg",
+    "Etiquette": "Tomate variété ancienne Bio 4.10 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/57.jpg"
   },
