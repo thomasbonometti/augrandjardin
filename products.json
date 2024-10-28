@@ -107,14 +107,14 @@
   {
     "Nom du produit": "Radis Rave",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Radis Rave Bio 3.70 €/kg",
+    "Etiquette": "Radis Rave Bio 3.70 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/95.jpg"
   },
   {
     "Nom du produit": "Chou Broccoli",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Chou Broccoli Bio 4.70 €/kg*",
+    "Etiquette": "Chou Broccoli Bio 4.70 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/14.jpg"
   },
@@ -177,7 +177,7 @@
   {
     "Nom du produit": "Potiron orange",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Potiron orange Bio 2.90 €/kg",
+    "Etiquette": "Potiron orange Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/21.jpg"
   },
@@ -222,13 +222,6 @@
     "Etiquette": "Tomate variété ancienne Bio 4.10 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/57.jpg"
-  },
-  {
-    "Nom du produit": "Basilic",
-    "En vente": true,
-    "Etiquette": "Basilic Bio 1.30 € le bouquet",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/3.jpg"
   },
   {
     "Nom du produit": "Persil Frisé",
