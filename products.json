@@ -70,20 +70,6 @@
     "IMG": "img-products/25.jpg"
   },
   {
-    "Nom du produit": "Epinard",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Epinard Bio 6.50 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/26.jpg"
-  },
-  {
-    "Nom du produit": "Laitue",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Laitue Bio 1.60 €/pièce*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/32.jpg"
-  },
-  {
     "Nom du produit": "Panais",
     "En vente": true,
     "Etiquette": "Panais Bio 3.80 €/kg",
@@ -105,18 +91,11 @@
     "IMG": "img-products/49.jpg"
   },
   {
-    "Nom du produit": "Pomme de terre - chair ferme",
+    "Nom du produit": "Pomme de terre (chair ferme et chair fondante)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Pomme de terre - chair ferme 2.00 €/kg",
+    "Etiquette": "Pomme de terre (chair ferme et chair fondante) 2.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/5101.jpg"
-  },
-  {
-    "Nom du produit": "Pomme de terre - chair fondante",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Pomme de terre - chair fondante 2.00 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/5102.jpg"
+    "IMG": "img-products/51.jpg"
   },
   {
     "Nom du produit": "Pomme de terre grenaille (Sachet de 1kg)",
@@ -135,7 +114,7 @@
   {
     "Nom du produit": "Chou Broccoli",
     "En vente": true,
-    "Etiquette": "Chou Broccoli Bio 4.70 €/kg",
+    "Etiquette": "Chou Broccoli Bio 4.70 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/14.jpg"
   },
@@ -172,35 +151,35 @@
     "En vente": true,
     "Etiquette": "Courge Butternut Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2104.jpg"
+    "IMG": "img-products/21.jpg"
   },
   {
     "Nom du produit": "Courge Carat",
     "En vente": true,
     "Etiquette": "Courge Carat Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2103.jpg"
+    "IMG": "img-products/21.jpg"
   },
   {
     "Nom du produit": "Potimarron (orange)",
     "En vente": true,
     "Etiquette": "Potimarron (orange) Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2101.jpg"
+    "IMG": "img-products/21.jpg"
   },
   {
     "Nom du produit": "Potiron Bleu de Hongrie",
     "En vente": true,
     "Etiquette": "Potiron Bleu de Hongrie Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2105.jpg"
+    "IMG": "img-products/21.jpg"
   },
   {
     "Nom du produit": "Potiron orange",
     "En vente": true,
     "Etiquette": "Potiron orange Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2102.jpg"
+    "IMG": "img-products/21.jpg"
   },
   {
     "Nom du produit": "Oignon à rôtir",
@@ -231,6 +210,13 @@
     "IMG": "img-products/58.jpg"
   },
   {
+    "Nom du produit": "Tomate Cocktail",
+    "En vente": true,
+    "Etiquette": "Tomate Cocktail Bio 4.10 € la barquette*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/82.jpg"
+  },
+  {
     "Nom du produit": "Tomate variété ancienne",
     "En vente": true,
     "Etiquette": "Tomate variété ancienne Bio 4.10 €/kg*",
@@ -243,13 +229,6 @@
     "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/43.jpg"
-  },
-  {
-    "Nom du produit": "Champignon brun de Paris",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Champignon brun de Paris Bio 6.50 € la barquette (500g)",
-    "Producteur": "Frui'Thierry",
-    "IMG": "img-products/312.jpg"
   },
   {
     "Nom du produit": "Poire",
