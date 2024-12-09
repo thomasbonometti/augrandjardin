@@ -7,11 +7,11 @@
     "IMG": "img-products/1.jpg"
   },
   {
-    "Nom du produit": "Aubergine",
+    "Nom du produit": "Betterave Chioggia",
     "En vente": true,
-    "Etiquette": "Aubergine Bio 4.70 €/kg*",
+    "Etiquette": "Betterave Chioggia Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2.jpg"
+    "IMG": "img-products/4.jpg"
   },
   {
     "Nom du produit": "Betterave cuite",
@@ -21,11 +21,25 @@
     "IMG": "img-products/206.jpg"
   },
   {
+    "Nom du produit": "Betterave Forono vrac",
+    "En vente": true,
+    "Etiquette": "Betterave Forono vrac Bio 3.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/.jpg"
+  },
+  {
     "Nom du produit": "Betterave vrac",
     "En vente": true,
     "Etiquette": "Betterave vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/4.jpg"
+  },
+  {
+    "Nom du produit": "Blettes - 500g",
+    "En vente": true,
+    "Etiquette": "Blettes - 500g Bio 2.00 € les 500g*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/5.jpg"
   },
   {
     "Nom du produit": "Carotte vrac",
@@ -35,13 +49,6 @@
     "IMG": "img-products/6.jpg"
   },
   {
-    "Nom du produit": "Carottes multicolores en vrac",
-    "En vente": true,
-    "Etiquette": "Carottes multicolores en vrac Bio 3.00 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/65.jpg"
-  },
-  {
     "Nom du produit": "Céleri Rave",
     "En vente": true,
     "Etiquette": "Céleri Rave Bio 3.50 €/kg",
@@ -49,11 +56,11 @@
     "IMG": "img-products/8.jpg"
   },
   {
-    "Nom du produit": "Concombre",
+    "Nom du produit": "Chicorée",
     "En vente": true,
-    "Etiquette": "Concombre Bio 2.90 €/kg*",
+    "Etiquette": "Chicorée Bio 2.20 €/pièce",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/20.jpg"
+    "IMG": "img-products/9.jpg"
   },
   {
     "Nom du produit": "Echalion - 250g",
@@ -68,6 +75,41 @@
     "Etiquette": "Echalote - 250g Bio 2.00 € les 250g",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/25.jpg"
+  },
+  {
+    "Nom du produit": "Epinard",
+    "En vente": true,
+    "Etiquette": "Epinard Bio 6.50 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/26.jpg"
+  },
+  {
+    "Nom du produit": "Mâche",
+    "En vente": true,
+    "Etiquette": "Mâche Bio 3.30 € les 250g",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/33.jpg"
+  },
+  {
+    "Nom du produit": "Navet botte",
+    "En vente": true,
+    "Etiquette": "Navet botte Bio 2.10 € la botte",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/73.jpg"
+  },
+  {
+    "Nom du produit": "Navet Boule D’Or",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Navet Boule D’Or Bio 3.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/.jpg"
+  },
+  {
+    "Nom du produit": "Navet en vrac",
+    "En vente": true,
+    "Etiquette": "Navet en vrac Bio 3.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/37.jpg"
   },
   {
     "Nom du produit": "Panais",
@@ -86,16 +128,23 @@
   {
     "Nom du produit": "Poivron",
     "En vente": true,
-    "Etiquette": "Poivron Bio 5.20 €/kg",
+    "Etiquette": "Poivron Bio 5.20 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/49.jpg"
   },
   {
-    "Nom du produit": "Pomme de terre (chair ferme et chair fondante)",
+    "Nom du produit": "Pomme de terre - chair ferme",
     "En vente": true,
-    "Etiquette": "Pomme de terre (chair ferme et chair fondante) 2.00 €/kg",
+    "Etiquette": "Pomme de terre - chair ferme 2.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/51.jpg"
+    "IMG": "img-products/5101.jpg"
+  },
+  {
+    "Nom du produit": "Pomme de terre - chair fondante",
+    "En vente": true,
+    "Etiquette": "Pomme de terre - chair fondante 2.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/5102.jpg"
   },
   {
     "Nom du produit": "Pomme de terre grenaille (Sachet de 1kg)",
@@ -103,6 +152,13 @@
     "Etiquette": "Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/80.jpg"
+  },
+  {
+    "Nom du produit": "Radis Noir",
+    "En vente": true,
+    "Etiquette": "Radis Noir Bio 3.40 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/54.jpg"
   },
   {
     "Nom du produit": "Radis Rave",
@@ -133,6 +189,13 @@
     "IMG": "img-products/11.jpg"
   },
   {
+    "Nom du produit": "Chou Fleur",
+    "En vente": true,
+    "Etiquette": "Chou Fleur Bio 4.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/16.jpg"
+  },
+  {
     "Nom du produit": "Chou Kale",
     "En vente": true,
     "Etiquette": "Chou Kale Bio 5.50 €/kg",
@@ -147,39 +210,46 @@
     "IMG": "img-products/13.jpg"
   },
   {
+    "Nom du produit": "Chou Romanesco",
+    "En vente": true,
+    "Etiquette": "Chou Romanesco Bio 4.70 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/88.jpg"
+  },
+  {
     "Nom du produit": "Courge Butternut",
     "En vente": true,
     "Etiquette": "Courge Butternut Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/21.jpg"
+    "IMG": "img-products/2104.jpg"
   },
   {
     "Nom du produit": "Courge Carat",
     "En vente": true,
     "Etiquette": "Courge Carat Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/21.jpg"
+    "IMG": "img-products/2103.jpg"
   },
   {
     "Nom du produit": "Potimarron (orange)",
     "En vente": true,
     "Etiquette": "Potimarron (orange) Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/21.jpg"
+    "IMG": "img-products/2101.jpg"
   },
   {
     "Nom du produit": "Potiron Bleu de Hongrie",
     "En vente": true,
     "Etiquette": "Potiron Bleu de Hongrie Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/21.jpg"
+    "IMG": "img-products/2105.jpg"
   },
   {
     "Nom du produit": "Potiron orange",
     "En vente": true,
     "Etiquette": "Potiron orange Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/21.jpg"
+    "IMG": "img-products/2102.jpg"
   },
   {
     "Nom du produit": "Oignon à rôtir",
@@ -203,39 +273,11 @@
     "IMG": "img-products/40.jpg"
   },
   {
-    "Nom du produit": "Tomate Cerise - barquette",
+    "Nom du produit": "Champignon brun de Paris",
     "En vente": true,
-    "Etiquette": "Tomate Cerise - barquette Bio 3.10 € la barquette (440g)*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/58.jpg"
-  },
-  {
-    "Nom du produit": "Tomate Cocktail",
-    "En vente": true,
-    "Etiquette": "Tomate Cocktail Bio 4.10 € la barquette*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/82.jpg"
-  },
-  {
-    "Nom du produit": "Tomate variété ancienne",
-    "En vente": true,
-    "Etiquette": "Tomate variété ancienne Bio 4.10 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/57.jpg"
-  },
-  {
-    "Nom du produit": "Persil Frisé",
-    "En vente": true,
-    "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/43.jpg"
-  },
-  {
-    "Nom du produit": "Poire",
-    "En vente": true,
-    "Etiquette": "Poire Bio 3.80 €/kg",
+    "Etiquette": "Champignon brun de Paris Bio 6.50 € la barquette (500g)",
     "Producteur": "Frui'Thierry",
-    "IMG": "img-products/319.jpg"
+    "IMG": "img-products/312.jpg"
   },
   {
     "Nom du produit": "Pomme",
@@ -346,13 +388,6 @@
     "Nom du produit": "Miel d’été",
     "En vente": true,
     "Etiquette": "Miel d’été 9.60 € le pot",
-    "Producteur": "De La Fleur Au Miel",
-    "IMG": "img-products/.jpg"
-  },
-  {
-    "Nom du produit": "Miel de Châtaignier",
-    "En vente": true,
-    "Etiquette": "Miel de Châtaignier 10.80 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
