@@ -1,5 +1,19 @@
 [
   {
+    "Nom du produit": "Blettes",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Blettes Bio 4.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/5.jpg"
+  },
+  {
+    "Nom du produit": "Carotte - Botte",
+    "En vente": true,
+    "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/76.jpg"
+  },
+  {
     "Nom du produit": "Epinard",
     "En vente": true,
     "Etiquette": "Epinard Bio 6.50 €/kg",
@@ -7,16 +21,16 @@
     "IMG": "img-products/26.jpg"
   },
   {
-    "Nom du produit": "Laitue en vrac - sachet",
+    "Nom du produit": "Laitue",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Laitue en vrac - sachet Bio 2.10 € le sachet (280g)",
+    "Etiquette": "✨ Nouveau : Laitue Bio 1.60 €/pièce",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/92.jpg"
+    "IMG": "img-products/32.jpg"
   },
   {
     "Nom du produit": "Mesclun",
     "En vente": true,
-    "Etiquette": "Mesclun Bio 2.10 € le sachet (160g)",
+    "Etiquette": "Mesclun Bio 2.10 € le sachet (160g)*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/72.jpg"
   },
@@ -28,65 +42,44 @@
     "IMG": "img-products/73.jpg"
   },
   {
-    "Nom du produit": "Radis Rose Botte (25p)",
-    "En vente": true,
-    "Etiquette": "Radis Rose Botte (25p) Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/71.jpg"
-  },
-  {
     "Nom du produit": "Champignon brun de Paris",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Champignon brun de Paris Bio 6.50 € la barquette (500g)",
+    "Etiquette": "Champignon brun de Paris Bio 6.50 € la barquette (500g)",
     "Producteur": "Frui'Thierry",
     "IMG": "img-products/312.jpg"
   },
   {
     "Nom du produit": "Fraises (barquette)",
     "En vente": true,
-    "Etiquette": "Fraises (barquette) Bio 6.50 € la barquette (500g)",
+    "Etiquette": "Fraises (barquette) Bio 6.950 € la barquette (500g)",
     "Producteur": "Frui'Thierry",
     "IMG": "img-products/314.jpg"
   },
   {
-    "Nom du produit": "Pomme",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Pomme Bio 3.40 €/kg",
-    "Producteur": "Frui'Thierry",
-    "IMG": "img-products/318.jpg"
-  },
-  {
-    "Nom du produit": "Rhubarbe",
-    "En vente": true,
-    "Etiquette": "Rhubarbe Bio 4.20 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/.jpg"
-  },
-  {
     "Nom du produit": "Confiture Cerise Bigarreaux",
     "En vente": true,
-    "Etiquette": "Confiture Cerise Bigarreaux 4.00 € le pot",
+    "Etiquette": "Confiture Cerise Bigarreaux 4.10 € le pot",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/211.jpg"
   },
   {
     "Nom du produit": "Confiture Cerise Noire",
     "En vente": true,
-    "Etiquette": "Confiture Cerise Noire 4.00 € le pot",
+    "Etiquette": "Confiture Cerise Noire 4.10 € le pot",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/212.jpg"
   },
   {
     "Nom du produit": "Gelée Coing",
     "En vente": true,
-    "Etiquette": "Gelée Coing 4.40 € le pot",
+    "Etiquette": "Gelée Coing 4.50 € le pot",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/251.jpg"
   },
   {
     "Nom du produit": "Gelée Groseille",
     "En vente": true,
-    "Etiquette": "Gelée Groseille 4.40 € le pot",
+    "Etiquette": "Gelée Groseille 4.50 € le pot",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/253.jpg"
   },
@@ -107,7 +100,7 @@
   {
     "Nom du produit": "Jus de Pomme/Carotte",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Jus de Pomme/Carotte Bio 3.70 € la bouteille",
+    "Etiquette": "Jus de Pomme/Carotte Bio 3.70 € la bouteille",
     "Producteur": "Frui'Thierry",
     "IMG": "img-products/308.jpg"
   },
@@ -156,21 +149,28 @@
   {
     "Nom du produit": "Plant de Basilic",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Plant de Basilic Bio 2.00 € /plant",
+    "Etiquette": "Plant de Basilic Bio 2.00 € /plant",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/322.jpg"
   },
   {
     "Nom du produit": "Plant de Concombre",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Plant de Concombre Bio 2.00 € /plant",
+    "Etiquette": "Plant de Concombre Bio 2.00 € /plant",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/326.jpg"
   },
   {
+    "Nom du produit": "Plant de Courge",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Plant de Courge Bio 2.00 € /plant",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/325.jpg"
+  },
+  {
     "Nom du produit": "Plant de Courgette verte",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Plant de Courgette verte Bio 2.00 € /plant",
+    "Etiquette": "Plant de Courgette verte Bio 2.00 € /plant",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/324.jpg"
   },
@@ -184,7 +184,7 @@
   {
     "Nom du produit": "Plant de Persil Frisé",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Plant de Persil Frisé Bio 2.00 € /plant",
+    "Etiquette": "Plant de Persil Frisé Bio 2.00 € /plant",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/327.jpg"
   },
@@ -210,30 +210,44 @@
     "IMG": "img-products/321.jpg"
   },
   {
+    "Nom du produit": "Terreau de rempotage - sac 70L",
+    "En vente": true,
+    "Etiquette": "Terreau de rempotage - sac 70L Bio 12.50 € le sac",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/.jpg"
+  },
+  {
+    "Nom du produit": "Terreau de semis - sac 70L",
+    "En vente": true,
+    "Etiquette": "Terreau de semis - sac 70L Bio 16.00 € le sac",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/344.jpg"
+  },
+  {
     "Nom du produit": "Miel d’Aubépines",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel d’Aubépines 9.60 € le pot",
+    "Etiquette": "Miel d’Aubépines 9.60 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
   {
     "Nom du produit": "Miel d’été",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel d’été 9.60 € le pot",
+    "Etiquette": "Miel d’été 9.60 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
   {
     "Nom du produit": "Miel de Tournesol",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel de Tournesol 8.40 € le pot",
+    "Etiquette": "Miel de Tournesol 8.40 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   },
   {
     "Nom du produit": "Miel et Noisette",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Miel et Noisette 10.80 € le pot",
+    "Etiquette": "Miel et Noisette 10.80 € le pot",
     "Producteur": "De La Fleur Au Miel",
     "IMG": "img-products/.jpg"
   }
