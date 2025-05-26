@@ -2,14 +2,14 @@
   {
     "Nom du produit": "Ail en vert botte (Ail nouveau)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Ail en vert botte (Ail nouveau) Bio 2.50 € la botte",
+    "Etiquette": "Ail en vert botte (Ail nouveau) Bio 2.50 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/99.jpg"
   },
   {
     "Nom du produit": "Betterave - Botte",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Betterave - Botte Bio 2.10 € la botte",
+    "Etiquette": "Betterave - Botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/78.jpg"
   },
@@ -30,9 +30,16 @@
   {
     "Nom du produit": "Epinard",
     "En vente": true,
-    "Etiquette": "Epinard Bio 6.50 €/kg",
+    "Etiquette": "⌛️ Dernière semaine : Epinard Bio 6.50 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/26.jpg"
+  },
+  {
+    "Nom du produit": "Fenouil",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Fenouil Bio 4.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/27.jpg"
   },
   {
     "Nom du produit": "Laitue",
@@ -42,11 +49,39 @@
     "IMG": "img-products/32.jpg"
   },
   {
+    "Nom du produit": "Mesclun",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Mesclun Bio 2.10 € le sachet (160g)*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/72.jpg"
+  },
+  {
     "Nom du produit": "Navet botte",
     "En vente": true,
     "Etiquette": "Navet botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/73.jpg"
+  },
+  {
+    "Nom du produit": "Petit Pois - barquette 375g",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Petit Pois - barquette 375g Bio 3.10 € la barquette (375g)",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/74.jpg"
+  },
+  {
+    "Nom du produit": "Pois Mange Tout - Barquette",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Pois Mange Tout - Barquette Bio 4.10 € la barquette (400g)",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/75.jpg"
+  },
+  {
+    "Nom du produit": "Chou Rave",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Rave Bio 3.60 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/18.jpg"
   },
   {
     "Nom du produit": "Fraises (barquette)",
