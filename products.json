@@ -30,7 +30,7 @@
   {
     "Nom du produit": "Courgette verte",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Courgette verte Bio 2.80 €/kg",
+    "Etiquette": "Courgette verte Bio 2.80 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/22.jpg"
   },
@@ -40,6 +40,13 @@
     "Etiquette": "Fenouil Bio 4.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/27.jpg"
+  },
+  {
+    "Nom du produit": "Haricot vert",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Haricot vert Bio 4.10 € la barquette (530g)",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/84.jpg"
   },
   {
     "Nom du produit": "Laitue",
@@ -77,11 +84,25 @@
     "IMG": "img-products/75.jpg"
   },
   {
+    "Nom du produit": "Radis Rose Botte (25p)",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Radis Rose Botte (25p) Bio 2.10 € la botte",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/71.jpg"
+  },
+  {
     "Nom du produit": "Chou Rave",
     "En vente": true,
     "Etiquette": "Chou Rave Bio 3.60 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/18.jpg"
+  },
+  {
+    "Nom du produit": "Persil Frisé",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Persil Frisé Bio 1.30 € le bouquet",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/43.jpg"
   },
   {
     "Nom du produit": "Fraises (barquette)",
