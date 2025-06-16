@@ -1,17 +1,17 @@
 [
   {
-    "Nom du produit": "Ail en vert botte (Ail nouveau)",
+    "Nom du produit": "Betterave cuite",
     "En vente": true,
-    "Etiquette": "Ail en vert botte (Ail nouveau) Bio 2.50 € la botte",
+    "Etiquette": "✨ Nouveau : Betterave cuite Bio 7.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/99.jpg"
+    "IMG": "img-products/206.jpg"
   },
   {
-    "Nom du produit": "Betterave - Botte",
+    "Nom du produit": "Betterave vrac",
     "En vente": true,
-    "Etiquette": "Betterave - Botte Bio 2.10 € la botte",
+    "Etiquette": "✨ Nouveau : Betterave vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/78.jpg"
+    "IMG": "img-products/4.jpg"
   },
   {
     "Nom du produit": "Blettes",
@@ -26,6 +26,13 @@
     "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/76.jpg"
+  },
+  {
+    "Nom du produit": "Concombre",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Concombre Bio 2.90 €/kg*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/20.jpg"
   },
   {
     "Nom du produit": "Courgette verte",
@@ -44,7 +51,7 @@
   {
     "Nom du produit": "Haricot vert",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Haricot vert Bio 4.10 € la barquette (530g)",
+    "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/84.jpg"
   },
@@ -56,18 +63,11 @@
     "IMG": "img-products/32.jpg"
   },
   {
-    "Nom du produit": "Mesclun",
+    "Nom du produit": "Navet Nouveau",
     "En vente": true,
-    "Etiquette": "Mesclun Bio 2.10 € le sachet (160g)*",
+    "Etiquette": "✨ Nouveau : Navet Nouveau Bio 3.30 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/72.jpg"
-  },
-  {
-    "Nom du produit": "Navet botte",
-    "En vente": true,
-    "Etiquette": "Navet botte Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/73.jpg"
+    "IMG": "img-products/62.jpg"
   },
   {
     "Nom du produit": "Petit Pois - barquette 375g",
@@ -84,32 +84,18 @@
     "IMG": "img-products/75.jpg"
   },
   {
-    "Nom du produit": "Radis Rose Botte (25p)",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Radis Rose Botte (25p) Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/71.jpg"
-  },
-  {
-    "Nom du produit": "Chou Rave",
-    "En vente": true,
-    "Etiquette": "Chou Rave Bio 3.60 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/18.jpg"
-  },
-  {
     "Nom du produit": "Persil Frisé",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Persil Frisé Bio 1.30 € le bouquet",
+    "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/43.jpg"
   },
   {
-    "Nom du produit": "Fraises (barquette)",
+    "Nom du produit": "Rhubarbe",
     "En vente": true,
-    "Etiquette": "Fraises (barquette) Bio 6.950 € la barquette (500g)",
-    "Producteur": "Frui'Thierry",
-    "IMG": "img-products/314.jpg"
+    "Etiquette": "✨ Nouveau : Rhubarbe Bio 4.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/117.jpg"
   },
   {
     "Nom du produit": "Confiture Cerise Bigarreaux",
