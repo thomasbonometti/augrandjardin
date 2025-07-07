@@ -9,7 +9,7 @@
   {
     "Nom du produit": "Aubergine",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Aubergine Bio 4.70 €/kg*",
+    "Etiquette": "Aubergine Bio 4.70 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/2.jpg"
   },
@@ -35,11 +35,11 @@
     "IMG": "img-products/5.jpg"
   },
   {
-    "Nom du produit": "Carotte - Botte",
+    "Nom du produit": "Carotte - Botte (grosse)",
     "En vente": true,
-    "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
+    "Etiquette": "✨ Nouveau : Carotte - Botte (grosse) Bio 2.70 € la botte*",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/76.jpg"
+    "IMG": "img-products/96.jpg"
   },
   {
     "Nom du produit": "Concombre",
@@ -77,18 +77,25 @@
     "IMG": "img-products/32.jpg"
   },
   {
-    "Nom du produit": "Pomme de terre nouvelle",
+    "Nom du produit": "Poivron",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Pomme de terre nouvelle Bio 2.60 €/kg",
+    "Etiquette": "✨ Nouveau : Poivron Bio 5.20 €/kg*",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/52.jpg"
+    "IMG": "img-products/49.jpg"
   },
   {
-    "Nom du produit": "Radis Rose Botte (25p)",
+    "Nom du produit": "Pomme de terre grenaille (Sachet de 1kg)",
     "En vente": true,
-    "Etiquette": "Radis Rose Botte (25p) Bio 2.10 € la botte",
+    "Etiquette": "✨ Nouveau : Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/71.jpg"
+    "IMG": "img-products/80.jpg"
+  },
+  {
+    "Nom du produit": "Pomme de terre nouvelle",
+    "En vente": true,
+    "Etiquette": "Pomme de terre nouvelle Bio 2.60 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/52.jpg"
   },
   {
     "Nom du produit": "Oignon Blanc - botte",
@@ -100,23 +107,23 @@
   {
     "Nom du produit": "Oignon Ciboule",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : ⌛️ Dernière semaine : Oignon Ciboule Bio 2.10 € la botte",
+    "Etiquette": "Oignon Ciboule Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/90.jpg"
   },
   {
-    "Nom du produit": "Tomate - 500g",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Tomate - 500g Bio 2.050 € les 500g",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/57.jpg"
-  },
-  {
     "Nom du produit": "Tomate Cerise - barquette",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Tomate Cerise - barquette Bio 3.10 € la barquette (440g)*",
+    "Etiquette": "Tomate Cerise - barquette Bio 3.10 € la barquette (440g)*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/58.jpg"
+  },
+  {
+    "Nom du produit": "Tomate variété ancienne",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Tomate variété ancienne Bio 4.10 €/kg*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/57.jpg"
   },
   {
     "Nom du produit": "Basilic",
