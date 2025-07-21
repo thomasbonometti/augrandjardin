@@ -1,17 +1,24 @@
 [
   {
-    "Nom du produit": "Ail nouveau",
+    "Nom du produit": "Ail",
     "En vente": true,
-    "Etiquette": "Ail nouveau Bio 3.050 € les 250g",
+    "Etiquette": "Ail Bio 3.050 € les 250g",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/1.jpg"
   },
   {
     "Nom du produit": "Aubergine",
     "En vente": true,
-    "Etiquette": "Aubergine Bio 4.70 €/kg*",
+    "Etiquette": "Aubergine Bio 4.70 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/2.jpg"
+  },
+  {
+    "Nom du produit": "Betterave - Botte",
+    "En vente": true,
+    "Etiquette": "Betterave - Botte Bio 2.10 € la botte",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/78.jpg"
   },
   {
     "Nom du produit": "Betterave cuite",
@@ -19,13 +26,6 @@
     "Etiquette": "Betterave cuite Bio 7.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/206.jpg"
-  },
-  {
-    "Nom du produit": "Betterave vrac",
-    "En vente": true,
-    "Etiquette": "Betterave vrac Bio 3.00 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/4.jpg"
   },
   {
     "Nom du produit": "Blettes",
@@ -37,7 +37,7 @@
   {
     "Nom du produit": "Carotte - Botte (grosse)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Carotte - Botte (grosse) Bio 2.70 € la botte*",
+    "Etiquette": "Carotte - Botte (grosse) Bio 2.70 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/96.jpg"
   },
@@ -70,23 +70,16 @@
     "IMG": "img-products/84.jpg"
   },
   {
-    "Nom du produit": "Laitue",
-    "En vente": true,
-    "Etiquette": "Laitue Bio 1.60 €/pièce",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/32.jpg"
-  },
-  {
     "Nom du produit": "Poivron",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Poivron Bio 5.20 €/kg*",
+    "Etiquette": "Poivron Bio 5.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/49.jpg"
   },
   {
     "Nom du produit": "Pomme de terre grenaille (Sachet de 1kg)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
+    "Etiquette": "Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/80.jpg"
   },
@@ -98,9 +91,30 @@
     "IMG": "img-products/52.jpg"
   },
   {
+    "Nom du produit": "Radis Rose Botte (25p)",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Radis Rose Botte (25p) Bio 2.10 € la botte",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/71.jpg"
+  },
+  {
+    "Nom du produit": "Chou Broccoli",
+    "En vente": true,
+    "Etiquette": "Chou Broccoli Bio 4.70 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/14.jpg"
+  },
+  {
+    "Nom du produit": "Chou Fleur",
+    "En vente": true,
+    "Etiquette": "Chou Fleur Bio 4.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/16.jpg"
+  },
+  {
     "Nom du produit": "Oignon Blanc - botte",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Oignon Blanc - botte Bio 2.10 € la botte",
+    "Etiquette": "Oignon Blanc - botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/79.jpg"
   },
@@ -112,18 +126,18 @@
     "IMG": "img-products/90.jpg"
   },
   {
-    "Nom du produit": "Tomate Cerise - barquette",
+    "Nom du produit": "Tomate",
     "En vente": true,
-    "Etiquette": "Tomate Cerise - barquette Bio 3.10 € la barquette (440g)*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/58.jpg"
-  },
-  {
-    "Nom du produit": "Tomate variété ancienne",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Tomate variété ancienne Bio 4.10 €/kg*",
+    "Etiquette": "Tomate Bio 4.10 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/57.jpg"
+  },
+  {
+    "Nom du produit": "Tomate Cerise - barquette",
+    "En vente": true,
+    "Etiquette": "Tomate Cerise - barquette Bio 3.10 € la barquette (440g)",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/58.jpg"
   },
   {
     "Nom du produit": "Basilic",
@@ -222,5 +236,40 @@
     "Etiquette": "Tartinade Betterave & Pois Chiche Bio 4.50 € le pot",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/205.jpg"
+  },
+  {
+    "Nom du produit": "Miel d’Aubépines",
+    "En vente": true,
+    "Etiquette": "Miel d’Aubépines 9.60 € le pot",
+    "Producteur": "De La Fleur Au Miel",
+    "IMG": "img-products/.jpg"
+  },
+  {
+    "Nom du produit": "Miel d’été",
+    "En vente": true,
+    "Etiquette": "Miel d’été 9.60 € le pot",
+    "Producteur": "De La Fleur Au Miel",
+    "IMG": "img-products/.jpg"
+  },
+  {
+    "Nom du produit": "Miel de Fleur printemps",
+    "En vente": true,
+    "Etiquette": "Miel de Fleur printemps 7.20 € le pot",
+    "Producteur": "De La Fleur Au Miel",
+    "IMG": "img-products/.jpg"
+  },
+  {
+    "Nom du produit": "Miel de Tournesol",
+    "En vente": true,
+    "Etiquette": "Miel de Tournesol 8.40 € le pot",
+    "Producteur": "De La Fleur Au Miel",
+    "IMG": "img-products/.jpg"
+  },
+  {
+    "Nom du produit": "Miel et Noisette",
+    "En vente": true,
+    "Etiquette": "Miel et Noisette 10.80 € le pot",
+    "Producteur": "De La Fleur Au Miel",
+    "IMG": "img-products/.jpg"
   }
 ]
