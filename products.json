@@ -91,13 +91,6 @@
     "IMG": "img-products/52.jpg"
   },
   {
-    "Nom du produit": "Radis Rose Botte (25p)",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Radis Rose Botte (25p) Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/71.jpg"
-  },
-  {
     "Nom du produit": "Chou Broccoli",
     "En vente": true,
     "Etiquette": "Chou Broccoli Bio 4.70 €/kg",
@@ -138,6 +131,13 @@
     "Etiquette": "Tomate Cerise - barquette Bio 3.10 € la barquette (440g)",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/58.jpg"
+  },
+  {
+    "Nom du produit": "Tomate Cocktail",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Tomate Cocktail Bio 4.10 € la barquette*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/82.jpg"
   },
   {
     "Nom du produit": "Basilic",
