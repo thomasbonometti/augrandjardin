@@ -14,18 +14,18 @@
     "IMG": "img-products/2.jpg"
   },
   {
-    "Nom du produit": "Betterave - Botte",
-    "En vente": true,
-    "Etiquette": "Betterave - Botte Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/78.jpg"
-  },
-  {
     "Nom du produit": "Betterave cuite",
     "En vente": true,
     "Etiquette": "Betterave cuite Bio 7.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/206.jpg"
+  },
+  {
+    "Nom du produit": "Betterave vrac",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Betterave vrac Bio 3.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/4.jpg"
   },
   {
     "Nom du produit": "Blettes",
@@ -35,11 +35,11 @@
     "IMG": "img-products/5.jpg"
   },
   {
-    "Nom du produit": "Carotte - Botte (grosse)",
+    "Nom du produit": "Carotte - Botte",
     "En vente": true,
-    "Etiquette": "Carotte - Botte (grosse) Bio 2.70 € la botte",
+    "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/96.jpg"
+    "IMG": "img-products/76.jpg"
   },
   {
     "Nom du produit": "Concombre",
@@ -70,6 +70,13 @@
     "IMG": "img-products/84.jpg"
   },
   {
+    "Nom du produit": "Laitue",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Laitue Bio 1.60 €/pièce",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/32.jpg"
+  },
+  {
     "Nom du produit": "Poivron",
     "En vente": true,
     "Etiquette": "Poivron Bio 5.20 €/kg",
@@ -93,14 +100,14 @@
   {
     "Nom du produit": "Radis Rose Botte (25p)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Radis Rose Botte (25p) Bio 2.10 € la botte",
+    "Etiquette": "Radis Rose Botte (25p) Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/71.jpg"
   },
   {
     "Nom du produit": "Chou Broccoli",
     "En vente": true,
-    "Etiquette": "Chou Broccoli Bio 4.70 €/kg",
+    "Etiquette": "Chou Broccoli Bio 4.70 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/14.jpg"
   },
@@ -112,11 +119,11 @@
     "IMG": "img-products/16.jpg"
   },
   {
-    "Nom du produit": "Oignon Blanc - botte",
+    "Nom du produit": "Oignon Blanc frais",
     "En vente": true,
-    "Etiquette": "Oignon Blanc - botte Bio 2.10 € la botte",
+    "Etiquette": "Oignon Blanc frais Bio 4.50 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/79.jpg"
+    "IMG": "img-products/38.jpg"
   },
   {
     "Nom du produit": "Oignon Ciboule",
@@ -140,6 +147,13 @@
     "IMG": "img-products/58.jpg"
   },
   {
+    "Nom du produit": "Tomate Cocktail",
+    "En vente": true,
+    "Etiquette": "Tomate Cocktail Bio 4.10 € la barquette",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/82.jpg"
+  },
+  {
     "Nom du produit": "Basilic",
     "En vente": true,
     "Etiquette": "Basilic Bio 1.30 € le bouquet",
@@ -152,6 +166,13 @@
     "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/43.jpg"
+  },
+  {
+    "Nom du produit": "Melon",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Melon Bio 4.00 €/kg*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/35.jpg"
   },
   {
     "Nom du produit": "Rhubarbe",
