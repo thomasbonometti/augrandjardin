@@ -23,16 +23,9 @@
   {
     "Nom du produit": "Betterave vrac",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Betterave vrac Bio 3.00 €/kg",
+    "Etiquette": "Betterave vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/4.jpg"
-  },
-  {
-    "Nom du produit": "Blettes",
-    "En vente": true,
-    "Etiquette": "Blettes Bio 4.00 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/5.jpg"
   },
   {
     "Nom du produit": "Carotte - Botte",
@@ -40,6 +33,13 @@
     "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/76.jpg"
+  },
+  {
+    "Nom du produit": "Céleri Rave",
+    "En vente": true,
+    "Etiquette": "Céleri Rave Bio 3.50 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/8.jpg"
   },
   {
     "Nom du produit": "Concombre",
@@ -63,6 +63,20 @@
     "IMG": "img-products/22.jpg"
   },
   {
+    "Nom du produit": "Echalion - 250g",
+    "En vente": true,
+    "Etiquette": "Echalion - 250g Bio 2.00 € les 250g",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/24.jpg"
+  },
+  {
+    "Nom du produit": "Echalote - 250g",
+    "En vente": true,
+    "Etiquette": "Echalote - 250g Bio 2.00 € les 250g",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/25.jpg"
+  },
+  {
     "Nom du produit": "Haricot vert",
     "En vente": true,
     "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)",
@@ -70,11 +84,25 @@
     "IMG": "img-products/84.jpg"
   },
   {
-    "Nom du produit": "Laitue",
+    "Nom du produit": "Laitue (prix selon calibre)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Laitue Bio 1.60 €/pièce",
+    "Etiquette": "Laitue (prix selon calibre) Bio 1.60 €/pièce",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/32.jpg"
+  },
+  {
+    "Nom du produit": "Panais",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Panais Bio 3.80 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/41.jpg"
+  },
+  {
+    "Nom du produit": "Poireau",
+    "En vente": true,
+    "Etiquette": "Poireau Bio 3.50 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/46.jpg"
   },
   {
     "Nom du produit": "Poivron",
@@ -98,25 +126,18 @@
     "IMG": "img-products/52.jpg"
   },
   {
-    "Nom du produit": "Radis Rose Botte (25p)",
-    "En vente": true,
-    "Etiquette": "Radis Rose Botte (25p) Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/71.jpg"
-  },
-  {
-    "Nom du produit": "Chou Broccoli",
-    "En vente": true,
-    "Etiquette": "Chou Broccoli Bio 4.70 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/14.jpg"
-  },
-  {
     "Nom du produit": "Chou Fleur",
     "En vente": true,
-    "Etiquette": "Chou Fleur Bio 4.20 €/kg",
+    "Etiquette": "✨ Nouveau : Chou Fleur Bio 4.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/16.jpg"
+  },
+  {
+    "Nom du produit": "Chou Kale",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Kale Bio 5.50 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/17.jpg"
   },
   {
     "Nom du produit": "Oignon Blanc frais",
@@ -133,6 +154,20 @@
     "IMG": "img-products/90.jpg"
   },
   {
+    "Nom du produit": "Oignon Jaune",
+    "En vente": true,
+    "Etiquette": "Oignon Jaune Bio 3.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/39.jpg"
+  },
+  {
+    "Nom du produit": "Oignon Rouge",
+    "En vente": true,
+    "Etiquette": "Oignon Rouge Bio 3.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/40.jpg"
+  },
+  {
     "Nom du produit": "Tomate",
     "En vente": true,
     "Etiquette": "Tomate Bio 4.10 €/kg",
@@ -147,13 +182,6 @@
     "IMG": "img-products/58.jpg"
   },
   {
-    "Nom du produit": "Tomate Cocktail",
-    "En vente": true,
-    "Etiquette": "Tomate Cocktail Bio 4.10 € la barquette",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/82.jpg"
-  },
-  {
     "Nom du produit": "Basilic",
     "En vente": true,
     "Etiquette": "Basilic Bio 1.30 € le bouquet",
@@ -166,13 +194,6 @@
     "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/43.jpg"
-  },
-  {
-    "Nom du produit": "Melon",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Melon Bio 4.00 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/35.jpg"
   },
   {
     "Nom du produit": "Rhubarbe",
