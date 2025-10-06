@@ -44,21 +44,14 @@
   {
     "Nom du produit": "Concombre",
     "En vente": true,
-    "Etiquette": "Concombre Bio 2.90 €/kg",
+    "Etiquette": "Concombre Bio 2.90 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/20.jpg"
   },
   {
-    "Nom du produit": "Courgette jaune",
-    "En vente": true,
-    "Etiquette": "Courgette jaune Bio 2.80 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/69.jpg"
-  },
-  {
     "Nom du produit": "Courgette verte",
     "En vente": true,
-    "Etiquette": "Courgette verte Bio 2.80 €/kg",
+    "Etiquette": "Courgette verte Bio 2.80 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/22.jpg"
   },
@@ -79,7 +72,7 @@
   {
     "Nom du produit": "Haricot vert",
     "En vente": true,
-    "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)",
+    "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/84.jpg"
   },
@@ -133,9 +126,16 @@
     "IMG": "img-products/80.jpg"
   },
   {
+    "Nom du produit": "Chou Broccoli",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Broccoli Bio 4.70 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/14.jpg"
+  },
+  {
     "Nom du produit": "Chou Fleur",
     "En vente": true,
-    "Etiquette": "Chou Fleur Bio 4.20 €/kg",
+    "Etiquette": "Chou Fleur Bio 4.20 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/16.jpg"
   },
@@ -147,11 +147,18 @@
     "IMG": "img-products/17.jpg"
   },
   {
-    "Nom du produit": "Oignon Blanc frais",
+    "Nom du produit": "Potimarron (orange)",
     "En vente": true,
-    "Etiquette": "Oignon Blanc frais Bio 4.50 €/kg",
+    "Etiquette": "✨ Nouveau : Potimarron (orange) Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/38.jpg"
+    "IMG": "img-products/2101.jpg"
+  },
+  {
+    "Nom du produit": "Potiron Bleu de Hongrie",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Potiron Bleu de Hongrie Bio 2.90 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/2105.jpg"
   },
   {
     "Nom du produit": "Oignon Ciboule",
@@ -180,13 +187,6 @@
     "Etiquette": "Tomate Bio 4.10 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/57.jpg"
-  },
-  {
-    "Nom du produit": "Tomate Cerise - barquette",
-    "En vente": true,
-    "Etiquette": "Tomate Cerise - barquette Bio 3.10 € la barquette (440g)",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/58.jpg"
   },
   {
     "Nom du produit": "Basilic",
