@@ -42,13 +42,6 @@
     "IMG": "img-products/8.jpg"
   },
   {
-    "Nom du produit": "Concombre",
-    "En vente": true,
-    "Etiquette": "Concombre Bio 2.90 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/20.jpg"
-  },
-  {
     "Nom du produit": "Courgette verte",
     "En vente": true,
     "Etiquette": "Courgette verte Bio 2.80 €/kg*",
@@ -68,6 +61,13 @@
     "Etiquette": "Echalote - 250g Bio 2.00 € les 250g",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/25.jpg"
+  },
+  {
+    "Nom du produit": "Epinard",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Epinard Bio 6.50 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/26.jpg"
   },
   {
     "Nom du produit": "Haricot vert",
@@ -126,18 +126,25 @@
     "IMG": "img-products/80.jpg"
   },
   {
-    "Nom du produit": "Chou Broccoli",
+    "Nom du produit": "Radis Noir (rond)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Chou Broccoli Bio 4.70 €/kg",
+    "Etiquette": "✨ Nouveau : Radis Noir (rond) Bio 3.40 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/14.jpg"
+    "IMG": "img-products/54.jpg"
   },
   {
-    "Nom du produit": "Chou Fleur",
+    "Nom du produit": "Radis Rave",
     "En vente": true,
-    "Etiquette": "Chou Fleur Bio 4.20 €/kg*",
+    "Etiquette": "✨ Nouveau : Radis Rave Bio 3.70 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/16.jpg"
+    "IMG": "img-products/95.jpg"
+  },
+  {
+    "Nom du produit": "Chou Broccoli",
+    "En vente": true,
+    "Etiquette": "Chou Broccoli Bio 4.70 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/14.jpg"
   },
   {
     "Nom du produit": "Chou Kale",
@@ -147,18 +154,39 @@
     "IMG": "img-products/17.jpg"
   },
   {
+    "Nom du produit": "Courge Butternut",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Courge Butternut Bio 2.90 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/2104.jpg"
+  },
+  {
+    "Nom du produit": "Courge Carat",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Courge Carat Bio 2.90 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/2103.jpg"
+  },
+  {
     "Nom du produit": "Potimarron (orange)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Potimarron (orange) Bio 2.90 €/kg",
+    "Etiquette": "Potimarron (orange) Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/2101.jpg"
   },
   {
     "Nom du produit": "Potiron Bleu de Hongrie",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Potiron Bleu de Hongrie Bio 2.90 €/kg",
+    "Etiquette": "Potiron Bleu de Hongrie Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/2105.jpg"
+  },
+  {
+    "Nom du produit": "Potiron Rouge Vif d'Étampes (orange)",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Potiron Rouge Vif d'Étampes (orange) Bio 2.90 €/kg (dispo. à la coupe)",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/21.jpg"
   },
   {
     "Nom du produit": "Oignon Ciboule",
@@ -187,13 +215,6 @@
     "Etiquette": "Tomate Bio 4.10 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/57.jpg"
-  },
-  {
-    "Nom du produit": "Basilic",
-    "En vente": true,
-    "Etiquette": "Basilic Bio 1.30 € le bouquet",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/3.jpg"
   },
   {
     "Nom du produit": "Persil Frisé",
@@ -250,13 +271,6 @@
     "Etiquette": "Jus de Pomme/Carotte Bio 3.70 € la bouteille",
     "Producteur": "Frui'Thierry",
     "IMG": "img-products/308.jpg"
-  },
-  {
-    "Nom du produit": "Jus de Pomme/Fraise",
-    "En vente": true,
-    "Etiquette": "Jus de Pomme/Fraise Bio 4.10 € la bouteille",
-    "Producteur": "Frui'Thierry",
-    "IMG": "img-products/316.jpg"
   },
   {
     "Nom du produit": "Ketchup de betterave",
