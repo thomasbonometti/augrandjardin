@@ -65,7 +65,7 @@
   {
     "Nom du produit": "Epinard",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Epinard Bio 6.50 €/kg",
+    "Etiquette": "Epinard Bio 6.50 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/26.jpg"
   },
@@ -82,6 +82,13 @@
     "Etiquette": "Laitue (prix selon calibre) Bio 1.60 €/pièce",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/32.jpg"
+  },
+  {
+    "Nom du produit": "Navet Violet",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Navet Violet Bio 3.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/.jpg"
   },
   {
     "Nom du produit": "Panais",
@@ -126,16 +133,23 @@
     "IMG": "img-products/80.jpg"
   },
   {
+    "Nom du produit": "Radis Noir (long)",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Radis Noir (long) Bio 3.40 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/54.jpg"
+  },
+  {
     "Nom du produit": "Radis Noir (rond)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Radis Noir (rond) Bio 3.40 €/kg",
+    "Etiquette": "Radis Noir (rond) Bio 3.40 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/54.jpg"
   },
   {
     "Nom du produit": "Radis Rave",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Radis Rave Bio 3.70 €/kg",
+    "Etiquette": "Radis Rave Bio 3.70 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/95.jpg"
   },
@@ -147,6 +161,13 @@
     "IMG": "img-products/14.jpg"
   },
   {
+    "Nom du produit": "Chou Cabus Rouge",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Cabus Rouge Bio 3.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/11.jpg"
+  },
+  {
     "Nom du produit": "Chou Kale",
     "En vente": true,
     "Etiquette": "Chou Kale Bio 5.50 €/kg",
@@ -154,16 +175,23 @@
     "IMG": "img-products/17.jpg"
   },
   {
+    "Nom du produit": "Chou Romanesco",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Romanesco Bio 4.70 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/88.jpg"
+  },
+  {
     "Nom du produit": "Courge Butternut",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Courge Butternut Bio 2.90 €/kg",
+    "Etiquette": "Courge Butternut Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/2104.jpg"
   },
   {
     "Nom du produit": "Courge Carat",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Courge Carat Bio 2.90 €/kg",
+    "Etiquette": "Courge Carat Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/2103.jpg"
   },
@@ -184,7 +212,7 @@
   {
     "Nom du produit": "Potiron Rouge Vif d'Étampes (orange)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Potiron Rouge Vif d'Étampes (orange) Bio 2.90 €/kg (dispo. à la coupe)",
+    "Etiquette": "Potiron Rouge Vif d'Étampes (orange) Bio 2.90 €/kg (dispo. à la coupe)",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/21.jpg"
   },
@@ -222,13 +250,6 @@
     "Etiquette": "Persil Frisé Bio 1.30 € le bouquet",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/43.jpg"
-  },
-  {
-    "Nom du produit": "Rhubarbe",
-    "En vente": true,
-    "Etiquette": "Rhubarbe Bio 4.20 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/117.jpg"
   },
   {
     "Nom du produit": "Confiture Cerise Bigarreaux",
