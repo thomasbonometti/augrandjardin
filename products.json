@@ -70,13 +70,6 @@
     "IMG": "img-products/26.jpg"
   },
   {
-    "Nom du produit": "Haricot vert",
-    "En vente": true,
-    "Etiquette": "Haricot vert Bio 4.10 € la barquette (530g)*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/84.jpg"
-  },
-  {
     "Nom du produit": "Laitue (prix selon calibre)",
     "En vente": true,
     "Etiquette": "Laitue (prix selon calibre) Bio 1.60 €/pièce",
@@ -84,9 +77,16 @@
     "IMG": "img-products/32.jpg"
   },
   {
+    "Nom du produit": "Navet Boule D’Or",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Navet Boule D’Or Bio 3.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/.jpg"
+  },
+  {
     "Nom du produit": "Navet Violet",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Navet Violet Bio 3.00 €/kg",
+    "Etiquette": "Navet Violet Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/.jpg"
   },
@@ -135,7 +135,7 @@
   {
     "Nom du produit": "Radis Noir (long)",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Radis Noir (long) Bio 3.40 €/kg",
+    "Etiquette": "Radis Noir (long) Bio 3.40 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/54.jpg"
   },
@@ -163,7 +163,7 @@
   {
     "Nom du produit": "Chou Cabus Rouge",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Chou Cabus Rouge Bio 3.20 €/kg",
+    "Etiquette": "Chou Cabus Rouge Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/11.jpg"
   },
@@ -177,7 +177,7 @@
   {
     "Nom du produit": "Chou Romanesco",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Chou Romanesco Bio 4.70 €/kg",
+    "Etiquette": "Chou Romanesco Bio 4.70 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/88.jpg"
   },
@@ -236,13 +236,6 @@
     "Etiquette": "Oignon Rouge Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/40.jpg"
-  },
-  {
-    "Nom du produit": "Tomate",
-    "En vente": true,
-    "Etiquette": "Tomate Bio 4.10 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/57.jpg"
   },
   {
     "Nom du produit": "Persil Frisé",
