@@ -35,11 +35,25 @@
     "IMG": "img-products/76.jpg"
   },
   {
+    "Nom du produit": "Carottes multicolores en vrac",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Carottes multicolores en vrac Bio 3.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/65.jpg"
+  },
+  {
     "Nom du produit": "Céleri Rave",
     "En vente": true,
     "Etiquette": "Céleri Rave Bio 3.50 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/8.jpg"
+  },
+  {
+    "Nom du produit": "Chicorée",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chicorée Bio 2.20 €/pièce",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/9.jpg"
   },
   {
     "Nom du produit": "Courgette verte",
@@ -70,16 +84,23 @@
     "IMG": "img-products/26.jpg"
   },
   {
-    "Nom du produit": "Laitue (prix selon calibre)",
+    "Nom du produit": "Laitue en vrac - sachet",
     "En vente": true,
-    "Etiquette": "Laitue (prix selon calibre) Bio 1.60 €/pièce",
+    "Etiquette": "✨ Nouveau : Laitue en vrac - sachet Bio 2.10 € le sachet (280g)",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/32.jpg"
+    "IMG": "img-products/92.jpg"
+  },
+  {
+    "Nom du produit": "Mâche",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Mâche Bio 3.30 € les 250g",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/33.jpg"
   },
   {
     "Nom du produit": "Navet Boule D’Or",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Navet Boule D’Or Bio 3.00 €/kg",
+    "Etiquette": "Navet Boule D’Or Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/.jpg"
   },
@@ -156,7 +177,7 @@
   {
     "Nom du produit": "Chou Broccoli",
     "En vente": true,
-    "Etiquette": "Chou Broccoli Bio 4.70 €/kg",
+    "Etiquette": "Chou Broccoli Bio 4.70 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/14.jpg"
   },
@@ -166,6 +187,20 @@
     "Etiquette": "Chou Cabus Rouge Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/11.jpg"
+  },
+  {
+    "Nom du produit": "Chou de Milan",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou de Milan Bio 3.20 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/13.jpg"
+  },
+  {
+    "Nom du produit": "Chou Fleur",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Fleur Bio 4.20 €/kg*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/16.jpg"
   },
   {
     "Nom du produit": "Chou Kale",
@@ -208,20 +243,6 @@
     "Etiquette": "Potiron Bleu de Hongrie Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/2105.jpg"
-  },
-  {
-    "Nom du produit": "Potiron Rouge Vif d'Étampes (orange)",
-    "En vente": true,
-    "Etiquette": "Potiron Rouge Vif d'Étampes (orange) Bio 2.90 €/kg (dispo. à la coupe)",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/21.jpg"
-  },
-  {
-    "Nom du produit": "Oignon Ciboule",
-    "En vente": true,
-    "Etiquette": "Oignon Ciboule Bio 2.10 € la botte",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/90.jpg"
   },
   {
     "Nom du produit": "Oignon Jaune",
