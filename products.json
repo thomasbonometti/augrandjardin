@@ -28,16 +28,16 @@
     "IMG": "img-products/4.jpg"
   },
   {
-    "Nom du produit": "Carotte vrac",
+    "Nom du produit": "Carotte - Botte",
     "En vente": true,
-    "Etiquette": "Carotte vrac Bio 3.00 €/kg",
+    "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/6.jpg"
+    "IMG": "img-products/76.jpg"
   },
   {
     "Nom du produit": "Carottes multicolores en vrac",
     "En vente": true,
-    "Etiquette": "Carottes multicolores en vrac Bio 3.00 €/kg",
+    "Etiquette": "✨ Nouveau : Carottes multicolores en vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/65.jpg"
   },
@@ -51,14 +51,14 @@
   {
     "Nom du produit": "Chicorée",
     "En vente": true,
-    "Etiquette": "Chicorée Bio 2.20 €/pièce",
+    "Etiquette": "✨ Nouveau : Chicorée Bio 2.20 €/pièce",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/9.jpg"
   },
   {
     "Nom du produit": "Courgette verte",
     "En vente": true,
-    "Etiquette": "⌛️ Dernière semaine : Courgette verte Bio 2.80 €/kg*",
+    "Etiquette": "Courgette verte Bio 2.80 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/22.jpg"
   },
@@ -86,14 +86,14 @@
   {
     "Nom du produit": "Laitue en vrac - sachet",
     "En vente": true,
-    "Etiquette": "Laitue en vrac - sachet Bio 2.10 € le sachet (280g)",
+    "Etiquette": "✨ Nouveau : Laitue en vrac - sachet Bio 2.10 € le sachet (280g)",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/92.jpg"
   },
   {
     "Nom du produit": "Mâche",
     "En vente": true,
-    "Etiquette": "Mâche Bio 3.30 € les 250g",
+    "Etiquette": "✨ Nouveau : Mâche Bio 3.30 € les 250g",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/33.jpg"
   },
@@ -128,7 +128,7 @@
   {
     "Nom du produit": "Poivron",
     "En vente": true,
-    "Etiquette": "⌛️ Dernière semaine : Poivron Bio 5.20 €/kg",
+    "Etiquette": "Poivron Bio 5.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/49.jpg"
   },
@@ -182,13 +182,6 @@
     "IMG": "img-products/14.jpg"
   },
   {
-    "Nom du produit": "Chou Cabus Blanc",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Chou Cabus Blanc Bio 3.20 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/10.jpg"
-  },
-  {
     "Nom du produit": "Chou Cabus Rouge",
     "En vente": true,
     "Etiquette": "Chou Cabus Rouge Bio 3.20 €/kg",
@@ -196,23 +189,16 @@
     "IMG": "img-products/11.jpg"
   },
   {
-    "Nom du produit": "Chou Chinois (",
-    "En vente": true,
-    "Etiquette": "✨ Nouveau : Chou Chinois (Pakchoï) Bio 4.00 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/91.jpg"
-  },
-  {
     "Nom du produit": "Chou de Milan",
     "En vente": true,
-    "Etiquette": "Chou de Milan Bio 3.20 €/kg",
+    "Etiquette": "✨ Nouveau : Chou de Milan Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/13.jpg"
   },
   {
     "Nom du produit": "Chou Fleur",
     "En vente": true,
-    "Etiquette": "Chou Fleur Bio 4.20 €/kg",
+    "Etiquette": "✨ Nouveau : Chou Fleur Bio 4.20 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/16.jpg"
   },
@@ -222,6 +208,13 @@
     "Etiquette": "Chou Kale Bio 5.50 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/17.jpg"
+  },
+  {
+    "Nom du produit": "Chou Romanesco",
+    "En vente": true,
+    "Etiquette": "Chou Romanesco Bio 4.70 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/88.jpg"
   },
   {
     "Nom du produit": "Courge Butternut",
