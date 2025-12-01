@@ -9,7 +9,7 @@
   {
     "Nom du produit": "Aubergine",
     "En vente": true,
-    "Etiquette": "Aubergine Bio 4.70 €/kg",
+    "Etiquette": "Aubergine Bio 4.70 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/2.jpg"
   },
@@ -28,16 +28,16 @@
     "IMG": "img-products/4.jpg"
   },
   {
-    "Nom du produit": "Carotte - Botte",
+    "Nom du produit": "Carotte vrac",
     "En vente": true,
-    "Etiquette": "Carotte - Botte Bio 2.10 € la botte",
+    "Etiquette": "Carotte vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/76.jpg"
+    "IMG": "img-products/6.jpg"
   },
   {
     "Nom du produit": "Carottes multicolores en vrac",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Carottes multicolores en vrac Bio 3.00 €/kg",
+    "Etiquette": "Carottes multicolores en vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/65.jpg"
   },
@@ -51,16 +51,9 @@
   {
     "Nom du produit": "Chicorée",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Chicorée Bio 2.20 €/pièce",
+    "Etiquette": "Chicorée Bio 2.20 €/pièce",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/9.jpg"
-  },
-  {
-    "Nom du produit": "Courgette verte",
-    "En vente": true,
-    "Etiquette": "Courgette verte Bio 2.80 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/22.jpg"
   },
   {
     "Nom du produit": "Echalion - 250g",
@@ -86,16 +79,23 @@
   {
     "Nom du produit": "Laitue en vrac - sachet",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Laitue en vrac - sachet Bio 2.10 € le sachet (280g)",
+    "Etiquette": "Laitue en vrac - sachet Bio 2.10 € le sachet (280g)",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/92.jpg"
   },
   {
     "Nom du produit": "Mâche",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Mâche Bio 3.30 € les 250g",
+    "Etiquette": "Mâche Bio 3.30 € les 250g",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/33.jpg"
+  },
+  {
+    "Nom du produit": "Mesclun",
+    "En vente": true,
+    "Etiquette": "Mesclun Bio 2.10 € le sachet (160g)",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/72.jpg"
   },
   {
     "Nom du produit": "Navet Boule D’Or",
@@ -128,7 +128,7 @@
   {
     "Nom du produit": "Poivron",
     "En vente": true,
-    "Etiquette": "Poivron Bio 5.20 €/kg",
+    "Etiquette": "⌛️ Dernière semaine : Poivron Bio 5.20 €/kg*",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/49.jpg"
   },
@@ -175,11 +175,11 @@
     "IMG": "img-products/95.jpg"
   },
   {
-    "Nom du produit": "Chou Broccoli",
+    "Nom du produit": "Chou Cabus Blanc",
     "En vente": true,
-    "Etiquette": "Chou Broccoli Bio 4.70 €/kg*",
+    "Etiquette": "Chou Cabus Blanc Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/14.jpg"
+    "IMG": "img-products/10.jpg"
   },
   {
     "Nom du produit": "Chou Cabus Rouge",
@@ -189,18 +189,18 @@
     "IMG": "img-products/11.jpg"
   },
   {
-    "Nom du produit": "Chou de Milan",
+    "Nom du produit": "Chou Chinois (",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Chou de Milan Bio 3.20 €/kg",
+    "Etiquette": "Chou Chinois (Pakchoï) Bio 4.00 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/13.jpg"
+    "IMG": "img-products/91.jpg"
   },
   {
-    "Nom du produit": "Chou Fleur",
+    "Nom du produit": "Chou de Milan",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Chou Fleur Bio 4.20 €/kg*",
+    "Etiquette": "Chou de Milan Bio 3.20 €/kg",
     "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/16.jpg"
+    "IMG": "img-products/13.jpg"
   },
   {
     "Nom du produit": "Chou Kale",
@@ -208,13 +208,6 @@
     "Etiquette": "Chou Kale Bio 5.50 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/17.jpg"
-  },
-  {
-    "Nom du produit": "Chou Romanesco",
-    "En vente": true,
-    "Etiquette": "Chou Romanesco Bio 4.70 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/88.jpg"
   },
   {
     "Nom du produit": "Courge Butternut",
@@ -334,20 +327,6 @@
     "Etiquette": "Tartinade Betterave & Pois Chiche Bio 4.50 € le pot",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/205.jpg"
-  },
-  {
-    "Nom du produit": "Miel d’Aubépines",
-    "En vente": true,
-    "Etiquette": "Miel d’Aubépines 9.60 € le pot",
-    "Producteur": "De La Fleur Au Miel",
-    "IMG": "img-products/.jpg"
-  },
-  {
-    "Nom du produit": "Miel d’été",
-    "En vente": true,
-    "Etiquette": "Miel d’été 9.60 € le pot",
-    "Producteur": "De La Fleur Au Miel",
-    "IMG": "img-products/.jpg"
   },
   {
     "Nom du produit": "Miel de Tournesol",
