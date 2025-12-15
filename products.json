@@ -7,6 +7,13 @@
     "IMG": "img-products/1.jpg"
   },
   {
+    "Nom du produit": "Aubergine",
+    "En vente": true,
+    "Etiquette": "Aubergine Bio 4.70 €/kg*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/2.jpg"
+  },
+  {
     "Nom du produit": "Betterave cuite",
     "En vente": true,
     "Etiquette": "Betterave cuite Bio 7.00 €/kg",
@@ -117,6 +124,13 @@
     "Etiquette": "Poireau Bio 3.50 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/46.jpg"
+  },
+  {
+    "Nom du produit": "Poivron",
+    "En vente": true,
+    "Etiquette": "⌛️ Dernière semaine : Poivron Bio 5.20 €/kg*",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/49.jpg"
   },
   {
     "Nom du produit": "Pomme de terre - chair ferme",
