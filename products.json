@@ -7,13 +7,6 @@
     "IMG": "img-products/1.jpg"
   },
   {
-    "Nom du produit": "Aubergine",
-    "En vente": true,
-    "Etiquette": "Aubergine Bio 4.70 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2.jpg"
-  },
-  {
     "Nom du produit": "Betterave cuite",
     "En vente": true,
     "Etiquette": "Betterave cuite Bio 7.00 €/kg",
@@ -91,13 +84,6 @@
     "IMG": "img-products/33.jpg"
   },
   {
-    "Nom du produit": "Mesclun",
-    "En vente": true,
-    "Etiquette": "Mesclun Bio 2.10 € le sachet (160g)",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/72.jpg"
-  },
-  {
     "Nom du produit": "Navet Boule D’Or",
     "En vente": true,
     "Etiquette": "Navet Boule D’Or Bio 3.00 €/kg",
@@ -124,13 +110,6 @@
     "Etiquette": "Poireau Bio 3.50 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/46.jpg"
-  },
-  {
-    "Nom du produit": "Poivron",
-    "En vente": true,
-    "Etiquette": "⌛️ Dernière semaine : Poivron Bio 5.20 €/kg*",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/49.jpg"
   },
   {
     "Nom du produit": "Pomme de terre - chair ferme",
@@ -192,6 +171,13 @@
     "Nom du produit": "Chou Chinois (",
     "En vente": true,
     "Etiquette": "Chou Chinois (Pakchoï) Bio 4.00 €/kg",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/91.jpg"
+  },
+  {
+    "Nom du produit": "Chou Chinois (Pé-tsaï",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Chou Chinois (Pé-tsaï) Bio 4.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/91.jpg"
   },
