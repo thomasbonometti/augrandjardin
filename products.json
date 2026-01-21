@@ -7,18 +7,18 @@
     "IMG": "img-products/1.jpg"
   },
   {
-    "Nom du produit": "Betterave cuite",
-    "En vente": true,
-    "Etiquette": "Betterave cuite Bio 7.00 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/206.jpg"
-  },
-  {
     "Nom du produit": "Betterave vrac",
     "En vente": true,
     "Etiquette": "Betterave vrac Bio 3.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/4.jpg"
+  },
+  {
+    "Nom du produit": "Blettes - 500g",
+    "En vente": true,
+    "Etiquette": "✨ Nouveau : Blettes - 500g Bio 2.00 € les 500g",
+    "Producteur": "Au Grand Jardin",
+    "IMG": "img-products/5.jpg"
   },
   {
     "Nom du produit": "Carotte vrac",
@@ -154,20 +154,6 @@
     "IMG": "img-products/95.jpg"
   },
   {
-    "Nom du produit": "Chou Cabus Blanc",
-    "En vente": true,
-    "Etiquette": "Chou Cabus Blanc Bio 3.20 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/10.jpg"
-  },
-  {
-    "Nom du produit": "Chou Cabus Rouge",
-    "En vente": true,
-    "Etiquette": "Chou Cabus Rouge Bio 3.20 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/11.jpg"
-  },
-  {
     "Nom du produit": "Chou Chinois (",
     "En vente": true,
     "Etiquette": "Chou Chinois (Pakchoï) Bio 4.00 €/kg",
@@ -177,7 +163,7 @@
   {
     "Nom du produit": "Chou Chinois (Pé-tsaï",
     "En vente": true,
-    "Etiquette": "✨ Nouveau : Chou Chinois (Pé-tsaï) Bio 4.00 €/kg",
+    "Etiquette": "Chou Chinois (Pé-tsaï) Bio 4.00 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/91.jpg"
   },
@@ -264,13 +250,6 @@
     "Etiquette": "Gelée Coing 4.50 € le pot",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/251.jpg"
-  },
-  {
-    "Nom du produit": "Chutney d’oignon",
-    "En vente": true,
-    "Etiquette": "Chutney d’oignon Bio 4.50 € le pot",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/203.jpg"
   },
   {
     "Nom du produit": "Jus de Pomme de la Ferme",
