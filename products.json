@@ -84,27 +84,6 @@
     "IMG": "img-products/33.jpg"
   },
   {
-    "Nom du produit": "Navet Boule D’Or",
-    "En vente": true,
-    "Etiquette": "Navet Boule D’Or Bio 3.00 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/.jpg"
-  },
-  {
-    "Nom du produit": "Navet Violet",
-    "En vente": true,
-    "Etiquette": "Navet Violet Bio 3.00 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/.jpg"
-  },
-  {
-    "Nom du produit": "Panais",
-    "En vente": true,
-    "Etiquette": "Panais Bio 3.80 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/41.jpg"
-  },
-  {
     "Nom du produit": "Poireau",
     "En vente": true,
     "Etiquette": "Poireau Bio 3.50 €/kg",
@@ -182,13 +161,6 @@
     "IMG": "img-products/17.jpg"
   },
   {
-    "Nom du produit": "Courge Butternut",
-    "En vente": true,
-    "Etiquette": "Courge Butternut Bio 2.90 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2104.jpg"
-  },
-  {
     "Nom du produit": "Courge Carat",
     "En vente": true,
     "Etiquette": "Courge Carat Bio 2.90 €/kg",
@@ -201,13 +173,6 @@
     "Etiquette": "Potimarron (orange) Bio 2.90 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/2101.jpg"
-  },
-  {
-    "Nom du produit": "Potiron Bleu de Hongrie",
-    "En vente": true,
-    "Etiquette": "Potiron Bleu de Hongrie Bio 2.90 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/2105.jpg"
   },
   {
     "Nom du produit": "Oignon Jaune",
