@@ -105,13 +105,6 @@
     "IMG": "img-products/5102.jpg"
   },
   {
-    "Nom du produit": "Pomme de terre grenaille (Sachet de 1kg)",
-    "En vente": true,
-    "Etiquette": "Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/80.jpg"
-  },
-  {
     "Nom du produit": "Radis Noir (long)",
     "En vente": true,
     "Etiquette": "Radis Noir (long) Bio 3.40 €/kg",
@@ -131,13 +124,6 @@
     "Etiquette": "Radis Rave Bio 3.70 €/kg",
     "Producteur": "Au Grand Jardin",
     "IMG": "img-products/95.jpg"
-  },
-  {
-    "Nom du produit": "Chou Chinois (",
-    "En vente": true,
-    "Etiquette": "Chou Chinois (Pakchoï) Bio 4.00 €/kg",
-    "Producteur": "Au Grand Jardin",
-    "IMG": "img-products/91.jpg"
   },
   {
     "Nom du produit": "Chou Chinois (Pé-tsaï",
