@@ -5,6 +5,12 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/99.jpg"
 },{
+  "Nom": "Betterave - Botte",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Betterave - Botte Bio 2.20 € la botte",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/78.jpg"
+},{
   "Nom": "Blettes",
   "En vente": true,
   "Etiquette": "Blettes Bio 4.00 €/kg",
@@ -19,7 +25,7 @@
 },{
   "Nom": "Laitue en vrac - sachet",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Laitue en vrac - sachet Bio 2.20 € le sachet (280g)",
+  "Etiquette": "Laitue en vrac - sachet Bio 2.20 € le sachet (280g)",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/92.jpg"
 },{
@@ -35,11 +41,17 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/73.jpg"
 },{
-  "Nom": "Petit Pois - barquette 380g",
+  "Nom": "Petit Pois - barquette 500g",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Petit Pois - barquette 380g Bio 3.20 € la barquette (375g)*",
+  "Etiquette": "Petit Pois - barquette 500g Bio 4.20 € la barquette (500g)",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/74.jpg"
+},{
+  "Nom": "Pois Mange Tout - Barquette",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Pois Mange Tout - Barquette Bio 4.20 € la barquette (400g)",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/75.jpg"
 },{
   "Nom": "Pomme de terre - chair fondante",
   "En vente": true,
@@ -113,12 +125,6 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/330.jpg"
 },{
-  "Nom": "Plant de Basilic",
-  "En vente": true,
-  "Etiquette": "Plant de Basilic Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/322.jpg"
-},{
   "Nom": "Plant de Concombre (court et épineux)",
   "En vente": true,
   "Etiquette": "Plant de Concombre (court et épineux) Bio 2.00 € /plant",
@@ -133,13 +139,13 @@
 },{
   "Nom": "Plant de Courge (Butternut)",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Plant de Courge (Butternut) Bio 2.00 € /plant",
+  "Etiquette": "Plant de Courge (Butternut) Bio 2.00 € /plant",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/325.jpg"
 },{
   "Nom": "Plant de Courge (Porimarron)",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Plant de Courge (Porimarron) Bio 2.00 € /plant",
+  "Etiquette": "Plant de Courge (Porimarron) Bio 2.00 € /plant",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/325.jpg"
 },{
@@ -148,12 +154,6 @@
   "Etiquette": "Plant de Courgette (verte) Bio 2.00 € /plant",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/.jpg"
-},{
-  "Nom": "Plant de Fleur “Œillets d’Inde”",
-  "En vente": true,
-  "Etiquette": "Plant de Fleur “Œillets d’Inde” Bio 1.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/333.jpg"
 },{
   "Nom": "Plant de Melon",
   "En vente": true,
@@ -206,12 +206,6 @@
   "Nom": "Plant de Tomates Cerises “Black Cherry”",
   "En vente": true,
   "Etiquette": "Plant de Tomates Cerises “Black Cherry” Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/321.jpg"
-},{
-  "Nom": "Plant de Tomates Cerises “Délice des Jardiniers”",
-  "En vente": true,
-  "Etiquette": "Plant de Tomates Cerises “Délice des Jardiniers” Bio 2.00 € /plant",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/321.jpg"
 },{
