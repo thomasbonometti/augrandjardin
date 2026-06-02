@@ -1,7 +1,7 @@
 [{
   "Nom": "Ail en vert botte (Ail nouveau)",
   "En vente": true,
-  "Etiquette": "Ail en vert botte (Ail nouveau) Bio 2.60 € la botte",
+  "Etiquette": "⌛️ Dernière semaine : Ail en vert botte (Ail nouveau) Bio 2.60 € la botte",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/99.jpg"
 },{
@@ -19,43 +19,37 @@
 },{
   "Nom": "Carotte - Botte",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Carotte - Botte Bio 2.20 € la botte",
+  "Etiquette": "Carotte - Botte Bio 2.20 € la botte",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/76.jpg"
 },{
-  "Nom": "Epinard",
+  "Nom": "Courgette verte",
   "En vente": true,
-  "Etiquette": "⌛️ Dernière semaine : Epinard Bio 3.350 € les 500g",
+  "Etiquette": "✨ Nouveau : Courgette verte Bio 3.00 €/kg",
   "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/26.jpg"
+  "IMG": "img-products/22.jpg"
 },{
   "Nom": "Fenouil",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Fenouil Bio 4.60 €/kg",
+  "Etiquette": "Fenouil Bio 4.60 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/27.jpg"
 },{
   "Nom": "Laitue (grosse)",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Laitue (grosse) Bio 2.00 €/pièce",
+  "Etiquette": "Laitue (grosse) Bio 2.00 €/pièce",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/63.jpg"
 },{
   "Nom": "Laitue en vrac - sachet",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Laitue en vrac - sachet Bio 2.20 € le sachet (280g)",
+  "Etiquette": "⌛️ Dernière semaine : Laitue en vrac - sachet Bio 2.20 € le sachet (280g)",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/92.jpg"
 },{
-  "Nom": "Navet botte",
-  "En vente": true,
-  "Etiquette": "Navet botte Bio 2.20 € la botte",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/73.jpg"
-},{
   "Nom": "Navet Nouveau",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Navet Nouveau Bio 3.50 €/kg",
+  "Etiquette": "Navet Nouveau Bio 3.50 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/62.jpg"
 },{
@@ -130,54 +124,6 @@
   "Etiquette": "Tartinade Betterave & Pois Chiche Bio 4.50 € le pot",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/205.jpg"
-},{
-  "Nom": "Plant de Aubergine",
-  "En vente": true,
-  "Etiquette": "Plant de Aubergine Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/330.jpg"
-},{
-  "Nom": "Plant de Courge (Butternut)",
-  "En vente": true,
-  "Etiquette": "Plant de Courge (Butternut) Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/325.jpg"
-},{
-  "Nom": "Plant de Courge (Potimarron)",
-  "En vente": true,
-  "Etiquette": "Plant de Courge (Potimarron) Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/325.jpg"
-},{
-  "Nom": "Plant de Melon",
-  "En vente": true,
-  "Etiquette": "Plant de Melon Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/328.jpg"
-},{
-  "Nom": "Plant de Persil Frisé",
-  "En vente": true,
-  "Etiquette": "Plant de Persil Frisé Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/327.jpg"
-},{
-  "Nom": "Plant de Tomate “Andine Cornue”",
-  "En vente": true,
-  "Etiquette": "Plant de Tomate “Andine Cornue” Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/320.jpg"
-},{
-  "Nom": "Plant de Tomate “Rose de Berne”",
-  "En vente": true,
-  "Etiquette": "Plant de Tomate “Rose de Berne” Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/320.jpg"
-},{
-  "Nom": "Plant de Tomate “St-Pierre”",
-  "En vente": true,
-  "Etiquette": "Plant de Tomate “St-Pierre” Bio 2.00 € /plant",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/320.jpg"
 },{
   "Nom": "Terreau de rempotage - sac 70L",
   "En vente": true,
