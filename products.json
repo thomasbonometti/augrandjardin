@@ -1,10 +1,4 @@
 [{
-  "Nom": "Ail en vert botte (Ail nouveau)",
-  "En vente": true,
-  "Etiquette": "⌛️ Dernière semaine : Ail en vert botte (Ail nouveau) Bio 2.60 € la botte",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/99.jpg"
-},{
   "Nom": "Betterave - Botte",
   "En vente": true,
   "Etiquette": "Betterave - Botte Bio 2.20 € la botte",
@@ -25,7 +19,7 @@
 },{
   "Nom": "Courgette verte",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Courgette verte Bio 3.00 €/kg",
+  "Etiquette": "Courgette verte Bio 3.00 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/22.jpg"
 },{
@@ -41,21 +35,15 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/63.jpg"
 },{
-  "Nom": "Laitue en vrac - sachet",
-  "En vente": true,
-  "Etiquette": "⌛️ Dernière semaine : Laitue en vrac - sachet Bio 2.20 € le sachet (280g)",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/92.jpg"
-},{
   "Nom": "Navet Nouveau",
   "En vente": true,
-  "Etiquette": "Navet Nouveau Bio 3.50 €/kg",
+  "Etiquette": "⌛️ Dernière semaine : Navet Nouveau Bio 3.50 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/62.jpg"
 },{
   "Nom": "Petit Pois - barquette 500g",
   "En vente": true,
-  "Etiquette": "Petit Pois - barquette 500g Bio 4.20 € la barquette (500g)",
+  "Etiquette": "Petit Pois - barquette 500g Bio 4.20 € la barquette (500g)*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/74.jpg"
 },{
@@ -70,6 +58,12 @@
   "Etiquette": "Pomme de terre - chair fondante 2.00 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/5102.jpg"
+},{
+  "Nom": "Radis Rose Botte (25p)",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Radis Rose Botte (25p) Bio 2.20 € la botte",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/71.jpg"
 },{
   "Nom": "Chou Rave",
   "En vente": true,
