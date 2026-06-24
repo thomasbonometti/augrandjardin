@@ -1,9 +1,21 @@
 [{
+  "Nom": "Ail",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Ail Bio 3.0750 € les 250g",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/1.jpg"
+},{
   "Nom": "Betterave - Botte",
   "En vente": true,
   "Etiquette": "Betterave - Botte Bio 2.20 € la botte",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/78.jpg"
+},{
+  "Nom": "Betterave vrac",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Betterave vrac Bio 3.10 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/4.jpg"
 },{
   "Nom": "Blettes",
   "En vente": true,
@@ -11,11 +23,23 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/5.jpg"
 },{
-  "Nom": "Carotte - Botte",
+  "Nom": "Carotte - Botte (grosse)",
   "En vente": true,
-  "Etiquette": "Carotte - Botte Bio 2.20 € la botte",
+  "Etiquette": "✨ Nouveau : Carotte - Botte (grosse) Bio 2.80 € la botte",
   "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/76.jpg"
+  "IMG": "img-products/96.jpg"
+},{
+  "Nom": "Carotte vrac",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Carotte vrac Bio 3.10 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/6.jpg"
+},{
+  "Nom": "Concombre",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Concombre Bio 3.50 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/20.jpg"
 },{
   "Nom": "Courgette verte",
   "En vente": true,
@@ -25,45 +49,51 @@
 },{
   "Nom": "Fenouil",
   "En vente": true,
-  "Etiquette": "Fenouil Bio 4.60 €/kg",
+  "Etiquette": "⌛️ Dernière semaine : Fenouil Bio 4.60 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/27.jpg"
 },{
+  "Nom": "Haricot vert",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Haricot vert Bio 4.00 € la barquette (530g)",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/84.jpg"
+},{
   "Nom": "Laitue en vrac - sachet",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Laitue en vrac - sachet Bio 2.20 € le sachet (280g)",
+  "Etiquette": "Laitue en vrac - sachet Bio 2.20 € le sachet (280g)",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/92.jpg"
 },{
-  "Nom": "Petit Pois - barquette 500g",
+  "Nom": "Pomme de terre grenaille (Sachet de 1kg)",
   "En vente": true,
-  "Etiquette": "Petit Pois - barquette 500g Bio 4.20 € la barquette (500g)*",
+  "Etiquette": "✨ Nouveau : Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
   "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/74.jpg"
+  "IMG": "img-products/80.jpg"
 },{
-  "Nom": "Pois Mange Tout - Barquette",
+  "Nom": "Pomme de terre nouvelle",
   "En vente": true,
-  "Etiquette": "Pois Mange Tout - Barquette Bio 4.20 € la barquette (400g)*",
+  "Etiquette": "✨ Nouveau : Pomme de terre nouvelle Bio 2.60 €/kg",
   "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/75.jpg"
-},{
-  "Nom": "Pomme de terre - chair fondante",
-  "En vente": true,
-  "Etiquette": "Pomme de terre - chair fondante 2.00 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/5102.jpg"
-},{
-  "Nom": "Chou Rave",
-  "En vente": true,
-  "Etiquette": "Chou Rave Bio 3.60 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/18.jpg"
+  "IMG": "img-products/52.jpg"
 },{
   "Nom": "Oignon Jaune",
   "En vente": true,
   "Etiquette": "Oignon Jaune Bio 3.40 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/39.jpg"
+},{
+  "Nom": "Basilic",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Basilic Bio 1.30 € le bouquet",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/3.jpg"
+},{
+  "Nom": "Persil Frisé",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Persil Frisé Bio 1.50 € le bouquet",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/43.jpg"
 },{
   "Nom": "Rhubarbe",
   "En vente": true,
