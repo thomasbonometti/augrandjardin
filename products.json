@@ -1,9 +1,15 @@
 [{
   "Nom": "Ail",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Ail Bio 3.0750 € les 250g",
+  "Etiquette": "Ail Bio 3.080 € les 250g",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/1.jpg"
+},{
+  "Nom": "Aubergine",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Aubergine Bio 4.90 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/2.jpg"
 },{
   "Nom": "Betterave - Botte",
   "En vente": true,
@@ -13,31 +19,31 @@
 },{
   "Nom": "Betterave vrac",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Betterave vrac Bio 3.10 €/kg",
+  "Etiquette": "Betterave vrac Bio 3.10 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/4.jpg"
 },{
   "Nom": "Blettes",
   "En vente": true,
-  "Etiquette": "Blettes Bio 4.00 €/kg",
+  "Etiquette": "⌛️ Dernière semaine : Blettes Bio 4.00 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/5.jpg"
 },{
   "Nom": "Carotte - Botte (grosse)",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Carotte - Botte (grosse) Bio 2.80 € la botte",
+  "Etiquette": "Carotte - Botte (grosse) Bio 2.80 € la botte",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/96.jpg"
 },{
   "Nom": "Carotte vrac",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Carotte vrac Bio 3.10 €/kg",
+  "Etiquette": "Carotte vrac Bio 3.10 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/6.jpg"
 },{
   "Nom": "Concombre",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Concombre Bio 3.50 €/kg",
+  "Etiquette": "Concombre Bio 3.50 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/20.jpg"
 },{
@@ -47,35 +53,35 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/22.jpg"
 },{
-  "Nom": "Fenouil",
-  "En vente": true,
-  "Etiquette": "⌛️ Dernière semaine : Fenouil Bio 4.60 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/27.jpg"
-},{
   "Nom": "Haricot vert",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Haricot vert Bio 4.00 € la barquette (530g)",
+  "Etiquette": "Haricot vert Bio 4.00 € les 500g",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/84.jpg"
 },{
-  "Nom": "Laitue en vrac - sachet",
+  "Nom": "Poivron",
   "En vente": true,
-  "Etiquette": "Laitue en vrac - sachet Bio 2.20 € le sachet (280g)",
+  "Etiquette": "✨ Nouveau : Poivron Bio 5.20 €/kg",
   "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/92.jpg"
+  "IMG": "img-products/49.jpg"
 },{
   "Nom": "Pomme de terre grenaille (Sachet de 1kg)",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
+  "Etiquette": "Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/80.jpg"
 },{
   "Nom": "Pomme de terre nouvelle",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Pomme de terre nouvelle Bio 2.60 €/kg",
+  "Etiquette": "Pomme de terre nouvelle Bio 2.60 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/52.jpg"
+},{
+  "Nom": "Radis Rose Botte (25p)",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Radis Rose Botte (25p) Bio 2.20 € la botte",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/71.jpg"
 },{
   "Nom": "Oignon Jaune",
   "En vente": true,
@@ -83,15 +89,27 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/39.jpg"
 },{
+  "Nom": "Tomate",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Tomate Bio 4.20 €/kg*",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/57.jpg"
+},{
+  "Nom": "Tomate Cerise - barquette",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Tomate Cerise - barquette Bio 3.20 € la barquette (400g)*",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/58.jpg"
+},{
   "Nom": "Basilic",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Basilic Bio 1.30 € le bouquet",
+  "Etiquette": "Basilic Bio 1.50 € le bouquet",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/3.jpg"
 },{
   "Nom": "Persil Frisé",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Persil Frisé Bio 1.50 € le bouquet",
+  "Etiquette": "Persil Frisé Bio 1.50 € le bouquet",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/43.jpg"
 },{
