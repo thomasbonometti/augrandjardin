@@ -7,7 +7,7 @@
 },{
   "Nom": "Aubergine",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Aubergine Bio 4.90 €/kg",
+  "Etiquette": "Aubergine Bio 4.90 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/2.jpg"
 },{
@@ -22,12 +22,6 @@
   "Etiquette": "Betterave vrac Bio 3.10 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/4.jpg"
-},{
-  "Nom": "Blettes",
-  "En vente": true,
-  "Etiquette": "⌛️ Dernière semaine : Blettes Bio 4.00 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/5.jpg"
 },{
   "Nom": "Carotte - Botte (grosse)",
   "En vente": true,
@@ -53,15 +47,9 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/22.jpg"
 },{
-  "Nom": "Haricot vert",
-  "En vente": true,
-  "Etiquette": "Haricot vert Bio 4.00 € les 500g",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/84.jpg"
-},{
   "Nom": "Poivron",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Poivron Bio 5.20 €/kg",
+  "Etiquette": "Poivron Bio 5.20 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/49.jpg"
 },{
@@ -77,12 +65,6 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/52.jpg"
 },{
-  "Nom": "Radis Rose Botte (25p)",
-  "En vente": true,
-  "Etiquette": "✨ Nouveau : Radis Rose Botte (25p) Bio 2.20 € la botte",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/71.jpg"
-},{
   "Nom": "Oignon Jaune",
   "En vente": true,
   "Etiquette": "Oignon Jaune Bio 3.40 €/kg",
@@ -91,13 +73,13 @@
 },{
   "Nom": "Tomate",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Tomate Bio 4.20 €/kg*",
+  "Etiquette": "Tomate Bio 4.20 €/kg*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/57.jpg"
 },{
   "Nom": "Tomate Cerise - barquette",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Tomate Cerise - barquette Bio 3.20 € la barquette (400g)*",
+  "Etiquette": "Tomate Cerise - barquette Bio 3.20 € la barquette (400g)*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/58.jpg"
 },{
@@ -154,16 +136,4 @@
   "Etiquette": "Tartinade Betterave & Pois Chiche Bio 4.50 € le pot",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/205.jpg"
-},{
-  "Nom": "Terreau de rempotage - sac 70L",
-  "En vente": true,
-  "Etiquette": "Terreau de rempotage - sac 70L Bio 16.00 € le sac",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/345.jpg"
-},{
-  "Nom": "Terreau de semis - sac 70L",
-  "En vente": true,
-  "Etiquette": "Terreau de semis - sac 70L Bio 16.00 € le sac",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/344.jpg"
 }]
