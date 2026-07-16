@@ -11,35 +11,23 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/2.jpg"
 },{
-  "Nom": "Betterave - Botte",
-  "En vente": true,
-  "Etiquette": "Betterave - Botte Bio 2.20 € la botte",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/78.jpg"
-},{
   "Nom": "Betterave vrac",
   "En vente": true,
   "Etiquette": "Betterave vrac Bio 3.10 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/4.jpg"
 },{
-  "Nom": "Carotte - Botte (grosse)",
-  "En vente": true,
-  "Etiquette": "Carotte - Botte (grosse) Bio 2.80 € la botte",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/96.jpg"
-},{
-  "Nom": "Carotte vrac",
-  "En vente": true,
-  "Etiquette": "Carotte vrac Bio 3.10 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/6.jpg"
-},{
   "Nom": "Concombre",
   "En vente": true,
   "Etiquette": "Concombre Bio 3.50 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/20.jpg"
+},{
+  "Nom": "Courgette jaune",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Courgette jaune Bio 3.00 €/kg*",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/69.jpg"
 },{
   "Nom": "Courgette verte",
   "En vente": true,
@@ -64,6 +52,12 @@
   "Etiquette": "Pomme de terre nouvelle Bio 2.60 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/52.jpg"
+},{
+  "Nom": "Oignon Ciboule",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Oignon Ciboule Bio 2.20 € la botte",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/90.jpg"
 },{
   "Nom": "Oignon Jaune",
   "En vente": true,
