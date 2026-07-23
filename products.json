@@ -25,7 +25,7 @@
 },{
   "Nom": "Courgette jaune",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Courgette jaune Bio 3.00 €/kg*",
+  "Etiquette": "Courgette jaune Bio 3.00 €/kg*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/69.jpg"
 },{
@@ -53,9 +53,15 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/52.jpg"
 },{
+  "Nom": "Oignon Blanc - botte",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Oignon Blanc - botte Bio 2.20 € la botte",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/79.jpg"
+},{
   "Nom": "Oignon Ciboule",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Oignon Ciboule Bio 2.20 € la botte",
+  "Etiquette": "Oignon Ciboule Bio 2.20 € la botte",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/90.jpg"
 },{
