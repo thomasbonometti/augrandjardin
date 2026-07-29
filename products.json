@@ -11,9 +11,15 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/2.jpg"
 },{
+  "Nom": "Betterave cuite",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Betterave cuite Bio 7.20 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/206.jpg"
+},{
   "Nom": "Betterave vrac",
   "En vente": true,
-  "Etiquette": "Betterave vrac Bio 3.10 €/kg",
+  "Etiquette": "⌛️ Dernière semaine : Betterave vrac Bio 3.10 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/4.jpg"
 },{
@@ -35,6 +41,12 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/22.jpg"
 },{
+  "Nom": "Haricot vert",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Haricot vert Bio 4.00 € la barquette (500g)",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/84.jpg"
+},{
   "Nom": "Poivron",
   "En vente": true,
   "Etiquette": "Poivron Bio 5.20 €/kg",
@@ -55,7 +67,7 @@
 },{
   "Nom": "Oignon Blanc - botte",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Oignon Blanc - botte Bio 2.20 € la botte",
+  "Etiquette": "Oignon Blanc - botte Bio 2.20 € la botte",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/79.jpg"
 },{
@@ -73,13 +85,13 @@
 },{
   "Nom": "Tomate",
   "En vente": true,
-  "Etiquette": "Tomate Bio 4.20 €/kg*",
+  "Etiquette": "Tomate Bio 4.20 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/57.jpg"
 },{
   "Nom": "Tomate Cerise - barquette",
   "En vente": true,
-  "Etiquette": "Tomate Cerise - barquette Bio 3.20 € la barquette (400g)*",
+  "Etiquette": "Tomate Cerise - barquette Bio 3.20 € la barquette (400g)",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/58.jpg"
 },{
@@ -94,12 +106,6 @@
   "Etiquette": "Persil Frisé Bio 1.50 € le bouquet",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/43.jpg"
-},{
-  "Nom": "Rhubarbe",
-  "En vente": true,
-  "Etiquette": "Rhubarbe Bio 4.40 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/117.jpg"
 },{
   "Nom": "Confiture Cerise Bigarreaux",
   "En vente": true,
