@@ -13,19 +13,13 @@
 },{
   "Nom": "Betterave cuite",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Betterave cuite Bio 7.20 €/kg",
+  "Etiquette": "Betterave cuite Bio 7.20 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/206.jpg"
 },{
-  "Nom": "Betterave vrac",
-  "En vente": true,
-  "Etiquette": "⌛️ Dernière semaine : Betterave vrac Bio 3.10 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/4.jpg"
-},{
   "Nom": "Carotte - Botte",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Carotte - Botte Bio 2.20 € la botte*",
+  "Etiquette": "Carotte - Botte Bio 2.20 € la botte",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/76.jpg"
 },{
@@ -49,7 +43,7 @@
 },{
   "Nom": "Haricot vert",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Haricot vert Bio 4.00 € la barquette (500g)",
+  "Etiquette": "Haricot vert Bio 4.00 € la barquette (500g)",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/84.jpg"
 },{
