@@ -4,6 +4,9 @@
 Frame Figma : `Kapam / Boutique — Index — v4 (modèle MR)`
 → https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/?node-id=8537-32271
 
+Version Notion, un prompt par bloc de code, prête à copier :
+→ https://app.notion.com/p/3cd70bd669cd81a48d34df919b3d8fca
+
 Chaque prompt est **également attaché en annotation Figma** sur le placeholder correspondant :
 clic sur le rectangle → panneau de droite → annotation → copier.
 

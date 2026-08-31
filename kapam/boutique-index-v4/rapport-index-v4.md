@@ -159,11 +159,11 @@ seul, ça touche un composant partagé.
 plutôt que d'afficher une note inventée. Le composant n'a pas de booléen pour ça — c'est un
 override de visibilité, à reprendre proprement si les avis arrivent.
 
-**5. « à partir de » reste affiché sur les accessoires.** Le préfixe est correct pour les kits,
-discutable pour un plafond DIBON à 225 €. Le booléen `Mention indicatif` du composant pilote
-**à la fois** le préfixe et la mention obligatoire : masquer l'un masque l'autre. La mention
-étant non négociable, j'ai laissé le préfixe. Correction propre = dissocier les deux dans le
-composant.
+**5. « à partir de » sur les accessoires — contourné.** Le préfixe est correct pour les kits,
+faux pour un plafond DIBON à 225 €. Le booléen `Mention indicatif` du composant pilote
+**à la fois** le préfixe et la mention obligatoire : masquer l'un masquait l'autre. Le libellé
+est donc réécrit en `Prix` par override de texte sur les quatre instances accessoires — la
+mention reste intacte. Correction propre côté composant = dissocier les deux booléens.
 
 **6. `INSTANCE_SWAP` — suivi manuel requis.** Deux endroits, l'API d'écriture ne peut pas les
 créer :
@@ -194,3 +194,89 @@ Ces trois markdown sont poussés sur la branche `claude/kapam-boutique-index-mr-
 `thomasbonometti/augrandjardin`, seul dépôt accessible à cette session. C'est le site Au Grand
 Jardin, pas Kapam — ils sont donc isolés dans `kapam/boutique-index-v4/`. À déplacer vers le
 dépôt ou le Notion Kapam quand tu veux.
+
+---
+
+## 6. Révision v4.1 — accroche hero et cartes produit
+
+### L'accroche du hero
+
+« Votre utilitaire vide a déjà une vie dedans. » partait d'une bonne intention — le van vide
+contient déjà le projet — mais « une vie dedans » se lit d'abord au sens propre. Nuisibles,
+squat, humidité. Le mot « vide » juste avant renforce le malentendu.
+
+Posée à la place :
+
+> **Votre utilitaire a déjà la place. On lui donne la forme.**
+
+Même idée — le véhicule est déjà le bon, il ne manque que l'aménagement — sans image
+parasite. Deux temps courts, ça tient sur deux lignes en `display/7xl/bold`, rythme MR.
+
+Trois autres si celle-là ne te va pas — un mot et je bascule :
+
+1. « Il ne manque à votre utilitaire que l'intérieur. »
+2. « Votre utilitaire vide. Nos kits découpés à ses gabarits. »
+3. « Le van est à vous. L'aménagement, c'est nous. »
+
+### Les cartes produit — ce qui n'allait pas
+
+Sept problèmes, tous corrigés sur les 8 cartes (4 kits + 4 accessoires).
+
+**1. Une seule porte de sortie.** Le seul élément actionnable était `Ajouter à mon devis`.
+Un visiteur qui veut juste comprendre le kit n'avait nulle part où aller — il quittait la
+carte. Ajouté : un lien secondaire `Voir le kit →` / `Voir le produit →` sous le bouton
+(instance `Button` du DS, `Hierarchy=Link`, `Size=sm`, icône `Icon / Arrow Right` activée via
+la propriété `Icon trailing`). Le primaire reste dominant, l'issue existe.
+
+**2. Le badge était illisible.** `LE PLUS DEMANDÉ` et `NOUVEAUTÉ` étaient en blanc sur un
+packshot fond clair (`bg/placeholder/light`). Le seul élément différenciant de la carte
+disparaissait. Passés en `bg/invert` + `text/on-invert`.
+
+**3. Trois lignes grises de même poids.** `Compatible 40+ modèles`, le délai et les finitions
+étaient trois lignes en `text/sm/regular` / `text/tertiary` — le registre de la mention légale,
+alors que ce sont des arguments de vente. Repris en deux niveaux :
+- la valeur en `text/sm/medium` / `text/primary` (`Compatible 40+ modèles`, `2 à 3 semaines`)
+- la justification en `text/sm/regular` / `text/tertiary` (`— dix marques, une quarantaine de
+  déclinaisons`, `— fabriqué à la demande, découpé aux gabarits`)
+
+Le garde-fou tient : le délai n'apparaît jamais sans sa justification, elle est juste devenue
+la partie secondaire d'une même ligne au lieu d'un bloc gris indistinct.
+
+**4. Les finitions n'étaient pas scannables.** `Finitions : Soft · Triply · Best` en texte
+plat. C'est un choix produit, et un signal de gamme. Passé en chips : micro-label `FINITIONS`
+puis une pastille par finition (`border/default`, `radius/pill`, `accent/sm`). On voit d'un
+coup d'œil que Mado et Madel n'ont pas Triply.
+
+**5. Aucune structure interne.** Ajout d'un filet `border/default` entre le bloc produit
+(nom, description, prix, mention) et le bloc détail. La carte se lit maintenant en trois
+temps : identifier / comparer / agir.
+
+**6. `à partir de` sur des prix fixes.** Corrigé : libellé réécrit en `Prix` sur les quatre
+accessoires (voir point 5 des blocages).
+
+**7. Rien n'indiquait que la carte était cliquable.** Non résoluble dans un frame statique.
+Chaque carte porte désormais une annotation Figma qui spécifie l'interaction attendue à
+l'intégration : carte cliquable en entier vers la fiche produit, bouton `Ajouter à mon devis`
+qui ne navigue pas mais incrémente `[Mon devis (N)]` du header, hover = léger zoom du packshot
++ soulignement du titre.
+
+### Ce que je n'ai pas pu corriger sans toucher au composant partagé
+
+L'ordre interne de `Card / Produit` est figé : nom → description → prix → mention. En CRO, on
+voudrait nom → description → attributs → **prix → mention → CTA** contigus. Comme on ne peut
+pas réordonner les enfants d'une instance, les attributs (chips + réassurance) sont passés
+**après** le bloc prix. C'est défendable — le prix arrive tôt, ce qui qualifie le visiteur, et
+la réassurance est le dernier argument avant le bouton — mais ce n'est pas l'ordre idéal.
+
+Deux autres réglages typographiques appartiennent au composant, pas à la page :
+- le prix est en 18 px face à un titre en 20 px — trop proche, le prix devrait dominer ;
+- la mention `Prix indicatif. Devis personnalisé sous 48h.` est en 12 px `text/tertiary`,
+  très pâle, alors que c'est un réducteur de friction majeur (« sans engagement »).
+
+À reprendre dans une vraie `Card / Produit — v2`, avec l'ordre et ces deux tailles.
+
+### Prompts en Notion
+
+Les 30 prompts sont aussi publiés en page Notion, un prompt par bloc de code :
+→ https://app.notion.com/p/3cd70bd669cd81a48d34df919b3d8fca
+Créée sous `CDC — Kapam — Site web`.
