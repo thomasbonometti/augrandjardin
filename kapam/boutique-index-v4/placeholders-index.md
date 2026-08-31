@@ -20,16 +20,16 @@ Valeurs de gris différenciées par rôle, toutes token-bindées :
 | 6 | FAMILLE-PIECES | portrait | 360 × 620 | 360 × 620 | medium | S4 — Les familles |
 | 7 | FAMILLE-VEHICULES | portrait | 360 × 620 | 360 × 620 | medium | S4 — Les familles |
 | 8 | KITS-TUILE | 4:5 | 400 × 500 | 400 × 500 | foncé | S5 — Carrousel kits |
-| 9 | KIT-TRAVEL | 4:5 | 400 × 500 | 400 × 500 | clair | S5 — Carrousel kits |
-| 10 | KIT-MADO | 4:5 | 400 × 500 | 400 × 500 | clair | S5 — Carrousel kits |
-| 11 | KIT-MADEL | 4:5 | 400 × 500 | 400 × 500 | clair | S5 — Carrousel kits |
-| 12 | KIT-VWT23 | 4:5 | 400 × 500 | 400 × 500 | clair | S5 — Carrousel kits |
+| 9 | KIT-TRAVEL | 4:5 | **304 × 380** | 400 × 500 | clair | S5 — Carrousel kits |
+| 10 | KIT-MADO | 4:5 | **304 × 380** | 400 × 500 | clair | S5 — Carrousel kits |
+| 11 | KIT-MADEL | 4:5 | **304 × 380** | 400 × 500 | clair | S5 — Carrousel kits |
+| 12 | KIT-VWT23 | 4:5 | **304 × 380** | 400 × 500 | clair | S5 — Carrousel kits |
 | 13 | EDITO-REALISATION | 3:1 | 1440 × 460 | 1440 × 460 | foncé | S6 — Bandeau éditorial |
 | 14 | ACC-TUILE | 4:5 | 400 × 500 | 400 × 500 | foncé | S7 — Carrousel accessoires |
-| 15 | ACC-DIBON | 4:5 | 400 × 500 | 400 × 500 | clair | S7 — Carrousel accessoires |
-| 16 | ACC-SUPPORT | 4:5 | 400 × 500 | 400 × 500 | clair | S7 — Carrousel accessoires |
-| 17 | ACC-STORE | 4:5 | 400 × 500 | 400 × 500 | clair | S7 — Carrousel accessoires |
-| 18 | ACC-CHAUFFAGE | 4:5 | 400 × 500 | 400 × 500 | clair | S7 — Carrousel accessoires |
+| 15 | ACC-DIBON | 4:5 | **304 × 380** | 400 × 500 | clair | S7 — Carrousel accessoires |
+| 16 | ACC-SUPPORT | 4:5 | **304 × 380** | 400 × 500 | clair | S7 — Carrousel accessoires |
+| 17 | ACC-STORE | 4:5 | **304 × 380** | 400 × 500 | clair | S7 — Carrousel accessoires |
+| 18 | ACC-CHAUFFAGE | 4:5 | **304 × 380** | 400 × 500 | clair | S7 — Carrousel accessoires |
 | 19 | ATELIER-5050 | 9:7 | 720 × 560 | 720 × 560 | medium | S8 — Bloc 50/50 |
 | 20 | FORMULE-DIY | portrait | 480 × 620 | 480 × 620 | medium | S9 — Les trois formules |
 | 21 | FORMULE-ATELIER | portrait | 480 × 620 | 480 × 620 | medium | S9 — Les trois formules |
@@ -43,6 +43,16 @@ Valeurs de gris différenciées par rôle, toutes token-bindées :
 | 29 | SAVOIR-HISTOIRE | 4:3 | **384 × 288** | 460 × 345 | medium | S11 — En savoir plus |
 | 30 | CTA-FINAL | 3.4:1 | 1440 × 420 | 1440 × 420 | très foncé | S12 — CTA final |
 
+## Les 8 packshots produit sont désormais portés par le composant
+
+Depuis la passe design system, `KIT-*` et `ACC-*` ne sont plus des calques nommés : ce sont les
+**emplacements média intégrés au composant `Card / Produit — v2`** (`8556:2980`), en 304 × 380
+(4:5 exact). Leur nom `IMG / INDEX / <RÔLE>` est porté par la propriété texte
+`Placeholder#8556:24` de chaque instance, et **le prompt est attaché en annotation sur la carte**
+elle-même. Le geste reste le même : clic sur la carte → panneau de droite → copier le prompt.
+
+Les 22 autres placeholders restent des calques nommés avec leur annotation.
+
 ## Les trois écarts de px (ratios strictement conservés)
 
 Le brief demande de conserver les ratios à l'identique — c'est fait pour les 30. Trois séries
@@ -53,5 +63,8 @@ gouttière `component/gap/lg` = `24`) :
   Posé à 282 × 212 (4:3 exact) sur les 1200 px de contenu.
 - **SAVOIR-\*** : 3 × 460 + 2 × 24 = 1428 px, même problème.
   Posé à 384 × 288 (4:3 exact) sur les 1200 px de contenu.
+- **KIT-\* et ACC-\*** : 304 × 380 au lieu de 400 × 500, parce que c'est la largeur native de
+  `Card / Produit — v2`. Le ratio 4:5 est identique au pixel près (304 / 380 = 0,8), donc les
+  prompts sont inchangés.
 
 Les prompts n'ont pas besoin d'être touchés : la génération se fait au ratio, pas au pixel.

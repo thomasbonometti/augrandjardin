@@ -280,3 +280,91 @@ Deux autres réglages typographiques appartiennent au composant, pas à la page 
 Les 30 prompts sont aussi publiés en page Notion, un prompt par bloc de code :
 → https://app.notion.com/p/3cd70bd669cd81a48d34df919b3d8fca
 Créée sous `CDC — Kapam — Site web`.
+
+---
+
+## 7. Passe design system (v4.2) — index + 4 templates Catégorie
+
+Portée : le frame `Kapam / Boutique — Index — v4` **et** les quatre frames de la section
+`🗂️ Catégorie — Template (modèle Rapha × Drivelodge)` (`8564:33007`).
+
+### Audit avant / après
+
+| | Index v4 | Catégorie ①–④ (cumul) |
+|---|---|---|
+| Textes sans style lié | 0 | **157 → 0** |
+| Fonds en valeur brute | 1 → 0 | 0 |
+| Espacements en valeur brute | **30 → 0** | 0 |
+| Éléments détachés à remplacer | 27 → 1 (faux positif) | 74 → 14 (13 conteneurs + 4 chips supprimables) |
+| Nœuds dans le frame | 336 → **206** | — |
+
+Les 157 liaisons de style de texte se sont faites sans casse : mapping exact famille + graisse +
+corps, aucune signature orpheline, +2 px de reflow par frame.
+
+### Ce qui a changé sur l'index
+
+**`Card / Produit — v2` existe maintenant dans le fichier** (`8556:2980`) — il n'y était pas quand
+j'ai monté la page, d'où la carte reconstruite à la main. Les **8 cartes maison sont remplacées par
+8 instances de v2**. Le composant porte nativement tout ce que j'avais rebâti : média 4:5 avec badge
+en overlay, sur-titre, nom, description, compatibilité, délai + justification, prix, mention
+« Prix indicatif », bouton `Ajouter à mon devis` et lien `Voir la fiche →`, plus des pastilles de
+finition que je n'avais pas. 130 nœuds dessinés à la main disparaissent.
+
+Réglages par carte : `Afficher badge` sur Travel et Madel seulement, `Afficher compteur` à faux
+partout (aucun nombre de coloris confirmé), pastille Triply masquée sur Mado et Madel qui ne
+l'ont pas. Sur les 4 accessoires : `Pastilles finition` et `Meta — compatibilité & délai` masquées
+(un accessoire n'a ni finition bois ni délai de fabrication kit), et `À partir de` réécrit en
+`Prix`. Les 8 cartes portent bien la mention obligatoire — revérifié.
+
+**Atomes maison remplacés par les composants du DS :**
+
+| Avant (dessiné à la main) | Après |
+|---|---|
+| `Bouton MR / EXPLORER LES KITS ↓` et `VOUS EN ÊTES OÙ ? ↓` | `Button` · Hierarchy=Inverse · md |
+| `Bouton MR / VOIR LE PROJET` | `Button` · Hierarchy=Inverse · md |
+| `Badge — BOIS PEFC · LABEL A+` | `Tag / Badge` · Style=Invert |
+| `Champ — Prénom` et `Champ — Email` | `Input` · Default · md |
+| chips finitions, filets, lignes de réassurance | absorbés par `Card / Produit — v2` |
+
+Conséquence assumée : **les boutons rectangulaires façon Mons Royale ont disparu.** Le `Button` du
+DS a un `radius/control` de 8 px. Entre garder une forme empruntée à MR et utiliser le composant
+partagé, j'ai choisi le composant. Si tu tiens au rectangle, la voie propre est d'ajouter une
+variante `Radius` au composant `Button` — pas de le contourner page par page.
+
+Les 30 espacements bruts (`gap: 4`) sont liés à `component/gap/xs`, et le conteneur `Bande visuels`
+du hero n'a plus de fond blanc parasite.
+
+### Ce qui a changé sur les templates Catégorie
+
+Ces quatre frames utilisaient déjà bien le DS (`Card / Produit — v2`, `Panneau / Filtres`,
+`Button`, `Logo / Marque`, `FAQ / Row`, `Select`, `Nav`, `Footer`). Deux lacunes restaient :
+
+**1. 40 chips marque recopiés à la main** (10 marques × 4 frames). Le conteneur était déjà
+token-bindé, mais c'était 40 copies indépendantes. J'ai créé le composant manquant
+**`Chip / Marque`** (`8603:45887`), deux axes : `Marque` (Volkswagen, Renault, Nissan, Peugeot,
+Ford, Opel, Toyota, Mercedes, Citroën, Fiat) × `État` (Défaut, Actif). L'état actif reprend
+exactement le style qui existait déjà sur le chip Renault actif — fond et bordure renforcés,
+stroke 2 px, tokens inchangés. Les 40 usages sont devenus des instances.
+
+**2. 16 cartes déclinaison recopiées à la main** (4 par frame). Composant créé :
+**`Card / Déclinaison`** (`8605:46990`), trois propriétés texte — `Modèle`, `Détail`, `Lien`.
+Les 16 usages sont devenus des instances, contenu préservé.
+
+**3. 4 champs e-mail détachés** → instances de `Input` · Default · md.
+
+### Ce qui reste en l'état, et pourquoi
+
+- **Les 4 chips « supprimables »** (`Chip / Renault (supprimable)`, `Chip / Trafic L1H1
+  (supprimable)`, dans les frames ② et ③) sont un autre motif : un tag de filtre actif avec une
+  croix de retrait. Aucun composant du DS ne couvre ça. À créer — `Tag / Filtre actif`, avec un
+  slot icône — quand tu voudras.
+- **Les tuiles d'ambiance des deux carrousels restent en 400 × 500** alors que les cartes font
+  désormais 304 de large. Tu as déjà posé une image dans `KITS-TUILE`, je n'ai pas voulu
+  recadrer ton travail. Dis-moi si je les passe en 304 × 770 pour aligner proprement le rail.
+- **`Boutons`, `Chips marques`, `Chips filtres actifs`** sont des conteneurs d'auto-layout, pas
+  des composants manqués. Rien à faire.
+- Les libellés en petites capitales mono (`DÉCOUVRIR L'ATELIER`, `EN SAVOIR PLUS`, `LIRE`, labels
+  posés sur les tuiles) restent des textes stylés `accent/*` plutôt que des instances de
+  `Link / text` : le composant impose Geist Medium en casse normale, ce qui casserait la
+  grammaire MR sur toute la page. Ils sont conformes — style de texte du fichier + token de
+  couleur — juste pas instanciés.
