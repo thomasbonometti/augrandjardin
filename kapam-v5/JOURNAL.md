@@ -729,3 +729,65 @@ bougé.
   implicite serait aller trop loin. Il reste dans les arbitrages.
 - Le **rectangle `Gemini_Generated_Image_qil2cr…`** et les autres images de référence de la page :
   contenu de Thomas, pas touché.
+
+---
+
+# Passe v2 — retours Thomas
+
+Consigne de fond : **« regarde ce qui a été fait sur les autres pages avant de réinventer »**.
+Audit du fichier fait avant toute écriture. Il contient bien plus de matière que ce que j'avais
+utilisé : une page Compatibilité, des Réalisations nommées, un blog rédigé, des fiches produit avec
+de vrais prix, et un bloc Configurateur validé sur la Homepage.
+
+## Ce que j'ai repris au lieu d'inventer
+
+| Besoin | Source dans le fichier |
+|---|---|
+| Prix et photos des kits | fiches produit — `Kit Travel 1 926 €`, `Kit Mado 1 975 €`, **`Kit Madel 2 395 €`**, `Kit Combi 2 090 €` |
+| Bloc personnalisation | `configurateur` de la Homepage (`7213:47060`), cloné |
+| Marques compatibles | rangée `Logo / Marque` de la Homepage — 10 marques |
+| Référence client S6 | page Réalisation — `Julien & Marie · Renault Trafic L2H1 · Aménagé en mars 2024` |
+| Phrase atelier S8 | page À propos — « Menuiserie, usinage, électricité, isolation : tout se fait dans notre atelier de Saint-Gervais, près de Bordeaux. » |
+| Visuels des 3 formules | page Offre (formules) — 3 assets distincts |
+
+**Le prix du Kit Madel n'a pas été inventé** : il existe, c'est 2 395 €.
+
+## Les correctifs
+
+- **H1** : 30 → **40 px** (`display/5xl`), toujours contenu dans le panneau 1.
+- **Overlays nettement allégés** partout : scrim renforcé du hero abandonné au profit du standard à
+  62 % d'opacité, tuiles à 50 %, voile de S6 à 34 %, atelier à 35 %.
+- **Les 4 liens de S4** : texte **souligné**, et la **flèche recolorée** — elle était en `[12,10,9]`
+  quasi noir alors que le texte était blanc, donc invisible sur l'image.
+- **S4 et S9 restructurées** : le texte **sort de l'image** et passe en dessous, en typo sombre.
+  Les scrims de ces deux bandes sont **supprimés**, plus aucun overlay. C'est ce qui règle à la fois
+  ta remarque sur les overlays trop forts et celle sur les boutons qu'on ne lit pas comme des liens.
+- **S9 renommée** `Quelle formule choisir ?` — vocabulaire repris de la page Offre. Le bouton du
+  hero suit : `VOIR LES FORMULES`.
+- **Journal et newsletter archivés** (« on n'en a pas besoin »). Le footer garde sa newsletter.
+- **Zéro `[À valider Willy]`** sur la page — vérifié sur tous les nœuds texte **et** sur toutes les
+  propriétés d'instance, y compris enfants invisibles.
+
+## Contrastes remesurés après allègement
+
+Le passage du texte sous les images a été déclenché par la mesure, pas par intuition :
+
+| | avant | après restructuration |
+|---|---|---|
+| S9 tuile 1 | **3,20:1** échec | typo sombre sur fond clair |
+| S9 tuile 2 | **2,87:1** échec | idem |
+| S9 tuile 3 | **2,29:1** échec | idem |
+| S4 tuile 4 | **3,13:1** échec | idem |
+| S4 tuiles 1-3 | 8,1 à 8,4:1 OK | idem |
+
+## Ce que je n'ai pas pu faire, et pourquoi
+
+- **Visuels accessoires (S7)** : il n'existe **aucune vraie photo d'accessoire** dans le fichier. La
+  page Catégorie Accessoires est elle-même un placeholder (« Accessoire 1 — nom à fournir »,
+  « PLACEHOLDER — titre de section, rédaction Nicolas »). Les cards gardent donc leur placeholder
+  neutre. Les deux prix manquants sont posés à titre provisoire (290 € / 1 190 €).
+- **4ᵉ packshot kit** : le fichier n'a que **3 packshots de kit distincts**. Le Kit Combi partage
+  son image avec le Kit Mado dans la source ; je lui ai mis une mise en situation pour éviter deux
+  cards identiques côte à côte.
+- **Tuiles 1 et 2 de S4** se ressemblent toujours : ce sont les slots ancrés `FAMILLE-KITS` et
+  `FAMILLE-ACCESSOIRES`, qui attendent que le flow Weave accepte une image de référence.
