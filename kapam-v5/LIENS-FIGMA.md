@@ -306,3 +306,49 @@ Ce sont des éléments que j'avais créés ou qui ne portaient plus rien : rien 
 
 - [[v5 retiré] Mon S9](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47031) — tu préfères ta version, elle est intégrée à la place
 - [[v5 retiré] Ancien CTA final](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49525) — remplacé par le bloc CTA de la Homepage
+
+---
+
+# Passe v4 — S8 Atelier (proposition Claude Design, inversée)
+
+21 nœuds vérifiés comme existants avant génération.
+
+## Point d'entrée
+
+- [Section 🚐 Index v5 (loop)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8730-47169) — le conteneur
+- [La maquette v5](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46929) — 7 683 px, 14 sections
+- **[S8 — Bloc 50/50 · Atelier](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47016)** — la section refaite, 560 → 747 px
+
+## Créés
+
+- [L'ATELIER](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8802-49454) — eyebrow `accent/sm`, absent de la version précédente
+- [Atelier — savoir-faire + lien](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8802-49455) — conteneur liste + lien, gap 32
+- [Atelier — savoir-faire](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8802-49456) — la liste des quatre métiers
+- [Ligne — MENUISERIE](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8802-49457) — libellé / valeur, filet haut `border/on-brand` @ 18 %
+- [Ligne — USINAGE CNC](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8802-49460) — idem
+- [Ligne — ÉLECTRICITÉ](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8802-49463) — idem
+- [Ligne — ISOLATION](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8802-49466) — idem, plus un filet bas pour fermer la liste
+- [SAINT-GERVAIS · GIRONDE](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8802-49469) — mention de lieu en bas à gauche de la photo
+
+## Modifiés — structure
+
+- [Bloc 50/50 — Atelier (bord à bord)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47017) — hauteur dictée par le contenu du panneau, plus de hauteur fixe
+- [IMG — panneau de bouleau, atelier](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47018) — **pleine hauteur** : padding remis à 0, `FILL` vertical, 560 → 747 px
+- [Atelier — panneau sombre](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47026) — beige → `bg/invert`, padding 80 / 96 tokenisé, contenu centré
+- [Atelier — accroche](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47022) — eyebrow + titre + phrase, gap 24
+
+## Modifiés — contenu réutilisé
+
+- [Six personnes, un atelier, du bois découpé au gabarit.](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47023) — 30 → 48 px (`display/6xl/regular`), blanc
+- [Phrase atelier](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8668-14) — texte inchangé, recolorée en `text/on-invert` @ 75 %
+- [LIRE](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47024) — déplacé sous la liste, blanc plein, soulignement conservé
+
+## Modifiés — image
+
+- [Tag / Badge — BOIS PEFC · LABEL A+](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47025) — miroir : haut droite → **haut gauche**, sur le bord extérieur
+- [Scrim bas — lisibilité de la mention de lieu](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47021) — renforcé sur ses 20 derniers % seulement ; pire pixel 3,21:1 → **5,25:1**
+- [Étiquette de gabarit (masquée)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47020) — `720 × 560 · 9:7` → `720 × 747`, pour ne pas laisser de mention périmée
+
+## Supprimés
+
+Aucun. Rien n'a été sorti de la section : les trois textes d'origine ont été réutilisés en place.

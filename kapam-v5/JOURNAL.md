@@ -860,3 +860,83 @@ Faute de vraies photos d'accessoires dans le fichier, j'ai posé **4 visuels Kap
 la page Formule « Kit à monter » plutôt que des images en ligne sans rapport. Ce sont des plans
 d'intérieur et de détail, pas des packshots produit : ce sont des bouche-trous crédibles, à remplacer
 quand les vraies photos existeront.
+
+---
+
+# Passe v4 — S8 Atelier repris sur la proposition Claude Design
+
+**Demande.** Thomas transmet un PNG produit par Claude Design pour remplacer `8636:47016`
+(« Fiche atelier — panneau sombre, photo décalée, métiers listés »). Deux écarts demandés par
+rapport à la proposition : **inverser gauche / droite** (panneau sombre à droite, photo à gauche)
+et **passer l'image en pleine hauteur**, celle avec les matériaux.
+
+## Lecture de l'existant avant d'écrire
+
+- `8636:47016` était déjà en photo à gauche / panneau à droite : l'inversion demandée correspond
+  donc à l'ordre déjà en place. Aucun échange de colonnes n'était nécessaire.
+- L'image en place (`imageHash 853d4c2a…`, panneau de bouleau sortant de la CNC) est **la même
+  photo que celle du PNG de référence**. Rien à régénérer ni à réimporter.
+- Trois nœuds texte existants ont été **réutilisés, pas recréés** : le H2 `8636:47023`, la phrase
+  `8668:14` (reprise de la page À propos en v2) et le lien `8636:47024`.
+- Convention du fichier pour le texte sur fond sombre : `text/on-invert` partout (footer, hero, S6).
+  Pas de token « gris sur sombre » dans la collection ; les niveaux de gris sont obtenus en
+  modulant l'**opacité du fond de peinture**, la couleur restant liée au token.
+- `border/on-brand` (= white) est le token de filet sur surface sombre : c'est lui qui porte les
+  quatre séparateurs de la liste.
+- Le composant `Table / Cellule` (`6954:8783`) a été examiné puis écarté : filets sur les quatre
+  côtés, texte centré — c'est une cellule de tableau comparatif, pas une ligne libellé / valeur.
+
+## Ce qui a été fait
+
+| Élément | Avant | Après |
+|---|---|---|
+| Panneau texte | beige `bg/muted`, 64 de padding | `bg/invert`, padding 80 vertical / 96 horizontal (tokens `measure/*`) |
+| H2 | `display/3xl` 30 px | `display/6xl/regular` 48 px, `text/on-invert` — aligné sur la DA v3 |
+| Eyebrow | absent | `L'ATELIER`, `accent/sm`, `text/on-invert` @ 60 % |
+| Paragraphe | `text/secondary` | `text/on-invert` @ 75 % |
+| Liste savoir-faire | absente | 4 lignes libellé / valeur, `accent/md`, filet haut 1 px `border/on-brand` @ 18 %, filet bas sur la dernière |
+| Lien LIRE | dans le bloc d'accroche | sous la liste, blanc plein, soulignement conservé |
+| Image | 720 × 560, padding 24, hauteur fixe | 720 × **747**, padding 0, `layoutSizingVertical = FILL` |
+| Badge PEFC | en haut à droite (près de la couture) | en haut à **gauche**, bord extérieur — miroir de la référence |
+| Mention de lieu | absente | `SAINT-GERVAIS · GIRONDE` en bas à gauche |
+| Hauteur de section | 560 | 747 |
+
+Tout est en auto-layout : la ligne `8636:47017` passe en `counterAxisSizingMode = AUTO`, le panneau
+hugge sa hauteur, l'image la remplit. La hauteur de la section est donc dictée par le contenu du
+panneau — plus aucune hauteur fixe à maintenir à la main. Seuls le scrim et les deux repères
+d'image restent en absolu (overlays sur photo).
+
+## Contraste — mesuré, pas estimé
+
+La mention de lieu en bas à gauche tombe sur le **contreplaqué clair**, pas sur la zone sombre que
+la référence exploitait à droite. Mesure sur fond nu (texte masqué, capture 1:1 de l'image,
+luminance relative WCAG pixel par pixel sur la zone exacte) :
+
+| Passe | Moyenne | p95 | **Pire pixel** |
+|---|---|---|---|
+| Scrim d'origine (opacité 35 %, butée à 0,88) | 3,72:1 | 3,45:1 | **3,21:1 — échec** |
+| Scrim redessiné | 6,27:1 | 5,69:1 | **5,25:1 — OK** |
+
+Correction retenue : le dégradé n'a été renforcé **que sur ses 20 derniers pour cent**. Les stops
+sont passés à 0 / 0,10 / 0,22 / 0,60 avec l'opacité du nœud à 1. Aux positions 0,5 et 0,8, la
+densité effective est identique à l'ancienne (0,10 et 0,22) : le haut et le milieu de la photo sont
+inchangés, ce qui respecte le retour v2 sur les overlays trop appuyés.
+
+## Audit placeholders
+
+100 % des nœuds texte de la section, `skipInvisibleInstanceChildren = false`, plus les propriétés
+d'instance : **aucun placeholder visible**. Les 14 textes affichés sont du contenu réel. L'étiquette
+de gabarit masquée `720 × 560 · 9:7` a été mise à jour en `720 × 747` pour ne pas laisser de
+mention périmée dans le fichier.
+
+## Vérifications de page
+
+Section conteneur `8730:47169` : aucun débordement (−669 px en bas, −80 px à droite), aucune
+collision avec les autres nœuds de la page. La v5 mesure 7 683 px.
+
+## Point à arbitrer
+
+Le paragraphe énumère « Menuiserie, usinage, électricité, isolation » et la liste juste en dessous
+répète les quatre mêmes mots. C'est fidèle au PNG de Claude Design, donc laissé tel quel. Si tu veux
+supprimer l'écho, la phrase peut se réduire à « Tout se fait dans notre atelier de Saint-Gervais,
+près de Bordeaux. » et la liste porte seule les métiers. C'est un choix éditorial, pas une correction.
