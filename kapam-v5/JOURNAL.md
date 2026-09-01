@@ -656,3 +656,76 @@ fichier (la v4 faisait pareil). À retirer d'un bloc quand les 14 slots seront s
 - **Les 6 slots ancrés** (`HERO-02`, `FAMILLE-KITS`, `FAMILLE-ACCESSOIRES`, `FAMILLE-PIECES`,
   `FORMULE-DIY`, `FORMULE-ATELIER`) gardent leurs placeholders v4. C'est pour ça que les tuiles 1
   et 2 de S4 se ressemblent encore : ce sont deux slots ancrés, pas un défaut de mise en page.
+
+---
+
+# Passe de rangement
+
+Demande de Thomas : « c'est un peu le bordel sur le fichier là où tu as travaillé ». Audit fait
+avant de toucher quoi que ce soit. Cinq problèmes réels, dont un que je n'avais pas vu.
+
+## 1. La v5 était posée par-dessus une image qui traînait sur la page
+
+Défaut que mes captures de section ne pouvaient pas montrer : elles cadrent la frame, pas le canvas.
+Au niveau page, la v5 (`x −48548 → −47108`) chevauchait le rectangle
+`Gemini_Generated_Image_qil2cr…` (`x −48586 → −46730`, `y 29937 → 32241`) déjà présent dans le
+fichier. Je l'avais placée à « v4 + largeur + 400 » sans vérifier les collisions.
+
+**Fait :** création d'une **section Figma** `🚐 Kapam — Boutique / Index v5 (loop) — travail en cours`
+(`8730:47169`) qui contient la v5 **et** son archive. Placée en `x −50388, y 48517` — sous tout le
+contenu de la page, **alignée au pixel sur le bord gauche de la v4** : on descend depuis la v4 et on
+tombe dessus. Collisions vérifiées par calcul contre les 63 nœuds de la page : **zéro**.
+L'image parasite n'a pas été déplacée : ce n'est pas mon contenu, c'est la v5 qui bouge.
+
+## 2. L'archive était en vrac — et j'y avais cassé un élément
+
+`[v5 retiré] Article — JOURNAL-04` était **écrasé à 1 px de haut** : en l'archivant j'avais forcé sa
+largeur sans rétablir son `layoutSizingVertical`. Restauré à **393 px**.
+
+L'archive avait aussi six éléments empilés sans un mot d'explication. Reconstruite :
+- en-tête `_Archive v5` + note disant que rien n'est supprimé et que tout est réinsérable ;
+- **chaque élément est précédé du ticket responsable et de la raison** de son retrait ;
+- l'eyebrow archivé est du texte blanc, donc invisible sur le fond clair de l'archive : il est posé
+  sur une pastille `bg/invert` **sans modifier l'élément** (son fill reste lié à `text/on-invert`,
+  il se réinsère tel quel).
+
+## 3. Onze noms de calque ne décrivaient plus leur contenu
+
+| Avant | Après | Pourquoi |
+|---|---|---|
+| `IMG / … FAMILLE-KITS — 1:1 — …` (× 4) | `— 4:5 —` | les tuiles sont passées en 4:5 en A7 |
+| `… FAMILLE-VEHICULES — … garé en lisière de pinède` | `… Van de profil strict sur fond clair uni` | décrivait l'ancien placeholder, pas le visuel posé |
+| `… CTA-FINAL — … Van seul au crépuscule` | `… Van sur une route ouverte qui s'éloigne, plein jour` | idem |
+| `… FORMULE-CLE — … petit matin` | `… fin de journée` | idem |
+| `Rail produits (débordement horizontal)` | `Rail produits — 4 kits` | il ne déborde plus depuis A6 |
+| `S11 — En savoir plus` | `S11 — Avant de commander` | contredisait son propre titre depuis A10 |
+| `S8 — Bloc 50/50 · Atelier / Personnalisation` | `S8 — Bloc 50/50 · Atelier` | la Personnalisation est sortie en S8b |
+
+## 4. Les libellés de slot étaient incohérents
+
+Sur les 32 libellés de placeholder de la page, **30 étaient masqués** — c'est la convention du
+fichier. Les deux de `ATELIER-5050` étaient les seuls visibles, et depuis la pose du visuel ils
+s'affichaient comme du texte de debug sur une photo. Masqués : **0 libellé visible**, convention
+respectée partout.
+
+## 5. Un reste à moi
+
+Le `Scrim haut` que j'avais ajouté sur l'image de l'atelier en A5 n'existait que pour rendre cet
+eyebrow lisible. L'eyebrow étant masqué, le scrim assombrissait le haut de la photo pour rien :
+**supprimé**. C'était mon échafaudage, le style `overlay/scrim-top` reste dans le fichier et sert
+toujours au CTA final.
+
+## Balayage final
+
+Aucune frame vide, aucun nœud de taille nulle, aucun calque auto-nommé (`Frame 12`, `Rectangle 4`…)
+ni dans la v5 ni dans l'archive. La sonde de mesure typographique créée pendant A8 avait déjà été
+supprimée dans le même script. Rendu pleine page revérifié après rangement : **identique**, rien n'a
+bougé.
+
+## Laissé volontairement en l'état
+
+- Le **`Scrim bas`** de l'image atelier : lui n'est pas de moi, il vient de la v4. Il n'a plus
+  d'objet depuis que le texte a quitté l'image, mais supprimer du contenu d'origine sur une consigne
+  implicite serait aller trop loin. Il reste dans les arbitrages.
+- Le **rectangle `Gemini_Generated_Image_qil2cr…`** et les autres images de référence de la page :
+  contenu de Thomas, pas touché.

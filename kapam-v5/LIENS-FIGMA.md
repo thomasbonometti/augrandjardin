@@ -6,6 +6,8 @@ Chaque lien ouvre le node directement. Les 74 nodes ont été vérifiés comme e
 
 ## Point d'entrée
 
+- [🚐 Kapam — Boutique / Index v5 (loop) — travail en cours](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8730-47169) — **la section qui contient tout** (v5 + archive). Placée sous la page, alignée sur le bord gauche de la v4.
+
 - [Kapam / Boutique — Index — v5 (loop)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46929) — **la maquette v5** — 1440 × 8272
 - [Kapam / Boutique — Index — v4 (modèle MR)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8537-32271) — la v4 d'origine, **non modifiée**, pour comparaison
 - [_Archive v5](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47137) — les 6 éléments sortis de la page, jamais supprimés
@@ -69,8 +71,8 @@ Section : [S8 — Atelier](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/K
 
 Section : [S5 — Carrousel kits](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46976)
 
-- [Grille accessoires (4 colonnes)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47005) — rail → grille, cards à 282 px
-- [Rail produits](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46980) — tuile éditoriale retirée
+- [Grille accessoires — 4 colonnes](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47005) — rail → grille, cards à 282 px
+- [Rail produits — 4 kits](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46980) — tuile éditoriale retirée
 - [[v5 retiré] Tuile éditoriale — Kits](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46981) — **archivé**
 - [[v5 retiré] Tuile éditoriale — Accessoires](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47006) — **archivé**
 
@@ -79,10 +81,10 @@ Section : [S5 — Carrousel kits](https://www.figma.com/design/oGJVoOgpCvgf0DnCJ
 Section : [S4 — Les familles](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46954)
 
 - [Bande familles](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46955) — **annotation hover** posée ici
-- [Tuile FAMILLE-KITS](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46956) — 1:1 → 4:5 (357 × 446)
-- [Tuile FAMILLE-ACCESSOIRES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46961) — 4:5
-- [Tuile FAMILLE-PIECES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46966) — 4:5
-- [Tuile FAMILLE-VEHICULES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46971) — 4:5
+- [Tuile FAMILLE-KITS (4:5)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46956) — 1:1 → 4:5 (357 × 446)
+- [Tuile FAMILLE-ACCESSOIRES (4:5)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46961) — 4:5
+- [Tuile FAMILLE-PIECES (4:5)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46966) — 4:5
+- [Tuile FAMILLE-VEHICULES (4:5)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46971) — 4:5
 - [Lien — KITS D'AMÉNAGEMENT](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46960) — bas gauche + flèche + hover
 - [Lien — ACCESSOIRES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46965) — idem
 - [Lien — PIÈCES & ÉLECTRICITÉ](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46970) — idem
@@ -139,3 +141,14 @@ Les styles n'ont pas d'URL de node. Ils sont dans le panneau **Local styles** du
 
 - [S6 — Bandeau éditorial · Réalisation client](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46991) — référence, principe intact
 - [Kapam / Boutique — Index — v4](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8537-32271) — la v4 entière
+
+## Ajouté par la passe de rangement
+
+- [Section 🚐 Index v5 (loop)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8730-47169) — conteneur de la v5 et de l'archive
+- [_Archive v5 (rangée)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47137) — en-tête + une légende par élément retiré, disant quel ticket et pourquoi
+- [[v5 retiré] Article — JOURNAL-04](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47087) — réparé, il était écrasé à 1 px de haut
+
+Onze calques ont été renommés parce que leur nom ne décrivait plus leur contenu, et les deux
+libellés de placeholder encore visibles (`ATELIER-5050`) ont été masqués pour rejoindre les 30
+autres. Le `Scrim haut` que j'avais posé sur l'image de l'atelier a été supprimé : il ne servait
+plus à rien. Détail complet dans `JOURNAL.md`, section « Passe de rangement ».
