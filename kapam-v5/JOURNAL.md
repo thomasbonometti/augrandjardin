@@ -791,3 +791,72 @@ Le passage du texte sous les images a été déclenché par la mesure, pas par i
   cards identiques côte à côte.
 - **Tuiles 1 et 2 de S4** se ressemblent toujours : ce sont les slots ancrés `FAMILLE-KITS` et
   `FAMILLE-ACCESSOIRES`, qui attendent que le flow Weave accepte une image de référence.
+
+---
+
+# Passe v3 — retours Thomas (itération 2)
+
+Thomas a travaillé en parallèle : H1 passé à **64 px**, S4 reconstruite avec une colonne redesignée,
+une version alternative de S9 montée à côté de la page, et le CTA simplifié.
+
+## Ce que j'ai aligné sur son travail
+
+- **S4** : les 3 colonnes restantes alignées sur sa colonne 1 — lien **dans** l'image, poussé en bas
+  par `primaryAxisAlignItems: MAX`, padding 32/16, **sans flèche**, `Link inverse`. Les 4 colonnes
+  font désormais 446 px.
+- **S9** : sa version (« Comment transformer votre utilitaire en van aménagé ? ») **intégrée dans la
+  page**, enveloppée dans une section aux marges 96 / padding vertical 64. La mienne est à l'archive.
+  L'ancre du hero a été repointée dessus.
+- **S12** : remplacé par le **bloc CTA de la Homepage** (`Commencez votre transformation`), déjà
+  utilisé aussi sur les Réalisations.
+
+## Deux bugs de couleur trouvés — même cause
+
+Le composant `Button`, variante **`Link inverse`**, ne colore pas sa flèche : le `Vector` reste en
+`[12,10,9]` (quasi noir) alors que le libellé est blanc. Corrigé sur le bouton `VOIR LE PROJET` de S6
+et sur les 4 liens de S4.
+**C'est un défaut du composant, pas des instances** : toute instance `Link inverse` avec flèche aura
+le problème. À corriger dans le composant — décision Thomas.
+
+Second effet, celui-là de moi : lors de la passe v2 j'avais forcé les labels de S4 sur `text/primary`
+quand le texte était passé sous l'image. En les remettant sur l'image, **les 4 labels étaient donc
+noirs sur photo sombre**, y compris celui de la colonne de Thomas. Tous rebindés sur `text/on-invert`.
+
+## Contraste — la mesure a imposé deux changements
+
+Le design « label sur l'image sans overlay » ne tenait pas. Mesuré sur le fond réel, texte masqué :
+
+| Tuile | sans scrim | après correction |
+|---|---|---|
+| KITS D'AMÉNAGEMENT | 4,52:1 (limite) | **7,69:1** |
+| ACCESSOIRES | 4,69:1 (limite) | **8,00:1** |
+| PIÈCES & ÉLECTRICITÉ | **3,87:1 échec** | **6,92:1** |
+| VÉHICULES À VENDRE | **1,33:1 échec** | **6,98:1** |
+
+Deux correctifs : un **scrim bas très léger (45 %)** sur les 4 tuiles, et surtout le **remplacement
+du visuel de la tuile 4** — c'était mon packshot sur fond clair, où un label blanc est littéralement
+invisible. Remplacé par un visuel de la page **Véhicules à vendre**.
+
+## Alignement sur la DA de la Homepage
+
+Relevé sur la Homepage : **marges 96** (pas 120), container **1248**, padding vertical de section
+**64**, titres de section en **`display/6xl/regular` (48 px)**, eyebrows en **`accent/sm` (12 px)**,
+cards produit à **400 px** sur les pages Catégorie.
+
+Appliqué : marges 120 → 96 partout, padding vertical 80 → 64, titre `Avant de commander` en 48,
+eyebrow `RÉALISATION CLIENT` en `accent/sm`, et **S5 et S7 rendues identiques** — même padding, même
+gap, même corps de titre, cards passées de 304 / 282 à **400 px**. Les deux rails débordent
+volontairement à droite : ce sont des carrousels.
+
+## S6 remis en auto-layout
+
+Le bloc texte + bouton n'est plus en position absolue : il est en flux, positionné par
+l'auto-layout de l'image. Seul le `Voile sombre` reste absolu — c'est un calque pleine image, pas du
+contenu.
+
+## Accessoires
+
+Faute de vraies photos d'accessoires dans le fichier, j'ai posé **4 visuels Kapam réels** repris de
+la page Formule « Kit à monter » plutôt que des images en ligne sans rapport. Ce sont des plans
+d'intérieur et de détail, pas des packshots produit : ce sont des bouche-trous crédibles, à remplacer
+quand les vraies photos existeront.

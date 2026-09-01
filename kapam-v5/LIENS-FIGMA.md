@@ -244,3 +244,65 @@ Les 52 nœuds ci-dessous ont été vérifiés comme existants avant génération
 - La frame **Respiration** de S12 — elle ne servait qu'à séparer du bandeau newsletter, parti à l'archive.
 
 Ce sont des éléments que j'avais créés ou qui ne portaient plus rien : rien du contenu d'origine n'a été supprimé.
+
+---
+
+# Passe v3 — retours Thomas (itération 2)
+
+42 nœuds vérifiés comme existants avant génération.
+
+## Point d'entrée
+
+- [Section 🚐 Index v5 (loop)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8730-47169) — le conteneur
+- [La maquette v5](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46929) · [_Archive v5](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47137)
+
+## Créés
+
+- [S9 — Nos offres](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8786-156) — la section qui enveloppe ta version, marges 96 / padding 64
+- [S12 — CTA final (repris de la Homepage)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8786-180) — clone du bloc CTA de la Home
+- [Scrim bas — tuile Kits](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8777-123318) — scrim léger à 45 %, imposé par la mesure de contraste
+- [Scrim bas — tuile Accessoires](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8777-123319) — idem
+- [Scrim bas — tuile Pièces](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8777-123320) — idem
+- [Scrim bas — tuile Véhicules](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8777-123321) — idem
+
+## Modifiés — S4, alignées sur ta colonne
+
+- [Colonne Accessoires](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49467) — lien remonté dans l'image, sans flèche
+- [Colonne Pièces & électricité](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49473) — idem
+- [Colonne Véhicules à vendre](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49479) — idem
+- [IMG FAMILLE-VEHICULES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49480) — visuel remplacé : le packshot clair rendait le label invisible (1,33:1)
+- [Lien — KITS D'AMÉNAGEMENT](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49506) — recoloré en text/on-invert, il était noir
+- [Lien — ACCESSOIRES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49472) — idem
+- [Lien — PIÈCES & ÉLECTRICITÉ](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49478) — idem
+- [Lien — VÉHICULES À VENDRE](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49484) — idem
+
+## Modifiés — S5 et S7, rendues identiques
+
+- [S5 — Nos quatre kits](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46976) — padding 64/96, gap 64, titre 48 px
+- [Titre « Nos quatre kits »](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46978) — display/6xl/regular, comme la Home
+- [Rail produits — 4 kits](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46980) — cards 304 → 400 px, gap 24
+- [S7 — Accessoires & options](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47001) — strictement les mêmes réglages que S5
+- [Titre « Accessoires & options »](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47003) — display/6xl/regular
+- [Rail accessoires — 4 références](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47005) — grille → rail, cards 400 px
+- [Card · Plafond DIBON](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47012) — vrai visuel Kapam à la place du placeholder
+- [Card · Grand support élastique](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47013) — idem
+- [Card · Store déroulant](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47014) — idem
+- [Card · Chauffage stationnaire](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47015) — idem
+
+## Modifiés — S6
+
+- [IMG EDITO-REALISATION](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46992) — auto-layout : le bloc texte n'est plus en absolu
+- [Édito — texte centré](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46996) — repassé en flux
+- [RÉALISATION CLIENT](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46997) — eyebrow en accent/sm, comme la Home
+- [Button — VOIR LE PROJET](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46999) — flèche recolorée : elle était en [12,10,9] sur fond sombre
+
+## Modifiés — DA
+
+- [S11 — Avant de commander](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47096) — marges 96, padding vertical 64
+- [Titre « Avant de commander »](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47097) — 40 → 48 px
+- [Bouton hero VOIR LES FORMULES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49449) — ancre repointée sur la nouvelle S9
+
+## Archivés
+
+- [[v5 retiré] Mon S9](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47031) — tu préfères ta version, elle est intégrée à la place
+- [[v5 retiré] Ancien CTA final](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8768-49525) — remplacé par le bloc CTA de la Homepage
