@@ -1,0 +1,5 @@
+# sorties Weave brutes (24 x ~5 Mo) — non versionnees, regenerables depuis les runIds du journal
+weave/*.png
+!weave/planche_*.png
+# capture pleine page haute resolution (8 Mo)
+captures/v5-pleine-page.png
