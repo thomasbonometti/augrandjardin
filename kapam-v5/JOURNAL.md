@@ -477,14 +477,80 @@ de l'option 2 **sous la bande conservée**. L'option 2 n'est récupérable qu'en
 vers le bas à la pose (le `FILL` de Figma est centré par défaut, mais la transformation d'image est
 ajustable). Les options 1 et 3 passent en recadrage centré.
 
-## Sélection — en attente de Thomas
+## Sélection et pose — FAIT
 
-Conformément au brief (« Ne choisis pas à sa place : la sélection photo est un jugement, pas un
-critère mesurable »), **aucune image n'a été posée dans la maquette**. Les 24 propositions sont dans
-`weave/`, les 8 planches d'arbitrage ont été envoyées à Thomas. Reste à faire une fois son choix
-connu : `upload_assets` avec le `nodeIds` du slot et `scaleMode: FILL`, puis `get_screenshot` de la
-section entière pour contrôler **deux** choses — que le recadrage n'a pas mangé la zone calme, et
-que le texte de la section tombe toujours dans du vide.
+**Thomas a retenu l'option 1 pour les 8 slots.** Les 8 images ont été posées via `upload_assets`
+avec `scaleMode: FILL` sur les nœuds cibles. Aucun crédit supplémentaire dépensé : les corrections
+de recadrage ont été faites côté fichier, pas en régénérant. **Solde inchangé : 947 crédits.**
+
+| Slot | Nœud cible | Cadre | État |
+|---|---|---|---|
+| `HERO-01` | `8636:46935` | 480 × 720 | posé — van recadré serré, voir plus bas |
+| `HERO-03` | `8636:46941` | 480 × 720 | posé **après rognage** des bandes blanches |
+| `FAMILLE-VEHICULES` | `8636:46971` | 357 × 446 | posé |
+| `EDITO-REALISATION` | `8636:46992` | 1440 × 603 | posé + **overlay S6 déplacé** |
+| `ATELIER-5050` | `8636:47018` | 720 × 560 | posé |
+| `FORMULE-CLE` | `8636:47047` | 480 × 620 | posé |
+| `SAVOIR-VASP` | `8636:47107` | 588 × 470 | posé |
+| `CTA-FINAL` | `8636:47121` | 1440 × 420 | posé **après re-cadrage** de la bande |
+
+Vérification des remplissages après pose : les 8 nœuds portent **une seule image**, `scaleMode FILL`,
+transformation identité, `clipsContent` actif. Les anciens fills de placeholder ont bien été
+remplacés, et les rectangles de scrim (enfants séparés) ont survécu.
+
+### Trois corrections nécessaires après la pose
+
+**1. `HERO-03` — bandes blanches incrustées dans l'image.** Le modèle a rendu un vrai 2:3
+*letterboxé au centre du carré* plutôt que de remplir le carré : 51 px de blanc en haut, 49 px en
+bas, 340 px de chaque côté. Résultat à la pose : bandes claires visibles en haut et en bas du
+panneau. Détecté par analyse des bordures uniformes sur les 8 fichiers — **`HERO-03` est le seul
+concerné**. Image rognée à 1368 × 1948 (soit le 2:3 réellement demandé) et reposée.
+
+**2. `CTA-FINAL` — le recadrage centré ne gardait que le toit du van.** La bande 3.43:1 ne conserve
+que 597 px sur 2048, et le van occupe y 1180–1820 dans la source : le crop centré (y 725–1322)
+s'arrêtait juste sous le toit. Bande repositionnée à **y 950–1547**, ce qui garde le ciel pour le
+texte *et* montre le corps du van, la lunette arrière et la route qui s'éloigne.
+**À savoir : le van fait 640 px de haut pour une bande de 597 — il ne peut pas rentrer entier**,
+quel que soit le décalage. Le van est donc coupé en bas par le cadre, ce qui se lit comme un
+recadrage éditorial assumé.
+
+**3. `EDITO-REALISATION` — le texte tombait sur le van et sur les deux personnes.** Le recadrage
+2.39:1 centré a mangé la zone calme (le ciel), exactement le risque annoncé au §3.0. Conformément
+au §3.1 (« Si ça coince, ajuste le bloc texte, pas l'image »), **l'overlay a été déplacé**, pas
+l'image : `Édito — texte centré` passe de `y=198` centré vertical à **`y=40`** ancré en haut,
+contrainte verticale `CENTER` → `MIN`.
+Un premier essai à `y=48` laissait la ligne « nom du client » dans la lueur du couchant à **4,02:1**
+— sous le seuil. Balayage de position effectué sur le fond nu : `y=40` la remonte à **7,40:1** sans
+dégrader la citation. Le principe de la section est intact : bandeau pleine largeur, citation
+client, lien.
+
+### Contraste revérifié après pose
+
+Les visuels ayant changé, les mesures de la boucle A ont été refaites là où du texte repose sur une
+image neuve :
+
+| Zone | moyen | p95 | **pire pixel** |
+|---|---|---|---|
+| S4 tuile 4 `VÉHICULES À VENDRE` (fond devenu clair) | 11,0:1 | 9,9:1 | **9,8:1** |
+| S9 tuile 3 `FORMULE-CLE` (label + prix + phrase) | 13,6:1 | 11,2:1 | **9,8:1** |
+| S8 eyebrow atelier | 15,3:1 | 13,3:1 | **12,6:1** |
+| S6 citation | 12,8:1 | 9,3:1 | **8,4:1** |
+| S6 ligne « nom du client » | — | — | **7,4:1** |
+
+Seuil 4,5:1 franchi partout. Le scrim bas de S4 absorbe sans problème le passage à un fond clair.
+
+### Trois points à ton arbitrage sur les visuels posés
+
+- **`HERO-01` : le van est coupé des deux côtés.** Le crop 2:3 ne garde que 67 % de la largeur du
+  carré, et le van est plus large que ça. L'action de chargement (porte ouverte, duvets, sacs) reste
+  lisible et le tiers bas est calme pour le texte, mais c'est un cadrage serré subi, pas choisi.
+- **`SAVOIR-VASP` porte un badge « CAMP LIFE » inventé** sur le flanc, malgré le `avoid: visible
+  branding` du prompt. Une marque fictive sur une maquette client, ça se retouche ou ça se
+  régénère.
+- **Les libellés de placeholder restent affichés** sur les visuels posés (`ATELIER-5050`,
+  `720 × 560 · 9:7`, etc.). C'est la convention déjà en place dans le fichier — les placeholders v4
+  les affichaient aussi par-dessus leurs photos. À retirer d'un coup quand les 14 slots seront
+  servis, pas avant, pour ne pas créer d'incohérence entre slots traités et slots ancrés.
 
 ## ⛔ Les 6 slots ancrés — non traités, action requise de Thomas
 
@@ -521,7 +587,8 @@ technique. `FAMILLE-VEHICULES` est un cas limite : c'est un packshot véhicule, 
 | A11 — S12, bloc newsletter | P3 | **OK** | titre + RGPD + rupture visuelle |
 
 **Tous les P1 sont OK. Les P2 sont OK ou explicitement bloqués avec une raison écrite.**
-Capture pleine page produite : `captures/v5-pleine-page.png` (1440 × 8272) + aperçu.
+**Boucle B : les 8 slots d'ambiance sont posés** (option 1 partout), recadrages contrôlés et
+contrastes revérifiés. Capture pleine page à jour : `captures/v5-pleine-page.png` (1440 × 8272).
 
 ## Arbitrages qui remontent à Thomas
 
@@ -547,9 +614,12 @@ largeur des cards, et le rail déborde à x=1408 alors que son titre s'arrête �
 **5. ⛔ Les 6 slots ancrés de la boucle B.** Il faut exposer `Image 1` et `Image 2` en entrées du
 flow Weave puis republier. Je ne peux pas modifier le flow depuis le MCP.
 
-**6. Le flow Weave sort en carré.** 2048 × 2048 quel que soit le cadrage demandé. Sur `CTA-FINAL`
-(3.43:1) il ne reste que **29 %** de la hauteur de l'image. Si ces deux slots comptent, il faudra une
-sortie au bon format dans le flow.
+**6. Le flow Weave sort en carré — confirmé à la pose.** 2048 × 2048 quel que soit le cadrage
+demandé. Trois conséquences constatées : `HERO-03` est revenue **letterboxée en blanc** (rognée à la
+main), `CTA-FINAL` ne montrait que le toit du van en crop centré (bande repositionnée), et le van
+de `CTA-FINAL` **ne peut pas tenir entier** dans 3.43:1 (640 px de van pour 597 px de bande).
+`HERO-01` subit le même effet en 2:3 : le van est coupé des deux côtés. Une sortie au bon format
+dans le flow réglerait les quatre d'un coup.
 
 **7. Contenu en attente de Willy — 3 emplacements créés.** Phrase de l'Atelier (A5), titre de la
 newsletter (A11), et la légende du nuancier (A5). Tous marqués `[À valider Willy]` selon la
@@ -568,6 +638,13 @@ d'inscription à 300 px d'écart. Hors périmètre des tickets et dans un compos
 
 **11. Le `Scrim bas` de l'image atelier n'a plus d'objet (A5)** depuis que le texte a quitté l'image.
 
+**12. `SAVOIR-VASP` porte un badge « CAMP LIFE » inventé** sur le flanc du van, malgré le
+`avoid: visible branding` du prompt. Une marque fictive sur une maquette client : à retoucher ou à
+régénérer avant présentation à Willy.
+
+**13. Les libellés de placeholder restent affichés sur les visuels posés.** C'est la convention du
+fichier (la v4 faisait pareil). À retirer d'un bloc quand les 14 slots seront servis, pas avant.
+
 ## Ce qui n'a pas été touché, volontairement
 
 - **S6 — Bandeau réalisation** (`8636:46991`) : référence, principe intact comme demandé.
@@ -576,3 +653,6 @@ d'inscription à 300 px d'écart. Hors périmètre des tickets et dans un compos
   découpé sur le tiret cadratin sans qu'un mot change — et le ticket A4 le demandait explicitement.
 - **Rien supprimé définitivement** : 6 éléments sont dans `_Archive v5`, préfixés `[v5 retiré]`
   (2 tuiles éditoriales, l'eyebrow du hero, le 4ᵉ article du Journal, 2 vignettes de S11).
+- **Les 6 slots ancrés** (`HERO-02`, `FAMILLE-KITS`, `FAMILLE-ACCESSOIRES`, `FAMILLE-PIECES`,
+  `FORMULE-DIY`, `FORMULE-ATELIER`) gardent leurs placeholders v4. C'est pour ça que les tuiles 1
+  et 2 de S4 se ressemblent encore : ce sont deux slots ancrés, pas un défaut de mise en page.
