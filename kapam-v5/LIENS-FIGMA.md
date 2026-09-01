@@ -152,3 +152,95 @@ Onze calques ont été renommés parce que leur nom ne décrivait plus leur cont
 libellés de placeholder encore visibles (`ATELIER-5050`) ont été masqués pour rejoindre les 30
 autres. Le `Scrim haut` que j'avais posé sur l'image de l'atelier a été supprimé : il ne servait
 plus à rien. Détail complet dans `JOURNAL.md`, section « Passe de rangement ».
+
+---
+
+# Passe v2 — retours Thomas
+
+Les 52 nœuds ci-dessous ont été vérifiés comme existants avant génération des liens.
+
+## Point d'entrée
+
+- [Section 🚐 Index v5 (loop)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8730-47169) — le conteneur, v5 + archive
+- [Kapam / Boutique — Index — v5 (loop)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46929) — la maquette
+- [_Archive v5](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47137) — tout ce qui est sorti de la page
+
+## Créés
+
+- [S8b — Configurateur (repris de la Homepage)](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8751-145) — clone du bloc validé sur la Home, remplace les « 200 coloris »
+- [Marques compatibles](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8754-149) — rangée des 10 logos, reprise de la Home, dans le bloc Compatibilité
+- [Colonne famille — Kits](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8765-14) — image + légende sous l'image
+- [Colonne famille — Accessoires](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8765-22) — idem
+- [Colonne famille — Pièces & électricité](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8765-29) — idem
+- [Colonne famille — Véhicules à vendre](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8765-36) — idem
+- [Colonne formule — Kit à monter](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8762-14) — image + texte sous l'image
+- [Colonne formule — Kit posé en atelier](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8762-15) — idem
+- [Colonne formule — Van prêt à partir](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8762-16) — idem
+
+## Modifiés — global
+
+- [H1 du hero](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46947) — 30 → 40 px (display/5xl)
+- [Scrim bas du hero](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46944) — scrim renforcé abandonné, standard à 62 %
+- [Voile sombre S6](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46995) — opacité 34 %
+- [Scrim bas atelier](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47021) — opacité 35 %
+- [Scrim haut CTA final](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8643-15) — opacité 60 %
+- [Bouton hero](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46950) — libellé → VOIR LES FORMULES
+
+## Modifiés — S4 Familles
+
+- [Bande familles](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46955) — restructurée en 4 colonnes, texte sous l'image
+- [Lien — KITS D'AMÉNAGEMENT](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46960) — souligné, passé en sombre, flèche recolorée
+- [Lien — ACCESSOIRES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46965) — idem
+- [Lien — PIÈCES & ÉLECTRICITÉ](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46970) — idem
+- [Lien — VÉHICULES À VENDRE](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46975) — idem
+- [IMG FAMILLE-KITS](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46956) — scrim retiré
+- [IMG FAMILLE-ACCESSOIRES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46961) — scrim retiré
+- [IMG FAMILLE-PIECES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46966) — scrim retiré
+- [IMG FAMILLE-VEHICULES](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46971) — scrim retiré
+
+## Modifiés — S5 Kits
+
+- [Card · Kit Travel](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46987) — vraie photo + 1 926 €
+- [Card · Kit Mado](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46988) — vraie photo + 1 975 €
+- [Card · Kit Madel](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46989) — vraie photo + **2 395 €** — le prix réel, plus de placeholder
+- [Card · Kit Combi](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46990) — mise en situation + 2 090 €
+
+## Modifiés — S6 Réalisation
+
+- [Édito — texte centré](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-46996) — attribution remontée sous la citation
+- [Référence client](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47000) — JULIEN & MARIE · RENAULT TRAFIC L2H1 · AMÉNAGÉ EN MARS 2024
+
+## Modifiés — S7 / S8
+
+- [Card · Store déroulant](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47014) — prix provisoire 290 €
+- [Card · Chauffage stationnaire](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47015) — prix provisoire 1 190 €
+- [Phrase atelier](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8668-14) — vrai texte repris de la page À propos
+
+## Modifiés — S9 Formules
+
+- [Titre de section](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8660-24) — « Vous en êtes où ? » → « Quelle formule choisir ? »
+- [Bande formules](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47032) — restructurée en 3 colonnes, texte sous l'image
+- [IMG FORMULE-DIY](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47033) — visuel repris de la page Offre, scrim retiré
+- [IMG FORMULE-ATELIER](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47040) — idem
+- [IMG FORMULE-CLE](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47047) — idem
+- [Bloc texte tuile 1](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47037) — passé sous l'image, typo sombre
+- [Bloc texte tuile 2](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47044) — idem
+- [Bloc texte tuile 3](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47051) — idem
+
+## Modifiés — S11 / S12
+
+- [Bloc — Compatibilité](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47099) — les 10 marques compatibles ajoutées
+- [S12 — CTA final](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47120) — renommé, la newsletter en est sortie
+
+## Archivés
+
+- [[v5 retiré] S8b — Personnalisation](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8667-149) — les « 200 coloris » ne prouvaient rien
+- [[v5 retiré] S10 — Le Journal](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47055) — « on n'en a pas besoin »
+- [[v5 retiré] Temps 2 — Newsletter](https://www.figma.com/design/oGJVoOgpCvgf0DnCJTBLdU/Kapam?node-id=8636-47130) — idem, le footer en a déjà une
+
+## Supprimés (aucun lien, ils n'existent plus)
+
+- Les **8 scrims** de S4 et S9 — le texte étant sorti des images, ils n'avaient plus d'objet.
+- La frame **Respiration** de S12 — elle ne servait qu'à séparer du bandeau newsletter, parti à l'archive.
+
+Ce sont des éléments que j'avais créés ou qui ne portaient plus rien : rien du contenu d'origine n'a été supprimé.
