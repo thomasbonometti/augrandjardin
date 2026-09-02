@@ -11,6 +11,12 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/2.jpg"
 },{
+  "Nom": "Betterave vrac",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : ⌛️ Dernière semaine : Betterave vrac Bio 3.10 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/4.jpg"
+},{
   "Nom": "Carotte - Botte",
   "En vente": true,
   "Etiquette": "Carotte - Botte Bio 2.20 € la botte",
@@ -35,6 +41,12 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/22.jpg"
 },{
+  "Nom": "Haricot vert",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Haricot vert Bio 4.00 € la barquette (500g)*",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/84.jpg"
+},{
   "Nom": "Poivron",
   "En vente": true,
   "Etiquette": "Poivron Bio 5.20 €/kg",
@@ -53,21 +65,15 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/52.jpg"
 },{
-  "Nom": "Radis Rose Botte (25p)",
-  "En vente": true,
-  "Etiquette": "✨ Nouveau : Radis Rose Botte (25p) Bio 2.20 € la botte",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/71.jpg"
-},{
   "Nom": "Chou Broccoli",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Chou Broccoli Bio 4.90 €/kg*",
+  "Etiquette": "Chou Broccoli Bio 4.90 €/kg*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/14.jpg"
 },{
   "Nom": "Oignon Blanc frais",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Oignon Blanc frais Bio 4.50 €/kg",
+  "Etiquette": "Oignon Blanc frais Bio 4.50 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/38.jpg"
 },{
@@ -76,12 +82,6 @@
   "Etiquette": "Oignon Ciboule Bio 2.20 € la botte",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/90.jpg"
-},{
-  "Nom": "Oignon Jaune",
-  "En vente": true,
-  "Etiquette": "Oignon Jaune Bio 3.40 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/39.jpg"
 },{
   "Nom": "Tomate",
   "En vente": true,
@@ -109,13 +109,13 @@
 },{
   "Nom": "Melon",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Melon Bio 4.00 €/kg",
+  "Etiquette": "Melon Bio 4.00 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/35.jpg"
 },{
   "Nom": "Rhubarbe",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Rhubarbe Bio 4.40 €/kg",
+  "Etiquette": "Rhubarbe Bio 4.40 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/117.jpg"
 },{
