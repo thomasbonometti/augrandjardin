@@ -145,6 +145,68 @@ Relecture à neuf de Figma après corrections (`use_figma` en lecture + `get_scr
 | S4 — sections détachées | **FAUX POSITIF** | Relecture : les 4 frames portent bien une instance `Footer — Mobile`. Rien à corriger. |
 | S10 — pas de variante `Sur-image` | **CORRIGÉ** | Variant set `8883:34` créé, appliqué à la seule frame à héros sombre. Screenshot : logo blanc lisible sur le héros noir de À propos. |
 | S11 — Banner Section blanche | **CORRIGÉ** | Screenshot : bandeau lisible, 720 → 272 px. |
-| S9 — mode Mobile vide | **EN ATTENTE** | Échelle proposée, en attente de validation avant écriture dans les variables. |
+| S9 — mode Mobile vide | **CORRIGÉ** | Échelle validée et écrite ; 53/53 frames déclarent le mode Mobile ; 135 gouttières de section reliées à `measure/16`. |
 | Familles C (tokens, typo, cibles tactiles, espacements, rayons, nommage) | **NON TRAITÉ** | Volume : ~450 textes sans style, ~500 fills en dur, ~700 espacements hors échelle sur 53 frames. À planifier après arbitrage S9 — l'échelle typo mobile conditionne le travail de typo. |
 
+
+
+---
+
+## LOT 8 — Échelle mobile (défaut S9, arbitrage validé)
+
+**Typographie** — mode Mobile de `2. Primitives - Typography` renseigné.
+Les 38 styles de texte étant tous liés aux `size/*`, le rescale se propage automatiquement.
+
+| Variable | Desktop | Mobile |
+|---|---|---|
+| `size/72` · `size/64` · `size/56` | 72 · 64 · 56 | **40 · 36 · 32** |
+| `size/48` · `size/40` | 48 · 40 | **30 · 28** |
+| `size/36` · `size/30` · `size/24` | 36 · 30 · 24 | **24 · 22 · 20** |
+| `size/20` → `size/12` | inchangés | inchangés |
+
+**Espacement** — mode Mobile de `5. Tokens - Spacing` renseigné.
+
+| Token | Desktop | Mobile |
+|---|---|---|
+| `section/gutter` | `measure/96` | **`measure/16`** |
+| `section/gap/sm` · `md` · `lg` · `xl` | 64 · 80 · 112 · 128 | **32 · 40 · 48 · 64** |
+| `component/*` | 0–24 | inchangés |
+
+**Déploiement**
+- Mode Mobile déclaré sur les **53 frames** (`setExplicitVariableModeForCollection`).
+- Goutttière retenue : **16**, conformément à la collection `3. Responsive - Grid`
+  (`mobile/Margin = 16`, `layout/padding/mobile = 16`). Les pages étaient à 24 en dur.
+- **135 conteneurs de section** repassés de 24 à `measure/16`.
+- Les 3 masters mobile (header ×2 variantes, breadcrumbs, footer) repassés de `measure/24`
+  à `measure/16` — ce qui annule l'écriture du lot 3, faite avant l'arbitrage.
+- Colonnes du footer recalculées : 163 → **171** (`(358 − 16) / 2`).
+- `Banner Section` : padding 32 → `measure/16`.
+
+**Réserve mesurée** : l'impact visuel du rescale typo est faible (404 : 1415 → 1407 px).
+Normal — il n'agit que sur les textes portant un style DS, or **316 textes n'en ont aucun**.
+Les gros titres fautifs (`Heading` 48 px, `Kit DIY` 40 px) sont des valeurs en dur : ils ne
+bougeront qu'après application des styles, frame par frame.
+
+---
+
+## ÉTAT FINAL — ce qui reste (scan des 53 frames)
+
+| Famille | Avant | Après | Statut |
+|---|---|---|---|
+| Padding desktop (≥ 48) sur mobile | ~80 | **0** | ✅ éliminé |
+| Nav / footer / breadcrumbs desktop | 41 / 5 / 34 | **0 / 0 / 0** | ✅ éliminé |
+| Couleur en dur | ~524 | 524 | ⬜ non traité |
+| Texte sans style DS | 316 | 316 | ⬜ non traité |
+| Espacement hors échelle | ~751 | 751 | ⬜ non traité |
+| Rayon en dur | ~484 | 484 | ⬜ non traité |
+| Cibles tactiles < 44 px | ~118 | 118 | ⬜ non traité |
+| Nommage générique | ~397 | 397 | ⬜ non traité |
+| Calques masqués | ~116 | 116 | ⬜ non traité |
+| Position absolue résiduelle | ~95 | 95 | ⬜ non traité |
+| Texte tronqué | 5 | 5 | ⬜ non traité |
+| Espacement négatif | 6 | 6 | ⬜ non traité |
+
+Ces familles sont du travail de fond, frame par frame, non tranchable au niveau du système :
+elles supposent de choisir pour chaque nœud le style et le token justes. L'ordre le plus rentable
+serait : styles de texte → couleurs → espacements → cibles tactiles → nommage, en commençant par
+Guides, Blog, Actualités Catégorie, Page offre et Réalisations Index, qui concentrent l'essentiel.
