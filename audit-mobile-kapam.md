@@ -253,3 +253,33 @@ les grilles de cartes étaient restées en **auto-layout horizontal desktop** (`
 Le même motif — conteneur horizontal dont les enfants débordent — existe sur **203 conteneurs** de la
 page mobile, mais la grande majorité est du bruit d'icônes (dépassement de 2 px). Seuls ces 3 étaient
 des grilles de cartes réellement rognées.
+
+
+---
+
+## LOT 10 — Passe de fidélité au desktop (53 paires)
+
+Méthode : diff du contenu texte de chaque frame mobile contre son homologue desktop, normalisé
+(espaces, casse). **Première tentative écartée** : `findAllWithCriteria` ne descend pas dans les
+instances — sur Mentions légales elle ne voyait que 2 textes sur ~30. Refaite avec une traversée
+manuelle complète, chrome exclu (header, footer, fil d'ariane, bandeau haut) puisqu'il diverge
+légitimement entre desktop et mobile.
+
+**49 frames sur 53 : fidélité parfaite** — 0 texte manquant, 0 texte ajouté. Cela couvre
+notamment les 4 fiches Réalisation (105 à 113 textes chacune), les 6 écrans Configurateur
+(jusqu'à 187 textes), LP Bordeaux (120), Produit — Kit (216).
+
+### Les 4 écarts
+
+| # | Sév | Frames | Constat | Action |
+|---|-----|--------|---------|--------|
+| F1 | **P0** | `8829:5471`, `8850:151082`, `8850:151214`, `8850:151346` (Catégorie v6 ①→④) | **15 à 20 textes desktop absents** : tout le panneau de filtres — « rechercher un produit », « votre véhicule », « tout effacer », « 4 kits sur 4 »… Le calque `Panneau / Filtres — Catégorie` est masqué, avec la note « mobile : passe dans le drawer *Filtres et tri* ». Le bouton « Filtres et tri » existe bien sur mobile — **mais le drawer, lui, n'existe nulle part dans le fichier**. Les filtres sont donc inaccessibles sur mobile. | ⚠️ **Arbitrage** — composant à créer. Non exécuté (règle 4). |
+| F2 | **P1** | `8469:33059` (Homepage) | Section **« Explorez nos catégories »** (4 cartes : Kits aménagement, Accessoires, Pièces & électricité, Nouveautés) **absente de la Homepage desktop** — et absente de *toute* page desktop (vérifié sur Homepage, Boutique Index et Catégorie). Section inventée par la déclinaison mobile. | ⚠️ **Arbitrage** — la garder et la remonter au desktop, ou la retirer. Non exécuté (règle 4). |
+| F3 | **P1** | `8469:33059` (Homepage) | Dans cette même section, **8 textes de gabarit non remplis et visibles** : `description` ×4 et `slot : boutique — carte catégorie · …` ×4 (`I8554:37247;7438:7867`, `I8554:37247;7438:7879`, et les 3 cartes suivantes). | À remplir ou à retirer avec la section (dépend de F2). |
+| F4 | **P2** | `8469:33059` (Homepage) | Texte desktop « en savoir + » absent du mobile. | À rétablir. |
+| F5 | **P2** | Catégorie v6 ①→④ | Label « réalisation client » ajouté sur la rupture éditoriale, absent du desktop. | Sans gravité — à confirmer. |
+
+### Placeholders visibles restants sur la page mobile
+
+`8469:33059` Homepage ×8 (voir F3) · `8850:11970` / `8850:12608` / `8850:13198` Formules ×1 chacune ·
+`8843:8019` Mentions légales ×1 (note de template légitime, à garder jusqu'à rédaction juridique).
