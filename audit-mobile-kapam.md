@@ -210,3 +210,46 @@ Ces familles sont du travail de fond, frame par frame, non tranchable au niveau 
 elles supposent de choisir pour chaque nœud le style et le token justes. L'ordre le plus rentable
 serait : styles de texte → couleurs → espacements → cibles tactiles → nommage, en commençant par
 Guides, Blog, Actualités Catégorie, Page offre et Réalisations Index, qui concentrent l'essentiel.
+
+
+---
+
+## LOT 9 — Styles de texte sur les 5 pages les plus lourdes
+
+**227 textes stylés**, 0 non mappé, 0 ignoré. Les 5 pages passent de 227 textes sans style à **0**.
+
+| Frame | Avant | Après |
+|---|---|---|
+| `8849:9679` Guides | 60 sans style | 0 |
+| `8849:131017` Blog (listing) | 59 | 0 |
+| `8849:131319` Actualités / Catégorie | 44 | 0 |
+| `8850:140342` Page offre | 36 | 0 |
+| `8850:133165` Réalisations / Index | 28 | 0 |
+
+**Mapping appliqué** — 8 combinaisons tombaient exactement sur un style du DS, les 9 autres ont été
+normalisées sur l'échelle en préservant la hiérarchie (deux niveaux de titre distincts ne sont jamais
+écrasés sur le même style) :
+
+| Trouvé | Style | Rendu mobile |
+|---|---|---|
+| Geist Regular 12 / 13 / 14 | `text/xs/regular` · `text/sm/regular` ×2 | 12 / 14 / 14 |
+| Geist Regular 15 / 16 / 18 | `text/md/regular` ×2 · `text/lg/regular` | 16 / 16 / 18 |
+| Geist Mono 10 SemiBold / 11 / 12 Medium | `accent/sm` | 12 |
+| Rethink Bold 16 / 18 / 20 | `display/2xl/bold` | 20 |
+| Rethink Bold 26 | `display/3xl/bold` | 22 |
+| Rethink Regular 32 / 40 / 48 | `display/4xl` · `5xl` · `6xl` /regular | 24 / 28 / 30 |
+| Rethink Bold 64 | `display/8xl/bold` | 36 |
+
+**Tailles résultantes** sur les 520 textes des 5 pages : 12 · 14 · 16 · 18 · 20 · 22 · 24 · 28 · 30 · 36.
+Plus aucun 10, 11, 13, 15, 26, 32, 40, 48 ni 64 — l'échelle est propre.
+
+**Défaut découvert au contrôle visuel et corrigé** — `8849:9732`, `8849:131067`, `8849:131336` :
+les grilles de cartes étaient restées en **auto-layout horizontal desktop** (`WRAP`), avec 6 cartes
+`Article` en largeur **fixe 376** dans une zone de 358. Chaque carte débordait de 18 px et son texte
+était rogné à droite (« …avant de lancer le proje »). Conteneurs passés en `VERTICAL`, cartes en
+**fill** (376 → 358), `primaryAxisSizingMode` remis en `AUTO`. Vérifié : **0 texte > 358 px** sur les
+5 pages. Interligne de rang conservé (40 px).
+
+Le même motif — conteneur horizontal dont les enfants débordent — existe sur **203 conteneurs** de la
+page mobile, mais la grande majorité est du bruit d'icônes (dépassement de 2 px). Seuls ces 3 étaient
+des grilles de cartes réellement rognées.
