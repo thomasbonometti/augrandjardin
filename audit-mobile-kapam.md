@@ -19,7 +19,8 @@ Sévérités : **P0** bloquant · **P1** visible · **P2** propreté
 | S3 | **P0** | 34 instances | Utilisent l'instance desktop `Navigation / Breadcrumbs` avec padding latéral **96/96** dans une frame de 390 → 198 px de contenu utile. **Aucune variante mobile n'existe** dans le fichier. | ⚠️ **Arbitrage requis** — composant manquant. Non corrigé (règle 2 : pas de bricolage d'instance). |
 | S9 | **P0** | Collections `2. Primitives - Typography` et `5. Tokens - Spacing` | Ces deux collections ont bien un mode **Mobile**, mais **il n'a jamais été renseigné** : toutes ses valeurs sont identiques au mode Desktop (`section/gutter` = **96** en Desktop **et** en Mobile, `size/48` = 48 dans les deux). Aucune frame mobile ne déclare le mode Mobile — mais le déclarer ne changerait rien en l'état. | ⚠️ **Arbitrage requis** — remplir le mode Mobile suppose de décider l'échelle typo mobile et la gouttière mobile. La collection `3. Responsive - Grid` propose `mobile/Margin = 16` et `layout/padding/mobile = 16`, alors que les pages utilisent **24** en dur. Je ne crée ni ne modifie de token sans ton accord. |
 | S10 | **P0** | `8472:2950` | `Nav / Header — Mobile` n'a **qu'un seul état**. Le master desktop a deux variantes (`Ton=Clair`, `Ton=Sur-image`). Trois frames posent le header sur un héros en image : Homepage `8469:33059`, À propos `8848:9678`, LP Bordeaux `8850:136229` — elles utilisaient la variante `Ton=Sur-image`. | ⚠️ **Arbitrage requis** — créer une variante mobile `Sur-image` (logo blanc) ou assumer un header opaque. Non tranché. |
-| S4 | **P0** | `8850:133497`, `8850:134135`, `8850:134830`, `8850:135529` (`S12 — CTA + Footer`) · `8850:141990` (`Banner Section`) | Frames **détachées** (type FRAME, aucun master). Le footer des 4 fiches Réalisation n'est plus une instance. | ⚠️ **Arbitrage requis** — reconstruire sur `Footer — Mobile` implique de rejouer les overrides. Non corrigé. |
+| S4 | ~~P0~~ | `8850:133497`, `8850:134135`, `8850:134830`, `8850:135529` | ❌ **FAUX POSITIF de la passe A — corrigé en passe C.** Mon détecteur testait le nom des enfants directs sur `/footer/i` et matchait le conteneur `S12 — CTA + Footer`, qui est une simple frame de regroupement. Vérification faite : elle contient bien une **instance** de `Footer — Mobile` (390×729). Rien n'est détaché sur ces 4 frames. | Sans objet. |
+| S11 | **P0** | `8850:142316` — `Banner Section` de `8850:141990` (Produit — Kit) | Bloc de **720 px de haut entièrement blanc**. Bandeau sombre desktop transplanté : image de fond réduite à **390×217** au lieu de couvrir la section, textes restés en **blanc** → blanc sur blanc. La grille desktop 2 colonnes a survécu : colonne de texte à **136 px** de large pour 656 de haut. | Image de fond couvrant la section, colonne de texte en pleine largeur, contraste rétabli. |
 | S5 | **P1** | `8826:134088`, `8829:5471`, `8850:151082`, `8850:151214`, `8850:151346` | Utilisent le master **desktop** `Footer` (h=409) alors que `Footer — Mobile` (`8843:127257`, h=729) existe. | Instance de `Footer — Mobile`. |
 | S6 | **P1** | Toutes les frames portant `Footer — Mobile` | Padding latéral du footer = **15/15** alors que le padding de page est **24/24** partout. Décalage visible de 9 px sur les colonnes « Explorez / Créer ». | Padding latéral **24/24**, aligné sur la gouttière de page. |
 | S7 | **P1** | Instances `Nav / Header — Mobile` | `paddingTop` / `paddingBottom` = **14** — hors échelle d'espacement (8/12/16/24…). | 12 ou 16, lié à une variable d'espacement. |
@@ -104,6 +105,29 @@ et les 6 frames Configurateur (`8850:147964`, `8850:149265`, `8850:149370`, `885
 - Master `8472:2950` : les 4 paddings étaient des valeurs brutes (24/24/14/14).
   Liés aux variables **`measure/24`** (latéral) et **`measure/12`** (vertical, 14 → 12, remis sur l'échelle).
 
+**Lot 5 — variante `Ton=Sur-image` du header mobile (défaut S10)**
+- `8472:2950` cloné et recoloré sur la variable `white`, puis `combineAsVariants` :
+  set **`Nav / Header — Mobile` `8883:34`** avec `Ton=Clair` et `Ton=Sur-image`, description renseignée.
+- Appliquée **uniquement à `8848:9681`** (À propos), dont le héros est noir — le logo noir y était
+  invisible, c'était une régression introduite par le lot 1 sur cette frame précise.
+- Homepage et LP Bordeaux **restent en `Ton=Clair`** : leurs héros sont clairs, un logo blanc y
+  serait invisible. Répartition finale : 46 `Ton=Clair`, 1 `Ton=Sur-image`.
+
+**Lot 6 — `Navigation / Breadcrumbs — Mobile` (défaut S3)**
+- Nouveau composant **`8883:147219`** cloné du master desktop `6932:380` : largeur 390,
+  paddings liés à `measure/24` (latéral) et `measure/12` (vertical).
+- **34 instances** basculées. Bascule testée sur une instance d'abord :
+  **aucun libellé perdu** sur les 34 (vérifié texte à texte avant/après).
+
+**Lot 7 — `Banner Section` de Produit — Kit (défaut S11)**
+- Grille desktop `GRID` → `VERTICAL`, colonne de texte et textes passés en **fill** (136 → 326 px).
+- Section en hug : hauteur **720 → 272 px** (fini les 448 px de vide).
+- Image de fond redimensionnée pour couvrir la section, `scaleMode = FILL` (ratio conservé, recadrage
+  plutôt que déformation).
+- Voile `8884:147451` ajouté sur le pattern maison `Voile sombre`, fill lié à la variable **`ink`**.
+  Écart assumé : **50 %** d'opacité au lieu des 30 % du pattern existant — à 30 % le texte blanc
+  restait illisible sur cette image claire.
+
 ## PASSE C — VÉRIFICATION
 
 Relecture à neuf de Figma après corrections (`use_figma` en lecture + `get_screenshot`), pas de mémoire de la passe B.
@@ -117,9 +141,10 @@ Relecture à neuf de Figma après corrections (`use_figma` en lecture + `get_scr
 | S7 — paddings header hors échelle | **CORRIGÉ** | Master : 4 paddings liés à des variables, vertical 14 → 12. |
 | D4 — grille footer dépilée | **RÉGRESSION corrigée dans la même passe** | Footer 1214 → **732**, grille 2×2 rétablie (screenshot). |
 | Calque masqué Homepage | **CORRIGÉ** | `8469:33062` absent à la relecture. |
-| S3 — breadcrumbs desktop | **NON CORRIGÉ** | 34 instances subsistent — composant mobile manquant, arbitrage requis. |
-| S4 — sections détachées | **NON CORRIGÉ** | 4 frames Réalisation conservent `S12 — CTA + Footer` détaché, arbitrage requis. |
-| S9 — mode Mobile vide | **NON CORRIGÉ** | Arbitrage requis. |
-| S10 — pas de variante `Sur-image` mobile | **NON CORRIGÉ** | Arbitrage requis. |
+| S3 — breadcrumbs desktop | **CORRIGÉ** | Composant mobile créé, 34 instances basculées, 0 libellé perdu, padding 96 → 24. |
+| S4 — sections détachées | **FAUX POSITIF** | Relecture : les 4 frames portent bien une instance `Footer — Mobile`. Rien à corriger. |
+| S10 — pas de variante `Sur-image` | **CORRIGÉ** | Variant set `8883:34` créé, appliqué à la seule frame à héros sombre. Screenshot : logo blanc lisible sur le héros noir de À propos. |
+| S11 — Banner Section blanche | **CORRIGÉ** | Screenshot : bandeau lisible, 720 → 272 px. |
+| S9 — mode Mobile vide | **EN ATTENTE** | Échelle proposée, en attente de validation avant écriture dans les variables. |
 | Familles C (tokens, typo, cibles tactiles, espacements, rayons, nommage) | **NON TRAITÉ** | Volume : ~450 textes sans style, ~500 fills en dur, ~700 espacements hors échelle sur 53 frames. À planifier après arbitrage S9 — l'échelle typo mobile conditionne le travail de typo. |
 
