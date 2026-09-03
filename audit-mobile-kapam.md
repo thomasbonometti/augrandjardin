@@ -283,3 +283,81 @@ notamment les 4 fiches Réalisation (105 à 113 textes chacune), les 6 écrans C
 
 `8469:33059` Homepage ×8 (voir F3) · `8850:11970` / `8850:12608` / `8850:13198` Formules ×1 chacune ·
 `8843:8019` Mentions légales ×1 (note de template légitime, à garder jusqu'à rédaction juridique).
+
+
+---
+
+## LOT 11 — Drawer « Filtres et tri » (défaut F1)
+
+**Composant créé : `8899:28569` — `Filtres et tri — Drawer — Mobile`**, dans la section
+`🦴 Masters — Mobile`. 390 de large, hauteur en hug (885 px).
+
+Structure, calquée sur le pattern drawer déjà en place dans le fichier
+(`Kapam / Config v4 / Drawer — Résumé`) :
+- `head` — titre « Filtres et tri » en `display/2xl/regular` + icône `x-close` (le même composant
+  que les drawers existants). Paddings liés à `measure/16`.
+- `body` — **une instance** du master `Panneau / Filtres — Catégorie`, en fill (358 px).
+
+Le corps n'est pas une recopie : c'est l'instance du panneau desktop existant. Aucun contenu
+n'a été écrit à la main, aucune instance détachée, et toute évolution du panneau se propagera
+au drawer.
+
+**Deux variantes**, calquées sur celles du panneau :
+
+| Variante | Corps | Couvre |
+|---|---|---|
+| `État=Déployé` | `Panneau / Filtres — Catégorie · État=Déployé` | Catégorie ① et ④ (compteur « 4 kits sur 4 ») |
+| `État=Filtres actifs` | `Panneau / Filtres — Catégorie · État=Filtres actifs` | Catégorie ② et ③ (« 2 kits sur 4 », Renault / Trafic / L1H1) |
+
+**Vérification** — recomptage des textes desktop absents du mobile, drawer inclus :
+
+| Frame | Manquants avant | Restants |
+|---|---|---|
+| Catégorie ① | 16 | **0** |
+| Catégorie ② | 15 | **0** |
+| Catégorie ③ | 15 | **0** |
+| Catégorie ④ | 20 | **4** |
+
+Les 4 restants sur Catégorie ④ ne relèvent pas des filtres : « dans l'atelier »,
+« découpé, poncé, contrôlé à saint-gervais », « voir l'atelier → », « suivant → ».
+C'est une **section desktop distincte (bloc atelier + pagination) absente de cette seule frame**
+→ à arbitrer, non exécuté.
+
+**Non traité** : le bouton déclencheur `Bouton / Filtres et tri` fait **37 px** de haut
+(< 44 px). Relève de la famille cibles tactiles, non demandée sur ce lot.
+
+## LOT 12 — Styles de texte sur les 48 frames restantes
+
+**648 textes stylés**, 1 seul ignoré. Combiné au lot 9 : **5440 textes stylés sur 5441**.
+
+| | Avant | Après |
+|---|---|---|
+| Textes sans style (53 frames) | 649 | **1** |
+| Familles de polices | Geist, Geist Mono, Rethink Sans, **DM Sans** | Geist, Geist Mono, Rethink Sans |
+| Tailles | 10 → 64, hors échelle | 12 · 14 · 16 · 18 · 20 · 22 · 24 · 28 · 30 · 32 · 36 |
+
+Le seul restant est `8850:149591` (« Personnalisation · incluse », Config 2.1) : nœud à **polices
+mixtes** dans un même bloc — il faut trancher la graisse à la main.
+
+**Trois points de vigilance sur le mapping**, à valider :
+- **DM Sans** (7 textes, LP Bordeaux) : police absente du design system. Normalisée sur
+  `text/lg/regular` (Geist 18) — cela **change la police** de ces textes.
+- **Rethink Sans Medium** (81 textes) : le DS ne ships que Regular et Bold en display.
+  Mappé sur `display/*/regular` — la graisse Medium est perdue.
+- **Geist SemiBold** (18 textes) : idem, mappé sur `text/md/bold`.
+
+**Défauts de rendu découverts au contrôle visuel et corrigés**
+- `8848:12755` (Contact) : ligne « Réponse sous 48h · Devis gratuit · Sans engagement » en largeur
+  **hug à 454 px** dans un conteneur de 358 qui clippe → texte coupé. Passée en fill + retour à la
+  ligne, sur 2 lignes.
+- `8848:11915` (À propos) et `8848:13088` (Revendeurs) : blocs de texte **collés aux bords de
+  l'écran** (conteneur 390, padding 0). Gouttière `measure/16` posée.
+- `8848:9690` (À propos) : conteneur « Preuve sociale » **plus large que son parent** (361 > 342),
+  donc rogné. Passé en fill.
+
+Vérifié après correction : plus aucun texte natif au-delà de 358 px sur les 53 frames.
+
+**Signalé, non corrigé** — `8848:12764` (Contact) : le `Segmented control` « Type de projet »
+(master `7008:5260`, 197 px, **sans variante mobile**) porte 4 segments totalisant **547 px** dans
+358, en `NO_WRAP` → coupé en plein mot. Le passer en `WRAP` ou le convertir en groupe de chips
+change le contrat du composant : arbitrage, pas bricolage d'instance (règle 2).
