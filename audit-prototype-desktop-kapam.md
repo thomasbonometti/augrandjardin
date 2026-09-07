@@ -59,3 +59,37 @@ vers la bonne destination.
 | `7782:14033` Article — Template (structure éditoriale) | Normal — gabarit. |
 | `7407:18100` LP Bordeaux | Landing d'acquisition, atteinte par une pub. A son propre point de départ. **À confirmer que c'est voulu.** |
 | `7402:15` **Kapam / Catégorie / Kit aménagement de fourgon** | ⚠️ **Vrai trou, non corrigé.** Aucun élément d'interface existant ne mène à cette page : la section « S5 — Index des véhicules compatibles » ne contient qu'un seul groupe de marque (`Déclinaisons — Renault`), et le mega menu Boutique n'envoie que vers la catégorie van. La câbler suppose de **créer un élément** (groupe de déclinaisons pour un fourgon, ou tuile dédiée) — c'est du design, pas du câblage. |
+
+
+---
+
+## Ménage des flows de prototype
+
+**13 flows → 4.** Les noms d'origine étaient dupliqués et trompeurs : « Homepage » ×2 (dont un
+pointant en réalité sur la LP Bordeaux), « Page catégorie » ×4, « Page produit » ×2, plus
+« Config » et « Configurateur — étape 1 » qui faisaient doublon.
+
+**8 flows supprimés parce que redondants** — leur frame de départ est déjà atteignable depuis
+l'accueil : catégorie van, catégorie Trafic, Véhicules à vendre, produit Kit (template),
+produit Trafic L1H1, Config 2.1, et les deux doublons de nommage.
+
+**Les 4 flows retenus**
+
+| Flow | Départ |
+|---|---|
+| ① Le site — parcours depuis l'accueil | `6904:192` Homepage |
+| ② Le configurateur — les 3 étapes | `8267:62041` Config v4 / 1.1 |
+| ③ La landing Bordeaux (campagne) | `7407:18100` LP Bordeaux |
+| ④ Les cas limites — 404 & recherche | `7780:22674` Système / 404 |
+
+**Lien câblé en complément** : le champ de recherche de la page Résultats (`7781:13189`) →
+`Recherche — 6 · Aucun résultat` (`7781:65971`). Sans lui, le flow ④ ne tenait pas sa promesse :
+l'état « aucun résultat » n'était atteignable de nulle part. Il l'est désormais depuis le flow ④
+**et** depuis le flow ①.
+
+**Restent hors prototype, volontairement** : `Recherche — 7 · Sans JavaScript` (rendu de repli
+technique, non navigable par nature) et `Catégorie / Kit aménagement de fourgon` (aucun point
+d'entrée existant — voir plus haut).
+
+**Défaut de contenu relevé au passage** : le **mega menu Boutique affiche 3 « Lorem ipsum »**
+(descriptions des entrées de menu). C'est visible dès le premier clic dans le flow ①.
