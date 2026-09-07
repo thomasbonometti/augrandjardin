@@ -91,5 +91,22 @@ l'état « aucun résultat » n'était atteignable de nulle part. Il l'est déso
 technique, non navigable par nature) et `Catégorie / Kit aménagement de fourgon` (aucun point
 d'entrée existant — voir plus haut).
 
-**Défaut de contenu relevé au passage** : le **mega menu Boutique affiche 3 « Lorem ipsum »**
-(descriptions des entrées de menu). C'est visible dès le premier clic dans le flow ①.
+**Défaut de contenu relevé au passage, corrigé** : le mega menu Boutique affichait des
+« Lorem ipsum » — **4 occurrences** en réalité, soit 2 produits du bloc BESTSELLERS × 2 instances
+(`7213:55199` ouverte par le header, et `6993:11171` dans la section Overlays & Modals). C'était
+visible dès le premier clic du flow ①.
+
+Les Lorem étaient des **overrides d'instance** : le master `Navigation / Mega menu` (`6938:383`)
+et le menu Aménagements étaient propres, la correction n'a donc affecté qu'eux.
+
+| Produit | Texte de substitution |
+|---|---|
+| Pack Éclairage LED avec interrupteur — 79,00 € | « Éclairage intérieur prêt à poser, interrupteur inclus. » |
+| Pack Prise EXT 230V noire — 49,90 € | « Raccordement au secteur depuis l'extérieur du van. » |
+
+Registre calé sur les descriptions voisines du menu (« Rangement, couchage, cuisine »,
+« Éclairage LED, prises 230V, batteries », « Livraison, garantie, SAV ») : court, factuel,
+sans promesse commerciale. Vérifié : les deux textes passent sur 2 lignes dans les 316 px
+disponibles, sans troncature. **0 « Lorem » restant** sur la page desktop comme sur la page mobile.
+
+⚠️ **C'est du texte de substitution, pas du copy validé** — à confirmer par Nicolas ou Willy.

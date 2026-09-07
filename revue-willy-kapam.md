@@ -71,6 +71,7 @@ décideur — c'est le vrai plan de charge.
 |---|---|
 | Blocs SEO, 300 à 500 mots, mot-clé principal à définir | Les 3 pages Formule |
 | Accroches des cartes de réalisation | Réalisations / Index |
+| Descriptions des 2 produits « Bestsellers » du mega menu — **texte de substitution en place, à valider** | Mega menu Boutique |
 | Contenu de la garantie et de la procédure SAV | Ressources / Garantie |
 
 ## Pour un avocat
@@ -82,9 +83,6 @@ de template unique à décliner. Rien n'est rédigé à ce stade, c'est assumé.
 
 # À savoir avant d'envoyer
 
-- **Un « Lorem ipsum » est visible dans le mega menu Boutique** (3 occurrences, descriptions des
-  entrées de menu). C'est le seul faux-texte qui traîne dans une zone que Willy verra à coup sûr,
-  dès le premier clic. À remplacer avant envoi.
 - **La page « Catégorie / Kit aménagement de fourgon » n'est accessible depuis aucun lien.**
   Il manque un point d'entrée (groupe de déclinaisons ou tuile dédiée) — décision de design à
   prendre. Elle ne sera pas visible dans le prototype.
