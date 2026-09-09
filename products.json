@@ -13,7 +13,7 @@
 },{
   "Nom": "Betterave vrac",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : ⌛️ Dernière semaine : Betterave vrac Bio 3.10 €/kg",
+  "Etiquette": "Betterave vrac Bio 3.10 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/4.jpg"
 },{
@@ -43,7 +43,7 @@
 },{
   "Nom": "Haricot vert",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Haricot vert Bio 4.00 € la barquette (500g)*",
+  "Etiquette": "Haricot vert Bio 4.00 € la barquette (500g)*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/84.jpg"
 },{
@@ -70,12 +70,6 @@
   "Etiquette": "Chou Broccoli Bio 4.90 €/kg*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/14.jpg"
-},{
-  "Nom": "Oignon Blanc frais",
-  "En vente": true,
-  "Etiquette": "Oignon Blanc frais Bio 4.50 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/38.jpg"
 },{
   "Nom": "Oignon Ciboule",
   "En vente": true,
