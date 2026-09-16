@@ -41,9 +41,15 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/22.jpg"
 },{
+  "Nom": "Echalion - 500g",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Echalion - 500g Bio 4.00 € les 500g",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/24.jpg"
+},{
   "Nom": "Haricot vert",
   "En vente": true,
-  "Etiquette": "Haricot vert Bio 4.00 € la barquette (500g)*",
+  "Etiquette": "Haricot vert Bio 4.00 € la barquette (500g)",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/84.jpg"
 },{
@@ -73,9 +79,21 @@
 },{
   "Nom": "Oignon Ciboule",
   "En vente": true,
-  "Etiquette": "Oignon Ciboule Bio 2.20 € la botte",
+  "Etiquette": "⌛️ Dernière semaine : Oignon Ciboule Bio 2.20 € la botte",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/90.jpg"
+},{
+  "Nom": "Oignon Jaune",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Oignon Jaune Bio 3.40 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/39.jpg"
+},{
+  "Nom": "Oignon Rouge",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Oignon Rouge Bio 3.40 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/40.jpg"
 },{
   "Nom": "Tomate",
   "En vente": true,
@@ -103,7 +121,7 @@
 },{
   "Nom": "Melon",
   "En vente": true,
-  "Etiquette": "Melon Bio 4.00 €/kg",
+  "Etiquette": "Melon Bio 4.00 €/kg*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/35.jpg"
 },{
