@@ -393,9 +393,14 @@ function devis() {
 
 /* ----------------------------------------------------------------- rendu --- */
 
+/** Dernière étape effectivement affichée, pour savoir si on change d'écran. */
+let etapeAffichee = null
+
 function rendre() {
   nettoyerSelections()
   sauver()
+  const memeEcran = etapeAffichee === etat.etape
+  const defilement = window.scrollY
   const e = ETAPES[etat.etape]
   $('#compteur').textContent = etat.etape === -1
     ? 'Règles du configurateur'
@@ -405,7 +410,11 @@ function rendre() {
   ][etat.etape]()
   rendreBarre()
   brancher()
-  window.scrollTo({ top: 0 })
+  etapeAffichee = etat.etape
+  // On ne remonte en haut qu'au changement d'écran. Cocher une option redessine
+  // la page entière : sans ça, on perdrait sa place à chaque case cochée, et
+  // l'écran 2.1 fait plus de sept mille pixels de haut.
+  window.scrollTo({ top: memeEcran ? defilement : 0 })
 }
 
 function rendreBarre() {
