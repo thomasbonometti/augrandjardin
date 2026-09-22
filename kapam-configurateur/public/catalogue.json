@@ -1,0 +1,2478 @@
+{
+  "genere_le": "2026-09-22T00:00:00.000Z",
+  "genere_par": "notion-sync/sync.mjs",
+  "bases": {
+    "options": "d500c296202f4d839b713b111d42aaef",
+    "vehicules": "c3bc935f905945d3b2ab1c298ff00ccd",
+    "kits": "b1ff36d6e86d41bda7332ef13eb9f45e",
+    "regles": "6d38d6c60617456ea12949f707d68f6c"
+  },
+  "vehicules": [
+    {
+      "id": "3e370bd669cd81f4beb8c636e60a15f5",
+      "marque": "Autres",
+      "modele": "Kit universel sans galbes — Master / Sprinter / Crafter",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "Sans objet",
+          "gabarit": "sans-objet"
+        }
+      ],
+      "nomenclature": "⚠️ donnée manquante",
+      "plateforme": "Non tracée",
+      "plateforme_code": null,
+      "kits": [],
+      "statut": "À créer",
+      "commentaire": "Gamme que vous avez annoncée en mai 2026 (« kit universel sans les galbes découpés pour Master / Sprinter / Crafter ») et qui n'existe ni dans la cartographie, ni dans les maquettes. La maquette 1.1 montre une carte « Autres — Grands fourgons » qui correspond probablement à cette gamme. Quels modèles exactement, quelles longueurs, quel prix ?"
+    },
+    {
+      "id": "3e370bd669cd81f2976bc90048f340f5",
+      "marque": "Citroën",
+      "modele": "Jumper L1/L2",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "Court",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "Non tracée dans la cartographie du 13/05/2026",
+      "plateforme": "Stellantis Sevel Sud",
+      "plateforme_code": "Sud",
+      "kits": [
+        "Travel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Gamme à séparer du Boxer et du Ducato, comme vous l'avez demandé."
+    },
+    {
+      "id": "3e370bd669cd817f97c5d3e610590375",
+      "marque": "Citroën",
+      "modele": "Jumpy",
+      "millesime": "2007-2016",
+      "longueurs": [
+        {
+          "etiquette": "Court",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "Non tracée dans la cartographie du 13/05/2026",
+      "plateforme": "PSA C5",
+      "plateforme_code": "C5",
+      "kits": [
+        "Travel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Kit Travel uniquement."
+    },
+    {
+      "id": "3e370bd669cd81198973ce186b4c490f",
+      "marque": "Citroën",
+      "modele": "Jumpy",
+      "millesime": "post-2016",
+      "longueurs": [
+        {
+          "etiquette": "S",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "M",
+          "gabarit": "moyen"
+        },
+        {
+          "etiquette": "L",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« extra court (S) / court (M) / long (L) » — vous avez demandé « S / M / L » chez Citroën",
+      "plateforme": "PSA EMP2",
+      "plateforme_code": "EMP2",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd8104bb8fd4ca1933ae66",
+      "marque": "Fiat",
+      "modele": "Ducato L1/L2",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "L1H1",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "L2H1",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« L1H1 ou L2H1 »",
+      "plateforme": "Stellantis Sevel Sud",
+      "plateforme_code": "Sud",
+      "kits": [
+        "Travel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Gamme à séparer du Boxer et du Jumper."
+    },
+    {
+      "id": "3e370bd669cd81f0aebbc754ec55f0f0",
+      "marque": "Fiat",
+      "modele": "Scudo",
+      "millesime": "2007-2016",
+      "longueurs": [
+        {
+          "etiquette": "Court",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "Non tracée dans la cartographie du 13/05/2026",
+      "plateforme": "PSA C5",
+      "plateforme_code": "C5",
+      "kits": [
+        "Travel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd814a9cf4fe0263347498",
+      "marque": "Fiat",
+      "modele": "Scudo PSA",
+      "millesime": "2016+",
+      "longueurs": [
+        {
+          "etiquette": "M",
+          "gabarit": "moyen"
+        },
+        {
+          "etiquette": "L",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« standard (M) / long (L) »",
+      "plateforme": "PSA EMP2",
+      "plateforme_code": "EMP2",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd8159ad25dd43538a9b6a",
+      "marque": "Ford",
+      "modele": "Transit Custom",
+      "millesime": "2012-2023",
+      "longueurs": [
+        {
+          "etiquette": "L1H1",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "L2H1",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« L1H1 ou L2H1 »",
+      "plateforme": "Ford V362",
+      "plateforme_code": "V362",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81e09759dc8ddc1d027c",
+      "marque": "Ford",
+      "modele": "Transit Custom V710",
+      "millesime": "2024+",
+      "longueurs": [
+        {
+          "etiquette": "Court",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "Non tracée dans la cartographie du 13/05/2026",
+      "plateforme": "Ford V710",
+      "plateforme_code": "V710",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Kits supposés d'après le pattern de la plateforme, pas vérifiés un par un."
+    },
+    {
+      "id": "3e370bd669cd81608cedcd70ac1d5629",
+      "marque": "Mercedes",
+      "modele": "Vito compact",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "Sans objet",
+          "gabarit": "sans-objet"
+        }
+      ],
+      "nomenclature": "Pas de notion de longueur dans le simulateur actuel",
+      "plateforme": "Mercedes Vito",
+      "plateforme_code": "Vito",
+      "kits": [
+        "Travel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Vous avez répondu que le Kit Travel peut être proposé sur Vito. Confirmé ici."
+    },
+    {
+      "id": "3e370bd669cd81979a9ad50a8e9a085f",
+      "marque": "Mercedes",
+      "modele": "Vito rallongé",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "Sans objet",
+          "gabarit": "sans-objet"
+        }
+      ],
+      "nomenclature": "Pas de notion de longueur dans le simulateur actuel",
+      "plateforme": "Mercedes Vito",
+      "plateforme_code": "Vito",
+      "kits": [
+        "Travel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Le « compact » et le « rallongé » sont deux fiches séparées, alors qu'ailleurs c'est une longueur. À harmoniser ?"
+    },
+    {
+      "id": "3e370bd669cd81b1b563cd080de60b12",
+      "marque": "Nissan",
+      "modele": "NV300",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "L1H1",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "L2H1",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« L1H1 ou L2H1 »",
+      "plateforme": "Renault X82",
+      "plateforme_code": "X82",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd816c9abef1718c3d2e6e",
+      "marque": "Nissan",
+      "modele": "Primastar 1",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "L1H1",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "L2H1",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« L1H1 ou L2H1 »",
+      "plateforme": "Renault X83",
+      "plateforme_code": "X83",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81a6b031dc088d937a91",
+      "marque": "Nissan",
+      "modele": "Primastar 2",
+      "millesime": "2025+",
+      "longueurs": [
+        {
+          "etiquette": "L1H1",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "L2H1",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« L1H1 ou L2H1 »",
+      "plateforme": "Renault X82",
+      "plateforme_code": "X82",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Plateforme X82 « à confirmer » selon la cartographie. Si c'est bien du X82, le marchepied latéral devient proposable."
+    },
+    {
+      "id": "3e370bd669cd81f39766d958f618a6d2",
+      "marque": "Opel",
+      "modele": "Vivaro",
+      "millesime": "avant 2014",
+      "longueurs": [
+        {
+          "etiquette": "L1H1",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "L2H1",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« L1H1 ou L2H1 »",
+      "plateforme": "Renault X83",
+      "plateforme_code": "X83",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Curiosité : le Vivaro avant 2014 a les 3 kits alors que le Trafic 2, même plateforme X83, n'a que le Travel. Volontaire ?"
+    },
+    {
+      "id": "3e370bd669cd81558590d9464c6deb06",
+      "marque": "Opel",
+      "modele": "Vivaro",
+      "millesime": "2014-2020",
+      "longueurs": [
+        {
+          "etiquette": "L1H1",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "L2H1",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« L1H1 ou L2H1 »",
+      "plateforme": "Renault X82",
+      "plateforme_code": "X82",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd810f937ad20e89eb61e6",
+      "marque": "Opel",
+      "modele": "Vivaro",
+      "millesime": "post-2020",
+      "longueurs": [
+        {
+          "etiquette": "M",
+          "gabarit": "moyen"
+        },
+        {
+          "etiquette": "L",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« standard (M) / long (L) »",
+      "plateforme": "PSA EMP2",
+      "plateforme_code": "EMP2",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Changement de plateforme : passe de Renault X82 à PSA EMP2. Attention aux options réservées au X82 (marchepied)."
+    },
+    {
+      "id": "3e370bd669cd81618fdce3437086d7fb",
+      "marque": "Peugeot",
+      "modele": "Boxer L1/L2",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "Court",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "Non tracée dans la cartographie du 13/05/2026",
+      "plateforme": "Stellantis Sevel Sud",
+      "plateforme_code": "Sud",
+      "kits": [
+        "Travel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Aujourd'hui un seul produit partagé Boxer / Jumper / Ducato. Vous avez dit vouloir 3 gammes distinctes : cette ligne les sépare déjà. Pas de Mado ni Madel pour l'instant."
+    },
+    {
+      "id": "3e370bd669cd8122b1f4c6efd485e6ff",
+      "marque": "Peugeot",
+      "modele": "Expert",
+      "millesime": "2007-2016",
+      "longueurs": [
+        {
+          "etiquette": "Court",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "Non tracée dans la cartographie du 13/05/2026",
+      "plateforme": "PSA C5",
+      "plateforme_code": "C5",
+      "kits": [
+        "Travel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Kit Travel uniquement."
+    },
+    {
+      "id": "3e370bd669cd81ea93daddace0c26110",
+      "marque": "Peugeot",
+      "modele": "Expert",
+      "millesime": "post-2016",
+      "longueurs": [
+        {
+          "etiquette": "Compact",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Standard",
+          "gabarit": "moyen"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« extra court (compact) / court (standard) / long » — vous avez demandé « Compact / Standard / Long » chez Peugeot",
+      "plateforme": "PSA EMP2",
+      "plateforme_code": "EMP2",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Vous avez confirmé qu'il y a vraiment 3 longueurs physiques."
+    },
+    {
+      "id": "3e370bd669cd818789bde138d93fbf83",
+      "marque": "Renault",
+      "modele": "Trafic 2",
+      "millesime": "≤ 2014",
+      "longueurs": [
+        {
+          "etiquette": "Court",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "Non tracée dans la cartographie du 13/05/2026 (seulement « court / long »)",
+      "plateforme": "Renault X83",
+      "plateforme_code": "X83",
+      "kits": [
+        "Travel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Kit Travel uniquement sur le simulateur actuel. Confirmez-vous qu'on garde cette limite ?"
+    },
+    {
+      "id": "3e370bd669cd81dfb3d1c9619bb11e8d",
+      "marque": "Renault",
+      "modele": "Trafic 3",
+      "millesime": "2014+",
+      "longueurs": [
+        {
+          "etiquette": "L1H1",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "L2H1",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« L1H1 ou L2H1 » (cartographie) — la maquette v4 affiche « Court (L1H1) » et « Long (L2H1) »",
+      "plateforme": "Renault X82",
+      "plateforme_code": "X82",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Véhicule de référence des maquettes v4. Kits + longueurs vérifiés sur le simulateur actuel."
+    },
+    {
+      "id": "3e370bd669cd81f9803fca2b5f0c1e8e",
+      "marque": "Toyota",
+      "modele": "Proace",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "S",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "M",
+          "gabarit": "moyen"
+        },
+        {
+          "etiquette": "XL",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« compact (S) / standard (M) / long (XL) » — vous avez demandé « Compact / Standard / Long » chez Toyota",
+      "plateforme": "PSA EMP2",
+      "plateforme_code": "EMP2",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Rebadge de l'Expert / Jumpy. Le « XL » ici et le « long » chez Peugeot désignent-ils la même longueur physique ?"
+    },
+    {
+      "id": "3e370bd669cd81f7a258f4fc19d73129",
+      "marque": "Volkswagen",
+      "modele": "Combi T2-T3",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "Sans objet",
+          "gabarit": "sans-objet"
+        }
+      ],
+      "nomenclature": "Pas de notion de longueur",
+      "plateforme": "VW Bus historique",
+      "plateforme_code": "historique",
+      "kits": [],
+      "statut": "À valider Willy",
+      "commentaire": "Vous avez dit que le nom « T2-T3 » n'est pas bon et qu'il faut le renommer « VW Combi T2 » pour bien distinguer T2 et T3. Kit « combi T2 » : il n'existe pas encore dans la base Kits & finitions — faut-il le créer avec son propre prix ?"
+    },
+    {
+      "id": "3e370bd669cd81df8b7fd42a458aac65",
+      "marque": "Volkswagen",
+      "modele": "Combi T3",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "Sans objet",
+          "gabarit": "sans-objet"
+        }
+      ],
+      "nomenclature": "Pas de notion de longueur",
+      "plateforme": "VW T3",
+      "plateforme_code": "T3",
+      "kits": [],
+      "statut": "À valider Willy",
+      "commentaire": "Vous avez confirmé que le Triply manquant était un oubli et qu'on peut l'ajouter. Kit « combi T3 » absent de la base Kits & finitions — à créer ?"
+    },
+    {
+      "id": "3e370bd669cd81c0ba81d3b70f034d8d",
+      "marque": "Volkswagen",
+      "modele": "T4",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "Court",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "Non tracée dans la cartographie du 13/05/2026",
+      "plateforme": "VW T4",
+      "plateforme_code": "T4",
+      "kits": [
+        "Travel",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Travel et Madel seulement : pas de Mado. Oubli ou contrainte produit ?"
+    },
+    {
+      "id": "3e370bd669cd81549d69d9abb3bb316d",
+      "marque": "Volkswagen",
+      "modele": "T5-T6-T6.1",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "L1H1",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "L2H1",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "« L1H1 ou L2H1 »",
+      "plateforme": "VW T5",
+      "plateforme_code": "T5",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": "Kits + longueurs vérifiés sur le simulateur actuel."
+    },
+    {
+      "id": "3e370bd669cd81208466d511c1bd3c2f",
+      "marque": "Volkswagen",
+      "modele": "T7",
+      "millesime": "Non tracé",
+      "longueurs": [
+        {
+          "etiquette": "Court",
+          "gabarit": "court"
+        },
+        {
+          "etiquette": "Long",
+          "gabarit": "long"
+        }
+      ],
+      "nomenclature": "Non tracée dans la cartographie du 13/05/2026",
+      "plateforme": "VW T7",
+      "plateforme_code": "T7",
+      "kits": [
+        "Travel",
+        "Mado",
+        "Madel"
+      ],
+      "statut": "À valider Willy",
+      "commentaire": ""
+    }
+  ],
+  "kits": [
+    {
+      "id": "3e370bd669cd813d8870df943af072df",
+      "nom": "Kit Travel",
+      "code": "Travel",
+      "type": "Kit",
+      "prix_ttc": 2140,
+      "sous_libelle": "Le plus complet · 13 options",
+      "nombre_options": 13,
+      "vehicules_compatibles": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "commentaire": "Ce prix n'existe dans aucune source Notion : il apparaît uniquement dans les maquettes Figma. À confirmer ou corriger."
+    },
+    {
+      "id": "3e370bd669cd811ab2f6c67896fbaf15",
+      "nom": "Kit Mado",
+      "code": "Mado",
+      "type": "Kit",
+      "prix_ttc": 2140,
+      "sous_libelle": "Cuisine optimisée · 8 options",
+      "nombre_options": 8,
+      "vehicules_compatibles": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "commentaire": "Ce prix n'existe dans aucune source Notion : il apparaît uniquement dans les maquettes Figma. À confirmer ou corriger."
+    },
+    {
+      "id": "3e370bd669cd8151aa05cfa30dc70ac2",
+      "nom": "Kit Madel",
+      "code": "Madel",
+      "type": "Kit",
+      "prix_ttc": 2395,
+      "sous_libelle": "Polyvalent · 8 options",
+      "nombre_options": 8,
+      "vehicules_compatibles": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "commentaire": "Ce prix n'existe dans aucune source Notion. En plus : 2 395 € ne correspond à aucune des trois finitions (2 140 / 2 140 / 2 440). Le tarif d'un kit est-il celui de sa finition, ou le kit et la finition ont-ils deux grilles séparées ?"
+    }
+  ],
+  "finitions": [
+    {
+      "id": "3e370bd669cd81f993b4db393e2baba9",
+      "nom": "Soft",
+      "code": "Soft",
+      "type": "Finition",
+      "prix_ttc": 2140,
+      "sous_libelle": "Bois brut, finition essentielle",
+      "nombre_options": null,
+      "vehicules_compatibles": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "commentaire": "Prix vu uniquement dans les maquettes Figma. Texture bois brut encore à photographier."
+    },
+    {
+      "id": "3e370bd669cd810caaede6f81c1c254b",
+      "nom": "Triply",
+      "code": "Triply",
+      "type": "Finition",
+      "prix_ttc": 2140,
+      "sous_libelle": "Bois triply, même tarif que Soft",
+      "nombre_options": null,
+      "vehicules_compatibles": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "commentaire": "Prix vu uniquement dans les maquettes Figma. Vous avez annoncé que le Triply rejoint la gamme Combi T3 : à confirmer ici."
+    },
+    {
+      "id": "3e370bd669cd81289211e2151ddd3248",
+      "nom": "Best",
+      "code": "Best",
+      "type": "Finition",
+      "prix_ttc": 2440,
+      "sous_libelle": "Stratifié, finition supérieure",
+      "nombre_options": null,
+      "vehicules_compatibles": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "commentaire": "Prix vu uniquement dans les maquettes Figma. C'est le prix repris au récapitulatif de l'écran 3.1 (« Prix du kit 2 440 € » pour un Kit Travel · Best)."
+    }
+  ],
+  "options": [
+    {
+      "id": "3e370bd669cd81a4b819effeecda7fdb",
+      "nom": "Eberspacher Airtronic D2",
+      "section": "Chauffage",
+      "ordre": 1,
+      "prix_ttc": 1800,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "Seule ligne de la section Chauffage. Y a-t-il d'autres solutions de chauffage à proposer ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd816db02de269be49b05b",
+      "nom": "Kapam monte à l'atelier",
+      "section": "Services & montage",
+      "ordre": 1,
+      "prix_ttc": 1650,
+      "sous_libelle": "Montage complet en Gironde.",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81f4b842c9aed447eb38"
+      ],
+      "commentaire": "Appelé « Montage aménagement complet » dans la cartographie, « Kapam monte à l'atelier » dans la maquette 1.3. Même prix (1 650 €). Le choix se fait dès l'étape véhicule, comme vous l'aviez demandé. L'alternative « Je monte moi-même » vaut 0 €.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8140bd9edde441a5d3f3",
+      "nom": "Kit rideaux isolants (accessoire)",
+      "section": "Accessoires",
+      "ordre": 1,
+      "prix_ttc": 110,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd818b89cccf760de56640"
+      ],
+      "commentaire": "Doublon : la même ligne existe déjà dans « Vitrage · Isolation · Aération », au même prix. Laquelle garde-t-on ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81ec9512e9f7ffaa7244",
+      "nom": "Mousses Haute Densité",
+      "section": "Options du kit",
+      "ordre": 1,
+      "prix_ttc": 165,
+      "sous_libelle": "Lot de 6 coussins housses, coloris au choix",
+      "variantes": "3 densités : Mousse HR 30 kg/m³ (souple) 130 € · Bultex 37 kg/m³ (demi-ferme) 165 € · Bultex 45 kg/m³ (ferme) 198 €",
+      "kits_compatibles": [
+        "Travel",
+        "Mado",
+        "Madel",
+        "Combi T2-T3"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81879442e1802e29ae56",
+        "3e370bd669cd8103ab22c4ec698c5523"
+      ],
+      "commentaire": "La cartographie de mai indiquait 130 €, la maquette affiche 165 € (la densité intermédiaire). Est-ce que 165 € devient le prix de référence, ou est-ce juste la densité pré-sélectionnée dans la maquette ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8136b429daa2f8d20fcd",
+      "nom": "Pack Éclairage LED",
+      "section": "Électricité",
+      "ordre": 1,
+      "prix_ttc": 79,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81af8a00ea3b50856472",
+      "nom": "Pack habillage parois / portes / plafond",
+      "section": "Parois · Plafond · Plancher",
+      "ordre": 1,
+      "prix_ttc": 220,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd8122b849e987c5ab7d5e"
+      ],
+      "commentaire": "Sans photo dans la maquette.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81fda56de91ff7d9e206",
+      "nom": "Robinet contacteur 12v",
+      "section": "Mise en eau",
+      "ordre": 1,
+      "prix_ttc": 45,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8192865ae2c46a6d87b5",
+      "nom": "Vitrage du véhicule",
+      "section": "Vitrage · Isolation · Aération",
+      "ordre": 1,
+      "prix_ttc": 450,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd8122b849e987c5ab7d5e"
+      ],
+      "commentaire": "Sans photo dans la maquette.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd814bafc3f50a694297fe",
+      "nom": "WC Chimique",
+      "section": "WC · Électroménager",
+      "ordre": 1,
+      "prix_ttc": 110,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81978581e868d6a254be",
+      "nom": "Décoration parois et portes",
+      "section": "Parois · Plafond · Plancher",
+      "ordre": 2,
+      "prix_ttc": 199,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "Le produit était en double dans le simulateur actuel (sections 3.2 et 3.3). La maquette v4 n'en garde qu'un : c'est bien ce qu'on veut ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81d3919ad23671f8b839",
+      "nom": "Évier bol rond + bonde",
+      "section": "Mise en eau",
+      "ordre": 2,
+      "prix_ttc": 99,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81478412f2331b3ea482",
+      "nom": "Isolation chanvre / laine de mouton",
+      "section": "Vitrage · Isolation · Aération",
+      "ordre": 2,
+      "prix_ttc": 248,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd8122b849e987c5ab7d5e"
+      ],
+      "commentaire": "Sans photo dans la maquette.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81a5b61bc6dff928a939",
+      "nom": "Kit fixation rideaux (accessoire)",
+      "section": "Accessoires",
+      "ordre": 2,
+      "prix_ttc": 39.9,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd818b89cccf760de56640"
+      ],
+      "commentaire": "Doublon : la même ligne existe déjà dans « Parois · Plafond · Plancher », au même prix.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81edb8e7dc26c27f6598",
+      "nom": "Meuble haut 2 placards",
+      "section": "Options du kit",
+      "ordre": 2,
+      "prix_ttc": 490,
+      "sous_libelle": "Tarif selon finition et longueur du véhicule",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel",
+        "Madel"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81b69993f9d9fe66fea7",
+        "3e370bd669cd8103ab22c4ec698c5523",
+        "3e370bd669cd8111a74dc6d9f12bf40b"
+      ],
+      "commentaire": "390 € dans la cartographie de mai, 490 € dans la maquette. Hausse réelle ou valeur de démonstration ? C'est aussi ce meuble qui bloque l'aérateur de toit.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd813db186c68ff95eb469",
+      "nom": "Pack Lithium 100Ah BT",
+      "section": "Électricité",
+      "ordre": 2,
+      "prix_ttc": 749,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "Le « Pack Lithium 100Ah BT » (749 €) et la « Batterie Lithium 100Ah BT » (349 €) coexistent. Le pack contient-il la batterie ? Peut-on cocher les deux ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81ef9466ff0bcebf3709",
+      "nom": "Service Homologation VASP CARAVANE",
+      "section": "Services & montage",
+      "ordre": 2,
+      "prix_ttc": 389,
+      "sous_libelle": "⚠️ n'est sélectionnable nulle part dans les maquettes",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd8148b131e298c637fb4e"
+      ],
+      "commentaire": "Cette ligne apparaît dans le récapitulatif des écrans 3.1 et 3.2 à 389 €, mais aucun écran ne permet de la choisir. Vous aviez dit qu'elle devait se positionner au tout début du questionnaire, comme le montage. Dans le prototype je l'ai rendue cochable à l'étape 1.3, à côté du montage : dites-nous si c'est le bon endroit.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81eab3c7cde36e849473",
+      "nom": "Toilette sèche BOXIO",
+      "section": "WC · Électroménager",
+      "ordre": 2,
+      "prix_ttc": 209,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "Peut-on cocher à la fois le WC chimique et la toilette sèche ? Et le frigo Vitrifrigo avec le frigo WAECO ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81ea9405fafb346de869",
+      "nom": "Kit rideaux isolants",
+      "section": "Vitrage · Isolation · Aération",
+      "ordre": 3,
+      "prix_ttc": 110,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd818b89cccf760de56640"
+      ],
+      "commentaire": "Ce produit apparaît deux fois dans la maquette : ici et dans « Avez-vous pensé à ceci ? ». Un seul emplacement, lequel ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81518fb5d339f2693ee9",
+      "nom": "Lit d'appoint enfant",
+      "section": "Accessoires",
+      "ordre": 3,
+      "prix_ttc": 345,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81c0b334e0d4dff18a64",
+      "nom": "Pack Prise EXT 230V",
+      "section": "Électricité",
+      "ordre": 3,
+      "prix_ttc": 49.9,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81e5a730d4c19d4bf450",
+      "nom": "Plancher Superpan H-Deck 12mm",
+      "section": "Parois · Plafond · Plancher",
+      "ordre": 3,
+      "prix_ttc": 299,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81d998bcd9a0882e96d9",
+        "3e370bd669cd819aa534d9cd9716daff"
+      ],
+      "commentaire": "C'est ce plancher qui débloque la décoration de plancher puis le marchepied, comme vous l'aviez décrit.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81b4a789f9960d6108af",
+      "nom": "Plaque induction 1 foyer",
+      "section": "WC · Électroménager",
+      "ordre": 3,
+      "prix_ttc": 189,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd812d9cb6d9763b6285fc",
+      "nom": "Tiroir de rangement / réchaud gaz",
+      "section": "Options du kit",
+      "ordre": 3,
+      "prix_ttc": 199,
+      "sous_libelle": "Usinage spécifique au kit · tarif selon finition",
+      "variantes": "3 versions",
+      "kits_compatibles": [
+        "Travel",
+        "Madel"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd812eacf1e84117cdbcb6",
+        "3e370bd669cd8103ab22c4ec698c5523"
+      ],
+      "commentaire": "119 € dans la cartographie de mai, 199 € dans la maquette. Quelles sont les 3 versions et leurs prix ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81e9bf88d56b8830e5ff",
+      "nom": "Water Pack cuisine 20L",
+      "section": "Mise en eau",
+      "ordre": 3,
+      "prix_ttc": 149,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8115b74df3d11355b79e",
+      "nom": "Chargeur de batterie",
+      "section": "Électricité",
+      "ordre": 4,
+      "prix_ttc": 129,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81cf96c3e996948a8887",
+      "nom": "Décoration plancher",
+      "section": "Parois · Plafond · Plancher",
+      "ordre": 4,
+      "prix_ttc": 180,
+      "sous_libelle": "Nécessite le plancher bois",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "Nécessite le plancher Superpan H-Deck 12mm.",
+      "depend_de": [
+        "3e370bd669cd81e5a730d4c19d4bf450"
+      ],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81d998bcd9a0882e96d9"
+      ],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81d98cf9fd1868ad89c2",
+      "nom": "Frigo Vitrifrigo c51i",
+      "section": "WC · Électroménager",
+      "ordre": 4,
+      "prix_ttc": 750,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81738960d610084a4189",
+      "nom": "Moustiquaire porte latérale",
+      "section": "Vitrage · Isolation · Aération",
+      "ordre": 4,
+      "prix_ttc": 175,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [
+        "long",
+        "long",
+        "long"
+      ],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "Nécessite un empattement long (L2).",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81b69316e36113a78af6",
+        "3e370bd669cd812c9e88c21e786415eb",
+        "3e370bd669cd818b89cccf760de56640"
+      ],
+      "commentaire": "Déclarée « Non compatible » ici sur un empattement court, mais vendue 175 € trente lignes plus bas dans « Avez-vous pensé à ceci ? ». Laquelle des deux fait foi ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd815a80a3d7dd42b9cd3d",
+      "nom": "Moustiquaire porte latérale (accessoire)",
+      "section": "Accessoires",
+      "ordre": 4,
+      "prix_ttc": 175,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd812c9e88c21e786415eb",
+        "3e370bd669cd818b89cccf760de56640"
+      ],
+      "commentaire": "C'est la contradiction la plus gênante du parcours : la même moustiquaire est refusée en haut de l'écran (« Non compatible » sur empattement court) et vendue ici sans condition. Dans le prototype, je n'ai PAS appliqué la contrainte de longueur à cette ligne-ci, pour que la contradiction reste visible à l'écran. Dites-nous laquelle des deux lectures est la bonne.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81248890e88032af5273",
+      "nom": "Pack douchette 40L",
+      "section": "Mise en eau",
+      "ordre": 4,
+      "prix_ttc": 169,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd812c8c17ef4640549b62",
+      "nom": "Supports muraux (la paire)",
+      "section": "Options du kit",
+      "ordre": 4,
+      "prix_ttc": 50,
+      "sous_libelle": "Bois brut en Soft/Triply, stratifié en Best",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel",
+        "Mado",
+        "Madel",
+        "Combi T2-T3"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81b69993f9d9fe66fea7",
+        "3e370bd669cd8103ab22c4ec698c5523"
+      ],
+      "commentaire": "40 € dans la cartographie de mai, 50 € dans la maquette. Le prix change-t-il entre Soft/Triply et Best ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8125b40fc005a402200e",
+      "nom": "Aérateur de toit inox",
+      "section": "Vitrage · Isolation · Aération",
+      "ordre": 5,
+      "prix_ttc": 95,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "Le meuble haut 2 placards du Kit Travel occupe l'emplacement de l'aérateur. Retirez ce meuble pour rendre l'option disponible.",
+      "depend_de": [],
+      "incompatible_avec": [
+        "3e370bd669cd81edb8e7dc26c27f6598"
+      ],
+      "regles": [
+        "3e370bd669cd8111a74dc6d9f12bf40b",
+        "3e370bd669cd817c9900cc62975b8ef0"
+      ],
+      "commentaire": "La liste dit « non disponible avec le Kit Travel », le tiroir de détail dit « retirez le meuble haut ». Les deux ne donnent pas le même parcours : lequel est le bon ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd814d80eff745e9d1e21f",
+      "nom": "Aérateurs de fenêtres",
+      "section": "Accessoires",
+      "ordre": 5,
+      "prix_ttc": 86.9,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81f1a107cc593c451b94"
+      ],
+      "commentaire": "Vous aviez dit « accessoire bidon, on peut le proposer sûrement à la fin » : c'est fait, il n'apparaît plus dans la section Vitrage.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8160af5dce529bbe4437",
+      "nom": "Frigo WAECO NRX50",
+      "section": "WC · Électroménager",
+      "ordre": 5,
+      "prix_ttc": 999,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8185a47bc9a9115d1f82",
+      "nom": "Marchepied latéral",
+      "section": "Parois · Plafond · Plancher",
+      "ordre": 5,
+      "prix_ttc": 160,
+      "sous_libelle": "Après le plancher · véhicules X82 uniquement",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [
+        "X82"
+      ],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "Se choisit après le plancher bois, et seulement sur les véhicules de plateforme X82.",
+      "depend_de": [
+        "3e370bd669cd81e5a730d4c19d4bf450"
+      ],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd819aa534d9cd9716daff",
+        "3e370bd669cd818b89cccf760de56640"
+      ],
+      "commentaire": "Conforme à ce que vous aviez décrit (plancher bois → décoration plancher → marchepied, X82 uniquement). Mais le produit réapparaît aussi, sans condition, dans « Avez-vous pensé à ceci ? » à 160 €.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81b4a3a8eff0d63531c9",
+      "nom": "Pack Convertisseur 12v→220v",
+      "section": "Électricité",
+      "ordre": 5,
+      "prix_ttc": 109,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd816d8c58c16fac798af3",
+      "nom": "Rallonge de lit 30×60",
+      "section": "Options du kit",
+      "ordre": 5,
+      "prix_ttc": 90,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81edbeadc9e5a1ca4255",
+      "nom": "Finitions retrait séparation",
+      "section": "Parois · Plafond · Plancher",
+      "ordre": 6,
+      "prix_ttc": 69,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81bd8cb2c807ab1530af",
+      "nom": "Grilles aération 74mm",
+      "section": "Vitrage · Isolation · Aération",
+      "ordre": 6,
+      "prix_ttc": 19.9,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd812c87b8e1aa4a03bbb6",
+      "nom": "Marchepied latéral (accessoire)",
+      "section": "Accessoires",
+      "ordre": 6,
+      "prix_ttc": 160,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd819aa534d9cd9716daff",
+        "3e370bd669cd818b89cccf760de56640"
+      ],
+      "commentaire": "Doublon : la ligne conditionnée (plancher bois + X82) existe déjà dans « Parois · Plafond · Plancher ». Ici elle est proposée sans aucune condition, ce qui contredit la règle que vous aviez donnée.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81e9a7a0c72857113174",
+      "nom": "Pack Solaire souple 210W",
+      "section": "Électricité",
+      "ordre": 6,
+      "prix_ttc": 749,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8158beded9f5c3a516cf",
+      "nom": "Porte placard frigo",
+      "section": "Options du kit",
+      "ordre": 6,
+      "prix_ttc": 44.95,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel",
+        "Mado",
+        "Madel",
+        "Combi T2-T3"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd810582d5f04ba533535f",
+      "nom": "Téléviseur LED 12V",
+      "section": "WC · Électroménager",
+      "ordre": 6,
+      "prix_ttc": 340,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd815f9054dcb4f30469ff",
+      "nom": "Kit fixation rideaux",
+      "section": "Parois · Plafond · Plancher",
+      "ordre": 7,
+      "prix_ttc": 39.9,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd818b89cccf760de56640"
+      ],
+      "commentaire": "Ce produit apparaît deux fois dans la maquette : ici et dans « Avez-vous pensé à ceci ? ».",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd813ba860df9cf1a92494",
+      "nom": "Porte placard WC",
+      "section": "Options du kit",
+      "ordre": 7,
+      "prix_ttc": 34.95,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd8122b849e987c5ab7d5e"
+      ],
+      "commentaire": "Sans photo dans la maquette.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd814cb6e2f53d3e9f2beb",
+      "nom": "Prise USB + Voltmètre",
+      "section": "Électricité",
+      "ordre": 7,
+      "prix_ttc": 33.99,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8149ba16ee7eadf8a94d",
+      "nom": "Store latéral Fiamma F45s",
+      "section": "Accessoires",
+      "ordre": 7,
+      "prix_ttc": 990,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81d1904ccaf6c01bd3c0"
+      ],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81c48729cda719de7a81",
+      "nom": "Attelage utilitaire",
+      "section": "Accessoires",
+      "ordre": 8,
+      "prix_ttc": 499,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81d1904ccaf6c01bd3c0"
+      ],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81dab939f5e40bcd3688",
+      "nom": "Prise allume-cigare",
+      "section": "Électricité",
+      "ordre": 8,
+      "prix_ttc": 19.9,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81c0acb6d9437ead07de",
+      "nom": "Rangements alcôves latérales",
+      "section": "Parois · Plafond · Plancher",
+      "ordre": 8,
+      "prix_ttc": 179,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À créer",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81cbbc39c4da1782f911"
+      ],
+      "commentaire": "Disparu entre la cartographie et les maquettes — suppression volontaire ? Le produit était présent deux fois dans le simulateur actuel (sections 3.2 et 3.3) à 179 €, et n'apparaît nulle part en v4. Ligne recréée ici en statut « À créer » : elle n'est pas affichée dans le prototype tant que vous ne l'avez pas validée.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81e594abef8c56ea6637",
+      "nom": "Trappe Caisson D",
+      "section": "Options du kit",
+      "ordre": 8,
+      "prix_ttc": 34.95,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd8122b849e987c5ab7d5e"
+      ],
+      "commentaire": "Sans photo dans la maquette.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd819f8ac8d1e415269487",
+      "nom": "Coffret électrique",
+      "section": "Électricité",
+      "ordre": 9,
+      "prix_ttc": 99,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd8115bf99e265e0882a64",
+      "nom": "Tablette escamotable",
+      "section": "Options du kit",
+      "ordre": 9,
+      "prix_ttc": 59.9,
+      "sous_libelle": "Tarif selon le modèle et la finition",
+      "variantes": "2 versions + suppl.",
+      "kits_compatibles": [
+        "Travel",
+        "Madel",
+        "Combi T2-T3"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Non tracé",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81b69993f9d9fe66fea7",
+        "3e370bd669cd8103ab22c4ec698c5523"
+      ],
+      "commentaire": "29,95 € dans la cartographie de mai, 59,90 € dans la maquette — le prix a exactement doublé. Quelles sont les 2 versions et à quoi correspond le supplément ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81cf8d8be08926be7106",
+      "nom": "Banquette en U amovible",
+      "section": "Options du kit",
+      "ordre": 10,
+      "prix_ttc": 69,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd813781bfd278d8542fc0",
+      "nom": "Batterie Lithium 100Ah BT",
+      "section": "Électricité",
+      "ordre": 10,
+      "prix_ttc": 349,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "Voir le commentaire du Pack Lithium : faut-il empêcher de cocher les deux ?",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81c4b8a1fa2449dbc204",
+      "nom": "Trépied Fiamma",
+      "section": "Options du kit",
+      "ordre": 11,
+      "prix_ttc": 90,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel",
+        "Combi T2-T3"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd812aa6c5d0967318f4ca",
+      "nom": "Grand support élastique (crédence)",
+      "section": "Options du kit",
+      "ordre": 12,
+      "prix_ttc": 70,
+      "sous_libelle": "Type crédence — visuel à venir",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel",
+        "Madel"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81268a9dc7157d81d71f"
+      ],
+      "commentaire": "Vous aviez dit qu'il fallait un visuel pour bien le distinguer du petit modèle Mado à 50 €.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81ca97bee98459905ce5",
+      "nom": "Mobilier bicolore",
+      "section": "Options du kit",
+      "ordre": 13,
+      "prix_ttc": 249,
+      "sous_libelle": "Recommandé pour sublimer la finition Best",
+      "variantes": "",
+      "kits_compatibles": [
+        "Travel",
+        "Mado",
+        "Madel",
+        "Combi T2-T3"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [
+        "Best"
+      ],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "Proposé uniquement avec la finition Best.",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd812ab60acb7ed717dea1"
+      ],
+      "commentaire": "Dans la maquette v4 ce produit n'est plus une ligne d'option : il apparaît sous forme d'encart, juste après le choix de la finition Best, comme vous l'aviez demandé. Je le garde ici en base pour que le prototype puisse l'afficher.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81b0ab5aec338b892d3e",
+      "nom": "Grand support élastique (cuisine Mado)",
+      "section": "Options du kit",
+      "ordre": 14,
+      "prix_ttc": 50,
+      "sous_libelle": "Petit modèle, posé sur la cuisine",
+      "variantes": "",
+      "kits_compatibles": [
+        "Mado"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [
+        "3e370bd669cd81268a9dc7157d81d71f"
+      ],
+      "commentaire": "Présent dans la cartographie, absent des maquettes v4 (qui ne montrent que le parcours Kit Travel). Recréé ici pour que le parcours Mado fonctionne.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd816090fde25546c4d7fb",
+      "nom": "Tablette cuisine MADO",
+      "section": "Options du kit",
+      "ordre": 15,
+      "prix_ttc": 34.9,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [
+        "Mado"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "Présent dans la cartographie, absent des maquettes v4 (qui ne montrent que le parcours Kit Travel). Recréé ici pour que le parcours Mado fonctionne.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd819e8e7ac60a12f67857",
+      "nom": "Tablette ARRD MADO",
+      "section": "Options du kit",
+      "ordre": 16,
+      "prix_ttc": 29.9,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [
+        "Mado"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "Présent dans la cartographie, absent des maquettes v4 (qui ne montrent que le parcours Kit Travel). Recréé ici pour que le parcours Mado fonctionne.",
+      "visuels": []
+    },
+    {
+      "id": "3e370bd669cd81378738e81d72879694",
+      "nom": "Petit meuble 3 étagères",
+      "section": "Options du kit",
+      "ordre": 17,
+      "prix_ttc": 45,
+      "sous_libelle": "",
+      "variantes": "",
+      "kits_compatibles": [
+        "Mado"
+      ],
+      "longueurs_compatibles": [],
+      "plateformes_requises": [],
+      "finitions_requises": [],
+      "statut": "À valider Willy",
+      "prix_source": "Cartographie 05/26",
+      "motif_si_non_disponible": "",
+      "depend_de": [],
+      "incompatible_avec": [],
+      "regles": [],
+      "commentaire": "Présent dans la cartographie, absent des maquettes v4 (qui ne montrent que le parcours Kit Travel). Recréé ici pour que le parcours Mado fonctionne.",
+      "visuels": []
+    }
+  ],
+  "regles": [
+    {
+      "id": "3e370bd669cd819aa534d9cd9716daff",
+      "regle": "Le marchepied latéral n'est proposé qu'après avoir choisi le plancher bois, et seulement sur les véhicules de plateforme X82.",
+      "type": "Dépendance",
+      "condition": "Le plancher Superpan H-Deck 12mm est coché ET le véhicule est sur plateforme Renault X82 (Trafic 3, Vivaro 2014-2020, NV300, Primastar 2).",
+      "effet": "La ligne « Marchepied latéral » devient sélectionnable. Sinon elle reste grisée avec le motif affiché.",
+      "source": "Annotation Willy du 13/05/2026 (« Plancher bois → décoration de plancher → marche pied ») + sous-libellé de la maquette v4 « Après le plancher · véhicules X82 uniquement »",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81d998bcd9a0882e96d9",
+      "regle": "La décoration de plancher n'est proposée qu'après avoir choisi le plancher bois.",
+      "type": "Dépendance",
+      "condition": "Le plancher Superpan H-Deck 12mm est coché.",
+      "effet": "La ligne « Décoration plancher » devient sélectionnable.",
+      "source": "Sous-libellé de la maquette v4 « Nécessite le plancher bois »",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81b69316e36113a78af6",
+      "regle": "La moustiquaire porte latérale nécessite un empattement long (L2).",
+      "type": "Exclusion",
+      "condition": "La longueur retenue est un empattement court (L1H1, Court, S ou Compact).",
+      "effet": "La ligne est grisée, badge « Non compatible », motif : « Nécessite un empattement long (L2) — votre véhicule est un L1H1 ».",
+      "source": "État « non compatible » de la maquette v4, section Vitrage",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd8111a74dc6d9f12bf40b",
+      "regle": "L'aérateur de toit inox est incompatible avec le Kit Travel : le meuble haut occupe l'emplacement.",
+      "type": "Exclusion",
+      "condition": "Le Kit Travel est retenu (ou, selon le tiroir de détail : le meuble haut 2 placards est coché).",
+      "effet": "La ligne « Aérateur de toit inox » est grisée avec le motif affiché.",
+      "source": "État « non compatible » de la maquette v4, section Vitrage",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd817c9900cc62975b8ef0",
+      "regle": "Le motif d'incompatibilité de l'aérateur de toit n'est pas le même dans la liste et dans le tiroir de détail : lequel fait foi ?",
+      "type": "Contradiction à trancher",
+      "condition": "Dans la liste, la maquette dit « Non disponible avec le Kit Travel » (incompatibilité avec le kit). Dans le tiroir, elle dit « Le meuble haut 2 placards du Kit Travel occupe l'emplacement de l'aérateur. Retirez ce meuble pour rendre l'option disponible » (incompatibilité avec une option).",
+      "effet": "Les deux formulations ne produisent pas le même parcours : dans un cas l'aérateur est définitivement exclu sur Travel, dans l'autre il redevient disponible si on décoche le meuble haut.",
+      "source": "Comparaison ligne d'option / drawer « Option — non compatible » (Figma v4)",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd812ab60acb7ed717dea1",
+      "regle": "Le mobilier bicolore (249 €) n'est proposé qu'après avoir choisi la finition Best.",
+      "type": "Upsell conditionnel",
+      "condition": "La finition retenue est Best.",
+      "effet": "Un encart apparaît sous le bloc finition : « Avec la finition Best : le mobilier bicolore. Recommandé pour sublimer cette finition. + 249 €. »",
+      "source": "Annotation Willy du 13/05/2026 + encart « bicolore » de la maquette v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd8186bcf8d59c0fcfe5dd",
+      "regle": "Le nuancier de sol, les couleurs de stratifié et les housses de literie sont des attributs inclus, pas des produits payants.",
+      "type": "Attribut inclus",
+      "condition": "Toujours, quelle que soit la configuration.",
+      "effet": "Trois listes déroulantes s'affichent dans la section « Personnalisation · incluse ». Elles n'ajoutent aucun montant au total.",
+      "source": "Annotation Willy (« Exact ! ») + bloc « Des attributs de votre aménagement, pas des produits payants » de la maquette v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81f4b842c9aed447eb38",
+      "regle": "Le montage à l'atelier Kapam coûte 1 650 € et se choisit dès l'étape véhicule.",
+      "type": "Tarification",
+      "condition": "Le client choisit « Kapam monte à l'atelier » plutôt que « Je monte moi-même ».",
+      "effet": "1 650 € s'ajoutent au total indicatif et la formule passe à « Atelier » dans le récapitulatif.",
+      "source": "Écran 1.3 de la maquette v4 + annotation Willy (« le montage dans notre atelier devra venir se positionner au tout début du questionnaire »)",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81829736e5a304213f9b",
+      "regle": "Le prix affiché pour le kit est celui de la finition retenue, pas la somme du kit et de la finition.",
+      "type": "Tarification",
+      "condition": "Un kit et une finition sont tous les deux retenus.",
+      "effet": "Le récapitulatif affiche une seule ligne « Prix du kit », égale au prix de la finition (exemple maquette : Kit Travel · Best → 2 440 €, et non 2 140 + 2 440).",
+      "source": "Déduit du récapitulatif de l'écran 3.1 de la maquette v4. Aucune source écrite ne l'énonce.",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81a3b116fb733bb57f18",
+      "regle": "Le Kit Madel est affiché à 2 395 € alors que les trois finitions valent 2 140, 2 140 et 2 440 €.",
+      "type": "Contradiction à trancher",
+      "condition": "Le Kit Madel est retenu.",
+      "effet": "On ne sait pas quel prix appliquer : 2 395 € (le prix du kit) ou le prix de la finition retenue. La règle « le prix du kit est celui de la finition » ne tient plus pour le Madel.",
+      "source": "Cartes kit et tuiles finition de la maquette v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81b69993f9d9fe66fea7",
+      "regle": "Plusieurs options changent de prix selon la finition et la longueur du véhicule.",
+      "type": "Tarification",
+      "condition": "Le meuble haut 2 placards, le tiroir / réchaud gaz, la tablette escamotable et les supports muraux sont concernés.",
+      "effet": "Le prix affiché est un « à partir de » ; la grille complète par finition et par longueur n'existe nulle part.",
+      "source": "Sous-libellés de la maquette v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81879442e1802e29ae56",
+      "regle": "Les mousses haute densité se choisissent en trois densités, à trois prix différents.",
+      "type": "Tarification",
+      "condition": "La ligne « Mousses Haute Densité » est cochée.",
+      "effet": "Un choix s'ouvre : Mousse HR 30 kg/m³ (souple) 130 € · Bultex 37 kg/m³ (demi-ferme) 165 € · Bultex 45 kg/m³ (ferme) 198 €. Le prix de la ligne suit la densité choisie.",
+      "source": "Panneau déplié de la ligne « Mousses » dans la maquette v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81268a9dc7157d81d71f",
+      "regle": "Le grand support élastique existe en deux produits différents à deux prix.",
+      "type": "Tarification",
+      "condition": "Le kit retenu est le Mado, ou le Travel / Madel.",
+      "effet": "Chez Mado c'est le petit modèle sur la cuisine à 50 € ; chez Travel et Madel c'est la crédence à 70 €. Deux lignes distinctes, pas un prix variable.",
+      "source": "Cartographie 05/26 + annotation Willy",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd812eacf1e84117cdbcb6",
+      "regle": "Le tiroir / réchaud gaz vit dans les options du kit, pas dans WC & électroménager.",
+      "type": "Dépendance",
+      "condition": "Toujours.",
+      "effet": "La ligne n'apparaît qu'une fois, dans « Options du kit ». Elle a disparu de « WC · Électroménager » en v4.",
+      "source": "Annotation Willy — appliqué dans la maquette v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81f1a107cc593c451b94",
+      "regle": "Les accessoires sont regroupés dans une seule question de fin, « Avez-vous pensé à ceci ? », à sélections multiples.",
+      "type": "Dépendance",
+      "condition": "Le client arrive en bas de l'écran 2.1.",
+      "effet": "Huit accessoires sont proposés d'un coup plutôt qu'éparpillés dans le parcours.",
+      "source": "Annotation Willy — appliqué dans la maquette v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd812c9e88c21e786415eb",
+      "regle": "La moustiquaire est déclarée incompatible en section Vitrage et proposée à la vente en section Accessoires. Laquelle fait foi ?",
+      "type": "Contradiction à trancher",
+      "condition": "Le véhicule est un empattement court.",
+      "effet": "En haut de l'écran la moustiquaire est grisée « Non compatible », en bas du même écran elle est achetable à 175 €. Le client peut donc ajouter une option qu'on vient de lui refuser.",
+      "source": "Maquette v4, sections « Vitrage · Isolation · Aération » et « Avez-vous pensé à ceci ? »",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd818b89cccf760de56640",
+      "regle": "Quatre produits apparaissent deux fois dans le parcours (kit rideaux isolants, kit fixation rideaux, marchepied, moustiquaire). Chacun doit-il vivre à un seul endroit ?",
+      "type": "Contradiction à trancher",
+      "condition": "Toujours, sur l'écran 2.1.",
+      "effet": "Un client peut cocher deux fois le même produit et le payer deux fois dans le total indicatif.",
+      "source": "Maquette v4 : lignes présentes à la fois dans Vitrage / Parois et dans Accessoires",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd8148b131e298c637fb4e",
+      "regle": "L'homologation VASP (389 €) est facturée au récapitulatif mais n'est sélectionnable nulle part. Où doit-elle se choisir ?",
+      "type": "Contradiction à trancher",
+      "condition": "Toujours : la ligne apparaît dans le récapitulatif des écrans 3.1 et 3.2.",
+      "effet": "389 € s'ajoutent au total sans que le client ait rien coché. Vous aviez dit que l'homologation VASP devait « venir se positionner au tout début du questionnaire », comme le montage.",
+      "source": "Récapitulatif des écrans 3.1 et 3.2 de la maquette v4 + annotation Willy",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd8103ab22c4ec698c5523",
+      "regle": "Six produits ont changé de prix entre la cartographie de mai 2026 et les maquettes, sans justification écrite.",
+      "type": "Contradiction à trancher",
+      "condition": "Meuble haut 390 → 490 € · Tiroir / réchaud gaz 119 → 199 € · Tablette escamotable 29,95 → 59,90 € · Supports muraux 40 → 50 € · Mousses 130 → 165 € · Frigo Vitrifrigo c51i 750 € (inchangé, cité pour mémoire).",
+      "effet": "On ne sait pas si ce sont des hausses tarifaires réelles ou des valeurs de démonstration posées dans la maquette.",
+      "source": "Comparaison cartographie 13/05/2026 ↔ maquettes Config v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81cbbc39c4da1782f911",
+      "regle": "Les rangements alcôves latérales (179 €) ont disparu entre la cartographie et les maquettes. Suppression volontaire ?",
+      "type": "Contradiction à trancher",
+      "condition": "Le produit était présent deux fois dans le simulateur actuel (sections 3.2 et 3.3). Il n'apparaît nulle part dans les maquettes v4.",
+      "effet": "Si c'est un oubli, il manque une ligne au catalogue. Si c'est volontaire, il faut le retirer aussi de la boutique.",
+      "source": "Comparaison cartographie 13/05/2026 ↔ maquettes Config v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81cc99a6f165f6fe2d33",
+      "regle": "Le Kit Travel peut être proposé sur Vito, Boxer, Jumper et Ducato.",
+      "type": "Dépendance",
+      "condition": "Le véhicule retenu est un Vito, un Boxer, un Jumper ou un Ducato.",
+      "effet": "Seul le Kit Travel est proposé : ni Mado ni Madel, la gamme n'est pas encore développée pour ces véhicules.",
+      "source": "Annotation Willy du 13/05/2026",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd8151aef1f2de85d69d92",
+      "regle": "Le Triply est ajouté à la gamme Combi T3, et le « Combi T2-T3 » est renommé « VW Combi T2 ».",
+      "type": "Dépendance",
+      "condition": "Le véhicule retenu est un Combi T3 ou un Combi T2.",
+      "effet": "Le Triply devient une finition proposée sur T3. Les deux gammes portent des noms distincts.",
+      "source": "Annotation Willy du 13/05/2026",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd814aa1b8d461599a51cf",
+      "regle": "Le vocabulaire des longueurs n'est pas unifié : S / M / L chez Citroën, Compact / Standard / Long chez Peugeot et Toyota, L1H1 / L2H1 ailleurs.",
+      "type": "Contradiction à trancher",
+      "condition": "Toujours, à l'étape longueur.",
+      "effet": "Six nomenclatures différentes désignent les mêmes longueurs physiques. Vous aviez proposé cette répartition : à confirmer pour que le développeur la code une fois pour toutes.",
+      "source": "Cartographie 13/05/2026 + annotations Willy",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd81d1904ccaf6c01bd3c0",
+      "regle": "Le store latéral Fiamma et l'attelage utilitaire sont des accessoires de fin de parcours.",
+      "type": "Dépendance",
+      "condition": "Toujours.",
+      "effet": "Ils n'apparaissent plus qu'une fois, dans « Avez-vous pensé à ceci ? », alors qu'ils étaient en double aux étapes 5 et 6 du simulateur actuel.",
+      "source": "Annotation Willy — appliqué dans la maquette v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    },
+    {
+      "id": "3e370bd669cd8122b849e987c5ab7d5e",
+      "regle": "Quarante-trois des cinquante-quatre lignes d'options n'ont pas de photo.",
+      "type": "Contradiction à trancher",
+      "condition": "Toujours.",
+      "effet": "Le prototype affiche un cadre gris nommé à la place. Le développeur aura besoin d'un visuel par ligne, ou d'une règle de repli explicite.",
+      "source": "Slots photo vides dans la maquette v4",
+      "statut": "À valider Willy",
+      "commentaire": ""
+    }
+  ]
+}

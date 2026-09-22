@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:,">
+<title>Kapam — prototype de travail du configurateur</title>
+<style>
+  :root{
+    --encre:#1a1a1a; --gris-1:#f6f6f5; --gris-2:#ebebe8; --gris-3:#d8d8d3;
+    --gris-4:#8a8a84; --gris-5:#5a5a55; --blanc:#fff;
+    --alerte:#a33; --alerte-fond:#fbf1f1; --note:#6b5a2e; --note-fond:#fbf7ec;
+    --r:6px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--encre); background:var(--gris-1); padding-bottom:140px;
+  }
+  a{color:inherit}
+  button{font:inherit;cursor:pointer}
+  h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:24px} h2{font-size:19px} h3{font-size:14px;text-transform:uppercase;letter-spacing:.09em;color:var(--gris-5)}
+  p{margin:0}
+
+  .bandeau{background:var(--encre);color:#fff;padding:9px 16px;font-size:13px;text-align:center}
+  .entete{
+    position:sticky;top:0;z-index:20;background:var(--blanc);border-bottom:1px solid var(--gris-3);
+    padding:12px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  }
+  .entete strong{font-size:14px}
+  .compteur{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris-5)}
+
+  .page{max-width:820px;margin:0 auto;padding:24px 16px 0}
+  .bloc{background:var(--blanc);border:1px solid var(--gris-3);border-radius:var(--r);padding:18px;margin:14px 0}
+  .bloc > h3{margin-bottom:12px}
+  .chapo{color:var(--gris-5);margin:8px 0 0}
+  .pile{display:flex;flex-direction:column;gap:8px}
+  .grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+  .deux{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:560px){.deux{grid-template-columns:1fr}}
+
+  /* Cadre gris à la place d'une photo : le visuel définitif vit dans Figma. */
+  .visuel{
+    background:var(--gris-2);border:1px dashed var(--gris-3);border-radius:4px;
+    color:var(--gris-4);font-size:11px;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:6px;min-height:44px;
+  }
+  .visuel.carte{min-height:86px;margin-bottom:10px}
+
+  .choix{
+    display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;
+    background:var(--blanc);border:1px solid var(--gris-3);border-radius:var(--r);padding:12px 13px;
+  }
+  .choix:hover:not(:disabled){border-color:var(--gris-4)}
+  .choix[aria-pressed="true"]{border-color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
+  .choix:disabled{background:var(--gris-1);color:var(--gris-4);cursor:not-allowed}
+  .choix .corps{flex:1;min-width:0}
+  .choix .titre{font-weight:500}
+  .choix .sous{font-size:12.5px;color:var(--gris-5);margin-top:2px}
+  .choix .prix{font-size:13px;color:var(--gris-5);white-space:nowrap;padding-left:8px}
+
+  .ligne{display:flex;gap:11px;align-items:flex-start;padding:11px 12px;border:1px solid var(--gris-3);
+         border-radius:var(--r);background:var(--blanc)}
+  .ligne.bloquee{background:var(--gris-1);border-style:dashed}
+  .ligne.bloquee .titre{color:var(--gris-4)}
+  .ligne input[type=checkbox]{margin-top:3px;width:15px;height:15px;flex:none}
+  .ligne .corps{flex:1;min-width:0}
+  .ligne .droite{text-align:right;white-space:nowrap;padding-left:8px}
+
+  .badge{display:inline-block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+         border:1px solid currentColor;border-radius:3px;padding:1px 5px}
+  .badge.nc{color:var(--alerte)}
+  .badge.info{color:var(--gris-4)}
+  .motif{font-size:12.5px;color:var(--alerte);background:var(--alerte-fond);border-radius:4px;
+         padding:6px 8px;margin-top:7px}
+  .motif a{color:inherit}
+  .note{font-size:12.5px;color:var(--note);background:var(--note-fond);border:1px solid #e6dcc0;
+        border-radius:4px;padding:9px 10px;margin:10px 0}
+  .manquant{color:var(--alerte);font-size:12.5px}
+
+  select,input[type=text],input[type=email],input[type=tel],textarea{
+    width:100%;font:inherit;padding:9px 10px;border:1px solid var(--gris-3);border-radius:4px;
+    background:var(--blanc);color:inherit
+  }
+  label.champ{display:block;font-size:12.5px;color:var(--gris-5);margin-bottom:4px}
+
+  .btn{border:1px solid var(--encre);background:var(--encre);color:#fff;border-radius:4px;padding:10px 16px}
+  .btn[disabled]{background:var(--gris-3);border-color:var(--gris-3);color:var(--gris-5);cursor:not-allowed}
+  .btn.fantome{background:transparent;color:var(--encre)}
+  .btn.petit{padding:6px 11px;font-size:13px}
+
+  .recap{width:100%;border-collapse:collapse;font-size:14px}
+  .recap td{padding:7px 0;border-bottom:1px solid var(--gris-2);vertical-align:top}
+  .recap td:last-child{text-align:right;white-space:nowrap}
+  .recap tr.total td{font-weight:600;border-bottom:none;padding-top:12px}
+
+  .barre{
+    position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--blanc);
+    border-top:1px solid var(--gris-3);padding:10px 16px;
+  }
+  .barre .dedans{max-width:820px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .barre .config{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gris-5)}
+  .barre .montant{font-size:17px;font-weight:600}
+
+  .flottant{position:fixed;right:14px;bottom:96px;z-index:31}
+  .flottant .btn{box-shadow:0 2px 8px rgba(0,0,0,.14)}
+
+  dialog{border:1px solid var(--gris-3);border-radius:var(--r);padding:0;max-width:560px;width:92%}
+  dialog::backdrop{background:rgba(0,0,0,.35)}
+  .modale{padding:18px}
+  .modale h2{margin-bottom:10px}
+
+  .pied{max-width:820px;margin:26px auto 0;padding:0 16px 20px;font-size:12.5px;color:var(--gris-4);
+        display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+  .pied a,.pied button{color:var(--gris-4);background:none;border:none;padding:0;text-decoration:underline}
+
+  .regle{border:1px solid var(--gris-3);border-radius:var(--r);background:var(--blanc);padding:14px;margin-bottom:10px}
+  .regle .phrase{font-weight:500}
+  .regle dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:9px 0 0;font-size:13px;color:var(--gris-5)}
+  .regle dt{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gris-4);padding-top:2px}
+  .regle dd{margin:0}
+  .verdicts{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap;align-items:center}
+  .verdicts .btn.petit[aria-pressed="true"]{outline:2px solid var(--encre);outline-offset:1px}
+  .retour-liste{font-size:13px;color:var(--gris-5)}
+  .retour-liste li{margin-bottom:6px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+
+<div class="bandeau">
+  Prototype de travail — l'apparence définitive est dans Figma. Ici, on valide les données et les règles.
+</div>
+
+<header class="entete">
+  <strong>Configurateur Kapam</strong>
+  <span class="compteur" id="compteur">Chargement…</span>
+</header>
+
+<main class="page" id="page">
+  <p class="chapo">Chargement du catalogue…</p>
+</main>
+
+<footer class="pied">
+  <span id="pied-genere"></span>
+  <span>
+    <button type="button" id="lien-regles">Voir les règles du configurateur</button>
+    &nbsp;·&nbsp;
+    <button type="button" id="lien-export">Exporter mes retours</button>
+    &nbsp;·&nbsp;
+    <button type="button" id="lien-reset">Repartir de zéro</button>
+  </span>
+</footer>
+
+<div class="flottant">
+  <button type="button" class="btn fantome petit" id="btn-souci" style="background:#fff">Un souci sur cette étape ?</button>
+</div>
+
+<div class="barre">
+  <div class="dedans">
+    <button type="button" class="btn fantome petit" id="btn-prec">Retour</button>
+    <div>
+      <div class="config" id="barre-config">—</div>
+      <div><span class="config">Total indicatif</span> <span class="montant" id="barre-total">—</span></div>
+    </div>
+    <button type="button" class="btn" id="btn-suiv">Suivante</button>
+  </div>
+</div>
+
+<dialog id="modale-souci"><form method="dialog" class="modale">
+  <h2>Un souci sur cette étape ?</h2>
+  <p class="chapo" id="souci-etape"></p>
+  <p style="margin:12px 0 6px"><label class="champ" for="souci-texte">Dites-nous ce qui ne va pas — un prix, un libellé, une compatibilité, un enchaînement.</label></p>
+  <textarea id="souci-texte" rows="5"></textarea>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+    <button class="btn fantome petit" value="annuler">Annuler</button>
+    <button class="btn petit" value="ok" id="souci-ok">Enregistrer ce retour</button>
+  </div>
+</form></dialog>
+
+<dialog id="modale-export"><div class="modale">
+  <h2>Exporter mes retours</h2>
+  <p class="chapo">Copiez ce texte et collez-le dans un e-mail.</p>
+  <textarea id="export-texte" rows="16" style="margin-top:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px"></textarea>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+    <button class="btn fantome petit" id="export-copier">Copier</button>
+    <button class="btn petit" id="export-fermer">Fermer</button>
+  </div>
+</div></dialog>
+
+<script>
+'use strict'
+
+/* ------------------------------------------------------------------ état --- */
+
+const CLE = 'kapam.proto.v1'
+const ETAPES = [
+  { id: '1.1', titre: 'Véhicule · marque' },
+  { id: '1.2', titre: 'Véhicule · modèle' },
+  { id: '1.3', titre: 'Véhicule · longueur & montage' },
+  { id: '2.1', titre: 'Kit, options & devis' },
+  { id: '3.1', titre: 'Coordonnées' },
+  { id: '3.2', titre: 'Confirmation' },
+]
+const SECTIONS_ETAPE_2 = [
+  'Options du kit',
+  'Vitrage · Isolation · Aération',
+  'Parois · Plafond · Plancher',
+  'Électricité',
+  'Mise en eau',
+  'WC · Électroménager',
+  'Chauffage',
+  'Accessoires',
+]
+const TITRES_SECTION = { 'Accessoires': 'Avez-vous pensé à ceci ?' }
+const SECTION_SERVICES = 'Services & montage'
+
+const etatVide = () => ({
+  etape: 0,
+  situation: null,        // je-lai-deja | je-sais-lequel | pas-encore
+  marque: null,
+  vehiculeId: null,
+  longueur: null,         // étiquette, telle qu'affichée
+  montage: null,          // 'soi-meme' | 'atelier'
+  vasp: false,
+  kit: null,              // code : Travel / Mado / Madel
+  finition: null,         // Soft / Triply / Best
+  options: {},            // id -> true
+  attributs: { sol: '', stratifie: '', literie: '' },
+  coordonnees: {},
+  retours: [],            // { etape, texte, date }
+  verdicts: {},           // idRegle -> { verdict, commentaire }
+})
+
+let C = null              // catalogue.json
+let etat = etatVide()
+const parId = new Map()   // id option -> option
+
+function charger() {
+  try {
+    const brut = localStorage.getItem(CLE)
+    if (brut) etat = Object.assign(etatVide(), JSON.parse(brut))
+  } catch (e) { /* stockage indisponible : on repart d'un état vide */ }
+}
+function sauver() {
+  try { localStorage.setItem(CLE, JSON.stringify(etat)) } catch (e) { /* ignoré */ }
+}
+
+/* ------------------------------------------------------------- utilitaires - */
+
+const $ = (sel) => document.querySelector(sel)
+const ech = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => (
+  { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+
+/** Toute donnée absente du catalogue s'affiche comme manquante, jamais inventée. */
+function ou(valeur) {
+  const v = (valeur ?? '').toString().trim()
+  return v ? ech(v) : '<span class="manquant">⚠️ donnée manquante</span>'
+}
+const euros = (n) => (typeof n === 'number' && isFinite(n))
+  ? n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'
+  : null
+const eurosOu = (n) => euros(n) ?? '<span class="manquant">⚠️ prix manquant</span>'
+
+const vehicule = () => C.vehicules.find((v) => v.id === etat.vehiculeId) ?? null
+const finition = () => C.finitions.find((f) => f.code === etat.finition) ?? null
+const kit = () => C.kits.find((k) => k.code === etat.kit) ?? null
+const regle = (id) => C.regles.find((r) => r.id === id) ?? null
+
+function gabaritCourant() {
+  const v = vehicule()
+  if (!v || !etat.longueur) return null
+  return v.longueurs.find((l) => l.etiquette === etat.longueur)?.gabarit ?? null
+}
+
+/** Les deux lignes de la section « Services & montage », retrouvées par leur ordre. */
+const optionService = (ordre) =>
+  C.options.find((o) => o.section === SECTION_SERVICES && o.ordre === ordre) ?? null
+const optMontage = () => optionService(1)
+const optVasp = () => optionService(2)
+
+/** Une ligne est proposable au client si Willy ne l'a ni retirée ni laissée à créer. */
+const publiable = (o) => o.statut !== 'Retiré' && o.statut !== 'À créer'
+
+/* ------------------------------------------------- disponibilité d'une ligne */
+
+/**
+ * Renvoie { etat: 'ok' | 'masque' | 'bloque', motif, regles }.
+ * Tout vient des colonnes de la base : aucune compatibilité n'est écrite en dur ici.
+ */
+function disponibilite(o) {
+  const v = vehicule()
+  const g = gabaritCourant()
+
+  if (o.kits_compatibles.length && etat.kit && !o.kits_compatibles.includes(etat.kit)) {
+    return { etat: 'masque' }
+  }
+  if (o.finitions_requises.length && etat.finition && !o.finitions_requises.includes(etat.finition)) {
+    return {
+      etat: 'bloque',
+      motif: o.motif_si_non_disponible || `Nécessite la finition ${o.finitions_requises.join(' ou ')}.`,
+      regles: o.regles,
+    }
+  }
+  if (o.longueurs_compatibles.length && g && !o.longueurs_compatibles.includes(g)) {
+    const base = o.motif_si_non_disponible || 'Cette option demande une autre longueur de véhicule.'
+    return { etat: 'bloque', motif: `${base} Votre véhicule est un ${etat.longueur}.`, regles: o.regles }
+  }
+  if (o.plateformes_requises.length) {
+    const code = v?.plateforme_code
+    if (!code || !o.plateformes_requises.includes(code)) {
+      const base = o.motif_si_non_disponible || `Réservé aux plateformes ${o.plateformes_requises.join(', ')}.`
+      const dit = v ? ` Votre véhicule est sur ${v.plateforme || 'une plateforme non tracée'}.` : ''
+      return { etat: 'bloque', motif: base + dit, regles: o.regles }
+    }
+  }
+  for (const idDep of o.depend_de) {
+    if (!etat.options[idDep]) {
+      const dep = parId.get(idDep)
+      const base = o.motif_si_non_disponible || 'Une autre option est nécessaire avant celle-ci.'
+      return { etat: 'bloque', motif: `${base} (${dep ? dep.nom : 'option inconnue'} n'est pas coché.)`, regles: o.regles }
+    }
+  }
+  for (const idInc of o.incompatible_avec) {
+    if (etat.options[idInc]) {
+      const inc = parId.get(idInc)
+      const base = o.motif_si_non_disponible || 'Cette option est incompatible avec une option déjà retenue.'
+      return { etat: 'bloque', motif: `${base} (${inc ? inc.nom : 'option inconnue'} est coché.)`, regles: o.regles }
+    }
+  }
+  return { etat: 'ok' }
+}
+
+/** Décoche ce qui n'est plus disponible, pour que le total reste honnête. */
+function nettoyerSelections() {
+  let change
+  do {
+    change = false
+    for (const id of Object.keys(etat.options)) {
+      const o = parId.get(id)
+      if (!o) { delete etat.options[id]; change = true; continue }
+      if (disponibilite(o).etat !== 'ok') { delete etat.options[id]; change = true }
+    }
+  } while (change)
+}
+
+/* ------------------------------------------------------------------ devis -- */
+
+/**
+ * Le récapitulatif de la maquette 3.1 affiche une seule ligne « Prix du kit »,
+ * égale au prix de la finition. C'est la règle appliquée ici — elle est en
+ * attente de validation, comme tout le reste.
+ */
+function devis() {
+  const lignes = []
+  const f = finition(), k = kit()
+  if (k && f) {
+    lignes.push({ libelle: `Prix du kit — ${k.nom} · ${f.nom}`, montant: f.prix_ttc })
+  }
+  if (etat.montage === 'atelier') {
+    const m = optMontage()
+    if (m) lignes.push({ libelle: m.nom, montant: m.prix_ttc })
+  }
+  if (etat.vasp) {
+    const w = optVasp()
+    if (w) lignes.push({ libelle: w.nom, montant: w.prix_ttc })
+  }
+  for (const o of C.options) {
+    if (o.section === SECTION_SERVICES) continue
+    if (etat.options[o.id]) lignes.push({ libelle: o.nom, montant: o.prix_ttc })
+  }
+  const total = lignes.reduce((s, l) => s + (typeof l.montant === 'number' ? l.montant : 0), 0)
+  const incomplet = lignes.some((l) => typeof l.montant !== 'number')
+  return { lignes, total, incomplet }
+}
+
+/* ----------------------------------------------------------------- rendu --- */
+
+function rendre() {
+  nettoyerSelections()
+  sauver()
+  const e = ETAPES[etat.etape]
+  $('#compteur').textContent = etat.etape === -1
+    ? 'Règles du configurateur'
+    : `${e.id} · ${e.titre} — ${etat.etape + 1} sur ${ETAPES.length}`
+  $('#page').innerHTML = etat.etape === -1 ? vueRegles() : [
+    vue11, vue12, vue13, vue21, vue31, vue32,
+  ][etat.etape]()
+  rendreBarre()
+  brancher()
+  window.scrollTo({ top: 0 })
+}
+
+function rendreBarre() {
+  const d = devis()
+  const v = vehicule()
+  const bouts = [
+    etat.kit ? `Kit ${etat.kit}` : null,
+    etat.finition,
+    v ? `${v.marque} ${v.modele}` : null,
+    etat.longueur,
+  ].filter(Boolean)
+  $('#barre-config').textContent = bouts.length ? bouts.join(' · ') : 'Configuration en cours'
+  $('#barre-total').innerHTML = eurosOu(d.total) + (d.incomplet ? ' <span class="manquant">(incomplet)</span>' : '')
+  $('#btn-prec').disabled = etat.etape <= 0
+  $('#btn-suiv').disabled = etat.etape === -1 || etat.etape >= ETAPES.length - 1 || !etapeComplete()
+  $('#btn-suiv').textContent = etat.etape === ETAPES.length - 2 ? 'Envoyer ma demande' : 'Suivante'
+  $('#btn-souci').style.display = etat.etape === -1 ? 'none' : ''
+}
+
+function etapeComplete() {
+  switch (etat.etape) {
+    case 0: return !!etat.marque
+    case 1: return !!etat.vehiculeId
+    case 2: return !!etat.longueur && !!etat.montage
+    case 3: return !!etat.kit && !!etat.finition
+    case 4: return !!etat.coordonnees.email && !!etat.coordonnees.nom && etat.coordonnees.rgpd
+    default: return true
+  }
+}
+
+/* --------------------------------------------------------------- vue 1.1 --- */
+
+function vue11() {
+  const marques = [...new Set(C.vehicules.filter((v) => v.statut !== 'Retiré').map((v) => v.marque))]
+  const compte = (m) => C.vehicules.filter((v) => v.marque === m && v.statut !== 'Retiré').length
+  const cartes = marques.map((m) => `
+    <button type="button" class="choix" data-marque="${ech(m)}" aria-pressed="${etat.marque === m}"
+            style="flex-direction:column;align-items:stretch">
+      <span class="visuel carte">visuel attendu : van ${ech(m)}</span>
+      <span class="corps"><span class="titre">${ou(m)}</span>
+      <span class="sous">${compte(m)} modèle${compte(m) > 1 ? 's' : ''}</span></span>
+    </button>`).join('')
+
+  return `
+  <h1>Choisissons le véhicule.</h1>
+  <p class="chapo">Le véhicule détermine tout le reste : les kits compatibles, les longueurs et les tarifs.</p>
+  <div class="bloc">
+    <h3>Où en êtes-vous côté véhicule ?</h3>
+    <div class="pile">
+      ${tuileSituation('je-lai-deja', "Je l'ai déjà", 'Vous connaissez le modèle exact à aménager.')}
+      ${tuileSituation('je-sais-lequel', 'Je sais lequel je veux', "Le modèle est arrêté, le véhicule n'est pas encore à vous.")}
+      ${tuileSituation('pas-encore', 'Pas encore de modèle', "Kapam vend des véhicules neufs et d'occasion.")}
+    </div>
+  </div>
+  <div class="bloc">
+    <h3>La marque</h3>
+    <div class="grille">${cartes}</div>
+  </div>`
+}
+
+const tuileSituation = (cle, titre, sous) => `
+  <button type="button" class="choix" data-situation="${cle}" aria-pressed="${etat.situation === cle}">
+    <span class="corps"><span class="titre">${ech(titre)}</span><span class="sous">${ech(sous)}</span></span>
+  </button>`
+
+/* --------------------------------------------------------------- vue 1.2 --- */
+
+function vue12() {
+  const modeles = C.vehicules.filter((v) => v.marque === etat.marque && v.statut !== 'Retiré')
+  const cartes = modeles.map((v) => {
+    const aCreer = v.statut === 'À créer'
+    const longueurs = v.longueurs.map((l) => l.etiquette).join(' · ')
+    return `
+    <button type="button" class="choix" data-vehicule="${v.id}" aria-pressed="${etat.vehiculeId === v.id}"
+            ${aCreer ? 'disabled' : ''} style="flex-direction:column;align-items:stretch">
+      <span class="visuel carte">visuel attendu : ${ech(v.marque)} ${ech(v.modele)}</span>
+      <span class="corps">
+        <span class="titre">${ou(v.modele)}</span>
+        <span class="sous">${ou(v.millesime)} · ${ou(longueurs)}</span>
+        <span class="sous">${v.kits.length ? 'Kits : ' + ech(v.kits.join(' · ')) : '<span class="manquant">⚠️ aucun kit rattaché</span>'}</span>
+        ${aCreer ? '<span class="sous"><span class="badge info">gamme à créer</span></span>' : ''}
+      </span>
+    </button>`
+  }).join('')
+
+  return `
+  <h1>Commençons par votre véhicule.</h1>
+  <p class="chapo">${ou(etat.marque)} — choisissez le modèle exact.</p>
+  <div class="bloc"><h3>Le modèle</h3><div class="grille">${cartes}</div></div>
+  ${modeles.some((v) => v.commentaire) ? `<div class="note"><strong>Ce qu'on a relevé sur cette marque.</strong><ul class="retour-liste" style="margin:8px 0 0;padding-left:18px">
+    ${modeles.filter((v) => v.commentaire).map((v) => `<li><strong>${ech(v.modele)}</strong> — ${ech(v.commentaire)}</li>`).join('')}
+  </ul></div>` : ''}`
+}
+
+/* --------------------------------------------------------------- vue 1.3 --- */
+
+function vue13() {
+  const v = vehicule()
+  const m = optMontage(), w = optVasp()
+  const longueurs = v.longueurs.map((l) => `
+    <button type="button" class="choix" data-longueur="${ech(l.etiquette)}" aria-pressed="${etat.longueur === l.etiquette}">
+      <span class="corps"><span class="titre">${ou(l.etiquette)}</span>
+      <span class="sous">gabarit ${ech(l.gabarit)}</span></span>
+    </button>`).join('')
+
+  return `
+  <h1>Commençons par votre véhicule.</h1>
+  <p class="chapo">Le véhicule détermine tout le reste : les kits compatibles, les longueurs et les tarifs.</p>
+
+  <div class="bloc">
+    <h3>Le véhicule</h3>
+    <p><strong>${ou(v.marque)} ${ou(v.modele)}</strong> — ${ou(v.millesime)}</p>
+    <p class="sous" style="color:var(--gris-5);font-size:13px;margin-top:4px">
+      Plateforme ${ou(v.plateforme)} · Nomenclature affichée : ${ou(v.nomenclature)}
+    </p>
+  </div>
+
+  <div class="bloc">
+    <h3>La longueur</h3>
+    <div class="deux">${longueurs}</div>
+    <p class="sous" style="color:var(--gris-5);font-size:13px;margin-top:10px">
+      Kits compatibles : ${v.kits.length ? ech(v.kits.map((k) => 'Kit ' + k).join(' · ')) : '<span class="manquant">⚠️ donnée manquante</span>'}
+    </p>
+  </div>
+
+  <div class="bloc">
+    <h3>Le montage</h3>
+    <div class="pile">
+      <button type="button" class="choix" data-montage="soi-meme" aria-pressed="${etat.montage === 'soi-meme'}">
+        <span class="corps"><span class="titre">Je monte moi-même</span>
+        <span class="sous">Kapam vous livre le kit prêt à poser.</span></span>
+        <span class="prix">inclus</span>
+      </button>
+      <button type="button" class="choix" data-montage="atelier" aria-pressed="${etat.montage === 'atelier'}">
+        <span class="corps"><span class="titre">${m ? ou(m.nom) : '<span class="manquant">⚠️ donnée manquante</span>'}</span>
+        <span class="sous">${m ? ou(m.sous_libelle) : ''}</span></span>
+        <span class="prix">${m ? '+ ' + eurosOu(m.prix_ttc) : ''}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="bloc">
+    <h3>Homologation</h3>
+    <div class="ligne">
+      <input type="checkbox" id="vasp" ${etat.vasp ? 'checked' : ''}>
+      <span class="corps">
+        <label for="vasp" class="titre" style="cursor:pointer">${w ? ou(w.nom) : '<span class="manquant">⚠️ donnée manquante</span>'}</label>
+        <span class="sous">${w ? ou(w.sous_libelle) : ''}</span>
+      </span>
+      <span class="droite">${w ? '+ ' + eurosOu(w.prix_ttc) : ''}</span>
+    </div>
+    <div class="note">
+      Dans les maquettes, l'homologation VASP est <strong>facturée au récapitulatif mais sélectionnable nulle part</strong>.
+      On l'a placée ici, à côté du montage, comme vous l'aviez suggéré. Dites-nous si c'est le bon endroit.
+      ${lienRegle(w ? w.regles : [])}
+    </div>
+  </div>`
+}
+
+/* --------------------------------------------------------------- vue 2.1 --- */
+
+function vue21() {
+  const v = vehicule()
+  const kitsDispo = C.kits.filter((k) => v.kits.includes(k.code))
+  const k = kit(), f = finition()
+
+  const cartesKit = kitsDispo.length ? kitsDispo.map((x) => `
+    <button type="button" class="choix" data-kit="${ech(x.code)}" aria-pressed="${etat.kit === x.code}">
+      <span class="visuel" style="width:78px;min-height:56px;flex:none">visuel attendu :<br>${ech(x.nom)}</span>
+      <span class="corps"><span class="titre">${ou(x.nom)}</span><span class="sous">${ou(x.sous_libelle)}</span>
+      ${x.prix_source === 'Non tracé' ? '<span class="sous"><span class="badge nc">prix non tracé</span></span>' : ''}</span>
+      <span class="prix">à partir de ${eurosOu(x.prix_ttc)}</span>
+    </button>`).join('')
+    : `<p class="manquant">⚠️ Aucun kit n'est rattaché à ce véhicule dans la base. Rien à proposer ici.</p>`
+
+  const tuilesFinition = C.finitions.map((x) => `
+    <button type="button" class="choix" data-finition="${ech(x.code)}" aria-pressed="${etat.finition === x.code}">
+      <span class="visuel" style="width:34px;height:34px;min-height:34px;flex:none;font-size:0">&nbsp;</span>
+      <span class="corps"><span class="titre">${ou(x.nom)}</span><span class="sous">${ou(x.sous_libelle)}</span></span>
+      <span class="prix">${eurosOu(x.prix_ttc)} TTC</span>
+    </button>`).join('')
+
+  const ecartKit = (k && f && typeof k.prix_ttc === 'number' && typeof f.prix_ttc === 'number' && k.prix_ttc !== f.prix_ttc)
+    ? `<div class="note"><strong>Prix à trancher.</strong> Le ${ech(k.nom)} est affiché à ${eurosOu(k.prix_ttc)} sur sa carte,
+       la finition ${ech(f.nom)} à ${eurosOu(f.prix_ttc)}. Le devis ci-dessous retient le prix de la finition.
+       Est-ce la bonne lecture ?</div>` : ''
+
+  // Upsell conditionnel : piloté par la colonne « Finitions requises ».
+  const upsells = C.options.filter((o) => publiable(o) && o.finitions_requises.length
+    && etat.finition && o.finitions_requises.includes(etat.finition))
+  const encartUpsell = upsells.map((o) => `
+    <div class="bloc" style="border-color:var(--encre)">
+      <h3>Recommandé avec la finition ${ech(etat.finition)}</h3>
+      <div class="ligne" style="border:none;padding:0">
+        <input type="checkbox" data-option="${o.id}" ${etat.options[o.id] ? 'checked' : ''}>
+        <span class="corps"><span class="titre">${ou(o.nom)}</span><span class="sous">${ou(o.sous_libelle)}</span></span>
+        <span class="droite">+ ${eurosOu(o.prix_ttc)}</span>
+      </div>
+      ${lienRegle(o.regles)}
+    </div>`).join('')
+
+  const sections = (k && f) ? SECTIONS_ETAPE_2.map(rendreSection).join('') : ''
+
+  const attributs = (k && f) ? `
+    <div class="bloc">
+      <h3>Personnalisation · incluse</h3>
+      <p class="chapo" style="margin-bottom:12px">Des attributs de votre aménagement, pas des produits payants.</p>
+      <div class="pile">
+        ${champAttribut('sol', 'Nuancier de sol')}
+        ${champAttribut('stratifie', 'Couleurs stratifié')}
+        ${champAttribut('literie', 'Housses literie')}
+      </div>
+      <p class="sous" style="color:var(--gris-5);font-size:12.5px;margin-top:10px">
+        Les valeurs de ces trois listes ne sont dans aucune base : <span class="manquant">⚠️ donnée manquante</span>.
+        Il nous faut vos nuanciers pour les remplir.
+      </p>
+    </div>` : ''
+
+  return `
+  <h1>Choisissez votre kit et sa finition.</h1>
+  <p class="chapo">Le kit définit l'agencement. La finition règle les matériaux — et pilote le tarif du kit comme celui de plusieurs options.</p>
+
+  <div class="bloc"><h3>Kit — compatible ${ou(v.marque + ' ' + v.modele)}</h3><div class="pile">${cartesKit}</div></div>
+  <div class="bloc"><h3>Finition — ${C.finitions.length} disponible${C.finitions.length > 1 ? 's' : ''}</h3><div class="pile">${tuilesFinition}</div></div>
+  ${ecartKit}
+  ${encartUpsell}
+  ${(k && f) ? '' : '<p class="chapo">Choisissez un kit et une finition pour voir les options.</p>'}
+  ${sections}
+  ${attributs}
+  ${(k && f) ? blocRecap() : ''}`
+}
+
+function champAttribut(cle, libelle) {
+  return `<div>
+    <label class="champ" for="att-${cle}">${ech(libelle)}</label>
+    <select id="att-${cle}" data-attribut="${cle}">
+      <option value="">— Choisir —</option>
+      <option value="à préciser"${etat.attributs[cle] === 'à préciser' ? ' selected' : ''}>à préciser avec l'atelier</option>
+    </select>
+  </div>`
+}
+
+function rendreSection(section) {
+  const lignes = C.options
+    .filter((o) => o.section === section && publiable(o))
+    .filter((o) => !o.finitions_requises.length || !etat.finition || !o.finitions_requises.includes(etat.finition))
+    .map((o) => ({ o, d: disponibilite(o) }))
+    .filter((x) => x.d.etat !== 'masque')
+
+  if (!lignes.length) return ''
+  const titre = TITRES_SECTION[section]
+    ?? (section === 'Options du kit' ? `Personnalisez votre ${kit() ? kit().nom : 'kit'}` : section)
+
+  return `<div class="bloc"><h3>${ech(titre)}</h3><div class="pile">
+    ${lignes.map(({ o, d }) => ligneOption(o, d)).join('')}
+  </div></div>`
+}
+
+function ligneOption(o, d) {
+  const bloquee = d.etat === 'bloque'
+  return `<div class="ligne ${bloquee ? 'bloquee' : ''}">
+    <input type="checkbox" data-option="${o.id}" ${etat.options[o.id] ? 'checked' : ''} ${bloquee ? 'disabled' : ''}>
+    <span class="corps">
+      <span class="titre">${ou(o.nom)}</span>
+      ${o.sous_libelle ? `<span class="sous">${ech(o.sous_libelle)}</span>` : ''}
+      ${o.variantes ? `<span class="sous"><span class="badge info">versions</span> ${ech(o.variantes)}</span>` : ''}
+      ${!o.visuels.length ? '<span class="sous" style="color:var(--gris-4)">visuel attendu — aucune photo dans la base</span>' : ''}
+      ${bloquee ? `<span class="motif">Motif : ${ech(d.motif)} ${lienRegle(d.regles)}</span>` : ''}
+    </span>
+    <span class="droite">
+      ${bloquee ? '<span class="badge nc">Non compatible</span><br>' : ''}
+      ${o.prix_ttc === 0 ? 'inclus' : '+ ' + eurosOu(o.prix_ttc)}
+      ${o.prix_source === 'Non tracé' ? '<br><span class="badge nc">prix non tracé</span>' : ''}
+    </span>
+  </div>`
+}
+
+function lienRegle(ids) {
+  const vraies = (ids ?? []).map(regle).filter(Boolean)
+  if (!vraies.length) return ''
+  return `<a href="#regles" class="voir-regle" data-regle="${vraies[0].id}">Voir la règle</a>`
+}
+
+function blocRecap() {
+  const d = devis()
+  return `<div class="bloc">
+    <h3>Récapitulatif de votre configuration</h3>
+    <p class="chapo" style="margin-bottom:12px">Vérifiez, puis envoyez. Aucun engagement — un conseiller vous répond sous 48 h.</p>
+    <table class="recap">
+      ${d.lignes.map((l) => `<tr><td>${ech(l.libelle)}</td><td>${eurosOu(l.montant)}</td></tr>`).join('')
+        || '<tr><td colspan="2" class="manquant">Rien de chiffré pour l\'instant.</td></tr>'}
+      <tr class="total"><td>Total indicatif TTC</td><td>${eurosOu(d.total)}</td></tr>
+    </table>
+    <p class="sous" style="color:var(--gris-5);font-size:12.5px;margin-top:8px">Prix indicatif. Devis personnalisé sous 48 h.</p>
+  </div>`
+}
+
+/* --------------------------------------------------------------- vue 3.1 --- */
+
+function vue31() {
+  const c = etat.coordonnees
+  const d = devis()
+  return `
+  <h1>Vos coordonnées.</h1>
+  <p class="chapo">Votre configuration est enregistrée. Dites-nous où vous joindre : l'atelier vous répond sous 48 h ouvrées avec un devis chiffré.</p>
+
+  <div class="bloc">
+    <h3>Vos coordonnées</h3>
+    <div class="pile">
+      <div class="deux">
+        <div><label class="champ" for="c-prenom">Prénom</label><input type="text" id="c-prenom" data-coord="prenom" value="${ech(c.prenom ?? '')}"></div>
+        <div><label class="champ" for="c-nom">Nom</label><input type="text" id="c-nom" data-coord="nom" value="${ech(c.nom ?? '')}"></div>
+      </div>
+      <div><label class="champ" for="c-email">Adresse e-mail</label><input type="email" id="c-email" data-coord="email" value="${ech(c.email ?? '')}"></div>
+      <div class="deux">
+        <div><label class="champ" for="c-tel">Téléphone (optionnel)</label><input type="tel" id="c-tel" data-coord="tel" value="${ech(c.tel ?? '')}"></div>
+        <div><label class="champ" for="c-cp">Code postal</label><input type="text" id="c-cp" data-coord="cp" value="${ech(c.cp ?? '')}"></div>
+      </div>
+      <div><label class="champ" for="c-mot">Quelque chose à préciser sur votre projet ? (optionnel)</label><textarea id="c-mot" rows="3" data-coord="mot">${ech(c.mot ?? '')}</textarea></div>
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13.5px">
+        <input type="checkbox" id="c-rgpd" data-coord="rgpd" ${c.rgpd ? 'checked' : ''} style="margin-top:3px">
+        <span>J'accepte que Kapam utilise mes données pour répondre à ma demande.</span>
+      </label>
+    </div>
+    <p class="sous" style="color:var(--gris-5);font-size:12.5px;margin-top:10px">
+      Prototype : rien n'est envoyé nulle part, tout reste dans votre navigateur.
+    </p>
+  </div>
+
+  <div class="bloc">
+    <h3>Votre demande</h3>
+    <table class="recap">
+      ${d.lignes.map((l) => `<tr><td>${ech(l.libelle)}</td><td>${eurosOu(l.montant)}</td></tr>`).join('')}
+      <tr class="total"><td>Total indicatif TTC</td><td>${eurosOu(d.total)}</td></tr>
+    </table>
+    <p class="sous" style="color:var(--gris-5);font-size:12.5px;margin-top:8px">Prix indicatif. Devis personnalisé sous 48 h.</p>
+  </div>`
+}
+
+/* --------------------------------------------------------------- vue 3.2 --- */
+
+function vue32() {
+  const d = devis()
+  const v = vehicule()
+  return `
+  <h1>Merci, votre demande est partie.</h1>
+  <p class="chapo">Un conseiller de l'atelier Kapam vous recontacte sous 48 h ouvrées, par e-mail. Vous recevez d'ici quelques minutes un récapitulatif de votre configuration.</p>
+
+  <div class="bloc">
+    <h3>Référence de votre demande</h3>
+    <p style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:17px">${ech(reference())}</p>
+    <p class="sous" style="color:var(--gris-5);font-size:12.5px;margin-top:6px">
+      Référence fabriquée par le prototype pour la démonstration. Le format définitif reste à décider.
+    </p>
+  </div>
+
+  <div class="bloc">
+    <h3>Ce qui se passe maintenant</h3>
+    <ol class="retour-liste" style="padding-left:18px;margin:0">
+      <li><strong>On vérifie la faisabilité sur votre véhicule.</strong> Certaines cotes changent selon le millésime — c'est là que le devis se précise.</li>
+      <li><strong>Un conseiller vous écrit ou vous appelle.</strong></li>
+      <li><strong>Vous recevez votre devis chiffré.</strong> Valable 30 jours. Aucun engagement tant que vous ne l'avez pas signé.</li>
+    </ol>
+  </div>
+
+  <div class="bloc">
+    <h3>Votre demande</h3>
+    <p style="font-size:13.5px;color:var(--gris-5);margin-bottom:8px">
+      ${v ? ech(`${v.marque} ${v.modele}`) : '—'} · ${ou(etat.longueur)} · ${etat.kit ? 'Kit ' + ech(etat.kit) : '—'} · ${ou(etat.finition)}
+    </p>
+    <table class="recap">
+      ${d.lignes.map((l) => `<tr><td>${ech(l.libelle)}</td><td>${eurosOu(l.montant)}</td></tr>`).join('')}
+      <tr class="total"><td>Total indicatif TTC</td><td>${eurosOu(d.total)}</td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>Vous avez fini le parcours.</strong> L'étape la plus utile pour nous est maintenant l'écran
+    <button type="button" id="aller-regles" style="background:none;border:none;padding:0;text-decoration:underline;color:inherit;cursor:pointer">Règles du configurateur</button> :
+    c'est là que vous nous dites ce qui est juste et ce qui est faux.
+  </div>`
+}
+
+function reference() {
+  const n = (JSON.stringify(etat).length % 9000) + 1000
+  return `KP-${new Date().getFullYear()}-${String(n).padStart(4, '0')}`
+}
+
+/* ------------------------------------------------------------- vue règles -- */
+
+function vueRegles() {
+  const types = [...new Set(C.regles.map((r) => r.type))]
+  const blocs = types.map((t) => {
+    const lot = C.regles.filter((r) => r.type === t)
+    return `<div class="bloc"><h3>${ech(t)} — ${lot.length}</h3>
+      ${lot.map(carteRegle).join('')}
+    </div>`
+  }).join('')
+
+  const traites = Object.keys(etat.verdicts).length
+  return `
+  <h1>Les règles du configurateur.</h1>
+  <p class="chapo">
+    Voici tout ce que nous avons compris du fonctionnement de votre configurateur, écrit en français.
+    Pour chaque phrase : dites-nous si c'est juste ou si c'est faux. C'est ce document qui deviendra
+    le cahier des charges de Nathan.
+  </p>
+  <div class="note">${traites} règle${traites > 1 ? 's' : ''} sur ${C.regles.length} ${traites > 1 ? 'ont' : 'a'} déjà votre avis.</div>
+  ${blocs}
+  <div style="margin:20px 0 10px">
+    <button type="button" class="btn fantome" id="retour-parcours">Revenir au parcours</button>
+    <button type="button" class="btn" id="exporter-ici">Exporter mes retours</button>
+  </div>`
+}
+
+function carteRegle(r) {
+  const v = etat.verdicts[r.id] ?? {}
+  return `<div class="regle" id="regle-${r.id}">
+    <p class="phrase">${ou(r.regle)}</p>
+    <dl>
+      <dt>Quand</dt><dd>${ou(r.condition)}</dd>
+      <dt>Alors</dt><dd>${ou(r.effet)}</dd>
+      <dt>D'où ça vient</dt><dd>${ou(r.source)}</dd>
+    </dl>
+    <div class="verdicts">
+      <button type="button" class="btn fantome petit" data-verdict="juste" data-regle-id="${r.id}"
+              aria-pressed="${v.verdict === 'juste'}">C'est juste</button>
+      <button type="button" class="btn fantome petit" data-verdict="faux" data-regle-id="${r.id}"
+              aria-pressed="${v.verdict === 'faux'}">C'est faux</button>
+      ${v.verdict ? `<span class="badge info">${v.verdict === 'juste' ? 'validé' : 'à corriger'}</span>` : ''}
+    </div>
+    <div style="margin-top:9px">
+      <label class="champ sr" for="com-${r.id}">Commentaire</label>
+      <textarea id="com-${r.id}" rows="2" data-commentaire="${r.id}"
+        placeholder="Ce qui cloche, ou la bonne formulation…">${ech(v.commentaire ?? '')}</textarea>
+    </div>
+  </div>`
+}
+
+/* ------------------------------------------------------------- évènements -- */
+
+function brancher() {
+  const page = $('#page')
+
+  page.querySelectorAll('[data-situation]').forEach((b) => b.onclick = () => {
+    etat.situation = b.dataset.situation; rendre()
+  })
+  page.querySelectorAll('[data-marque]').forEach((b) => b.onclick = () => {
+    if (etat.marque !== b.dataset.marque) {
+      etat.marque = b.dataset.marque
+      etat.vehiculeId = null; etat.longueur = null; etat.kit = null; etat.finition = null; etat.options = {}
+    }
+    etat.etape = 1; rendre()
+  })
+  page.querySelectorAll('[data-vehicule]').forEach((b) => b.onclick = () => {
+    if (etat.vehiculeId !== b.dataset.vehicule) {
+      etat.vehiculeId = b.dataset.vehicule
+      etat.longueur = null; etat.kit = null; etat.finition = null; etat.options = {}
+    }
+    etat.etape = 2; rendre()
+  })
+  page.querySelectorAll('[data-longueur]').forEach((b) => b.onclick = () => {
+    etat.longueur = b.dataset.longueur; rendre()
+  })
+  page.querySelectorAll('[data-montage]').forEach((b) => b.onclick = () => {
+    etat.montage = b.dataset.montage; rendre()
+  })
+  const vasp = page.querySelector('#vasp')
+  if (vasp) vasp.onchange = () => { etat.vasp = vasp.checked; rendre() }
+
+  page.querySelectorAll('[data-kit]').forEach((b) => b.onclick = () => {
+    if (etat.kit !== b.dataset.kit) { etat.kit = b.dataset.kit; etat.options = {} }
+    rendre()
+  })
+  page.querySelectorAll('[data-finition]').forEach((b) => b.onclick = () => {
+    etat.finition = b.dataset.finition; rendre()
+  })
+  page.querySelectorAll('[data-option]').forEach((c) => c.onchange = () => {
+    if (c.checked) etat.options[c.dataset.option] = true
+    else delete etat.options[c.dataset.option]
+    rendre()
+  })
+  page.querySelectorAll('[data-attribut]').forEach((s) => s.onchange = () => {
+    etat.attributs[s.dataset.attribut] = s.value; sauver()
+  })
+  page.querySelectorAll('[data-coord]').forEach((el) => el.oninput = el.onchange = () => {
+    etat.coordonnees[el.dataset.coord] = el.type === 'checkbox' ? el.checked : el.value
+    sauver(); rendreBarre()
+  })
+
+  page.querySelectorAll('.voir-regle').forEach((a) => a.onclick = (ev) => {
+    ev.preventDefault(); ouvrirRegles(a.dataset.regle)
+  })
+  page.querySelectorAll('[data-verdict]').forEach((b) => b.onclick = () => {
+    const id = b.dataset.regleId
+    const v = etat.verdicts[id] ?? {}
+    v.verdict = v.verdict === b.dataset.verdict ? null : b.dataset.verdict
+    if (!v.verdict && !v.commentaire) delete etat.verdicts[id]; else etat.verdicts[id] = v
+    rendre()
+  })
+  page.querySelectorAll('[data-commentaire]').forEach((t) => t.oninput = () => {
+    const id = t.dataset.commentaire
+    const v = etat.verdicts[id] ?? {}
+    v.commentaire = t.value
+    if (!v.verdict && !v.commentaire) delete etat.verdicts[id]; else etat.verdicts[id] = v
+    sauver()
+  })
+
+  const retour = page.querySelector('#retour-parcours')
+  if (retour) retour.onclick = () => { etat.etape = etat.etapeAvant ?? 3; rendre() }
+  const exporterIci = page.querySelector('#exporter-ici')
+  if (exporterIci) exporterIci.onclick = ouvrirExport
+  const allerRegles = page.querySelector('#aller-regles')
+  if (allerRegles) allerRegles.onclick = () => ouvrirRegles()
+}
+
+function ouvrirRegles(idCible) {
+  if (etat.etape !== -1) etat.etapeAvant = etat.etape
+  etat.etape = -1
+  rendre()
+  if (idCible) {
+    const el = document.getElementById('regle-' + idCible)
+    if (el) el.scrollIntoView({ block: 'center' })
+  }
+}
+
+/* ------------------------------------------------------------- retours ----- */
+
+function ouvrirSouci() {
+  const e = ETAPES[etat.etape]
+  $('#souci-etape').textContent = etat.etape === -1
+    ? 'Règles du configurateur'
+    : `Étape ${e.id} — ${e.titre}`
+  $('#souci-texte').value = ''
+  $('#modale-souci').showModal()
+}
+
+function etiquetteEtape(i) {
+  if (i === -1) return 'RÈGLES'
+  const e = ETAPES[i]
+  return `ÉTAPE ${e.id} — ${e.titre.toUpperCase()}`
+}
+
+function texteExport() {
+  const aujourdhui = new Date().toLocaleDateString('fr-FR')
+  const out = [`RETOURS CONFIGURATEUR KAPAM — ${aujourdhui}`, '']
+  let n = 0
+
+  const parEtape = new Map()
+  for (const r of etat.retours) {
+    if (!parEtape.has(r.etape)) parEtape.set(r.etape, [])
+    parEtape.get(r.etape).push(r)
+  }
+  for (const i of [...parEtape.keys()].sort((a, b) => a - b)) {
+    out.push(etiquetteEtape(i))
+    for (const r of parEtape.get(i)) out.push(`${++n}. ${r.texte}`)
+    out.push('')
+  }
+
+  const avis = Object.entries(etat.verdicts).filter(([, v]) => v.verdict || v.commentaire)
+  if (avis.length) {
+    out.push('RÈGLES')
+    for (const [id, v] of avis) {
+      const r = regle(id)
+      const verdict = v.verdict === 'juste' ? "C'EST JUSTE" : v.verdict === 'faux' ? "C'EST FAUX" : 'COMMENTAIRE'
+      out.push(`${++n}. « ${r ? r.regle : id} » → ${verdict}${v.commentaire ? ' : ' + v.commentaire : ''}`)
+    }
+    out.push('')
+  }
+
+  if (n === 0) out.push('(aucun retour enregistré pour le moment)', '')
+
+  const d = devis()
+  const v = vehicule()
+  out.push('CONFIGURATION AU MOMENT DE L\'EXPORT')
+  out.push(`Véhicule : ${v ? `${v.marque} ${v.modele} ${v.millesime}` : '—'} · Longueur : ${etat.longueur ?? '—'}`)
+  out.push(`Kit : ${etat.kit ?? '—'} · Finition : ${etat.finition ?? '—'} · Montage : ${etat.montage ?? '—'} · VASP : ${etat.vasp ? 'oui' : 'non'}`)
+  out.push(`Total indicatif : ${euros(d.total) ?? 'incalculable'}`)
+  return out.join('\n')
+}
+
+function ouvrirExport() {
+  $('#export-texte').value = texteExport()
+  $('#modale-export').showModal()
+}
+
+/* -------------------------------------------------------------- démarrage -- */
+
+function brancherGlobal() {
+  $('#btn-prec').onclick = () => { if (etat.etape > 0) { etat.etape--; rendre() } }
+  $('#btn-suiv').onclick = () => { if (etat.etape < ETAPES.length - 1) { etat.etape++; rendre() } }
+  $('#btn-souci').onclick = ouvrirSouci
+  $('#lien-regles').onclick = () => ouvrirRegles()
+  $('#lien-export').onclick = ouvrirExport
+  $('#lien-reset').onclick = () => {
+    if (confirm('Effacer toute la configuration et tous les retours enregistrés dans ce navigateur ?')) {
+      etat = etatVide(); sauver(); rendre()
+    }
+  }
+  $('#souci-ok').onclick = () => {
+    const texte = $('#souci-texte').value.trim()
+    if (texte) { etat.retours.push({ etape: etat.etape, texte, date: new Date().toISOString() }); sauver() }
+  }
+  $('#export-fermer').onclick = () => $('#modale-export').close()
+  $('#export-copier').onclick = async () => {
+    const zone = $('#export-texte')
+    try { await navigator.clipboard.writeText(zone.value); $('#export-copier').textContent = 'Copié' }
+    catch (e) { zone.select() }
+  }
+}
+
+async function demarrer() {
+  charger()
+  brancherGlobal()
+  try {
+    const reponse = await fetch('catalogue.json', { cache: 'no-store' })
+    if (!reponse.ok) throw new Error('HTTP ' + reponse.status)
+    C = await reponse.json()
+  } catch (e) {
+    $('#page').innerHTML = `<div class="bloc"><h2>Catalogue introuvable</h2>
+      <p class="chapo">Le prototype n'a pas pu lire <code>catalogue.json</code>. Relancez le script de resynchronisation
+      (<code>NOTION_TOKEN=… node notion-sync/sync.mjs</code>) puis redéployez.</p>
+      <p class="manquant" style="margin-top:8px">${ech(e.message)}</p></div>`
+    return
+  }
+  for (const o of C.options) parId.set(o.id, o)
+  $('#pied-genere').textContent = 'Catalogue généré le ' +
+    new Date(C.genere_le).toLocaleString('fr-FR') + ' depuis Notion.'
+  if (etat.etape === -1 && typeof etat.etapeAvant !== 'number') etat.etapeAvant = 0
+  rendre()
+}
+
+demarrer()
+</script>
+</body>
+</html>
