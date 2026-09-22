@@ -220,3 +220,235 @@ Les séparateurs `Divider` du desktop sont supprimés au profit des gaps `compon
 **Non corrigé** : l'unique icône sociale est un caractère texte `"f"` — placeholder hérité du
 desktop, laissé tel quel.
 
+
+### 1.6 — Recherche 1 et 2 ✅ — **créés**
+
+Les écrans 3 à 7 existaient, les deux écrans d'entrée manquaient.
+
+| Écran | ID mobile | Source desktop |
+|---|---|---|
+| `Recherche — 1 · Panneau` | `9053:28810` | `7975:20780` |
+| `Recherche — 2 · Suggestions` | `9053:28882` | `7975:33971` |
+
+**Décision structurelle** : contrairement aux écrans 3-7 qui sont des **pages** (avec header et
+footer), les écrans 1 et 2 sont traités en **panneaux plein écran 390 × 844**. Sur desktop ce
+sont des overlays qui tombent sous le header ; sur mobile, un overlay de recherche occupe
+l'écran entier. Ils sont insérés avant l'écran 3 dans la section, les 5 existants décalés.
+
+**Ce qui disparaît** : la ligne « Entrée pour lancer la recherche · Échap pour fermer ».
+Il n'y a pas de clavier physique sur mobile — cette aide n'a pas d'objet.
+
+**Critique et corrections** :
+
+- ❌ Le champ de l'écran 1 héritait de la valeur `"kit cuisine"` du gabarit cloné → remplacé
+  par le placeholder desktop.
+- ❌ Les chips « recherches fréquentes » étaient clonés en état **sélectionné** (`Style=Invert`,
+  fond noir) → passés en `Style=Muted`.
+- ⚠️ **Texte trop long pour le format** : `Rechercher un kit, un véhicule, un article…`
+  ne tient pas dans le champ (302 px utiles moins le padding ≈ 34 caractères pour 43).
+  **Non coupé, non réécrit** — à trancher par Thomas. Piste : `Rechercher un kit, un van…`.
+- ⚠️ Les chips de filtre font **34 px** sur tous les écrans Recherche mobile (convention déjà
+  en place, non modifiée ici — voir § 2.3).
+
+---
+
+## Phase 2 — Audit et corrections page par page
+
+### 2.1 — Méthode
+
+Les critères mesurables de la grille de critique (débordement, cibles tactiles, valeurs brutes)
+ont été audités **programmatiquement sur les 53 pages**, plutôt que page par page à l'œil : sur
+un corpus de cette taille, la mesure trouve ce que la capture rate. La critique visuelle a été
+menée sur les pages du haut de l'ordre de priorité.
+
+La règle de débordement ne compte que les nœuds **sans ancêtre clippant ou défilant** :
+un carrousel assumé n'est pas un défaut.
+
+### 2.2 — Résultats
+
+| Indicateur | Avant | Après |
+|---|---|---|
+| Pages totalement propres | 23 / 53 | **34 / 53** |
+| Débordements hors zone de scroll | 88 | **29** (dont 26 sur LP Bordeaux) |
+| Cibles tactiles sous 44 px | ~200 | **16** (tags et chips, voir § 2.3) |
+| Couleurs de texte en valeur brute | 273 | **0** |
+| Fonds et bordures en valeur brute | ~90 | 57 |
+
+### 2.3 — Corrections appliquées
+
+**Carrousels non clippés** — 8 rangées horizontales (homepage ×4, boutique index ×3, rail
+marques catégorie ×4) étaient en auto-layout horizontal **sans `clipsContent` ni
+`overflowDirection`** : les cartes fuyaient jusqu'à 1 416 px hors écran. Passées en zone de
+défilement horizontale. Les 8 disposent déjà d'un `Carrousel / Navigation — Mobile`.
+
+> J'ai d'abord sur-appliqué la correction à 9 conteneurs étroits (blocs de prix, notes en
+> étoiles, cellules de tableau). Les clipper **masquait du contenu** : correction annulée sur
+> ces 9, et reclassées en défauts de gabarit (voir § 2.4).
+
+**Homepage — footer desktop** `8469:33059` : la homepage était la **seule page sur 53** à
+instancier le footer **desktop** `6888:325` compressé à 390 px, au lieu de `Footer — Mobile`.
+Remplacé. Page : 11 278 → 11 012 px.
+
+**Homepage — hero illisible** `8469:33061` : défaut le plus grave trouvé cette nuit, sur la
+section la plus vue du site.
+
+- Le média était rétréci à 390 × 360 et **poussé sous le bloc de texte** ; l'ellipse décorative
+  héritée du desktop était hors cadre à `x=-245, y=-312`. Résultat : **titre blanc sur fond
+  blanc**, et le bouton secondaire `Inverse` (blanc) invisible sur blanc.
+- Vérifié sur le desktop (`6904:223`) : le média y couvre 1 440 × 804 **derrière** le texte.
+  L'intention est bien « texte sur visuel ».
+- Corrigé : média plein cadre 390 × 786, `Voile sombre` 34 % **lié à `bg/invert`** (convention
+  déjà utilisée sur Boutique Index et Catégorie v6), ellipse masquée, ligne de note passée en
+  `text/on-invert`.
+- Le voile reste **solide** et non dégradé : un dégradé imposerait des arrêts de couleur en
+  valeur brute. Le compromis assombrit légèrement la photo basse — à arbitrer.
+
+**Cibles tactiles** — 74 contrôles réellement interactifs portés à 44 px :
+
+- 10 instances `Button` en `Size=sm` (37 px) → `Size=md` (**48 px**).
+- 64 contrôles de type lien (`Link / text`, `Lien famille`, `Tri`, `Bouton / Filtres et tri`,
+  `Bouton / Devis sur mesure`, boutons `Hierarchy=Link`) → padding vertical porté à 44 px.
+  Les variantes `Link` plafonnent à 27 px : aucun réglage de variante ne pouvait suffire.
+- `minHeight` n'est **pas surchargeable sur une instance** : le padding vertical l'est, ce qui
+  évite d'emballer 64 nœuds dans des conteneurs supplémentaires.
+
+**Les 16 restants sont des `Tag`, `Tag / Badge` et `Chip` (25 à 38 px).** Laissés tels quels
+volontairement : certains sont des **filtres cliquables**, d'autres de simples **badges
+décoratifs** posés sur des visuels, et les gonfler tous à 44 px alourdirait la maquette sans
+discernement. **Décision à prendre par Thomas** : quels tags sont tappables ?
+
+**Conteneurs effondrés** — sur les 4 pages catégorie, le bloc `configurateur` et 69 frames
+descendantes étaient **à 1 px de large** pour un contenu de 278 à 616 px. Repassés en `FILL`.
+
+**Grilles de cartes à 3 colonnes** — `section / Container / Content` était une grille de
+3 colonnes dans 358 px, soit des `Card / Réalisation` de **103 à 114 px** de large pour un
+contenu de 493 à 630 px. Converties en **liste empilée** sur 5 pages (4 catégories + À propos),
+cartes à 358 px, hauteur rendue automatique.
+
+> Décision : **empiler plutôt que scroller**. Le brief pose le principe pour les tableaux
+> comparatifs ; il vaut aussi ici. Ces blocs sont secondaires et n'ont pas de contrôle de
+> carrousel : un scroll horizontal y cacherait du contenu sans le signaler.
+
+**Témoignages À propos** — `Testimonial / Section` (`8848:12039`), instance desktop de
+**1 168 px de contenu dans 358 px**. `overflowDirection` n'étant pas surchargeable sur une
+instance, elle est enveloppée dans une frame `Zone défilante` clippée en scroll horizontal.
+
+**Valeurs brutes** — 488 fills liés aux tokens :
+
+- **272 textes en noir pur `#000000`** sur 14 pages, alors que `text/primary` vaut `#0C0A09`.
+  C'est précisément la valeur brute que le brief interdit. Tous basculés sur le token.
+  Pages les plus touchées : Ressources Guides (59), Blog listing (58), Actualités Catégorie
+  (38), Page offre (37), Réalisations Index (27), Contact (17).
+- 216 fonds et bordures appariés par **correspondance exacte de couleur** avec un token
+  (`bg/default` ×215, `text/on-invert` ×1).
+- Les 57 restants sont des couleurs d'**illustration** (noir pur vectoriel ×648, teintes
+  bleu-vert des visuels) : elles n'ont pas de token, et c'est normal.
+
+### 2.4 — Défauts constatés et **non corrigés**
+
+| Page | Défaut | Pourquoi non corrigé |
+|---|---|---|
+| `Kapam / Produit / Trafic L1H1` `8850:143475` | Section `S2 — Comparatif kits` (5 109 px) **masquée**, contenant 2 tableaux en grille 5 colonnes à 65 px et une grille de 4 `Card / Véhicule` à 72 px | Section parquée, pas en production. **À basculer en cartes empilées avant de la réactiver.** |
+| 4 pages Catégorie v6 | `Panneau / Filtres — Catégorie (mobile)` (826 px) masqué | idem — état de maquette, non actif |
+| `Institutionnel / À propos` | 3 blocs masqués (`section` 1 226 px, `configurateur` 640 px, `Container` 748 px) | idem |
+| `Landing / LP Bordeaux` | 26 débordements, 1 043 fills bruts | **Hors ordre de priorité** du brief. Page de 14 240 px à reprendre à part. |
+| `Boutique / Page offre` | `Prices Container` : 3 prix (158 px) dans un conteneur de 112 px | Défaut de gabarit hérité, à trancher : le prix barré doit-il passer sous le prix courant ? |
+| `Produit / Trafic L1H1` | `Frame 2147227155/159` : libellés de 126 à 171 px dans des cellules de 65 px | Dans la section masquée, même arbitrage |
+| Homepage, À propos, LP Bordeaux | Note en étoiles : `Frame 2147227094` de 16 px pour 24 px de contenu | Technique de demi-étoile, présente aussi sur desktop |
+| Drawer Mon devis mobile | Croix `Supprimer` 16 px, stepper `minus`/`plus` 14 px | Hérité de `Devis / Line item` desktop — **interdit de modifier un master desktop** |
+| Footer mobile | Icône sociale = caractère texte `"f"` | Placeholder hérité du desktop |
+
+---
+
+## Composants du DS toujours sans version mobile
+
+Créés cette nuit : `Nav / Menu mobile — Mobile`, `Drawer / Mon devis — Mobile`.
+
+Restent à faire :
+
+| Composant desktop | ID | Besoin mobile | Priorité |
+|---|---|---|---|
+| `Devis / Line item` | `6943:443` | **Cibles tactiles 44 px** (suppr. 16 px, stepper 14 px) | **haute** — bloque le drawer mobile |
+| `Testimonial / Section` | `6899:331` | Version mobile empilée ou carrousel natif | haute |
+| `Drawer / Formulaire devis` | `6952:515` | Plein écran 390 | haute |
+| `Table / Cellule` | `7117:3990`, `6954:8783` | Bascule en cartes empilées | haute |
+| `Modal / Véhicules compatibles` | `7322:1175` | Feuille basse | moyenne |
+| `Modal / Onboarding devis` | `6947:449` | Feuille basse | moyenne |
+| `Modal / Info devis` | `6947:458` | Feuille basse | moyenne |
+| `Toast / Ajout devis` | `6947:444` | Toast 390 | moyenne |
+| `Slider / Produit` | `7191:15093` | Carrousel 390 | moyenne |
+| `Réassurances / Nos engagements` | `7913:1176` | Empilé | basse |
+| `Card / Réalisation` | `6991:612` | Variante mobile 358 (utilisée redimensionnée) | basse |
+| `Stepper / Configurateur` | `6952:8850`, `7883:1557` | — | hors périmètre |
+
+`INSTANCE_SWAP` ne peut pas être créé par l'API : les composants mobiles ci-dessus qui en
+auraient besoin devront être montés à la main.
+
+---
+
+## Textes signalés comme trop longs pour le format
+
+Aucun n'a été coupé ni réécrit.
+
+| Page | Texte | Problème |
+|---|---|---|
+| `Recherche — 1 · Panneau` | `Rechercher un kit, un véhicule, un article…` | ~43 caractères pour ~34 utiles dans le champ |
+| `Système / 404` | `Un kit, un modèle de van, une réalisation…` | tronqué dans le champ de recherche |
+| Menu mobile / mega-menu desktop | `Configurer mon projet ` | **espace finale** dans le label — défaut de la copie desktop |
+| Homepage hero | `L'aménagement pour van et fourgon de Kapam est la solution simple, modulable et personnalisable pour faire de votre utilitaire un van aménagé, véritable camping-car prêt pour toutes vos escapades.` | 5 lignes centrées au-dessus de la ligne de flottaison |
+| Menu / Aménagements | `Construit avec nos artisans dans notre atelier de Bordeaux` | passe sur 2 lignes en description de ligne |
+
+---
+
+## Note sur la tablette — où le desktop casse en se contractant
+
+Hors périmètre, décision non prise. Le travail de cette nuit a produit la liste des points de
+rupture, qui est exactement ce qu'il faut pour trancher entre « on maquette la tablette » et
+« on écrit une règle de comportement dans le CDC ».
+
+**Les frames mobiles sont nommées et structurées pour qu'un palier intermédiaire s'insère** :
+sections thématiques, un frame par page à 390 px, masters mobiles séparés des masters desktop.
+
+| Élément | Largeur desktop | Où il casse | Palier tablette probable |
+|---|---|---|---|
+| `Nav / Header` + mega-menu | 1440 | dès que les 5 liens + CTA ne tiennent plus, vers **900 px** | burger dès 900, mega-menu conservé jusque-là |
+| Footer 4 colonnes | 1280 | les colonnes deviennent illisibles sous **700 px** | 2 colonnes de 700 à 1024, accordéons sous 700 |
+| `Drawer / Mon devis` | 936 | le drawer mange l'écran sous **768 px** | plein écran sous 768 |
+| Grilles de cartes 3 colonnes | 1248 | cartes sous 240 px, donc sous **800 px** | 2 colonnes de 600 à 1024, 1 colonne sous 600 |
+| Tableaux comparatifs 5 colonnes | 1248 | cellules sous 120 px, donc sous **700 px** | **cartes empilées sous 900** — ne pas tenter le scroll horizontal |
+| `Testimonial / Section` 3 cartes | 1168 | sous **1200 px** | carrousel dès 1024 |
+| Carrousels produits | 4 cartes visibles | 2 cartes sous **900 px** | 2 à 3 cartes de 768 à 1024 |
+| Hero « texte sur visuel » | 1440 | le texte dépasse 60 caractères par ligne au-dessus de **1100 px** ; sous 600 px la photo doit passer en fond plein cadre | largeur de texte plafonnée à 60ch de 768 à 1024 |
+| `Panneau / Filtres — Catégorie` | 1064 | colonne latérale sous **900 px** | drawer dès 900 |
+
+**Recommandation** : les points de rupture se concentrent entre **700 et 900 px**. Une règle de
+comportement au CDC suffirait pour le header, le footer et les carrousels. En revanche les
+**tableaux comparatifs** et le **panneau de filtres** changent de nature, pas seulement de
+taille : ces deux-là méritent d'être maquettés.
+
+---
+
+## Ce que je n'ai pas pu faire
+
+- **La critique visuelle des 53 pages une par une.** À raison de 5 à 12 captures par page pour
+  des gabarits de 3 000 à 17 500 px, ce n'était pas tenable en une session. J'ai compensé par
+  un audit mesuré sur l'intégralité du corpus et une critique visuelle sur le haut de l'ordre
+  de priorité (Homepage, Boutique Index, Catégorie v6, 404, Contact, Revendeurs, cartes
+  Réalisation, témoignages).
+- **LP Bordeaux** (`8850:136229`) : 14 240 px, 26 débordements, 1 043 fills bruts. Hors ordre de
+  priorité, à traiter en session dédiée.
+- **Les sections masquées** listées en § 2.4 : les réactiver relève d'une décision produit.
+- **Le configurateur** : exclu par le brief.
+- **Les tags et chips** : arbitrage « tappable ou décoratif » à rendre avant de les toucher.
+- **Aucune interaction de prototype ajoutée.** Le menu mobile, le drawer et les panneaux de
+  recherche sont montés mais **non câblés** : les `reactions` restent à poser (lecture de
+  `node.reactions`, filtrage, concaténation, `setReactionsAsync` — jamais de réassignation du
+  tableau entier).
+
+## Garanties
+
+- **Aucune page desktop, aucun master desktop n'a été modifié.** Les seules lectures côté
+  desktop ont servi à reprendre la copie et l'intention (hero, mega-menus, drawer).
+- Aucune interaction existante n'a été touchée.
+- Aucune image générée, aucun placeholder remplacé.
+- Aucun texte réécrit : les textes trop longs sont signalés, pas coupés.
