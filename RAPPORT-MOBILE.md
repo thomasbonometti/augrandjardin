@@ -270,7 +270,7 @@ un carrousel assumé n'est pas un défaut.
 |---|---|---|
 | Pages totalement propres | 23 / 53 | **34 / 53** |
 | Débordements hors zone de scroll | 88 | **29** (dont 26 sur LP Bordeaux) |
-| Cibles tactiles sous 44 px | ~200 | **16** (tags et chips, voir § 2.3) |
+| Cibles tactiles sous 44 px | ~200 | **0** |
 | Couleurs de texte en valeur brute | 273 | **0** |
 | Fonds et bordures en valeur brute | ~90 | 57 |
 
@@ -312,10 +312,8 @@ section la plus vue du site.
 - `minHeight` n'est **pas surchargeable sur une instance** : le padding vertical l'est, ce qui
   évite d'emballer 64 nœuds dans des conteneurs supplémentaires.
 
-**Les 16 restants sont des `Tag`, `Tag / Badge` et `Chip` (25 à 38 px).** Laissés tels quels
-volontairement : certains sont des **filtres cliquables**, d'autres de simples **badges
-décoratifs** posés sur des visuels, et les gonfler tous à 44 px alourdirait la maquette sans
-discernement. **Décision à prendre par Thomas** : quels tags sont tappables ?
+À ce stade il restait 16 contrôles sous 44 px, que j'avais pris pour des badges décoratifs.
+**C'était faux** — voir § 2.5, ils ont tous été traités.
 
 **Conteneurs effondrés** — sur les 4 pages catégorie, le bloc `configurateur` et 69 frames
 descendantes étaient **à 1 px de large** pour un contenu de 278 à 616 px. Repassés en `FILL`.
@@ -357,6 +355,56 @@ instance, elle est enveloppée dans une frame `Zone défilante` clippée en scro
 | Homepage, À propos, LP Bordeaux | Note en étoiles : `Frame 2147227094` de 16 px pour 24 px de contenu | Technique de demi-étoile, présente aussi sur desktop |
 | Drawer Mon devis mobile | Croix `Supprimer` 16 px, stepper `minus`/`plus` 14 px | Hérité de `Devis / Line item` desktop — **interdit de modifier un master desktop** |
 | Footer mobile | Icône sociale = caractère texte `"f"` | Placeholder hérité du desktop |
+
+
+### 2.5 — Seconde passe (après première rédaction du rapport)
+
+**Cibles tactiles : 16 → 0.** Les 16 contrôles que j'avais classés « tags et chips à arbitrer »
+étaient en réalité **tous de vrais contrôles**. Mon filtre de noms les avait manqués : il
+cherchait `Button` exact et `Lien` exact, alors que le fichier nomme ses nœuds
+`Button — VOIR LE PROJET`, `Lien — DÉCOUVRIR L'ATELIER`, `Chip / Renault (supprimable)`.
+
+- 2 `Button` en `Size=sm` (37 px) → `Size=md` (48 px) sur Boutique Index.
+- 10 contrôles `Hierarchy=Link` / `Link inverse` (24 px) → padding vertical à 44 px :
+  5 × `Button — VOIR LE PROJET`, `Lien — DÉCOUVRIR L'ATELIER`, `Lien — Voir tous les kits`,
+  `Lien — Voir tous les accessoires`.
+- 4 chips de filtre supprimables (25 px) → 44 px.
+
+**Vérification finale avec la bonne règle** (un contrôle est conforme si un conteneur
+tappable d'au moins 44 px l'englobe) : **0 contrôle sous 44 px sur les 53 pages**.
+Les liens `Lien — KITS D'AMÉNAGEMENT` et consorts restent à 24 px mais sont enveloppés
+dans un `Lien famille` de 44 px — la cible est bonne.
+
+**Voile du hero : solide → dégradé.** Les tuiles familles de Boutique Index
+(`IMG / INDEX / FAMILLE-*`) utilisent des `Scrim bas` en **dégradé linéaire**
+(alpha `0.00 → 0.28 → 0.88`), sans liaison à un token — c'est la convention du fichier pour
+les voiles, et aucun token ne couvre les arrêts de dégradé.
+
+Le voile solide à 34 % que j'avais posé sur le hero assombrissait uniformément la photo du van.
+Remplacé par un dégradé haut → bas calé sur la fin réelle du bloc de texte
+(`0.00:a0.70 → 0.54:a0.52 → 0.68:a0.00`) : la copie et la ligne de note restent lisibles,
+la photo redevient propre sous le bloc de contenu.
+
+### 2.6 — Critique visuelle · Boutique — Index `8826:134088`
+
+| Critère | Verdict |
+|---|---|
+| Hiérarchie | ✅ Hero « texte sur visuel », promesse lisible en trois secondes |
+| Densité | ✅ 14 sections pour 7 965 px, alternance visuel / texte / carrousel |
+| Rythme | ✅ Pas de répétition : hero, statement, bande de tuiles, carrousel, bandeau édito, 50/50 |
+| Cibles tactiles | ✅ Après correction — CTA du hero à 48 px, liens de section à 44 px |
+| Texte | ✅ Aucune ligne excessive |
+| Débordement | ✅ 0 — les 3 rails sont des zones de défilement assumées, avec navigation |
+| CTA | ✅ `Inverse` + `Secondary inverse` dans le hero, CTA final en bas de page |
+| Images | ✅ Ratios 4:5 tenus, voiles dégradés identiques sur les 4 tuiles |
+
+Deux points relevés, aucun bloquant :
+
+- La bande de tuiles familles est **bord à bord, sans gouttière** (nom de la frame :
+  « Bande familles (bord à bord, sans gouttière) ») alors que le reste de la page respecte la
+  gouttière de 16 px. C'est un choix assumé dans le nommage, pas un accident.
+- Les libellés de tuile sont collés au bas de leur tuile. Lisibles grâce au dégradé, mais
+  un retrait de 12 px leur donnerait de l'air.
 
 ---
 
@@ -439,7 +487,6 @@ taille : ces deux-là méritent d'être maquettés.
   priorité, à traiter en session dédiée.
 - **Les sections masquées** listées en § 2.4 : les réactiver relève d'une décision produit.
 - **Le configurateur** : exclu par le brief.
-- **Les tags et chips** : arbitrage « tappable ou décoratif » à rendre avant de les toucher.
 - **Aucune interaction de prototype ajoutée.** Le menu mobile, le drawer et les panneaux de
   recherche sont montés mais **non câblés** : les `reactions` restent à poser (lecture de
   `node.reactions`, filtrage, concaténation, `setReactionsAsync` — jamais de réassignation du
