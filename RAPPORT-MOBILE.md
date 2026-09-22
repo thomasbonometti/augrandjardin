@@ -406,6 +406,135 @@ Deux points relevés, aucun bloquant :
 - Les libellés de tuile sont collés au bas de leur tuile. Lisibles grâce au dégradé, mais
   un retrait de 12 px leur donnerait de l'air.
 
+
+---
+
+## Phase 3 — LP Bordeaux et câblage du prototype
+
+### 3.1 — LP Bordeaux `8850:136229`
+
+Les 26 débordements relevés étaient **exactement les trois mêmes défauts** que sur les pages
+catégorie, et les « 1 043 fills bruts » un faux positif : **982 sont des fills vectoriels
+d'illustration**, qui n'ont pas de token et n'en auront jamais. Seuls 3 fills de frame étaient
+réellement en cause.
+
+| Défaut | Correction |
+|---|---|
+| `configurateur / Content Left` et 5 frames descendantes **effondrées à 1 px** | repassées en `FILL` |
+| Grille de 6 `Card / Réalisation` en 3 colonnes à **103 px** | empilée, cartes à 358 px, hauteur automatique |
+| `Testimonial / Section` : **1 168 px de contenu dans 358 px** | enveloppée dans une `Zone défilante` clippée |
+
+**Débordements : 26 → 0.** Page à 15 505 px (l'empilement des cartes ajoute de la hauteur,
+c'est le prix de la lisibilité).
+
+### 3.2 — Câblage du prototype
+
+**Découverte préalable.** Le prototype mobile existait déjà (1 085 interactions) mais
+**51 de ses 52 liens inter-écrans pointaient vers des frames desktop de 1 440 px** : les pages
+mobiles avaient été dupliquées depuis le desktop en conservant leurs destinations. Un clic sur
+« Contact » depuis un écran mobile renvoyait sur le Contact desktop.
+
+**Rebranchement — 45 liens.** Lecture des `reactions`, clonage, substitution du seul
+`destinationId`, `setReactionsAsync`. Les 492 états de survol et les 1 026 `CHANGE_TO` existants
+sont intacts.
+
+| Destination desktop | → mobile | Liens |
+|---|---|---|
+| `6904:192` Homepage | `8469:33059` | 11 |
+| `7553:4943` HUB — Devis Step 1 | `9065:29387` **(créé)** | 14 |
+| `7407:16925` Produit Trafic L1H1 | `8850:143475` | 8 |
+| `7524:4488` Contact | `8848:12741` | 6 |
+| `7008:11154` Catégorie Kit van | `8850:144076` | 3 |
+| `7567:5111` Blog (listing) | `8849:131017` | 1 |
+| `8267:62041` Config v4 1.1 | `8850:147964` | 1 |
+| `7834:19574` Prise de rendez-vous | `9065:29501` **(créé)** | 1 |
+
+**Restent 6 liens vers le desktop**, tous vers `Config v4 / Drawer Option` — le configurateur
+est hors périmètre de cette session.
+
+**Écrans d'overlay — nouvelle section `🧭 Overlays — Mobile 390` (`9063:156305`).**
+Figma **refuse une variante de composant comme destination d'overlay** : les masters ne
+pouvaient pas servir directement. Sept frames dédiées de 390 × 844 portent donc une instance :
+
+| Écran | ID |
+|---|---|
+| Menu mobile — Niveau 1 · Racine | `9063:156306` |
+| Menu mobile — Niveau 2 · Aménagements | `9063:156342` |
+| Menu mobile — Niveau 2 · Catalogue | `9063:156408` |
+| Drawer Mon devis — Rempli | `9063:156461` |
+| Drawer Mon devis — Vide | `9063:156560` |
+| Modal / HUB — Devis Step 1 — Mobile 390 | `9065:29387` |
+| Overlay / Prise de rendez-vous — Mobile 390 | `9065:29501` |
+
+**18 interactions posées :**
+
+- Header (les deux tons, donc les 53 pages d'un coup) : burger → menu (`MOVE_IN` droite),
+  loupe → panneau de recherche (`DISSOLVE`), Mon devis → drawer (`MOVE_IN` bas).
+- Menu : `Aménagements` et `Catalogue` → `CHANGE_TO` vers le niveau 2 en `SMART_ANIMATE`,
+  retour → niveau 1, fermeture → `CLOSE`.
+- Drawer et panneaux de recherche : fermeture → `CLOSE`.
+- Recherche 1 · saisie → Recherche 2.
+
+Total : **1 085 → 1 258 interactions**, dont 162 overlays et 14 fermetures. Aucun survol perdu.
+
+**Deux modales du parcours devis créées** (copie clonée du desktop, rien de réécrit) :
+
+- `Modal / HUB — Devis Step 1 — Mobile 390` — les 3 formules empilées, chacune avec son CTA,
+  barre haute avec titre et fermeture à 44 px. C'était le **maillon manquant le plus utilisé**
+  du parcours de conversion : 14 liens y menaient.
+- `Overlay / Prise de rendez-vous — Mobile 390` — les créneaux passent de 4 colonnes de 114 px
+  à **2 colonnes de 159 px** via `layoutWrap`, chaque créneau à 44 px de haut.
+
+> Trois itérations ont été nécessaires sur la grille de créneaux : 4 par rangée à 76 px (trop
+> étroit), puis 3 avec un orphelin étiré sur toute la largeur, puis 2 par rangée qui divise
+> exactement les 4 créneaux. La largeur utile du bloc est 326 px, pas 358.
+
+**Non réalisable par l'API, à poser à la main :**
+
+- `overlayPositionType`, `overlayBackground` et `overlayBackgroundInteraction` sont en
+  **lecture seule** : le positionnement et le fond des overlays gardent le réglage par défaut
+  de Figma. **À régler à la main** (position centrée, fond sombre, fermeture au clic extérieur).
+- `INSTANCE_SWAP`, comme signalé plus haut.
+
+### 3.3 — Fil d'Ariane `8883:147219`
+
+Les noms de page longs sortaient de l'écran : « Vérifier la compatibilité de son modèle »
+(251 px à partir de x=157) et « Van aménagé, prêt à partir » (249 px à partir de x=228).
+
+Passé en **zone de défilement horizontale** plutôt qu'en troncature : aucun texte n'est coupé,
+conformément au brief, et rien ne déborde. Débordements sur les deux pages : 2 → 0.
+
+### 3.4 — État final
+
+| Indicateur | Début de session | Fin |
+|---|---|---|
+| Écrans mobiles | 53 | **60** (7 overlays créés) |
+| Écrans totalement propres | 23 / 53 | **43 / 60** |
+| Débordements | 88 | **1** |
+| Cibles tactiles sous 44 px | ~200 | **0** |
+| Couleurs de texte en valeur brute | 273 | **0** |
+| Fonds et bordures non liés | ~90 | **44** (hors palette, voir ci-dessous) |
+| Liens du prototype pointant vers le desktop | 51 | **6** (configurateur, hors périmètre) |
+
+**Le débordement restant** : `Frame` de 1 px sur Page offre — la technique de demi-étoile de la
+note, présente aussi sur desktop.
+
+**Les 44 fonds restants sont hors palette** et demandent un arbitrage, pas un calage
+automatique. Les écarts imperceptibles (Δ ≤ 12) ont été liés, les autres sont listés tels quels :
+
+| Nœud | Valeur | Token le plus proche | Écart | Occurrences |
+|---|---|---|---|---|
+| `Frame` | `242,242,240` | `bg/subtle` `247,247,245` | Δ15 | 26 |
+| `Cta`, `S7 — CTA final`, `S12 — CTA final` | `155,155,155` | aucun gris neutre au DS | — | 9 |
+| `Navigation Button` | `17,17,17` | `bg/invert` `12,10,9` | Δ20 | 4 |
+| `Ellipse 5` à `Ellipse 8` | `217,217,217` | `border/default` `219,216,205` | Δ15 | 4 |
+| `CTA dark` | `23,23,23` | `bg/invert` `12,10,9` | Δ38 | 1 |
+
+Le gris `155,155,155` mérite une décision : la palette Kapam est **chaude**
+(`bg/placeholder/medium` vaut `196,192,173`), ces gris neutres lui sont étrangers. Soit ce sont
+des placeholders d'image à basculer sur `bg/placeholder/*`, soit il manque un token de gris
+neutre au DS.
+
 ---
 
 ## Composants du DS toujours sans version mobile
@@ -419,6 +548,8 @@ Restent à faire :
 | `Devis / Line item` | `6943:443` | **Cibles tactiles 44 px** (suppr. 16 px, stepper 14 px) | **haute** — bloque le drawer mobile |
 | `Testimonial / Section` | `6899:331` | Version mobile empilée ou carrousel natif | haute |
 | `Drawer / Formulaire devis` | `6952:515` | Plein écran 390 | haute |
+| ~~`HUB — Devis Step 1`~~ | `7553:4943` | ✅ créé — `9065:29387` | — |
+| ~~`A4 · Prise de rendez-vous`~~ | `7834:19574` | ✅ créé — `9065:29501` | — |
 | `Table / Cellule` | `7117:3990`, `6954:8783` | Bascule en cartes empilées | haute |
 | `Modal / Véhicules compatibles` | `7322:1175` | Feuille basse | moyenne |
 | `Modal / Onboarding devis` | `6947:449` | Feuille basse | moyenne |
@@ -483,14 +614,10 @@ taille : ces deux-là méritent d'être maquettés.
   un audit mesuré sur l'intégralité du corpus et une critique visuelle sur le haut de l'ordre
   de priorité (Homepage, Boutique Index, Catégorie v6, 404, Contact, Revendeurs, cartes
   Réalisation, témoignages).
-- **LP Bordeaux** (`8850:136229`) : 14 240 px, 26 débordements, 1 043 fills bruts. Hors ordre de
-  priorité, à traiter en session dédiée.
+- ~~LP Bordeaux~~ → **traité**, voir § 3.1.
 - **Les sections masquées** listées en § 2.4 : les réactiver relève d'une décision produit.
 - **Le configurateur** : exclu par le brief.
-- **Aucune interaction de prototype ajoutée.** Le menu mobile, le drawer et les panneaux de
-  recherche sont montés mais **non câblés** : les `reactions` restent à poser (lecture de
-  `node.reactions`, filtrage, concaténation, `setReactionsAsync` — jamais de réassignation du
-  tableau entier).
+- ~~Aucune interaction de prototype ajoutée~~ → **câblées**, voir § 3.2.
 
 ## Garanties
 
