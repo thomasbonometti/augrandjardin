@@ -8,8 +8,10 @@
 
 - **Logique et données** : aucune fonction modifiée (`charger`, `sauver`, `disponibilite`, `nettoyerSelections`,
   `devis`, `etapeComplete`, `reference`, `texteExport`, lecture de `catalogue.json`).
-- **Module 3D et base64** : le script de construction compare l'empreinte SHA-256 de la ligne
-  `<script id="glb3d">` et du dernier `<script>` avant/après. Elles sont identiques au caractère près.
+- **Base64 du modèle** : le script de construction compare l'empreinte SHA-256 de la ligne
+  `<script id="glb3d">` avant/après. Elle est identique au caractère près.
+- **Module 3D** : intact lors de l'habillage, puis retouché à la demande de Thomas pour colorer la
+  3D (voir § 7). La synchronisation options ↔ 3D n'a pas changé.
 - **Accroches du module** : `#page` est toujours remplacé par `innerHTML` ; `.ligne`, `.titre` et `data-option`
   sont intacts. Test automatisé sur 2.1 : les 55 cases `data-option` retrouvent leur `.titre`. Décocher
   « WC Chimique » masque les mêmes 5 maillages `PoWC` dans l'original et dans la version habillée.
@@ -256,3 +258,32 @@ sont en `accent/sm` ; le verdict retenu est en bouton primaire plein. Aucun cont
 - **Le rendu de la scène 3D dans les nouvelles dimensions** : la synchronisation est vérifiée par
   instrumentation, mais le cadrage initial de la caméra (plus large que haut) n'a pas été ajusté, puisque
   c'est le module qui le calcule.
+
+## 7. Ajout : couleurs de la scène 3D
+
+**Constat.** Le modèle intégré ne contient aucune texture ni image : il a été allégé avant intégration.
+Ses 30 matériaux sont presque tous blancs ou gris. `bois`, `brut` et `1er strat` sont en blanc pur, et
+`ceramic_53_basecolor-4K` / `Fabric074_4K_Color` ont perdu leur texture 4K. Avec un éclairage fort, le
+rendu ressemblait à une maquette en plâtre.
+
+**Correction** (piste « couleurs à plat », validée par Thomas). Le module 3D reçoit une fonction
+`teinter()`, appelée au chargement et à chaque synchronisation. Le base64 n'est pas modifié.
+
+| Matériau(x) | Teinte | Source |
+|---|---|---|
+| `bois`, `1er strat`, `brut blender` (portes A3 et WC, restées orange Blender) | Suit la finition : Soft `#dcb584`, Triply `#cfa163`, Best `#8e6c4b` | Pastilles `Config v4 / Texture / soft · triply · best` de la maquette |
+| `brut` (contreplaqué brut) | `#e3cba4` | Interprété |
+| `Fabric074_4K_Color` (coussins) | `#b3ad52` | Interprété, d'après le vert-jaune des coussins sur la vue 3D de la maquette 2.1 |
+| `ceramic_53_basecolor-4K` (sol) | `#9c958a` | Interprété |
+| Métaux, charnières, frigo, plaque, joints | Inchangés (gris et noirs d'origine) | Modèle |
+
+- Les teintes sont converties de sRGB en linéaire pour s'afficher justes avec le rendu sRGB du module.
+- Éclairage adouci pour que les volumes se lisent : lumière ambiante 0,8 → 0,45, hémisphère 0,65 → 0,4.
+  Les deux spots sont inchangés.
+- Vérifié en navigateur headless :
+  - Soft rend un bois clair, Best un noyer.
+  - Changer de finition en direct donne exactement la même image qu'un rechargement.
+  - Aucune erreur console.
+
+**Limite.** Ce sont des couleurs à plat, sans grain de matière. Pour du réalisme, il faudra réexporter le
+modèle avec des textures légères (512 à 1024 px) depuis le fichier source.
