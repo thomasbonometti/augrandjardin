@@ -426,6 +426,13 @@
   .ligne .droite{order:3;font:var(--type-text-xs-regular);color:var(--text-secondary);text-align:right;white-space:nowrap}
   .ligne.bloquee .droite{color:var(--text-disabled)}
   .ligne.bloquee .droite .badge{color:var(--status-error-text)}
+  /* Options reliées à la 3D : le nom est cliquable et centre la caméra sur la pièce */
+  .ligne.a-3d .titre{
+    cursor:pointer;text-decoration:underline dotted var(--border-strong);
+    text-decoration-thickness:var(--border-width-default);text-underline-offset:var(--measure-4);
+  }
+  .ligne.a-3d .titre:hover{text-decoration-color:var(--text-primary)}
+  .ligne.a-3d .titre:focus-visible{border-radius:var(--radius-xs)}
   .ligne.nue{border:0;padding:0;background:none;box-shadow:none}
 
   /* Cases à cocher (Checkbox base, 16 px, radius/xs) */

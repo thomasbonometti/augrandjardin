@@ -348,3 +348,23 @@ https://claude.ai/artifact/7e86iVAqbG4CEk7VC243GR.
   relisible pour brancher la 3D.
 - Un bouton « Copier toutes les réponses » sert de secours.
 - Willy doit recevoir l'accès « peut interagir » pour écrire.
+
+## 10. Clic sur le nom d'une option : la caméra va sur la pièce
+
+Un clic (ou Entrée / Espace au clavier) sur le nom d'une option reliée à la 3D centre la caméra sur sa
+pièce. La case n'est ni cochée ni décochée.
+- **Option non cochée** (pièce masquée) : la pièce apparaît 3,5 s en fantôme ambre semi-transparent,
+  pour qu'on la repère, puis se masque de nouveau. Cocher ou décocher pendant l'aperçu l'annule proprement.
+- **Repère visuel** : les noms cliquables sont soulignés en pointillé. Le module leur ajoute la classe
+  `a-3d` sur la `.ligne`, sans toucher au texte de `.titre`, ainsi que `role="button"` et `tabindex="0"`.
+- **Mobile** : si la scène est hors écran, la page remonte pour l'afficher.
+
+**Vérifié** (navigateur de test) :
+- 12 noms cliquables ;
+- clic sur « Plaque induction 1 foyer » non cochée : la case reste décochée, 2 pièces en fantôme, plus
+  aucune après le délai ;
+- même résultat au clavier ;
+- option cochée : après clic, la plaque est centrée à l'écran, la case toujours cochée.
+
+Le navigateur de test tourne à 5 images/s. Le trajet de caméra, environ 0,4 s dans un navigateur normal,
+y prend plusieurs secondes, d'où le délai du fantôme porté de 2,5 s à 3,5 s pour les machines lentes.
