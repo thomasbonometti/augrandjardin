@@ -321,3 +321,30 @@ La correspondance du module (`=Frigo`, `Plaque a induction`, `Spot Led`…) ne t
 
 **Limite restante** : les 50 autres options n'ont aucun objet associé dans la table. Pour les relier, il
 faut savoir quel objet du modèle correspond à quelle option, ce qui demande une liste à établir avec Willy.
+
+## 9. Transparence, meuble haut complet, liste pour Willy
+
+**Transparence.** Les matériaux `brut`, `bois`, `1er strat`, `ceramic_53_basecolor-4K` et
+`Fabric074_4K_Color` sont en mode `alphaMode: BLEND` dans le fichier, alors qu'ils sont entièrement
+opaques. Three.js les rendait comme des surfaces transparentes, d'où les panneaux vus au travers.
+Correctif : dans `teinter()`, tout matériau marqué transparent mais d'opacité 1 repasse en opaque, avec
+écriture de profondeur. Vérifié : plus aucun matériau transparent une fois le modèle chargé.
+
+**Meuble haut.** Le modèle est plat (316 objets, aucun groupe) : l'option ne retirait que les 2 portes
+(`porte Meuble Haut`). Le caisson a été repéré par sa position, dans la même zone que les portes :
+- panneaux `M1`, `M2#1`, `M5`, `M6#1`, `M7` ;
+- joues `G-No_Name_141` et `G-No_Name_147` ;
+- charnières et push-locks.
+
+Ces pièces sont ajoutées à la table de correspondance. Décocher l'option masque maintenant 127 maillages
+au lieu de 8, et tout le meuble disparaît.
+
+**Liste pour Willy.** 50 options n'ont aucune pièce associée. Elles sont listées dans
+[`OPTIONS-A-RELIER.md`](./OPTIONS-A-RELIER.md), avec une page à remplir :
+https://claude.ai/artifact/7e86iVAqbG4CEk7VC243GR.
+- Pour chaque option, Willy indique si elle est visible (et avec quel objet du modèle), pas modélisée ou
+  invisible en 3D.
+- Les réponses s'enregistrent dans la base de la page (collection `reponses`, une entrée par option),
+  relisible pour brancher la 3D.
+- Un bouton « Copier toutes les réponses » sert de secours.
+- Willy doit recevoir l'accès « peut interagir » pour écrire.
