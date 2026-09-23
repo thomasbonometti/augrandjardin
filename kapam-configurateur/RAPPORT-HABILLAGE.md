@@ -278,8 +278,8 @@ rendu ressemblait à une maquette en plâtre.
 | Métaux, charnières, frigo, plaque, joints | Inchangés (gris et noirs d'origine) | Modèle |
 
 - Les teintes sont converties de sRGB en linéaire pour s'afficher justes avec le rendu sRGB du module.
-- Éclairage adouci pour que les volumes se lisent : lumière ambiante 0,8 → 0,45, hémisphère 0,65 → 0,4.
-  Les deux spots sont inchangés.
+- Éclairage baissé pour que les volumes et les couleurs se lisent : lumière ambiante 0,8 → 0,3,
+  hémisphère 0,65 → 0,3, spot principal 0,85 → 0,7. Le contre-jour est inchangé.
 - Vérifié en navigateur headless :
   - Soft rend un bois clair, Best un noyer.
   - Changer de finition en direct donne exactement la même image qu'un rechargement.
@@ -287,3 +287,37 @@ rendu ressemblait à une maquette en plâtre.
 
 **Limite.** Ce sont des couleurs à plat, sans grain de matière. Pour du réalisme, il faudra réexporter le
 modèle avec des textures légères (512 à 1024 px) depuis le fichier source.
+
+## 8. Correctif : les options n'agissaient presque pas sur la 3D
+
+**Constat** (défaut présent dès le module d'origine, pas introduit par l'habillage). Seules 12 des 62 options
+sont reliées à des objets 3D, et 7 de ces 12 ne changeaient rien. En cause, le renommage des objets par
+le chargeur Three.js :
+- les espaces deviennent des `_` : `Plaque a induction` devient `Plaque_a_induction#1_1` ;
+- les objets en plusieurs parties reçoivent un suffixe `_1`, `_2`…, et leur vrai nom passe sur le groupe
+  parent (`Frigo` devient `Frigo_1` … `Frigo_4`).
+
+La correspondance du module (`=Frigo`, `Plaque a induction`, `Spot Led`…) ne trouvait donc rien.
+
+**Correction** :
+- les noms sont normalisés (`_` → espace) avant la comparaison ;
+- le nom du groupe parent est comparé en plus de celui de l'objet ;
+- la table de correspondance elle-même n'est pas modifiée.
+
+**Vérifié** en cochant/décochant chaque option dans le navigateur de test (nombre de maillages qui changent) :
+
+| Option | Avant | Après |
+|---|---|---|
+| Frigo Vitrifrigo c51i | 0 | 4 |
+| Plaque induction 1 foyer | 0 | 2 |
+| Pack douchette 40L | 0 | 4 |
+| Pack Éclairage LED | 0 | 8 |
+| Pack Prise EXT 230V | 0 | 1 |
+| Meuble haut 2 placards | 0 | 8 |
+| Plancher Superpan H-Deck 12mm | 0 | 2 |
+| WC Chimique | 5 | 10 |
+| Tablette escamotable | 1 | 5 |
+| Frigo WAECO, Évier, Convertisseur | 1 | 1 |
+
+**Limite restante** : les 50 autres options n'ont aucun objet associé dans la table. Pour les relier, il
+faut savoir quel objet du modèle correspond à quelle option, ce qui demande une liste à établir avec Willy.
