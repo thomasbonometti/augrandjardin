@@ -333,6 +333,121 @@ Chaque lot = 1 à 3 appels `use_figma`, IDs retournés, screenshot de contrôle 
 
 ---
 
-## 9. Journal phase 2
+## 9. Journal phase 2 (25/09/2026)
 
-_À compléter après validation (lots, IDs, avant / après)._
+### 9.0 Tes décisions (retour du §8)
+1. Assets Hasamélis de la Homepage → page CS Hasamélis.
+2. Composants Studio réutilisables → ⚙️ Components (sans toucher à la landing Studio).
+3. Expertises : 7098:69750 reste la référence, la variante 7137:91886 part en archive.
+4. CS hors plan (Falmec, GUF, Est Repro, BDOR, Schroll, Courrier des Balkans, Impactomètre, TwoFilms) : ignorées pour l'instant.
+5. SEO : je recommande une page dédiée, rangée dans le bloc Folio 2027 (les OG serviront dans Webflow). Page renommée « ↳ SEO · images OG ».
+6. Landing Studio (7216:111158) : ignorée (tu penses la supprimer).
+7. Couleurs sans variable : je les liste, je ne crée rien.
+
+### 9.1 ⚠️ Blocage technique : les polices du système ne sont pas accessibles au MCP Figma
+- `figma.loadFontAsync` renvoie **« The font family "PP Neue Montreal" does not exist »** (même chose pour Degular Display et Degular). Ces polices sont installées sur ton poste, mais pas côté serveur Figma, là où tourne l'API.
+- Or l'API Plugin exige que toutes les polices d'un nœud soient chargées pour **déplacer ce nœud (appendChild / insertChild), y compris une page entière**, lui appliquer un style texte ou modifier un auto-layout qui fait recomposer du texte.
+- **Opérations qui fonctionnent quand même** : renommer (pages, calques, composants), repositionner x/y sur le canvas, binder des variables de couleur, déplacer des pages ou des nœuds sans texte, créer des sections vides et des textes en Inter.
+- **Opérations bloquées** : déplacer des pages contenant du texte, archiver sur une autre page, rapatrier des composants sur ⚙️ Components, appliquer des styles texte, convertir en auto-layout.
+- Le premier essai de réordonnancement a échoué et Figma a annulé tout l'appel : **rien n'a été modifié ni perdu**.
+- **Solutions possibles** : (a) faire les déplacements toi-même dans Figma desktop, où tu as les polices ; tout est préparé pour que chaque lot tienne en 1 sélection et 1 couper/coller (§9.4) ; (b) si ton plan Figma le permet (Organization ou Enterprise), publier PP Neue Montreal et Degular en « shared fonts » pour l'équipe. L'API pourrait alors peut-être les charger : à tester, sans garantie.
+
+### 9.2 Lots appliqués
+
+| Lot | Opération | IDs | Avant → après | Contrôle |
+|---|---|---|---|---|
+| **2a-1** | Renommage des séparateurs en en-têtes de blocs | 1:2, 4579:7414, 2337:12756, 1:4, 2301:1647, 9006:5, 8189:11972, 8616:39764, 6793:174082 | `--` / `---` → `— FOLIO 2027 · PAGES —`, `— ÉTUDES DE CAS —`, `— BIBLIOTHÈQUE —`, `— HORS SITE —`, `— ARCHIVES —`, `— HORS SITE · Studio (en veille) —`, `— FOLIO 2027 · ASSETS —`, `— OBSOLÈTE —`, `- - - A faire (études de cas)` | liste des pages relue |
+| **2a-2** | Renommage de 2 pages | 4579:7413, 8607:8795 | `↳ Mobile` → `↳ CS Hasamélis — Mobile` ; `SEO ` → `↳ SEO · images OG` | idem |
+| **2a-3** | Réordonnancement des pages (seules les 20 pages vides ou sans police custom ont été déplacées ; les 27 autres gardent leur ordre relatif) | 47 pages, aucune supprimée | voir l'ordre obtenu ci-dessous | `ok: true` (ordre obtenu = ordre cible) |
+| **2e-1** | Binding `#ffffff` → `Basics/white` sur les overrides d'instances du site | 7158:95892 (portrait-shooting), 7158:95948 (portrait), 7158:95754, 7158:95826, 7158:95835, 7127:79057 (Social Icons dans les avis) | fill brut → variable | screenshot `reviews-V1` 7158:95694 identique |
+| **2e-0** | ⚠️ Test annulé : 2 fills bindés par erreur dans des maquettes client, puis remis en valeur brute | 6342:2507 (card > img > mobile), 6348:2904 (card > img > … > Title) | brut → variable → **brut** (état initial) | vérifié `bound=[false]` |
+| **2d-1** | Nommage des 6 pages de référence, de leurs sections et des composants du site | voir tableau §9.3 | ex. `homepage` → `page/home`, `hero` → `section/hero-home`, `FAQ` → `block/faq-item` | 33 renommages |
+| **2d-2** | Calques « Frame N / Group N » → rôle (Accueil, Projets) | 118 calques (ex. 7137:86547 `Frame 815` → `row`, 7016:57585 `Frame 427318443` → `text-row`) | règles : `row` / `stack` / `grid` / `item` (icône + texte) / `text-row` / `text-block` / `media` (conteneur de visuel) / `wrapper` (sans AL) / `group` | screenshot page/home identique |
+| **2d-3** | Idem (À propos, Expertises, FAQ, Mentions, footer) + colonnes du tableau projets | 77 calques + 7016:57577/57581/57642 → `col-year` / `col-client` / `col-type` | idem | screenshot page/expertises identique |
+| **2b-1** | Réorganisation du canvas de la Homepage (positions uniquement, aucun reparentage) | 293 éléments de premier niveau | voir zones §9.4 | screenshot page/home identique ; comptage 6+6+66+2+11+13+42+31+116 = 293 |
+| **2b-2** | 9 étiquettes de zone (Inter Bold 320) sur la Homepage | 9045:6088 → 9045:6096 (`label/*`) | nouveaux nœuds d'annotation, **à supprimer quand les zones seront vidées** | — |
+| **2b-3** | Sections de destination vides | Archives : 9047:6408 (`homepage — v1 & explorations 2024`), 9047:6409 (`homepage — explorations expertises & a-propos`), 9047:6410 (`homepage — doublons & orphelins`), 9047:6411 (`homepage — visuels réseaux sociaux & captures`) · CS Hasamélis : 9047:16311 (`assets — ex-homepage`) · Components : 9047:16312 `section/`, 9047:16313 `block/`, 9047:16314 `element/` | — | IDs retournés |
+
+**Ordre des pages obtenu :** Cover · — FOLIO 2027 · PAGES — · Desktop Homepage · — ÉTUDES DE CAS — · En cours · 8 CS ⏳ · — HORS SITE · Studio (en veille) — · Studio · Studio Mobile · A faire (études de cas) · Falmec · GUF · Est Repro · BDOR · Schroll · Courrier des Balkans · Impactomètre · TwoFilms · CS Hasamélis — Mobile · — FOLIO 2027 · ASSETS — · SEO · images OG · — HORS SITE — · Malt · --- · Shooting · Brief · Photos · visage · --- · Email signature · Showreel 2025 · — OBSOLÈTE — · Search · Wireframe · Design · — BIBLIOTHÈQUE — · UI KIT · ⚙️ Components · — ARCHIVES — · 🗑️ Archives.
+**À glisser à la main (pages bloquées par les polices) pour obtenir l'ordre idéal :** « SEO · images OG » juste sous la Homepage ; « CS Hasamélis — Mobile » juste sous « CS Hasamélis » ; « Studio » et « Studio Mobile » (avec leur en-tête) sous « — HORS SITE — ».
+
+### 9.3 Nommage appliqué (composants et sections)
+
+| ID | Avant | Après |
+|---|---|---|
+| 6320:494 / 7008:56666 / 7077:56007 / 7098:69750 / 7137:93289 / 7158:94546 | homepage / projets / a-propos / expertises / FAQ / Mentions légales | page/home, page/projets, page/a-propos, page/expertises, page/faq, page/mentions-legales |
+| 6320:514 · 6320:521, 6320:529, 6320:534 · 6320:542 · 6320:690 · 6331:1358 | hero · section ×3 · section · hero · section | section/hero-home · section/project-feature ×3 · section/projects-link · section/services-reviews · section/side-projects |
+| 7008:56669 · 7137:93212 | hero · hero | section/project-grid · section/cta |
+| 7077:56010 · 7127:78976 · 7127:78752 | hero ×3 | section/about-intro · section/reviews · section/side-projects |
+| 7098:69753 · 7101:77726 · 7101:77730 | hero · img · hero | section/hero-page · section/showreel · section/expertises-list |
+| 7137:93292 · 7158:94549 | hero · hero | section/faq · section/legal |
+| 7216:112189 | nav (SET) | **section/nav** |
+| 6368:4020 | footer | **section/footer** |
+| 7158:96075 | CTA | **section/cta** |
+| 8143:6645 | project-list | **section/project-table** |
+| 6364:3086 | hero-slider (SET) | **section/hero-slider** |
+| 7158:93819 | FAQ (SET open/closed) | **block/faq-item** |
+| 7127:79065 | review-v2 | **block/review** |
+| 7158:95850 | portrait (SET ×6 photos) | **block/portrait-photo** |
+| 7158:96257 | portrait | **element/avatar-illustration** (c'est l'avatar dessiné, **pas un doublon** : correction de l'audit §3.2) |
+| 6461:20697 | list item | **element/list-item** |
+
+Studio non renommé (ignoré à ta demande). `btn` 8923:5248 deviendra `element/button` au moment du rapatriement.
+
+### 9.4 Homepage : nouvelle organisation du canvas et déplacements qu'il te reste à faire
+
+Zones (coordonnées du coin haut-gauche) :
+
+| Zone | Position | Contenu | Action manuelle (Figma desktop) |
+|---|---|---|---|
+| FOLIO 2027 — PAGES DE RÉFÉRENCE | 0, 0 | 6 pages, gouttière 200 px | ✅ rien à faire |
+| COMPOSANTS SITE | 0, 9 000 | section/nav, section/footer, block/faq-item, section/hero-slider, block/portrait-photo, element/avatar-illustration | sélection → ⌘X → page ⚙️ Components → sélectionner la section `section/` (ou `block/` / `element/`) → ⌘V. Couper/coller un composant maître dans le même fichier **garde les instances liées**. |
+| ASSETS SITE (lot E, 66 éléments) | 0, 13 500 | vignettes projets 400×500, photos à-propos, logo, galerie, lightbox, bannière cookies… | ✅ reste sur la Homepage (sources du site) |
+| À COUPER → SEO | 38 856, 0 | og-facebook / og-twitter (8607:6505/6506) | ⌘X → page SEO → ⌘V |
+| À ARCHIVER — doublons & orphelins (11) | 38 856, 2 675 | nav working copy 8854:19983, nav links, reviews-V1 orphelin, headlines, nav-link v1, instance project-list 8143:6646 | ⌘X → Archives → section 9047:6410 → ⌘V |
+| À ARCHIVER — visuels réseaux sociaux (13) | 38 856, 6 902 | linkedin-0x, CleanShots… | → section 9047:6411 |
+| À COUPER → CS Hasamélis (lot C, 42) | 52 856, 0 | Accueil, fiches destination, browser, hero-img (composant), blocs CS | → page CS Hasamélis, section 9047:16311 |
+| À ARCHIVER — explorations expertises & à-propos (lot B, 31) | 87 674, 0 | dont 7137:91886, 7137:91034, 7026:57668, 7127:78563, 7137:92542 | → section 9047:6409 |
+| À ARCHIVER — v1 & explorations 2024 (lot A, 116) | 111 522, 0 | homepage v1 6307:63, anciens composants v1 (card, nav-link, headline selector), CS Hasamélis v1… | → section 9047:6408 |
+
+Les composants imbriqués dans des pages (`section/cta` dans FAQ, `block/review` dans À propos, `section/project-table` dans Projets, `element/list-item` dans un frame du lot A) doivent être **remplacés par une instance à leur place avant d'être déplacés**, sinon la page perd la section. Pour chacun : clic droit → « Create instance », placer l'instance à la place du maître, puis couper/coller le maître sur ⚙️ Components. `element/list-item` (344 instances) se trouve **dans le lot A** : sors-le avant d'archiver ce lot.
+Après les déplacements, supprime les 9 étiquettes `label/*` (9045:6088 → 9045:6096).
+
+### 9.5 Tokens et auto-layout : résultat réel sur le périmètre site
+- **Fills en dur** : sur les ~128 comptés dans l'audit, **plus de 120 sont dans des maquettes clients** (`card > img`, `thumbnail`, `browser`, logos Qonto / Rocket Tower). Ils restent bruts, conformément à ta règle 4. Côté site, **6 overrides** ont été bindés (§9.2). Restent sans variable, listés sans rien créer :
+  - `#756608` ×13 : vecteurs de l'illustration dans `section/cta` 7158:96075 (7158:93912 → 93925)
+  - `#1d1d1b`, `#251822`, `#d9d9d9`, `#cef6e9` : uniquement dans des maquettes clients
+- **Styles texte** : 83 textes du site n'ont pas de style, et **aucun ne correspond exactement à un style existant** (application de toute façon bloquée par les polices). Il manque ces combinaisons :
+  - PP Neue Montreal Regular **36 / 48**, −2 % : ×70 (lignes du tableau projets, titres de section) ⇒ il manque un `display/4xl` avec interligne 48 (l'existant est 36/36)
+  - Regular **32 / 44**, −2 % : ×6 (chiffres « +100 % » dans Expertises)
+  - Regular **40 / 48**, −2 % : ×3 (titres « Sur-mesure », etc.)
+  - Regular **24 / 32**, −2 % : ×3 (citations dans Expertises)
+  - 1 texte à styles mixtes (7077:56014)
+- **Auto-layout** : **0 frame multi-enfants sans auto-layout** dans le périmètre site une fois les maquettes clients exclues. Les 23 de l'audit étaient tous dans des visuels clients. Rien à convertir.
+
+### 9.6 Ce qui reste à trancher par toi
+1. Faire les couper/coller du §9.4 (≈ 8 opérations), ou tester les « shared fonts » pour que je puisse les faire.
+2. Glisser les 3 pages bloquées (SEO, CS Hasamélis — Mobile, Studio + Studio Mobile) à leur place idéale.
+3. Créer ou non les 4 styles texte manquants (36/48, 32/44, 40/48, 24/32) et une variable pour `#756608` (illustration CTA).
+4. Fusion `block/portrait-photo` 7158:95850 ↔ `portrait-shooting` 8523:6511 (page Photos, hors site) : même gabarit 2032×432. À fusionner une fois `portrait-shooting` rapatrié ou archivé.
+5. Doublons Studio (Features Container ×2, Container pricing ×3, case-study ×2) : en attente de ta décision sur la landing.
+6. Sections « Cookie wireframe / Cookie design » (assets) : à transformer en `block/cookie-banner` ?
+
+### 9.7 Sections manquantes à concevoir pour Folio 2027
+Reprises du §4 et confirmées par le nettoyage :
+1. `section/logos` (bandeau logos clients) — Accueil
+2. `section/before-after` — étude de cas
+3. `section/results` + `block/stat` (les chiffres « +100 % » d'Expertises sont en dur, sans style)
+4. `block/quote` (citations d'Expertises en dur, 24/32 sans style)
+5. `section/offer-hero`, `section/symptoms`, `section/deliverables` — pages offre `/expertises/*`
+6. `section/related-cases` — pages offre et articles
+7. `section/article-header`, `section/article-body`, `block/toc`, `block/article-card`, `section/article-list` — ressources
+8. `section/contact-form` + `element/input`, `element/select`, `element/radio` — contact
+9. `section/thank-you` — merci
+10. `section/404`
+11. `section/legal` générique (CGV, confidentialité ; aujourd'hui seulement Mentions légales)
+12. `block/filter-bar` — grille projets
+13. `block/breadcrumbs`
+14. `section/local-proof` — page locale (V2)
+15. `element/button` côté site (seul `btn` existe, dans le Studio)
+16. **Versions mobiles / modes responsive** de toutes les sections (aucune n'existe pour le site)
