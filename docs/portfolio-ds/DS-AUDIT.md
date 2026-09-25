@@ -702,7 +702,7 @@ Base Desktop = échelle « 6. Web · Scale » de LinkedIn (text xs→xl = 12→2
 | prose-md (interligne seul) | — | 30 / 28 / 28 / 26 | — | 20 | — |
 | prose-lg (interligne seul) | — | 32 / 30 / 30 / 28 | — | 24 | — |
 
-`tracking/*` (8. Tokens - Typography) : tighter −2 %, tight −1 %, normal 0 %, wide +2 %. Les Condensed de Bricolage sont déjà serrés : −2 % actuel ramené à −1 % (h5→h2) et −2 % au-delà de 60 px. Webflow : `letter-spacing: -0.01em` etc. (voir § 14 pour le comportement Figma des variables en pourcentage).
+`tracking/*` (8. Tokens - Typography) : tighter −2 %, tight −1 %, normal 0 %, wide +2 %. Les Condensed de Bricolage sont déjà serrés : −2 % actuel ramené à −1 % (h5→h2) et −2 % au-delà de 60 px. Webflow : `letter-spacing: -0.01em` etc. (Figma convertit en px toute variable liée au letter-spacing : les `Letter spacing/*` stockent donc des px par mode, voir § 14).
 
 ### 8.3 Échelle complète des styles (Desktop)
 
@@ -970,5 +970,114 @@ Hors site (non traités) : Studio landing 75, Studio mobile 18, Email 5, Showree
 
 ## 14. Journal d’application
 
-*(complété au fil des phases 2 et 3 — voir ci-dessous)*
+Phases 1 → 3 enchaînées en autonomie à la demande de Thomas (sauvegarde du fichier confirmée). Le skill figma-use a été chargé avant le premier appel `use_figma`, puis de nouveau au démarrage de la phase 2 (références variables). Aucune écriture dans le Starter ni dans LinkedIn 2.0. Aucune variable ni aucun style existant n’a été supprimé.
 
+**Correspondance finale** : la table du § 6 a été appliquée telle quelle. Écarts par rapport à la proposition :
+- `Letter spacing/*` stockent des **pixels par mode** (et non un alias de `tracking/*`), car Figma convertit en px toute variable liée au letter-spacing (test ci-dessous). Leur codeSyntax pointe vers `var(--tracking-*)`.
+- Les 6 sources de logo et de favicon de la home, stylées par erreur, ont été restaurées à l’identique (PP Neue Montreal Medium 20/28).
+- Un soulignement partiel perdu à l’application d’un style a été restauré (Hasamélis `6471:8265`, « simple et lisible »).
+
+### Phase 2
+### Lot 1a — 0. Primitives - Measures (créée)
+- Collection `VariableCollectionId:9056:14426` (mode Value, masquée).
+- Variables créées : `9056:14427` → `9056:14453` (13 mesures `0 (0)`…`full`, 13 `Radius/*`, `Radius/ui-sm` = 6).
+### Lot 1b — 1. Primitives - Colors (ex-« Colors », `VariableCollectionId:4305:106`)
+- Collection renommée, mode « Mode 1 » → « Value », masquée de la publication ; scopes couleur restreints (FRAME_FILL, SHAPE_FILL, TEXT_FILL, STROKE_COLOR, EFFECT_COLOR) ; codeSyntax `var(--<nom>)`.
+- Renommées (47, liaisons conservées) : `Basics/*` → `basic/*` (4306:285-287) ; `Pomegranate/*` → `brand-orange/*` (6302:24-44) ; `Gray/Cararra/*` → `neutral/*` **avec valeurs LinkedIn Web · Neutrals** (4306:409-429) ; `Gray/Zinc/*` → `zz-deprecated/zinc/*` (4306:303-323, scopes vidés) ; `Jade/*` → `jade/*` (7547:16344-16354).
+- Créées (58) : `brand-orange/650` 9057:4 ; `brand/cream|brown-light|brown-mid|brown-dark|brown-darker` 9057:5-9 ; `feedback/*` 9057:10-33 ; `alpha/*` 9057:34-50 ; `zz-deprecated/cararra/*` (anciennes valeurs) 9057:51-61.
+- `basic/transparent` : #ffffff à opacité 0 ✓.
+### Lot 2 — 3. Responsive - Layout (ex-« Guides », `VariableCollectionId:2312:7078`)
+- Modes : Desktop `2312:4` (ex-Mode 1, défaut) · Desktop XL `9057:0` · Tablet `9057:1` · Mobile `9057:2`.
+- Renommées (17) : `Guidelines/Desktop/n-col` → `layout/col/n` (2312:7081-7092, valeurs par mode) ; `Prototype/desktop-width|height` → `layout/frame/width|height` (6304:58-59) ; `Prototype/mobile-width|height` → `zz-deprecated/prototype/*` (6446:12839-12840) ; `Guidelines/Landing/container` → `zz-deprecated/landing-container` (7517:7193).
+- Créées : `layout/margin` 9057:105285, `layout/container/contained` 9057:105286, `layout/container/narrow` 9057:105287, `layout/grid/columns` 9057:105288, `layout/grid/gutter` 9057:105289.
+### Lot 3a — 4. Tokens - Colors, Light (ex-« Color Mode », `VariableCollectionId:2306:2504`)
+- Modes renommés : Light `2306:3` (défaut), Dark `7517:0`.
+- Renommées (12, liaisons conservées) : `bg/primary`→`bg/page` 6307:68 · `bg/secondary`→`bg/sunken` 7517:12758 · `bg/brand-primary`→`bg/brand-subtle` 6314:322 · `bg/brand-secondary`→`bg/brand-muted` 7643:7217 · `text/on-dark/primary`→`text/on-invert` 6331:1355 · `text/on-dark/secondary`→`text/on-invert-secondary` 6331:1356 · `text/tertiary`→`text/muted` 7517:7205 · `text/brand`→`text/accent` 7517:7195 · `border/primary`→`border/default` 7517:12731 · `border/secondary`→`border/subtle` 7559:2121 · `border/brand-primary`→`border/brand` 7595:34784 · `border/brand-secondary`→`border/brand-strong` 7643:7216. Gardées : `text/primary` 6307:129, `text/secondary` 6314:212, `bg/invert` 6331:1357.
+- Créées (72) : `9058:4` → `9058:75` (text/on-brand, text/disabled, bg/raised|brand|brand-strong|media, border/strong|focus|error, focus-ring, interaction/*, feedback/*, link/*, btn/*, input/*, nav/*, tag/*, overlay/bg, elevation/shadow-1|2|3).
+- Toutes : alias vers primitives, scopes par rôle, codeSyntax `var(--…)`, description (usage + valeurs L/D).
+- Contrôle Light (home, Hasamélis) : rien de cassé ; textes bruns, section side-projects brune, footer resté noir (lié à `basic/black` en direct).
+### Lot 3b — Dark
+- 87 tokens reçoivent leur valeur Dark (alias primitives, voir § 7).
+- Contrôle Dark (mode forcé temporairement puis retiré) : **les frames de page n’ont pas de fond lié à `bg/page`** (home : sections en #ffffff en dur ; Hasamélis : frame sans remplissage) → texte crème sur blanc illisible. Voir § 16.
+### Lot 3c — Projects + qonto
+- Collection `Projects` `VariableCollectionId:9058:105299` (mode Value) : `qonto/*` 9058:105300-105307 (mêmes valeurs, scopes fill/stroke, codeSyntax `var(--project-qonto-…)`).
+- Rebind : CS Qonto 214 nœuds, SEO OG 46, Malt 23, Search 39 (valeurs identiques, aucun changement visuel). Vérification sur toutes les pages : 0 utilisation restante → anciennes variables déplacées en `zz-deprecated/qonto/*` (6487:3629-3636).
+### Lot 4 — Spacing, Radius, Border, Tracking, Formats
+- `5. Tokens - Spacing` `VariableCollectionId:9058:105343` (Desktop, Desktop XL, Tablet, Mobile) : 20 tokens 9058:105344-105363, scope GAP, alias Measures.
+- `6. Tokens - Radius` `VariableCollectionId:9058:105364` : radius/control|surface|surface-lg|media|pill 9058:105365-105369 ; component/*/radius 9058:105370-105377 ; scope CORNER_RADIUS.
+- `7. Tokens - Border` `VariableCollectionId:9058:105378` : border/width/none|default|strong|focus 9058:105379-105382 ; scope STROKE_FLOAT.
+- `8. Tokens - Typography` `VariableCollectionId:9058:105383` : tracking/tighter|tight|normal|wide = −2 / −1 / 0 / +2 (9058:105384-105387) ; scope LETTER_SPACING.
+- `Social` → `Formats` (8607:8857), scopes WIDTH_HEIGHT.
+### Test préalable — letter-spacing
+- Nœud texte et style temporaires (créés puis supprimés, rien d’existant touché) : une variable liée à `letterSpacing` est **toujours convertie en pixels** par Figma, même si la propriété était en %. → `Letter spacing/*` stockent la valeur px par mode (= tracking % × taille du mode) et pointent en codeSyntax vers `var(--tracking-*)` (em côté Webflow). `tracking/*` porte les vraies valeurs en %.
+### Lot 5a — 2. Primitives - Typography (ex-« Typography », `VariableCollectionId:2301:1533`)
+- Modes : Desktop `2301:1` (ex-Mode 1, défaut) · Desktop XL `9059:0` · Tablet `9059:1` · Mobile `9059:2`.
+- `Font size/*`, `Line height/*` (alias vers tailles supprimés, valeurs propres), `Paragraph spacing/*` : valeurs par mode (§ 8), scopes nettoyés (TEXT_CONTENT retiré), codeSyntax. `Paragraph spacing/sm` : PARAGRAPH_INDENT → PARAGRAPH_SPACING.
+- `Font weight/semibold` = « SemiBold » ; italiques → `zz-deprecated/Font weight/*-italic` (2301:1565, 1566, 1568, 1570).
+- Créées : `Font weight/extrabold` 9059:4 ; `Line height/prose-sm|md|lg` 9059:5, 7, 9 ; `Paragraph spacing/prose-sm|md|lg` 9059:6, 8, 10 ; `Letter spacing/xxs→9xl` 9059:11-24.
+### Lot 5b — familles
+- `font-family_display` 2301:1545 = Bricolage Grotesque 48pt Condensed ; `font-family_body` 2301:1544 = Geist ; `font-family_accent` 2301:1543 = Bricolage Grotesque 48pt Condensed ; **créée** `font-family_display-xl` 9059:105248 = 72pt Condensed (XL, Desktop) / 48pt Condensed (Tablet, Mobile). Toutes combinaisons famille/style vérifiées avec `listAvailableFontsAsync`.
+### Lot 6 — Styles de texte
+- 29 styles rebindés (famille, graisse, taille, interligne, paragraphe, letter-spacing) ; `display/6xl|7xl|8xl/bold` → `…/medium` (S:3c4113…, S:2917e4…, S:6819de…) ; corrections : display/2xl sur LH 2xl, display/8xl-9xl sur PS 8xl-9xl, text/lg/bold sur PS lg, text/sm/* sur PS sm, weight lié sur 7xl/8xl medium.
+- Créés : `prose/sm` S:48ad04e2…, `prose/md` S:ef5ce0f4…, `prose/lg` S:295d07dc….
+- Contrôle (home, Hasamélis, Light Desktop) : voir § 16. Hauteurs : home 8080 → 8191 px, Hasamélis 10750 → 10928 px.
+### Lot 7 — Styles d’effet (créés)
+- `shadow/xs` S:f4a9385a…, `shadow/sm` S:deb64c79…, `shadow/md` S:b91c4ca6…, `shadow/lg` S:c4810049…, `shadow/xl` S:eca544f2…, `focus-ring` S:85c72808… ; couleurs liées à `elevation/shadow-1|2|3`, `focus-ring` et `bg/page`.
+### Lot 8 — Dépréciations et contrôle
+- Collections 0, 1, 2 masquées de la publication. Contrôle global : 0 variable en ALL_SCOPES, 0 token sans codeSyntax, 0 variable sans description.
+- Dépréciées au total : `zz-deprecated/zinc/*` (11), `zz-deprecated/cararra/*` (11, référence), `zz-deprecated/qonto/*` (8), `zz-deprecated/Font weight/*-italic` (4), `zz-deprecated/prototype/mobile-width|height` (2), `zz-deprecated/landing-container` (1).
+
+### Phase 3 — Textes sans style (périmètre site)
+
+Règle appliquée : textes **sans style** en PP Neue Montreal **ou** liés aux variables de famille (ex-PP Neue Montreal, basculés en Geist/Bricolage à l’étape typo), d’un seul tenant (un seul segment), hors zones clientes, hors instances de composants et hors conteneurs « asset/source/logo/favicon ». Correspondances utilisées (liste de la phase 1) : 36 R → display/4xl/regular · 14 M → text/sm/medium · 20 B → text/xl/bold · 24 R → display/2xl/regular · 48 R → display/5xl/regular · 20 R → text/xl/regular · 20 M → text/xl/medium · 16 R/M → text/md/regular/medium · 30 R → display/3xl/regular · 72 R → display/7xl/regular.
+
+| Page | Stylés | Détail | Non traités (listés) |
+|---|---:|---|---|
+| ↳ Desktop Homepage (1:7) | 15 | display/4xl 12 · display/2xl 3 (IDs 7137:92990, 7137:93049, 7077:56012, 7077:56039, 7127:78799, 7132:85236, 7101:77829, 7132:85631, 7137:92858, 7114:78309, 7137:92910, 7101:77833, 7137:92961, 7154:93676, 7158:94761) | 71 dans des instances ; 32 R ×7 (6338:2256, 7137:92868/871/919/922/970/973) ; 31,6 B ×5 (6338:2261→2269) ; 40 R ×3 (6320:708, 7137:86543…) ; 6 sources de logo restaurées (8655:216955-958, 8656:216966-967) |
+| ↳ CS Hasamélis (6471:7790) | 10 | display/4xl 7 · 5xl 1 · text/xl 1 · display/7xl 1 (6471:8231, 8265, 8276, 8324, 8685, 8698, 8704, 8708, 7737:14616, 7733:14598) | 7 dans « logo/source » (6470:7596, 7526, 7561, 7460, 6464:7428, 5984, 7300) |
+| ↳ CS Qonto (6471:15681) | 7 | display/4xl 7 (6508:2661, 2677, 3149, 2695, 2796, 2815, 12070) | 4 instances |
+| ↳ CS Rocket Tower (6508:3970) | 163 | text/sm/medium 138 · display/4xl 15 · display/2xl 9 · display/5xl 1 | 11 instances |
+| ↳ CS Pokaa (6543:33653) | 25 | text/xl/bold 19 · display/4xl 6 | 4 instances |
+| ↳ CS Caats (6684:63874) | 15 | display/4xl 15 | 5 instances ; 45,9 R ×2 (6766:164487, 164499) |
+| ↳ CS Rue89 (6793:168751) | 35 | display/4xl 22 · display/2xl 12 · display/5xl 1 | 6 instances ; 24 M ×6 (6821:178036, 044, 058, 064, 074, 080) ; 44,9 R (8072:68947) ; 45,9 R (6847:237372) |
+| ↳ CS Kiosk (6793:171267) | 7 | display/4xl 6 · display/3xl 1 | 24 M ×3 (6937:293131, 139, 147) |
+| ↳ CS Signore Giuseppe (6793:172205) | 5 | display/4xl 5 | — |
+| ↳ CS Falmec · Est Repro · BDOR · Courrier des Balkans · Rue89 Impactomètre · TwoFilms | 10 × 6 = 60 | display/4xl 6 · display/2xl 3 · display/5xl 1 (par page) | 6 instances par page |
+| ↳ GUF · Schroll | 0 | — | — |
+| ↳ CS Hasamélis — Mobile (4579:7413) | 7 | display/4xl 6 · display/5xl 1 | 1 instance ; 5–5,5 R ×4 (vignettes réduites 6446:14468, 14477, 14921, 18042) |
+| ↳ SEO · images OG (8607:8795) | 0 | — | 60 ambigus (112,8 B, 28,8 M, 118 B, 128 B : pas de style display gras correspondant) |
+| **Total** | **349** | | **138 dans des instances** (à traiter sur les composants maîtres, mission composants) + 42 ambigus + 7 logos |
+
+**Écart de comptage avec le § 11 :** les 313 textes « 36 R » annoncés comprenaient beaucoup de calques d’instances. Ils sont restés sans style, les composants étant hors périmètre.
+
+**Captures avant/après :** home et Hasamélis, en Light Desktop.
+- Home, section services : inchangée à l’œil, les paragraphes 36 px étant dans des instances.
+- Hasamélis : les interlignes des chapôs 36 px passent de 48 à 42 px, et la page passe de 10 928 à 10 843 px.
+
+## 15. Points à trancher
+
+1. **Fonds de page non liés à `bg/page`** : les sections de la home sont en #ffffff en dur et la frame Hasamélis n’a pas de remplissage. Le mode Dark est donc inutilisable tel quel (texte crème sur blanc). Faut-il rebinder les fonds de section sur `bg/page`, `bg/raised` et `bg/invert` ? C’est une mission suivante (§ 13).
+2. **Footer en `basic/black` direct** (home et études de cas) : le rebinder sur `bg/invert` (brun marque) ?
+3. **Graisse des titres** : LinkedIn 2.0 utilise Bricolage Condensed **SemiBold** pour tous ses titres web, alors que le portfolio garde Regular (noms de styles conservés). Faut-il ajouter des `display/*/semibold` ou passer les titres en SemiBold ?
+4. **Blanc sur orange** (`text/on-brand` sur `bg/brand`, 3,72:1) : conservé pour l’identité, mais réservé aux grands textes. Les CTA utilisent `btn/primary/bg` = `brand-orange/650` (5,3:1). Faut-il valider ce choix ou préférer `text/on-brand` = `brand/brown-darker` (5,06:1) ?
+5. **Corrections de contraste appliquées** : `text/muted` Light = `neutral/600` (au lieu de 500 dans LinkedIn) et `text/accent` / `link/default` Light = `brand-orange/650`. Faut-il reporter ces corrections dans LinkedIn 2.0 (future bibliothèque « Bono. Brand ») ?
+6. **Option Geist Mono** pour les surtitres et métadonnées (`font-family_mono`, `label/sm`, `label/xs`) : non appliquée, en attente d’accord. Elle couvrirait les 25 textes « 10 px Medium » sans style.
+7. **Tailles hors échelle** à arbitrer : 32 R (home, 7), 40 R (home, 3+), 24 Medium (Rue89, Kiosk : 9), OG 112,8/118/128 Bold et 28,8 Medium. Faut-il créer des styles ou recaler sur l’échelle ?
+8. **Instances** : 138 textes sans style dans des instances. Faut-il appliquer les styles sur les composants maîtres (mission composants) ?
+9. **Frames mobiles liés à `zz-deprecated/prototype/mobile-width`** (393 px, 4 liaisons) : passer à `layout/frame/width` en mode Mobile (390 px) ?
+10. **Jade** (landing Studio hors site) : à garder ou à remplacer par `feedback/success/*` ?
+11. **Soulignements partiels** : appliquer un style retire les soulignements locaux. Un cas a été restauré sur Hasamélis ; à vérifier visuellement sur les autres études de cas, pour lesquelles je n’ai pas de capture avant.
+
+## 16. Problèmes de mise en page causés par la refonte (non corrigés)
+
+| # | Où | Problème | Cause |
+|---|---|---|---|
+| 1 | Home › nav (6398:210) | Le badge « New » chevauche « Le Studio » | Texte plus étroit en Geist ; badge positionné en absolu |
+| 2 | Home › hero (6320:514) | Titre sur 3 lignes avec un mot orphelin (« entier. ») ; hero plus bas | Bricolage Condensed plus étroit que PP Neue Montreal |
+| 3 | Home › carte Signore Giuseppe (6320:534) | Titre et description quasi invisibles sur le bandeau noir | Texte `text/primary` (désormais brun) sur fond noir en dur ; problème déjà présent avant (gris foncé sur noir), aggravé |
+| 4 | Home et Hasamélis en **Dark** | Texte crème sur fond blanc, illisible | Fonds de section en dur ou absents (voir § 15.1) ; panneaux média liés à `neutral/100` en direct, qui restent clairs |
+| 5 | Hasamélis › « Le défi : transformer… » (6471:8270) | Frame texte à hauteur fixe 84 px, besoin de 90 px (déborde de 6 px) | Interligne Geist 21 px au lieu de 18 px |
+| 6 | Home | Page plus haute de 111 px (8080 → 8191) ; section services 2252 → 2336 | Interlignes Geist (150 %) plus grands |
+| 7 | Hasamélis | Page plus haute de 93 px (10750 → 10843 après la phase 3) | Idem ; les chapôs 36 px repassent de 48 à 42 px d’interligne |
+
+Textes tronqués détectés dans les maquettes clientes Hasamélis (cartes de voyages en `TRUNCATE`) : troncature voulue, contenu client, non touché.
