@@ -345,6 +345,7 @@ Chaque lot = 1 à 3 appels `use_figma`, IDs retournés, screenshot de contrôle 
 7. Couleurs sans variable : je les liste, je ne crée rien.
 
 ### 9.1 ⚠️ Blocage technique : les polices du système ne sont pas accessibles au MCP Figma
+> **Mise à jour (lot 3, §9.8)** : PP Neue Montreal est depuis devenue chargeable côté API. Tous les déplacements ont donc pu être faits. Seule **Degular / Degular Display** reste indisponible : 1 élément bloqué.
 - `figma.loadFontAsync` renvoie **« The font family "PP Neue Montreal" does not exist »** (même chose pour Degular Display et Degular). Ces polices sont installées sur ton poste, mais pas côté serveur Figma, là où tourne l'API.
 - Or l'API Plugin exige que toutes les polices d'un nœud soient chargées pour **déplacer ce nœud (appendChild / insertChild), y compris une page entière**, lui appliquer un style texte ou modifier un auto-layout qui fait recomposer du texte.
 - **Opérations qui fonctionnent quand même** : renommer (pages, calques, composants), repositionner x/y sur le canvas, binder des variables de couleur, déplacer des pages ou des nœuds sans texte, créer des sections vides et des textes en Inter.
@@ -394,7 +395,7 @@ Chaque lot = 1 à 3 appels `use_figma`, IDs retournés, screenshot de contrôle 
 
 Studio non renommé (ignoré à ta demande). `btn` 8923:5248 deviendra `element/button` au moment du rapatriement.
 
-### 9.4 Homepage : nouvelle organisation du canvas et déplacements qu'il te reste à faire
+### 9.4 Homepage : nouvelle organisation du canvas (historique : les déplacements ont été faits au §9.8)
 
 Zones (coordonnées du coin haut-gauche) :
 
@@ -426,8 +427,8 @@ Après les déplacements, supprime les 9 étiquettes `label/*` (9045:6088 → 90
 - **Auto-layout** : **0 frame multi-enfants sans auto-layout** dans le périmètre site une fois les maquettes clients exclues. Les 23 de l'audit étaient tous dans des visuels clients. Rien à convertir.
 
 ### 9.6 Ce qui reste à trancher par toi
-1. Faire les couper/coller du §9.4 (≈ 8 opérations), ou tester les « shared fonts » pour que je puisse les faire.
-2. Glisser les 3 pages bloquées (SEO, CS Hasamélis — Mobile, Studio + Studio Mobile) à leur place idéale.
+1. ~~Couper/coller du §9.4~~ : **fait** (§9.8). Reste 1 élément bloqué par Degular : `linkedin-hero-v2-01` 6338:2242, à glisser à la main dans Archives › section `homepage — visuels réseaux sociaux & captures` (puis supprimer la note `note/a-archiver-degular` 9045:6096).
+2. ~~Ordre des pages~~ : **fait**, ordre idéal obtenu (§9.8).
 3. Créer ou non les 4 styles texte manquants (36/48, 32/44, 40/48, 24/32) et une variable pour `#756608` (illustration CTA).
 4. Fusion `block/portrait-photo` 7158:95850 ↔ `portrait-shooting` 8523:6511 (page Photos, hors site) : même gabarit 2032×432. À fusionner une fois `portrait-shooting` rapatrié ou archivé.
 5. Doublons Studio (Features Container ×2, Container pricing ×3, case-study ×2) : en attente de ta décision sur la landing.
@@ -451,3 +452,23 @@ Reprises du §4 et confirmées par le nettoyage :
 14. `section/local-proof` — page locale (V2)
 15. `element/button` côté site (seul `btn` existe, dans le Studio)
 16. **Versions mobiles / modes responsive** de toutes les sections (aucune n'existe pour le site)
+
+### 9.8 Lot 3 : déplacements réalisés par l'API (PP Neue Montreal chargeable)
+
+| Lot | Opération | IDs | Résultat | Contrôle |
+|---|---|---|---|---|
+| 3-1 | 11 doublons et orphelins → Archives, section `homepage — doublons & orphelins` 9047:6410 | 7158:95057, 8854:19983, 8857:20002, 7158:95646, 7132:82017, 7132:85778, 7158:94774, 7137:92991, 6320:507, 7098:70351, 8143:6646 | rangés en grille | screenshot de la section |
+| 3-2 | 13 visuels réseaux sociaux / captures → Archives, section 9047:6411 | 8141:62979/62986/63115/62987/62988/63107/63110/63113, 8062:9563, 8413:7262, 8403:7273/7279, 8859:20029 | grille | screenshot de la section |
+| 3-3 | 2 OG → page « SEO · images OG » | 8607:6505, 8607:6506 | posés à droite des OG existants | — |
+| 3-4 | Lot C, 42 assets Hasamélis → page CS Hasamélis, section `assets — ex-homepage` 9047:16311 | 6409:2167, 6409:5042, 6409:508 (composant hero-img), 6422:1900, 6435:10068, 6424:*, 6412:*, 6464:*, 6470:*… | disposition relative conservée | screenshot de la section |
+| 3-5 | Lot B, 31 explorations Expertises / À propos → Archives, section 9047:6409 | dont 7137:91886, 7137:91034, 7026:57668, 7127:78563, 7137:92542 | disposition conservée | screenshot 7137:91886 intact |
+| 3-6 | `element/list-item` 6461:20697 remplacé par l'instance **9052:105091** dans `list` 6461:20671, maître → Components › `element/` | — | 616×56 identiques, liste intacte | screenshot 6461:20671 |
+| 3-7 | Lot A, 115 éléments (v1 et explorations 2024) → Archives, section 9047:6408 | homepage v1 6307:63, composants v1 (card, nav-link, headline selector), CS Hasamélis v1… | disposition conservée | screenshot 6307:63 intact |
+| 3-8 | ⚠️ **6338:2242** `linkedin-hero-v2-01` **non déplacé** (Degular Display indisponible) | — | reste sur la Homepage avec une note | — |
+| 3-9 | Composants maîtres → ⚙️ Components (sections `section/` 9047:16312, `block/` 9047:16313, `element/` 9047:16314) | section/nav 7216:112189, section/footer 6368:4020, section/hero-slider 6364:3086, section/cta 7158:96075, section/project-table 8143:6645, block/faq-item 7158:93819, block/portrait-photo 7158:95850, block/review 7127:79065, element/avatar-illustration 7158:96257, element/list-item 6461:20697 | 10 maîtres, instances liées conservées | — |
+| 3-10 | Maîtres imbriqués remplacés sur place par une instance avant déplacement | section/cta → **9053:765** (dans section/faq) ; section/project-table → **9053:804** (dans page/projets) ; block/review → **9053:931** (dans À propos) | tailles identiques (sizeOk) | screenshots page/faq (6126 px), page/projets (5248 px), page/a-propos (5910 px) identiques |
+| 3-11 | Homepage : 6 pages → section **9054:935** `Folio 2027 — pages desktop (référence)` ; 64 assets → section **9054:936** `Folio 2027 — assets site (sources)` ; sections Cookie wireframe / design laissées à côté | — | 8 étiquettes temporaires supprimées (9045:6088 → 6095, créées par moi) ; 1 note gardée (9045:6096) | screenshot 9054:935 |
+| 3-12 | Réordonnancement des pages à l'ordre idéal (plus aucune page bloquée) ; séparateur 9006:5 → `- - - Studio (en veille)` | 47 pages | Cover · FOLIO PAGES · Homepage · FOLIO ASSETS · SEO · ÉTUDES DE CAS · En cours · Hasamélis · Hasamélis Mobile · 7 CS · À faire · 8 CS · BIBLIOTHÈQUE · UI KIT · Components · HORS SITE · Studio (en veille) · Studio · Studio Mobile · Malt · Shooting… · Showreel · OBSOLÈTE · Search · Wireframe · Design · ARCHIVES · Archives | `failedPages: []` |
+
+**État final de la Homepage** : 2 sections (pages de référence, assets), 2 sections Cookie, 1 élément bloqué et sa note. On part de 293 éléments de premier niveau pour arriver à 6.
+**Rien n'a été supprimé** hormis mes 8 étiquettes d'annotation temporaires.
