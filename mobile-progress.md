@@ -2,7 +2,7 @@
 
 Fichier Figma : `oGJVoOgpCvgf0DnCJTBLdU` · Page Desktop `2353:1248` (référence) · Page Mobile `8468:31767` · Page Archives `1:6`
 
-**Phase courante : 2 — Boucle par écran TERMINÉE** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Toutes les sections sont traitées : 07 · Système, 10 · Légal, 06 · Devis, 03 · Boutique, 05 · Configurateur, 01 · Accueil, 02 · Aménagements, 04 · Landing pages SEO, 08 · Contenus, 09 · Institutionnel, Overlays mobiles. Reste : rescan wording final, contrôle final, rapport `kapam-rapport-mobile.md`.
+**Phase courante : 2 — TERMINÉE** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Toutes les sections sont traitées (07, 10, 06, 03, 05, 01, 02, 04, 08, 09, Overlays mobiles) : 56 écrans « fait », 6 « à revoir Thomas » (Configurateur). Rescan wording final et contrôle final faits (62/62 écrans avec référence desktop, aucune annotation desktop dupliquée, aucun débordement hors carrousels). Livrable : `kapam-rapport-mobile.md`.
 
 Décisions de Thomas sur Q1–Q7 : Q1 noms desktop exacts, parenthèses comprises, + « · Mobile » · Q2 nommage menu OK · Q3 modale Choix de formule en 06 · Devis · Q4 prise de RDV dans Overlays mobiles · Q5 section « Masters — Mobile » conservée à gauche · Q6 supprimer les 4 sections vides · Q7 aligner les libellés du menu sur le desktop (phase 2).
 
