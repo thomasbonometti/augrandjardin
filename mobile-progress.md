@@ -2,7 +2,7 @@
 
 Fichier Figma : `oGJVoOgpCvgf0DnCJTBLdU` · Page Desktop `2353:1248` (référence) · Page Mobile `8468:31767` · Page Archives `1:6`
 
-**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Sections terminées : 07 · Système, 10 · Légal. Section suivante : 06 · Devis.
+**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Sections terminées : 07 · Système, 10 · Légal, 06 · Devis. Section suivante : 03 · Boutique (Catégorie d'abord).
 
 Décisions de Thomas sur Q1–Q7 : Q1 noms desktop exacts, parenthèses comprises, + « · Mobile » · Q2 nommage menu OK · Q3 modale Choix de formule en 06 · Devis · Q4 prise de RDV dans Overlays mobiles · Q5 section « Masters — Mobile » conservée à gauche · Q6 supprimer les 4 sections vides · Q7 aligner les libellés du menu sur le desktop (phase 2).
 
@@ -43,9 +43,9 @@ Statuts possibles : à faire · en cours · fait · bloqué · à revoir Thomas
 
 | Mobile ID | Ancien nom (avant phase 1) | Ancienne section | Desktop ID | Nom desktop | Nom actuel | Statut |
 |---|---|---|---|---|---|---|
-| 9065:29387 | Modal / HUB — Devis Step 1 — Mobile 390 | 🧭 Overlays | 7553:4943 | Devis — Choix de formule | Devis — Choix de formule · Mobile | à faire |
-| 8850:13790 | Kapam / Devis / Checkout — Envoyer ma demande — Mobile 390 | 🧾 Devis | 6972:1887 | Devis — Checkout | Devis — Checkout · Mobile | à faire |
-| 8850:14001 | Kapam / Devis / Confirmation — Mobile 390 | 🧾 Devis | 6975:1968 | Devis — Confirmation | Devis — Confirmation · Mobile | à faire |
+| 9065:29387 | Modal / HUB — Devis Step 1 — Mobile 390 | 🧭 Overlays | 7553:4943 | Devis — Choix de formule | Devis — Choix de formule · Mobile | fait |
+| 8850:13790 | Kapam / Devis / Checkout — Envoyer ma demande — Mobile 390 | 🧾 Devis | 6972:1887 | Devis — Checkout | Devis — Checkout · Mobile | fait |
+| 8850:14001 | Kapam / Devis / Confirmation — Mobile 390 | 🧾 Devis | 6975:1968 | Devis — Confirmation | Devis — Confirmation · Mobile | fait |
 
 ### 03 · Boutique (desktop `7625:7395` · section mobile `8829:5470`) — Catégorie d'abord
 
@@ -192,6 +192,9 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 | 13 | 2026-09-30 | 8844:8556 Légal — Cookies | Contenu identique (38 textes). **Correctif** : le tableau `8844:8570` était une grille de 4 colonnes de 160 px (640 px) rognée à 358 px, avec « Durée » et « Éditeur » coupés. Il est restructuré en 4 blocs « Cookie n » de 4 rangées libellé | valeur, avec les mêmes instances Table / Cellule : 16 cellules de valeur et 4 en-têtes déplacés, 12 en-têtes clonés. Libellés en largeur `measure/112`, espacements `component/gap/none`, tableau en hauteur Hug. Nœuds créés : cadres `9113:29796`→`9113:29838` (4 blocs, 16 rangées, 12 cellules). 2 annotations copiées retirées ; référence et note d'intégration du tableau ajoutées. Captures vérifiées. | Valider le motif de tableau empilé. |
 | 14 | 2026-09-30 | 8844:8809 Légal — Retours & SAV | Contenu identique (30 textes). **Correctif** : « Engagement de suivi » `8844:8818` était une rangée horizontale de hauteur fixe (241 px) avec 3 étapes d'environ 103 px. Le texte se cassait lettre à lettre et chevauchait les sections suivantes. La rangée est passée en pile verticale Hug, avec les 3 étapes en largeur Fill et hauteur Hug ; écarts et marges liés à `component/gap/lg`, `component/gap/sm` et `component/padding/lg`. 4 annotations copiées retirées ; référence ajoutée. Capture vérifiée. | — |
 | 15 | 2026-09-30 | 8843:8019 Légal — Mentions légales (template) | Contenu identique. Référence ajoutée. Capture vérifiée. | — |
+| 16 | 2026-09-30 | 9065:29387 Devis — Choix de formule | Contenu identique au desktop (20 textes ; la croix « × » desktop est une icône de fermeture sur mobile). Zone « Contenu » déclarée défilante (overflow vertical) sous l'en-tête fixe. Annotations : référence desktop, **annotation-modèle demandée** (« Toutes les modales du flux devis suivent ce modèle en mobile : plein écran, en-tête fixe avec retour et fermeture, CTA fixe en bas. ») et zone défilante avec verrouillage du scroll. Modales mobiles manquantes non créées, comme demandé. | Sur ce premier écran, chaque carte porte son propre CTA : il n'y a pas de CTA fixe unique. |
+| 17 | 2026-09-30 | 8850:13790 Devis — Checkout | Contenu identique (25 textes). **Correctifs** : « Contenu » `8850:13792` en hauteur fixe de 1076 px rognait tout le récapitulatif. Il passe en Hug ; écart et marges liés à `section/gap/xl` et `section/gap/lg` (mode Mobile). Les 3 « Ligne » et le « Sous-total » (pile verticale de 24 px, prix masqués) repassent en rangée horizontale Hug : libellé en Fill, prix en Hug, écart `component/gap/md`. Annotations : référence, récap sous le formulaire, cible tactile du lien « Modifier mon devis ». Capture vérifiée. | Le champ date affiche « Placeholder », aussi sur le desktop (R1). |
+| 18 | 2026-09-30 | 8850:14001 Devis — Confirmation | Contenu identique (9 textes). **Correctifs** : icône check étirée à 358 × 30 et icône mail étirée à 332 × 18, désormais en taille fixe liée à `measure/32` et `measure/16`. « Titre » et « Récap mail » repassent en rangée horizontale Hug : le H1 était rogné et invisible. « Contenu » en hauteur fixe rognait la carte Cal.com ; il passe en Hug avec les jetons de section. Liens « Nos réalisations » et « Notre blog » : marges de 11,5 en dur liées à `component/padding/sm` (cible de 45 px). **Cal.com** : l'encart est bien nommé « Encart Cal.com », sans aucune mention de Calendly ; annotation d'ouverture plein écran du module. Capture vérifiée. | — |
 
 ---
 
@@ -213,6 +216,8 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 **Q8 — Footer mobile non conforme (composant maître, non modifié).** Le maître « Footer — Mobile » (`8843:127257`) utilisé par tous les écrans mobiles ne contient pas les éléments du footer desktop (`6888:325`) : 1) la mention « Kapam fabrique sur-mesure : prix indicatifs, soumis à devis personnalisé. » ; 2) la note « * Réponse sous 24 h hors week-end et périodes de congés. » ; 3) les icônes Facebook et Instagram. À leur place, il n'y a qu'un texte « f ». Correctif proposé dans le maître : reprendre dans « Row / Legal » les deux textes du desktop et remplacer le « f » par les instances FacebookLogo et InstagramLogo, comme sur le desktop. Je peux le faire si tu lèves l'interdiction pour ce maître.
 **Q9 — Cibles tactiles des Tag / Badge (composant maître).** Les tags cliquables (filtres de type, recherches fréquentes, et plus loin chips de filtres) font 34 px de haut. J'ai annoté une zone cliquable de 44 px minimum à gérer en dev (padding invisible ou min-height). Faut-il plutôt une taille « Mobile 44 » dans le maître Tag / Badge ?
 **Q10 — Placeholders longs coupés dans les champs mobiles.** « Rechercher un kit, un véhicule, un article… » (Recherche 1) et « Un kit, un modèle de van, une réalisation… » (404) débordent du champ à 390 px, ce qui correspond au rendu natif du navigateur. Accepté tel quel, ou placeholder plus court sur mobile ? C'est une décision de contenu, donc je n'ai pas modifié le texte.
+
+**R1 — Remarques sur le desktop (non modifié, pour information).** 1) « Devis — Checkout » `6972:1887` : le champ « Date prévue pour votre projet » affiche le texte « Placeholder », repris tel quel sur le mobile. 2) « Devis — Choix de formule » `7553:4943` : le sous-titre « Trois formules selon que vous avez déjà votre van… » est coupé à droite dans la modale desktop. Il est complet sur le mobile.
 
 
 ### Signalements wording (non réécrits ; comparaison au desktop en phase 2)
@@ -267,3 +272,9 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 3. Annotations : 5 références desktop ajoutées et 18 copies d'annotations desktop retirées ; une note d'intégration pour le tableau.
 4. Globaux : le footer maître n'est pas conforme (Q8, déjà signalé).
 5. Pas de nouvelle question ; à valider au passage : le motif de tableau empilé pour les cookies.
+### 06 · Devis (3 écrans) — terminé
+1. Contenu : les 3 écrans étaient identiques au desktop ; les modales manquantes du flux ne sont pas créées, comme demandé.
+2. Mise en page : Checkout et Confirmation étaient cassés, avec un récap rogné, des icônes étirées, un H1 invisible et une carte Cal.com coupée. Tout est réparé avec des tailles et espacements liés aux variables.
+3. Annotations : l'annotation-modèle des modales devis est posée sur « Devis — Choix de formule · Mobile », avec la zone défilante et le récap sous le formulaire.
+4. Globaux : la confirmation parle bien de Cal.com (encart nommé, ouverture plein écran annotée) et jamais de Calendly ; le footer maître reste à corriger (Q8).
+5. Remarques desktop en R1 (placeholder de date, sous-titre coupé).
