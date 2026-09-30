@@ -290,30 +290,69 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 **Q28 — « Drawer / Mon devis — Mobile » (composant maître) : boutons de quantité.** Les boutons − / + font 34 × 44 px, sous le minimum tactile de 44 px. À élargir dans le maître (non modifié).
 
 
-### Signalements wording (non réécrits ; comparaison au desktop en phase 2)
+### Signalements wording (non réécrits ; rescan final du 30/09/2026 après la phase 2)
 
-« commande » employé comme nom (au sens achat) :
-- Drawer / Mon devis — Mobile (**composant maître**, `9047:28954`) : « Ceci est une estimation, pas une commande. » → propagé dans Drawer Mon devis — Rempli (`I9063:156462;9047:28954`)
-- FAQ `8848:12463` : « Commande, livraison & devis » (`8848:12483`), « Comment passe-t-on commande ? » (`I8848:12485;6990:574`), « Ce n'est pas une commande en ligne » (`I8848:12485;6990:577`), « récupérer ma commande sur place » (`I8848:12487;6883:319`)
-- Contact `8848:12741` : « commande et pose sur place » (`8848:12798`)
-- Ressources — Installation `8849:11621` : « à la commande » (`8849:11636`), « au moment de la commande » (`8849:11638`)
-- Offres `8850:140342` : « entre la commande et la remise des clés » (`8850:140366`)
-- Fiche kit (template) `8850:141990` : surtitre « COMMANDE » (`8850:142232`), « usiné à la commande » (`8850:142235`), « carnet de commandes » (`8850:142246`), « fabriqué à la commande » (`I8850:142310;6990:577`)
-- Réalisations T5-T6 `8850:134830` et Combi T2-T3 `8850:135529` : « Délai garanti à la commande » (`8850:134938`, `8850:135707`)
+Rescan de tous les textes visibles de la page Mobile : **59 occurrences, sur 27 écrans et 1 composant maître**. Depuis l’alignement de la phase 2, **tous ces textes sont identiques au desktop** : il faut les corriger sur les deux versions à la fois. Conformément à la consigne, aucun n’a été réécrit.
 
-« commande » employé comme verbe (« Le véhicule commande tout le reste ») : Config 1.1 `8850:147988`, 1.2 `8850:149280`, 1.3 `8850:149383`, Actualités — Catégorie `8849:131326`.
+**« panier »** (1) :
+- Actualités — Article (template) `8849:131837` : « Aucun renvoi vers un panier ou une commande en ligne » (`8849:131882`). C’est une consigne de rédaction dans le gabarit.
 
-« achat » / « acheter » :
-- Config 1.1 / 1.2 / 1.3 : « l'achat pas encore fait » (`I8850:147996;8068:1195`, `I8850:149288;8068:1195`, `I8850:149391;8068:1195`)
-- Catégorie ①②③④ : FAQ « Peut-on acheter directement en ligne ? » (`I8829:5557;6883:319`, `I8850:151164;6883:319`, `I8850:151296;6883:319`, `I8850:151428;6883:319`)
-- Fiche produit Trafic L1H1 : « finaliser votre achat » (`8850:143802`)
-- LP Bordeaux : « L'achat d'un van aménagé personnalisé » (`I8850:137363;6884:331`) + paragraphe `8850:137358`
-- LP Kit aménagement van : « acheter un van aménagé ? » (`I8850:144209;6884:332`) · LP Trafic : « L'achat d'un van déjà équipé » (`I8850:146052;6884:331`) · LP fourgon : « acheter un fourgon aménagé ? » (`I8850:146756;6884:332`)
-- LP Véhicules à vendre : `I8850:147455;6884:332`, « Ils ont acheté leur van aménagé chez Kapam » (`8850:147463`), « pour acheter un van aménagé » (`8850:147473`), « FAQ sur l'achat de van aménagé » (`8850:147489`), `8850:147490`, « Quel budget prévoir pour l'achat… » (`I8850:147494;6883:319`)
-- Actualités — Catégorie : « Acheter neuf ou d'occasion pour aménager ? » (`8849:131361`), « avant l'achat du véhicule » (`8849:131380`) · Article Vérifier la compatibilité : `8849:131621`, `8849:131631`, `I8849:131647;6934:391` · Article template : `8849:131882`
-- Réalisations Julien & Marie `8850:133548`, Ford Transit `8850:134268`, T5-T6 `8850:134964` et « aménagés à l'achat ? » (`I8850:135008;6883:319`), Combi « aménagés à l'achat ? » (`I8850:135713;6883:319`)
+**« commande » / « commander » au sens d’achat** (28) :
+- Drawer / Mon devis — Mobile (**composant maître** `9047:29054`, texte `9047:28954`) : « Ceci est une estimation, pas une commande. », propagé dans Drawer Mon devis — Rempli (`I9063:156462;9047:28954`).
+- FAQ `8848:12463` :
+  - « Commande, livraison & devis » (`8848:12483`) ;
+  - « Comment passe-t-on commande ? » (`I8848:12485;6990:574`) ;
+  - « Ce n’est pas une commande en ligne… La commande est validée à réception du devis signé » (`I8848:12485;6990:577`) ;
+  - « Puis-je récupérer ma commande sur place… » (`I8848:12487;6883:319`).
+- Contact `8848:12741` : « commande et pose sur place » (`8848:12798`).
+- Ressources :
+  - Installation `8849:11621` : « à la commande » (`8849:11636`), « au moment de la commande » (`8849:11638`) ;
+  - Guides `8849:9679` : « Mesurer son véhicule avant de commander son kit » (`8849:9739`).
+- Actualités :
+  - Article « Vérifier la compatibilité » `8849:131590` : titre « … avant de commander » (`8849:131603`), « Avant de commander, trois informations suffisent » (`8849:131607`), « pas par une commande en ligne » (`8849:131631`) ;
+  - Article (template) : « … ou une commande en ligne » (`8849:131882`) ;
+  - Catégorie `8849:131319` : carte « … avant de commander » (`8849:131388`).
+- Réalisations T5-T6 `8850:134830` et Combi T2-T3 `8850:135529` : « Délai garanti à la commande » (`8850:134938`, `8850:135707`).
+- SEO Kit aménagement van `8850:144076`, Trafic `8850:145939` et fourgon `8850:146643` : valeur « … indiqué à la signature de votre commande » (`I8850:144233;7077:2485`, `I8850:146076;7077:2485`, `I8850:146780;7077:2485`).
+- Boutique — Fiche kit (template) `8850:141990` :
+  - surtitre « COMMANDE » (`8850:142232`) ;
+  - « usiné à la commande » (`8850:142235`), « carnet de commandes » (`8850:142246`), « fabriqué à la commande » (`I8850:142310;6990:577`) ;
+  - FAQ « Puis-je commander directement en ligne ? » (`I8850:142311;6883:319`).
+- Boutique — Accueil `8826:134088` : « Avant de commander » (`8826:134230`).
+- Aménagements — Offres `8850:140342` : « entre la commande et la remise des clés » (`8850:140366`).
 
-« panier », « caisse », « Ajouter au panier » : aucune occurrence sur la page Mobile.
+**« commande » au sens de « détermine »** (4, sans rapport avec un achat, signalé par principe) :
+- Config 1.2 `8850:149280` et 1.3 `8850:149383` : « Le véhicule commande tout le reste ».
+- Actualités — Catégorie `8849:131326` : même phrase.
+- Article « Vérifier la compatibilité » `8849:131621` : « cette combinaison qui commande la découpe ».
+
+**« achat » / « acheter » / « acheté »** (25) :
+- Boutique — Catégorie ①②③④ : FAQ « Peut-on acheter directement en ligne ? » (`I8829:5557;6883:319`, `I8850:151164;6883:319`, `I8850:151296;6883:319`, `I8850:151428;6883:319`).
+- Boutique — Fiche produit Trafic L1H1 `8850:143475` : « finaliser votre achat » (`8850:143802`).
+- SEO Bordeaux `8850:136229` : « une solution d’achat de van aménagé » (`8850:137358`), carte « L’achat d’un van aménagé personnalisé » (`I8850:137363;8553:2944`).
+- SEO Kit aménagement van `8850:144076` : carte « … vous souhaitez acheter un van aménagé ? » (`I8850:144209;8553:2945`) et **CTA « Acheter un van aménagé »** (`I8850:144209;8553:2946;7109:672`).
+- SEO Trafic `8850:145939` : carte « L’achat d’un van déjà équipé » (`I8850:146052;8553:2944`).
+- SEO fourgon `8850:146643` : « Vous souhaitez acheter un fourgon aménagé ? » (`I8850:146756;8553:2945`).
+- SEO Véhicules à vendre `8850:147344` :
+  - « Ils ont acheté leur van aménagé chez Kapam » (`8850:147463`) ;
+  - « Révision et garanties pour acheter un van aménagé » (`8850:147473`) ;
+  - « FAQ sur l’achat de van aménagé » (`8850:147489`) ;
+  - « avant d’acheter votre van aménagé » (`8850:147490`) ;
+  - « Quel budget prévoir pour l’achat d’un van aménagé ? » (`I8850:147494;6883:319`).
+- Actualités :
+  - Catégorie `8849:131319` : « avant d’acheter » (`8849:131326`), « Acheter neuf ou d’occasion pour aménager ? » (`8849:131361`), « avant l’achat du véhicule » (`8849:131380`) ;
+  - Article « Vérifier la compatibilité » : carte liée « Acheter neuf ou d’occasion… » (`I8849:131647;6934:391`).
+- Réalisations :
+  - Julien & Marie `8850:133548` : « qu’ils pouvaient acheter d’occasion » ;
+  - Ford Transit `8850:134268` : « si vous souhaitez acheter un Ford Transit Custom » ;
+  - T5-T6 `8850:134964` : « acheter un T5 ou T6 déjà aménagé », et FAQ « … aménagés à l’achat ? » (`I8850:135008;6883:319`) ;
+  - Combi : FAQ « … aménagés à l’achat ? » (`I8850:135713;6883:319`).
+
+**« caisse »** (1) : SEO Véhicules à vendre, carte formule « aux dimensions exactes de la caisse » (`I8850:147455;8553:2945`). Le mot désigne ici la carrosserie du véhicule, pas un passage en caisse ; signalé par principe.
+
+**« Ajouter au panier »** : aucune occurrence.
+
+Disparues depuis la phase 1 : « Le véhicule commande tout le reste » et « l’achat pas encore fait » dans Config 1.1 (paragraphe supprimé pour suivre le desktop), et « achat pas encore fait » en 1.2 et 1.3 (question déjà posée, masquée, Q22).
 
 ---
 
