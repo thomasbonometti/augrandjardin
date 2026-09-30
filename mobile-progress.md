@@ -2,7 +2,7 @@
 
 Fichier Figma : `oGJVoOgpCvgf0DnCJTBLdU` · Page Desktop `2353:1248` (référence) · Page Mobile `8468:31767` · Page Archives `1:6`
 
-**Phase courante : 1 — Rangement TERMINÉ · EN ATTENTE DE VALIDATION de Thomas avant la phase 2** (phase 0 validée par Thomas le 2026-09-30).
+**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Section terminée : 07 · Système. Section suivante : 10 · Légal.
 
 Décisions de Thomas sur Q1–Q7 : Q1 noms desktop exacts, parenthèses comprises, + « · Mobile » · Q2 nommage menu OK · Q3 modale Choix de formule en 06 · Devis · Q4 prise de RDV dans Overlays mobiles · Q5 section « Masters — Mobile » conservée à gauche · Q6 supprimer les 4 sections vides · Q7 aligner les libellés du menu sur le desktop (phase 2).
 
@@ -20,14 +20,14 @@ Statuts possibles : à faire · en cours · fait · bloqué · à revoir Thomas
 
 | Mobile ID | Ancien nom (avant phase 1) | Ancienne section | Desktop ID | Nom desktop | Nom actuel | Statut |
 |---|---|---|---|---|---|---|
-| 9053:28810 | Kapam / Système / Recherche — 1 · Panneau — Mobile 390 | 🔎 Recherche (Système) | 7975:20780 | Système — Recherche · 1 Panneau | Système — Recherche · 1 Panneau · Mobile | à faire |
-| 9053:28882 | Kapam / Système / Recherche — 2 · Suggestions — Mobile 390 | 🔎 Recherche (Système) | 7975:33971 | Système — Recherche · 2 Suggestions | Système — Recherche · 2 Suggestions · Mobile | à faire |
-| 8850:139206 | Kapam / Système / Recherche — 3 · Chargement — Mobile 390 | 🔎 Recherche (Système) | 7781:66157 | Système — Recherche · 3 Chargement | Système — Recherche · 3 Chargement · Mobile | à faire |
-| 8850:139415 | Kapam / Système / Recherche — 4 · Résultats — Mobile 390 | 🔎 Recherche (Système) | 7781:13141 | Système — Recherche · 4 Résultats | Système — Recherche · 4 Résultats · Mobile | à faire |
-| 8850:139661 | Kapam / Système / Recherche — 5 · Résultats filtrés — Mobile 390 | 🔎 Recherche (Système) | 7969:20487 | Système — Recherche · 5 Résultats filtrés (Kits) | Système — Recherche · 5 Résultats filtrés (Kits) · Mobile | à faire |
-| 8850:139882 | Kapam / Système / Recherche — 6 · Aucun résultat — Mobile 390 | 🔎 Recherche (Système) | 7781:65971 | Système — Recherche · 6 Aucun résultat | Système — Recherche · 6 Aucun résultat · Mobile | à faire |
-| 8850:140116 | Kapam / Système / Recherche — 7 · Sans JavaScript — Mobile 390 | 🔎 Recherche (Système) | 7969:33903 | Système — Recherche · 7 Sans JavaScript | Système — Recherche · 7 Sans JavaScript · Mobile | à faire |
-| 8844:9022 | Kapam / Système / 404 — Mobile 390 | ⚖️ Légal & Système | 7780:22674 | Système — 404 | Système — 404 · Mobile | à faire |
+| 9053:28810 | Kapam / Système / Recherche — 1 · Panneau — Mobile 390 | 🔎 Recherche (Système) | 7975:20780 | Système — Recherche · 1 Panneau | Système — Recherche · 1 Panneau · Mobile | fait |
+| 9053:28882 | Kapam / Système / Recherche — 2 · Suggestions — Mobile 390 | 🔎 Recherche (Système) | 7975:33971 | Système — Recherche · 2 Suggestions | Système — Recherche · 2 Suggestions · Mobile | fait |
+| 8850:139206 | Kapam / Système / Recherche — 3 · Chargement — Mobile 390 | 🔎 Recherche (Système) | 7781:66157 | Système — Recherche · 3 Chargement | Système — Recherche · 3 Chargement · Mobile | fait |
+| 8850:139415 | Kapam / Système / Recherche — 4 · Résultats — Mobile 390 | 🔎 Recherche (Système) | 7781:13141 | Système — Recherche · 4 Résultats | Système — Recherche · 4 Résultats · Mobile | fait |
+| 8850:139661 | Kapam / Système / Recherche — 5 · Résultats filtrés — Mobile 390 | 🔎 Recherche (Système) | 7969:20487 | Système — Recherche · 5 Résultats filtrés (Kits) | Système — Recherche · 5 Résultats filtrés (Kits) · Mobile | fait |
+| 8850:139882 | Kapam / Système / Recherche — 6 · Aucun résultat — Mobile 390 | 🔎 Recherche (Système) | 7781:65971 | Système — Recherche · 6 Aucun résultat | Système — Recherche · 6 Aucun résultat · Mobile | fait |
+| 8850:140116 | Kapam / Système / Recherche — 7 · Sans JavaScript — Mobile 390 | 🔎 Recherche (Système) | 7969:33903 | Système — Recherche · 7 Sans JavaScript | Système — Recherche · 7 Sans JavaScript · Mobile | fait |
+| 8844:9022 | Kapam / Système / 404 — Mobile 390 | ⚖️ Légal & Système | 7780:22674 | Système — 404 | Système — 404 · Mobile | fait |
 
 ### 10 · Légal (desktop `7775:11319` · section mobile `8843:8018`)
 
@@ -179,6 +179,14 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 |---|---|---|---|---|
 | 1 | 2026-09-30 | Phase 0 — inventaire | Lecture seule. 17 pages dans le fichier. Desktop : 12 sections, 10 numérotées. Mobile : 16 sections, 62 écrans (dont 7 overlays) + 10 composants maîtres. 61 écrans appariés à un écran desktop (appariements vérifiés sur les titres), 1 sans équivalent (menu niveau 1). Polices utilisées sur Mobile : Geist, Geist Mono, Rethink Sans, toutes disponibles (aucun nœud Nacelle / Mona Sans Expanded sur la page Mobile). Scan wording : 50 occurrences à signaler (voir §3). Aucune mention de Calendly sur Mobile ; l'overlay de RDV contient « [EMBED CAL.COM] ». | Q1 à Q7 |
 | 2 | 2026-09-30 | Phase 1 — rangement | 12 sections renommées (01 · Accueil … 10 · Légal, Overlays mobiles, Masters — Mobile) ; 62 écrans renommés « nom desktop · Mobile » et déplacés par reparentage (IDs conservés, vérifiés : 62/62 présents) ; écrans ordonnés comme sur le desktop ; 4 sections vides supprimées ; section Masters — Mobile agrandie de 1084 à 2005 px de haut car le composant « Filtres et tri — Drawer — Mobile » débordait (composant non modifié). Contrôle : aucun nom avec « Kapam / », « v4/v6 » ou « 390 », aucun débordement d'écran hors de sa section. | — |
+| 3 | 2026-09-30 | 9053:28810 Recherche · 1 Panneau | Contenu identique au desktop (13 textes), sauf l'aide clavier desktop « Entrée… · Échap… » : absente par choix sur mobile, et annotée comme telle. Annotations : référence desktop sur le cadre ; « panneau plein écran » (Interaction) sur « Barre de recherche » ; « cibles tactiles » (Accessibilité) sur Tags `9053:28824`. Pas de débordement, pas de calque masqué. | Tags de 34 px (Q9). Placeholder coupé dans le champ (Q10). |
+| 4 | 2026-09-30 | 9053:28882 Recherche · 2 Suggestions | Contenu identique (hors aide clavier, annotée). Annotations : référence ; « même panneau plein écran, lignes de 44 px » (Interaction). | — |
+| 5 | 2026-09-30 | 8850:139206 Recherche · 3 Chargement | Contenu identique. 1 annotation copiée du desktop retirée (FINSWEET chargement) ; référence ajoutée ; cibles tactiles des filtres (Accessibilité). | Tags de 34 px (Q9). Footer maître (Q8). |
+| 6 | 2026-09-30 | 8850:139415 Recherche · 4 Résultats | Contenu identique (34 textes). **Correctif** : les 6 « Résultat / … » avaient une hauteur fixe de 107 px avec rognage, ce qui coupait descriptions et prix et masquait le badge de type. Passage en hauteur Hug, espacement lié à `component/gap/sm`, badge Tag / Badge en Hug. 5 annotations copiées du desktop retirées ; ajout de la référence, des cibles tactiles des filtres et d'une note sur la pile verticale des résultats. Capture vérifiée. | Tags de 34 px (Q9). |
+| 7 | 2026-09-30 | 8850:139661 Recherche · 5 Résultats filtrés (Kits) | Même correctif sur les 4 « Résultat / Kit ». 1 annotation copiée retirée ; référence, filtres et résultats annotés. Capture vérifiée. | — |
+| 8 | 2026-09-30 | 8850:139882 Recherche · 6 Aucun résultat | Contenu identique (26 textes). 2 annotations copiées retirées ; ajout de la référence et des cibles tactiles (filtres et recherches fréquentes). Capture vérifiée. | — |
+| 9 | 2026-09-30 | 8850:140116 Recherche · 7 Sans JavaScript | Contenu identique. 1 annotation copiée retirée ; référence et filtres annotés. Capture vérifiée. | — |
+| 10 | 2026-09-30 | 8844:9022 Système — 404 | Contenu identique (11 textes). Liens de rattrapage déjà à 44 px. Référence ajoutée. Capture vérifiée. | Placeholder coupé (Q10). |
 
 ---
 
@@ -197,6 +205,10 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 **Q6 — Sections vides.** Après regroupement, 4 sections deviennent des conteneurs vides (🛒 Boutique, 🛍️ Boutique — Index, 📰 Actualités, 📚 Ressources). Je propose de les supprimer (aucun écran supprimé, IDs d'écrans conservés). Le kit Notion pointe-t-il vers des IDs de sections ?
 
 **Q7 — Libellé de menu.** Le mobile dit « Catalogue » (menu niveau 1 et 2), le desktop « Boutique » (mega menu). Le niveau 2 Aménagements mobile a aussi un contenu différent (« Kits aménagement / Atelier accompagné / Clé en main » vs desktop « Kit à monter / Kit posé en atelier / Van aménagé, prêt à partir »). Je l'alignerai sur le desktop en phase 2, sauf avis contraire.
+**Q8 — Footer mobile non conforme (composant maître, non modifié).** Le maître « Footer — Mobile » (`8843:127257`) utilisé par tous les écrans mobiles ne contient pas les éléments du footer desktop (`6888:325`) : 1) la mention « Kapam fabrique sur-mesure : prix indicatifs, soumis à devis personnalisé. » ; 2) la note « * Réponse sous 24 h hors week-end et périodes de congés. » ; 3) les icônes Facebook et Instagram. À leur place, il n'y a qu'un texte « f ». Correctif proposé dans le maître : reprendre dans « Row / Legal » les deux textes du desktop et remplacer le « f » par les instances FacebookLogo et InstagramLogo, comme sur le desktop. Je peux le faire si tu lèves l'interdiction pour ce maître.
+**Q9 — Cibles tactiles des Tag / Badge (composant maître).** Les tags cliquables (filtres de type, recherches fréquentes, et plus loin chips de filtres) font 34 px de haut. J'ai annoté une zone cliquable de 44 px minimum à gérer en dev (padding invisible ou min-height). Faut-il plutôt une taille « Mobile 44 » dans le maître Tag / Badge ?
+**Q10 — Placeholders longs coupés dans les champs mobiles.** « Rechercher un kit, un véhicule, un article… » (Recherche 1) et « Un kit, un modèle de van, une réalisation… » (404) débordent du champ à 390 px, ce qui correspond au rendu natif du navigateur. Accepté tel quel, ou placeholder plus court sur mobile ? C'est une décision de contenu, donc je n'ai pas modifié le texte.
+
 
 ### Signalements wording (non réécrits ; comparaison au desktop en phase 2)
 
@@ -232,3 +244,14 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 ## 5. Nœuds bloqués
 
 (aucun pour l'instant — aucune police Nacelle / Mona Sans Expanded détectée sur la page Mobile)
+
+## 6. Annotations desktop dupliquées retirées du mobile
+- 07 · Système : Recherche 3 `8850:139206` (1), Recherche 4 `8850:139415` (5), Recherche 5 `8850:139661` (1), Recherche 6 `8850:139882` (2), Recherche 7 `8850:140116` (1). Toutes étaient des copies exactes d'annotations du desktop (FINSWEET, PLACEHOLDER, PÉRIMÈTRE…). Elles restent consultables sur le desktop, vers lequel pointe l'annotation de référence.
+
+## 7. Résumés de fin de section
+### 07 · Système (8 écrans) — terminé
+1. Contenu : les 8 écrans étaient déjà alignés texte par texte ; seule l'aide clavier desktop manque, par choix, et elle est annotée.
+2. Mise en page : les cartes de résultat coupées (Recherche 4 et 5) sont corrigées en hauteur libre avec espacement lié à la variable ; aucun débordement horizontal.
+3. Annotations : 8 références desktop ajoutées, 10 copies d'annotations desktop retirées, comportements mobiles annotés (panneau plein écran, filtres, cibles tactiles).
+4. Globaux : le footer mobile maître n'a ni la mention prix indicatifs ni Facebook/Instagram (Q8, non modifié car maître) ; les boutons de l'en-tête font 44 px.
+5. Questions ouvertes : Q8 footer, Q9 taille tactile des tags, Q10 placeholders longs.
