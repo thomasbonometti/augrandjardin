@@ -2,7 +2,7 @@
 
 Fichier Figma : `oGJVoOgpCvgf0DnCJTBLdU` · Page Desktop `2353:1248` (référence) · Page Mobile `8468:31767` · Page Archives `1:6`
 
-**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Sections terminées : 07 · Système, 10 · Légal, 06 · Devis, 03 · Boutique, 05 · Configurateur, 01 · Accueil, 02 · Aménagements, 04 · Landing pages SEO, 08 · Contenus, 09 · Institutionnel. Section suivante : Overlays mobiles.
+**Phase courante : 2 — Boucle par écran TERMINÉE** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Toutes les sections sont traitées : 07 · Système, 10 · Légal, 06 · Devis, 03 · Boutique, 05 · Configurateur, 01 · Accueil, 02 · Aménagements, 04 · Landing pages SEO, 08 · Contenus, 09 · Institutionnel, Overlays mobiles. Reste : rescan wording final, contrôle final, rapport `kapam-rapport-mobile.md`.
 
 Décisions de Thomas sur Q1–Q7 : Q1 noms desktop exacts, parenthèses comprises, + « · Mobile » · Q2 nommage menu OK · Q3 modale Choix de formule en 06 · Devis · Q4 prise de RDV dans Overlays mobiles · Q5 section « Masters — Mobile » conservée à gauche · Q6 supprimer les 4 sections vides · Q7 aligner les libellés du menu sur le desktop (phase 2).
 
@@ -126,12 +126,12 @@ Statuts possibles : à faire · en cours · fait · bloqué · à revoir Thomas
 
 | Mobile ID | Ancien nom (avant phase 1) | Ancienne section | Desktop ID | Nom desktop | Nom actuel | Statut |
 |---|---|---|---|---|---|---|
-| 9063:156306 | Menu mobile — Niveau 1 · Racine | 🧭 Overlays | — | (aucun écran ; équivalent = barre Nav / Header) | Système — Menu · Niveau 1 (racine) · Mobile | à faire |
-| 9063:156342 | Menu mobile — Niveau 2 · Aménagements | 🧭 Overlays | 6993:11170 | Système — Mega menu · Aménagements | Système — Mega menu · Aménagements · Mobile | à faire |
-| 9063:156408 | Menu mobile — Niveau 2 · Catalogue | 🧭 Overlays | 6993:11171 | Système — Mega menu · Boutique | Système — Mega menu · Boutique · Mobile | à faire |
-| 9063:156560 | Drawer Mon devis — Vide | 🧭 Overlays | 6993:11173 | Système — Drawer · Mon devis (vide) | Système — Drawer · Mon devis (vide) · Mobile | à faire |
-| 9063:156461 | Drawer Mon devis — Rempli | 🧭 Overlays | 6993:11174 | Système — Drawer · Mon devis (rempli) | Système — Drawer · Mon devis (rempli) · Mobile | à faire |
-| 9065:29501 | Overlay / Prise de rendez-vous — Mobile 390 | 🧭 Overlays | 7829:19142 | Boutique — Overlay · Prise de rendez-vous | Boutique — Overlay · Prise de rendez-vous · Mobile | à faire |
+| 9063:156306 | Menu mobile — Niveau 1 · Racine | 🧭 Overlays | — | (aucun écran ; équivalent = barre Nav / Header) | Système — Menu · Niveau 1 (racine) · Mobile | fait |
+| 9063:156342 | Menu mobile — Niveau 2 · Aménagements | 🧭 Overlays | 6993:11170 | Système — Mega menu · Aménagements | Système — Mega menu · Aménagements · Mobile | fait |
+| 9063:156408 | Menu mobile — Niveau 2 · Catalogue | 🧭 Overlays | 6993:11171 | Système — Mega menu · Boutique | Système — Mega menu · Boutique · Mobile | fait |
+| 9063:156560 | Drawer Mon devis — Vide | 🧭 Overlays | 6993:11173 | Système — Drawer · Mon devis (vide) | Système — Drawer · Mon devis (vide) · Mobile | fait |
+| 9063:156461 | Drawer Mon devis — Rempli | 🧭 Overlays | 6993:11174 | Système — Drawer · Mon devis (rempli) | Système — Drawer · Mon devis (rempli) · Mobile | fait |
+| 9065:29501 | Overlay / Prise de rendez-vous — Mobile 390 | 🧭 Overlays | 7829:19142 | Boutique — Overlay · Prise de rendez-vous | Boutique — Overlay · Prise de rendez-vous · Mobile | fait |
 
 ### Composants maîtres mobiles (section `8477:2871` « Masters — Mobile ») — NON MODIFIÉS
 
@@ -235,6 +235,12 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 | 56 | 2026-09-30 | 8848:12463 FAQ | Contenu identique au desktop (26 textes sur 26). **Mise en page** : CTA empilés, photo de fond du CTA en plein cadre, 3 cadres en hauteur libre (questions rognées). Annotation : référence. Contrôle : aucun débordement ni rognage. Capture vérifiée. | Textes desktop « Commande, livraison & devis », « Comment passe-t-on commande ? », « récupérer ma commande » : à signaler (rescan final). |
 | 57 | 2026-09-30 | 8848:12741 Contact | Contenu identique au desktop (46 textes sur 46). **Mise en page** : 1 rangée remise à l’horizontale, 1 image écrasée remise au ratio desktop, 3 cadres en hauteur libre (formulaire et adresses rognés). Le sélecteur « Type de projet » (maître « Segmented control ») débordait de l’écran avec son 4e segment « Je ne sais pas encore » : il passe sur 2 lignes (retour à la ligne sur la racine d’instance, sans détachement). Segments de 34 px (Q26). 1 annotation copiée du desktop retirée ; référence et note. Contrôle : aucun débordement ni rognage. Capture vérifiée. | Q26. Texte desktop « commande et pose sur place » : rescan final. |
 | 58 | 2026-09-30 | 8848:13041 Revendeurs & Partenaires | Contenu identique au desktop (26 textes sur 26). **Mise en page** : 1 image écrasée remise au ratio desktop, 3 cadres en hauteur libre (cartes partenaires rognées). 1 annotation copiée du desktop retirée ; référence. Contrôle : aucun débordement ni rognage. Capture vérifiée. | — |
+| 59 | 2026-09-30 | 9063:156306 Menu mobile — Niveau 1 · Racine | Pas d’écran desktop : la référence est la barre Nav / Header `6990:10522`. Libellés identiques à l’en-tête desktop, dans le même ordre (Aménagements, Configurateur, Nos vans, Catalogue, Contact, Demander un devis) : rien à changer. Annotations : référence ; comportement du menu à 2 niveaux (ouverture par l’icône menu, plein écran, défilement de la page verrouillé, entrées à chevron vers le niveau 2, fermeture par la croix ou Échap). Contrôle : aucun débordement, boutons de 44 px. Capture vérifiée. | — |
+| 60 | 2026-09-30 | 9063:156342 Menu mobile — Niveau 2 · Aménagements | **Q7 appliquée** : les 3 formules reprennent les libellés du mega menu desktop, par surcharge de texte sur l’instance du maître « Nav / Menu mobile — Mobile » : « Kit à monter / Vous avez un van, vous l’installez vous-même », « Kit posé en atelier / Vous avez un van, nos artisans l’aménagent près de Bordeaux », « Van aménagé, prêt à partir / Nous fournissons le véhicule et l’aménagement ». Anciens libellés : Kits aménagement, Atelier accompagné, Clé en main. Le rail desktop « Nos réalisations récentes » (3 cartes) n’existe pas dans le maître mobile : on ne peut pas l’ajouter dans une instance sans la détacher (Q27). Annotations : référence, retour et fermeture, libellés. Contrôle : aucun débordement. Capture vérifiée. | Q27. |
+| 61 | 2026-09-30 | 9063:156408 Menu mobile — Niveau 2 · Catalogue | Q7 : le titre « Catalogue » est le libellé de l’en-tête desktop (« Boutique » n’est que le nom du cadre du mega menu), donc rien à aligner. Entrées identiques au desktop. Le bloc desktop « Bestsellers » (2 produits + « Voir tout ») manque dans le maître mobile (Q27). Annotations : référence, retour et fermeture. Contrôle : aucun débordement. Capture vérifiée. | Q27. |
+| 62 | 2026-09-30 | 9063:156560 Drawer Mon devis — Vide | Contenu identique au desktop (9 textes). Annotations : référence ; ouverture par l’icône devis ; compteur dans la pastille de l’en-tête et le titre (« Mon devis 0 »), mis à jour à chaque ajout ou suppression ; plein écran en mobile (tiroir de 420 px sur desktop), page verrouillée, fermeture ; état vide et ses liens. Contrôle : aucun débordement. Capture vérifiée. | — |
+| 63 | 2026-09-30 | 9063:156461 Drawer Mon devis — Rempli | Contenu identique au desktop (26 textes). Annotations : référence ; état rempli (compteur à 3, quantités, suppression, sous-total recalculé, liste défilante sous la barre « Envoyer ma demande » fixée en bas). Contrôle : aucun débordement. Les boutons − / + de quantité font 34 × 44 px, sous le minimum tactile ; ils appartiennent au maître « Drawer / Mon devis — Mobile », non modifié (Q28). Capture vérifiée. | Q28. Mention « … pas une commande » déjà signalée. |
+| 64 | 2026-09-30 | 9065:29501 Overlay / Prise de rendez-vous | Contenu identique au desktop (« × » du desktop remplacé par l’icône croix du mobile). Réservation par l’intégration Cal.com (« [EMBED CAL.COM] ») ; aucune mention de Calendly sur la page Mobile. Annotations : référence ; plein écran (modale de 560 px sur desktop), page verrouillée, créneaux, confirmation et rappel envoyés par Cal.com, fermeture. Contrôle : aucun débordement. Capture vérifiée. | — |
 
 ---
 
@@ -279,6 +285,9 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 **Q25 — « Card / Véhicule — Mobile » (composant maître) : CTA différent du desktop.** La carte desktop porte le bouton « En savoir + » ; le maître mobile le remplace par un bouton « Ajout rapide au devis » (+, 40 px, sous le minimum de 44 px). Le desktop faisant foi pour les CTA, faut-il aligner le maître (bouton « En savoir + », ou carte entière cliquable + bouton « + » à 44 px) ? Il est utilisé sur l'Accueil, la Fiche kit et les pages véhicules.
 
 **Q26 — « Segmented control » (composant maître) : cibles tactiles et largeur.** Les segments font 34 px de haut, sous le minimum de 44 px. Sur Contact, le 4e segment « Je ne sais pas encore » dépassait l’écran à 390 px : je l’ai passé sur 2 lignes par surcharge d’instance, sans détachement. Faut-il ajouter au maître une hauteur de 44 px et une variante mobile (retour à la ligne natif ou pile verticale) ?
+
+**Q27 — « Nav / Menu mobile — Mobile » (composant maître) : blocs desktop absents.** Le mega menu desktop Aménagements a un rail « Nos réalisations récentes » (3 « Card / Article ») et le mega menu Boutique un bloc « Bestsellers » (2 produits + « Voir tout »). Le maître mobile n’a ni l’un ni l’autre, et on ne peut pas ajouter de calques dans une instance sans la détacher. Faut-il les ajouter au maître (sous les liens, avant « En savoir plus ») ou les considérer comme propres au desktop ?
+**Q28 — « Drawer / Mon devis — Mobile » (composant maître) : boutons de quantité.** Les boutons − / + font 34 × 44 px, sous le minimum tactile de 44 px. À élargir dans le maître (non modifié).
 
 
 ### Signalements wording (non réécrits ; comparaison au desktop en phase 2)
@@ -406,3 +415,8 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 3. **Composants.** Accordéon et avis traités comme sur Bordeaux et l’Accueil (Q15). Le « Segmented control » du formulaire de contact passe sur 2 lignes par surcharge d’instance (Q26).
 4. **Annotations.** 2 copies desktop retirées ; références et notes mobiles ajoutées (galerie, équipe, carrousel de valeurs, accordéon, avis, sélecteur).
 5. **Questions.** Q26 (Segmented control). Wording : « commande » dans la FAQ et le contact, à signaler au rescan final.
+### Overlays mobiles (6 écrans) — terminé
+1. **Menu à 2 niveaux.** Les libellés du niveau 1 sont identiques à l’en-tête desktop. Au niveau 2, les 3 formules d’Aménagements sont alignées sur le mega menu (Q7), par surcharge de texte sans détachement. « Catalogue » était déjà le libellé desktop.
+2. **Comportements annotés** : ouverture, retour ←, fermeture (croix, Échap, retour arrière), verrouillage du défilement de la page ; drawer « Mon devis » vide et rempli avec son compteur ; prise de rendez-vous via Cal.com (pas de Calendly).
+3. **Écarts de maîtres mobiles**, non modifiés : blocs desktop absents du menu (Q27), boutons de quantité à 34 px (Q28).
+4. **Contenu** identique au desktop sur les drawers et la prise de rendez-vous. Aucune annotation desktop à retirer ; aucun débordement.
