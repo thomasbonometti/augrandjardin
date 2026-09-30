@@ -2,7 +2,7 @@
 
 Fichier Figma : `oGJVoOgpCvgf0DnCJTBLdU` · Page Desktop `2353:1248` (référence) · Page Mobile `8468:31767` · Page Archives `1:6`
 
-**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Sections terminées : 07 · Système, 10 · Légal, 06 · Devis. Section suivante : 03 · Boutique (Catégorie d'abord).
+**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Sections terminées : 07 · Système, 10 · Légal, 06 · Devis, 03 · Boutique. Section suivante : 05 · Configurateur.
 
 Décisions de Thomas sur Q1–Q7 : Q1 noms desktop exacts, parenthèses comprises, + « · Mobile » · Q2 nommage menu OK · Q3 modale Choix de formule en 06 · Devis · Q4 prise de RDV dans Overlays mobiles · Q5 section « Masters — Mobile » conservée à gauche · Q6 supprimer les 4 sections vides · Q7 aligner les libellés du menu sur le desktop (phase 2).
 
@@ -55,9 +55,9 @@ Statuts possibles : à faire · en cours · fait · bloqué · à revoir Thomas
 | 8850:151082 | Catégorie — v6 — Mobile 390 (② Filtres actifs · Renault Trafic L1H1) | 🗂️ Catégorie — v6 | 8824:134285 | Boutique — Catégorie · Filtres actifs (Renault Trafic L1H1) | Boutique — Catégorie · Filtres actifs (Renault Trafic L1H1) · Mobile | fait |
 | 8850:151214 | Catégorie — v6 — Mobile 390 (③ Aucun résultat) | 🗂️ Catégorie — v6 | 8824:134421 | Boutique — Catégorie · Aucun résultat | Boutique — Catégorie · Aucun résultat · Mobile | fait |
 | 8850:151346 | Catégorie — v6 — Mobile 390 (④ Catalogue dense · Accessoires) | 🗂️ Catégorie — v6 | 8824:134557 | Boutique — Catégorie · Catalogue dense (Accessoires) | Boutique — Catégorie · Catalogue dense (Accessoires) · Mobile | fait |
-| 8826:134088 | Boutique — Index — Mobile 390 | 🛍️ Boutique — Index | 9091:136818 | Boutique — Accueil | Boutique — Accueil · Mobile | à faire |
-| 8850:141990 | Kapam / Boutique / Produit — Kit (template) — Mobile 390 | 🛒 Boutique | 7025:10460 | Boutique — Fiche kit (template) | Boutique — Fiche kit (template) · Mobile | à faire |
-| 8850:143475 | Kapam / Produit / Trafic L1H1 — Mobile 390 | 🛒 Boutique | 7407:16925 | Boutique — Fiche produit · Trafic L1H1 | Boutique — Fiche produit · Trafic L1H1 · Mobile | à faire |
+| 8826:134088 | Boutique — Index — Mobile 390 | 🛍️ Boutique — Index | 9091:136818 | Boutique — Accueil | Boutique — Accueil · Mobile | fait |
+| 8850:141990 | Kapam / Boutique / Produit — Kit (template) — Mobile 390 | 🛒 Boutique | 7025:10460 | Boutique — Fiche kit (template) | Boutique — Fiche kit (template) · Mobile | fait |
+| 8850:143475 | Kapam / Produit / Trafic L1H1 — Mobile 390 | 🛒 Boutique | 7407:16925 | Boutique — Fiche produit · Trafic L1H1 | Boutique — Fiche produit · Trafic L1H1 · Mobile | fait |
 
 ### 05 · Configurateur (desktop `8323:87351` · section mobile `8850:147963`) — base à retravailler, chaque écran finira « à revoir Thomas »
 
@@ -199,6 +199,9 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 | 20 | 2026-09-30 | 8850:151082 Catégorie · Filtres actifs (Renault Trafic L1H1) | Mêmes constats et correctifs que l'état 1. Pastilles de filtres actifs déjà à 44 px (zone tactile = pastille entière). 7 annotations copiées retirées ; références et comportements annotés. | Le desktop affiche « 3 kits » dans la barre et « 2 kits sur 4 » dans le rail masqué : incohérence propre au desktop (R1, point 3). |
 | 21 | 2026-09-30 | 8850:151214 Catégorie · Aucun résultat | Mêmes correctifs ; état vide conforme au desktop. 7 annotations copiées retirées ; références ajoutées. | — |
 | 22 | 2026-09-30 | 8850:151346 Catégorie · Catalogue dense (Accessoires) | Mêmes correctifs. **Pagination rendue visible** `8850:151377` : elle l'est sur le desktop dense, mais était masquée et large de 944 px sur mobile. Elle passe à 358 px, centrée, avec des cibles de 45 × 48 px minimum. 7 annotations copiées retirées. Capture vérifiée. | — |
+| 23 | 2026-09-30 | 8826:134088 Boutique — Accueil | Contenu identique (81 textes, sections S0→S13 dans le même ordre). **Correctifs** : rails « Nos quatre kits » et « Accessoires » en carrousel à débordement visible (overflow horizontal) ; « Titre + lien » d'Accessoires, dont le lien était coupé à droite, passe à la ligne (wrap, `component/gap/sm`) ; « Nos offres » : les 3 cartes desktop « Card / Formule » sont remplacées par le maître « Card / Formule — Mobile » (propriétés identiques, textes conservés, typographie réalignée sur le maître : le tag n'est plus tronqué), rangée en carrousel ; bande familles en 1 colonne bord à bord 4:5. 10 annotations copiées du desktop retirées ; référence et carrousels annotés. Captures vérifiées. | Titre S11 « Avant de commander » : verbe « commander » à signaler (wording). Grilles et hauteur de la bande familles (Q12). |
+| 24 | 2026-09-30 | 8850:141990 Boutique — Fiche kit (template) | Contenu identique (350 textes). **Réadaptation de la mise en page** : S1 en Hug, caractéristiques en rangées coche + texte, vignettes (écrasées à 1 px) en carrousel de miniatures 64 px (`measure/64`), case « montage en atelier » en Hug ; **comparatif** 4 kits (colonnes de 90 px, texte cassé lettre à lettre, 8 791 px de haut) passé en tableau à défilement horizontal, largeur liée à `width/text-lg` (4 × 192 px), en-têtes empilés image + détails (Q16) ; étapes, « Nos autres kits » (1 colonne, 3 cartes), « On monte pour vous », titres avec bouton, réassurances : Hug ; FAQ 2 colonnes → 1 ; véhicules : 4 cartes de 72 px remplacées par « Card / Véhicule — Mobile » en carrousel ; « Matériaux haut de gamme » (bloc renommé) : image interne de l'accordéon masquée par surcharge et reprise en pleine largeur (nœud créé `9136:30407`) ; CTA : conteneur en Hug, image de fond recalée, voile `overlay/scrim-bottom-strong`. 11 annotations copiées retirées ; référence, comparatif, vignettes, véhicules et accordéon annotés. Hauteur passée de 17 444 à environ 16 900 px, sans aucun texte coupé. Captures vérifiées. | Q15, Q16. FAQ « Puis-je commander directement en ligne ? » (wording). Paragraphe dupliqué dans le desktop (R1, point 4). |
+| 25 | 2026-09-30 | 8850:143475 Boutique — Fiche produit · Trafic L1H1 | Contenu identique (hors footer, voir Q8). **Réadaptation** : S1 en hauteur fixe (CTA, garantie, caractéristiques et réassurance coupés) passé en Hug ; caractéristiques en rangées ; CTA empilés ; réassurance en 1 colonne ; « Ce qui nous démarque » (bloc renommé ; image de fond hors cadre et texte blanc sur blanc) : image recalée, grille passée en 1 colonne, voile `overlay/scrim-bottom` ajouté (nœud `9127:29168`) ; « Matériaux haut de gamme » (bloc renommé) : même adaptation que la fiche kit (nœud `9126:29168`) ; CTA : conteneur en Hug, image recalée, voile passé d'un dégradé en dur au style `overlay/scrim-bottom-strong`. **Calque orphelin supprimé** : « Frame 2147227163 » `8850:143499`, anciens sélecteurs Finition et Tissu masqués, larges de 608 px et absents du desktop (+ enfants `8850:143500`, `8850:143501`). « Note » et « Case montage » masqués, comme sur le desktop, donc gardés. Référence et CTA empilés annotés, avec la barre sticky manquante (Q14). Captures vérifiées. | Q14, Q15. |
 
 ---
 
@@ -221,11 +224,15 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 **Q9 — Cibles tactiles des Tag / Badge (composant maître).** Les tags cliquables (filtres de type, recherches fréquentes, et plus loin chips de filtres) font 34 px de haut. J'ai annoté une zone cliquable de 44 px minimum à gérer en dev (padding invisible ou min-height). Faut-il plutôt une taille « Mobile 44 » dans le maître Tag / Badge ?
 **Q10 — Placeholders longs coupés dans les champs mobiles.** « Rechercher un kit, un véhicule, un article… » (Recherche 1) et « Un kit, un modèle de van, une réalisation… » (404) débordent du champ à 390 px, ce qui correspond au rendu natif du navigateur. Accepté tel quel, ou placeholder plus court sur mobile ? C'est une décision de contenu, donc je n'ai pas modifié le texte.
 
-**R1 — Remarques sur le desktop (non modifié, pour information).** 1) « Devis — Checkout » `6972:1887` : le champ « Date prévue pour votre projet » affiche le texte « Placeholder », repris tel quel sur le mobile. 2) « Devis — Choix de formule » `7553:4943` : le sous-titre « Trois formules selon que vous avez déjà votre van… » est coupé à droite dans la modale desktop. Il est complet sur le mobile. 3) « Boutique — Catégorie · Filtres actifs » `8824:134285` : la barre d'outils affiche « 3 kits » alors que le rail de filtres affiche « 2 kits sur 4 ».
+**R1 — Remarques sur le desktop (non modifié, pour information).** 1) « Devis — Checkout » `6972:1887` : le champ « Date prévue pour votre projet » affiche le texte « Placeholder », repris tel quel sur le mobile. 2) « Devis — Choix de formule » `7553:4943` : le sous-titre « Trois formules selon que vous avez déjà votre van… » est coupé à droite dans la modale desktop. Il est complet sur le mobile. 3) « Boutique — Catégorie · Filtres actifs » `8824:134285` : la barre d'outils affiche « 3 kits » alors que le rail de filtres affiche « 2 kits sur 4 ». 4) « Boutique — Fiche kit (template) » : le paragraphe de « Pas envie de monter vous-même ? » `7213:48953` contient deux fois la même phrase (« Vous pouvez aussi nous confier l'installation… »), reprise telle quelle sur le mobile.
 
 **Q11 — Surtitre « RÉALISATION CLIENT » présent seulement sur mobile.** Dans les 4 états de la Catégorie, la section S4 « Rupture éditoriale » mobile porte un surtitre « RÉALISATION CLIENT » que le desktop n'a pas, même masqué. Le desktop faisant foi, je ne l'ai ni supprimé ni masqué : faut-il l'ajouter au desktop ou le retirer du mobile ?
 **Q12 — Règle « grilles en une colonne » et grilles produits.** J'ai passé en une colonne les grilles de cartes à texte (Déclinaisons) et la bande de tuiles familles. Les grilles produits construites avec « Card / Produit — condensée — Mobile » restent en 2 colonnes : ce composant a été dessiné pour ça et la page resterait plus courte. À confirmer, ou tout passer en une colonne ? À noter aussi : en une colonne bord à bord 4:5, la bande familles mesure environ 1 960 px. Si c'est trop, alternative possible : un carrousel horizontal.
 **Q13 — Navigation de carrousel à 40 px (composant maître).** « Carrousel / Navigation — Mobile » `8569:2887` a des boutons flèches de 40 × 40 px, sous le minimum de 44 px. Correction à faire dans le maître (non modifié).
+
+**Q14 — Barre produit sticky en mobile.** Le desktop a « Boutique — Barre produit sticky » `7831:19192` (masquée en haut de fiche, visible après Info produit). Rien d'équivalent en mobile : faut-il créer une barre fixe en bas d'écran avec « Prendre rendez-vous pour le voir » ou « Ajouter à mon devis » ? Je ne l'ai pas créée (nouveau composant).
+**Q15 — « Accordion / Image-Texte » sans version mobile.** Ce composant est horizontal (image + accordéon) et n'a pas de variante. Sur les fiches produit et kit, j'ai masqué l'image interne par surcharge d'instance, sans détachement, et repris la même image en pleine largeur au-dessus. Un variant « Mobile » vertical dans le maître serait plus propre. À créer ?
+**Q16 — Comparatif des kits en défilement horizontal (exception).** Le tableau de 4 kits × 23 critères était illisible sur 358 px. Je l'ai passé en tableau défilant horizontalement (4 colonnes de 192 px, largeur liée à `width/text-lg`), ce qui déroge à la règle « aucun autre débordement ». Alternatives : accordéon par critère, ou comparaison de 2 kits avec sélecteur (nouvelle UI). À valider.
 
 
 ### Signalements wording (non réécrits ; comparaison au desktop en phase 2)
@@ -257,7 +264,7 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 
 ## 4. Calques supprimés (IDs)
 
-(aucun pour l'instant)
+- `8850:143499` « Frame 2147227163 », avec ses enfants `8850:143500` « Sélecteur / Finition » et `8850:143501` « Sélecteur / Tissu ». Tous masqués, dans « Boutique — Fiche produit · Trafic L1H1 · Mobile ». Ce sont des restes d'une ancienne version (largeur desktop de 608 px, absents du desktop actuel).
 
 ## 5. Nœuds bloqués
 
@@ -267,6 +274,7 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 - 07 · Système : Recherche 3 `8850:139206` (1), Recherche 4 `8850:139415` (5), Recherche 5 `8850:139661` (1), Recherche 6 `8850:139882` (2), Recherche 7 `8850:140116` (1). Toutes étaient des copies exactes d'annotations du desktop (FINSWEET, PLACEHOLDER, PÉRIMÈTRE…). Elles restent consultables sur le desktop, vers lequel pointe l'annotation de référence.
 - 10 · Légal : CGV `8844:8161` (7), Confidentialité `8844:8359` (5), Cookies `8844:8556` (2), Retours & SAV `8844:8809` (4). Ce sont des copies exactes des annotations PLACEHOLDER du desktop.
 - 03 · Boutique — Catégorie : états 1 à 4 `8829:5471`, `8850:151082`, `8850:151214`, `8850:151346` : 7 annotations copiées du desktop chacun (28 au total).
+- 03 · Boutique : Accueil `8826:134088` (10), Fiche kit `8850:141990` (11). La Fiche produit n'avait aucune copie.
 
 ## 7. Résumés de fin de section
 ### 07 · Système (8 écrans) — terminé
@@ -287,3 +295,9 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 3. Annotations : l'annotation-modèle des modales devis est posée sur « Devis — Choix de formule · Mobile », avec la zone défilante et le récap sous le formulaire.
 4. Globaux : la confirmation parle bien de Cal.com (encart nommé, ouverture plein écran annotée) et jamais de Calendly ; le footer maître reste à corriger (Q8).
 5. Remarques desktop en R1 (placeholder de date, sous-titre coupé).
+### 03 · Boutique (7 écrans) — terminé
+1. Contenu : les 7 écrans avaient les mêmes textes que le desktop. Seul écart : un surtitre présent uniquement sur mobile (Q11), non supprimé.
+2. Mise en page : les 3 pages longues (Fiche kit, Fiche produit, Accueil) étaient massivement cassées (colonnes desktop compressées, hauteurs fixes, images hors cadre). Elles sont réadaptées en 1 colonne, avec des carrousels pour les rangées de cartes et un comparatif défilant (Q16).
+3. Composants : 3 cartes formule et 4 cartes véhicule sont passées sur leurs maîtres mobiles existants, sans détachement. Il manque un variant mobile d'« Accordion / Image-Texte » (Q15) et une barre sticky mobile (Q14).
+4. Calques : 3 orphelins supprimés (anciens sélecteurs Finition et Tissu). Les masqués légitimes sont gardés (rail de filtres annoté, pagination booléenne, étiquettes d'assets).
+5. Annotations : 7 références, 49 copies desktop retirées, comportements mobiles annotés (tiroir filtres, carrousels, comparatif). Questions Q11 à Q16.
