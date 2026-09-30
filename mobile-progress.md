@@ -2,7 +2,7 @@
 
 Fichier Figma : `oGJVoOgpCvgf0DnCJTBLdU` · Page Desktop `2353:1248` (référence) · Page Mobile `8468:31767` · Page Archives `1:6`
 
-**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Sections terminées : 07 · Système, 10 · Légal, 06 · Devis, 03 · Boutique, 05 · Configurateur, 01 · Accueil, 02 · Aménagements, 04 · Landing pages SEO, 08 · Contenus. Section suivante : 09 · Institutionnel.
+**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Sections terminées : 07 · Système, 10 · Légal, 06 · Devis, 03 · Boutique, 05 · Configurateur, 01 · Accueil, 02 · Aménagements, 04 · Landing pages SEO, 08 · Contenus, 09 · Institutionnel. Section suivante : Overlays mobiles.
 
 Décisions de Thomas sur Q1–Q7 : Q1 noms desktop exacts, parenthèses comprises, + « · Mobile » · Q2 nommage menu OK · Q3 modale Choix de formule en 06 · Devis · Q4 prise de RDV dans Overlays mobiles · Q5 section « Masters — Mobile » conservée à gauche · Q6 supprimer les 4 sections vides · Q7 aligner les libellés du menu sur le desktop (phase 2).
 
@@ -117,10 +117,10 @@ Statuts possibles : à faire · en cours · fait · bloqué · à revoir Thomas
 
 | Mobile ID | Ancien nom (avant phase 1) | Ancienne section | Desktop ID | Nom desktop | Nom actuel | Statut |
 |---|---|---|---|---|---|---|
-| 8848:9678 | Kapam / Institutionnel / À propos — Mobile 390 | 🏛️ Institutionnel | 7915:36607 | À propos | À propos · Mobile | à faire |
-| 8848:12463 | Kapam / Institutionnel / FAQ — Mobile 390 | 🏛️ Institutionnel | 7517:4378 | FAQ | FAQ · Mobile | à faire |
-| 8848:12741 | Kapam / Institutionnel / Contact — Mobile 390 | 🏛️ Institutionnel | 7524:4488 | Contact | Contact · Mobile | à faire |
-| 8848:13041 | Kapam / Institutionnel / Revendeurs & Partenaires — Mobile 390 | 🏛️ Institutionnel | 7531:4699 | Revendeurs & Partenaires | Revendeurs & Partenaires · Mobile | à faire |
+| 8848:9678 | Kapam / Institutionnel / À propos — Mobile 390 | 🏛️ Institutionnel | 7915:36607 | À propos | À propos · Mobile | fait |
+| 8848:12463 | Kapam / Institutionnel / FAQ — Mobile 390 | 🏛️ Institutionnel | 7517:4378 | FAQ | FAQ · Mobile | fait |
+| 8848:12741 | Kapam / Institutionnel / Contact — Mobile 390 | 🏛️ Institutionnel | 7524:4488 | Contact | Contact · Mobile | fait |
+| 8848:13041 | Kapam / Institutionnel / Revendeurs & Partenaires — Mobile 390 | 🏛️ Institutionnel | 7531:4699 | Revendeurs & Partenaires | Revendeurs & Partenaires · Mobile | fait |
 
 ### Overlays mobiles (section mobile `9063:156305` ; équivalents des overlays desktop de 07 · Système et 03 · Boutique)
 
@@ -231,6 +231,10 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 | 52 | 2026-09-30 | 8849:11621 Ressources — Installation | Contenu identique au desktop (19 textes sur 19). Mise en page déjà adaptée (texte long en une colonne, CTA empilés) : aucune correction. Annotation : référence. Contrôle : aucun débordement ni rognage. Capture vérifiée. | Textes desktop « au moment de la commande », « à la commande » : à signaler (rescan final). Mentions « [À CONFIRMER …] » (R1). |
 | 53 | 2026-09-30 | 8849:9992 Ressources — Compatibilité | Contenu identique au desktop (54 textes sur 54). **Tableau de compatibilité** (grille 4 colonnes × 30 lignes, 90 cellules) : mon correctif générique l’avait d’abord passé en une colonne, ce qui détachait les ✓/✕ de leurs en-têtes. Il est reconstruit en grille avec les positions et fusions du desktop (mêmes calques, IDs conservés), et les tableaux sont désormais exclus de cette règle. Colonne « Véhicule » deux fois plus large (2:1:1:1), sinon les noms se cassaient (« Transpo rter T4 », « Modèle à confir mer » débordait). Annotations : référence et note sur le tableau. Contrôle : aucun débordement ni rognage. Capture vérifiée. | — |
 | 54 | 2026-09-30 | 8849:11819 Ressources — Garantie | Contenu identique au desktop (15 textes sur 15). Mise en page déjà adaptée : aucune correction. Annotation : référence. Contrôle : aucun débordement ni rognage. Capture vérifiée. | Contenu desktop « PLACEHOLDER — … » (R1). |
+| 55 | 2026-09-30 | 8848:9678 À propos | Contenu identique au desktop (87 textes sur 87). **7 calques masqués orphelins supprimés**, dont 2 sections entières absentes du desktop (« nos offres » avec 3 cartes formule, et un bloc configurateur) : elles faussaient aussi l’appariement des blocs avec le desktop (§4). **Mise en page** : le cadre de l’écran était fixé à la hauteur desktop (8 959 px) et rognait 8 755 px de contenu : il passe en hauteur libre (11 764 px). Galerie atelier : 11 photos empilées (4 872 px) remises en bande défilante horizontale comme sur le desktop (320 px de haut, proportions desktop). Nos valeurs : 6 « Card / Valeur » en carrousel. Équipe : grille 4 colonnes de 78 px → une colonne, photos à la taille desktop. Accordéon : photo interne masquée et reprise en pleine largeur au-dessus (`9227:29380`, `9227:29381`), comme sur Bordeaux (Q15). Avis : surcharge de l’Accueil. CTA empilés, 8 cadres en hauteur libre, titre « Notre mission » en `display/3xl/regular`. Annotations : référence et 5 notes. Contrôle : aucun débordement ni rognage (hors chevron d’accordéon, rogné par conception). Captures vérifiées. | Q15. |
+| 56 | 2026-09-30 | 8848:12463 FAQ | Contenu identique au desktop (26 textes sur 26). **Mise en page** : CTA empilés, photo de fond du CTA en plein cadre, 3 cadres en hauteur libre (questions rognées). Annotation : référence. Contrôle : aucun débordement ni rognage. Capture vérifiée. | Textes desktop « Commande, livraison & devis », « Comment passe-t-on commande ? », « récupérer ma commande » : à signaler (rescan final). |
+| 57 | 2026-09-30 | 8848:12741 Contact | Contenu identique au desktop (46 textes sur 46). **Mise en page** : 1 rangée remise à l’horizontale, 1 image écrasée remise au ratio desktop, 3 cadres en hauteur libre (formulaire et adresses rognés). Le sélecteur « Type de projet » (maître « Segmented control ») débordait de l’écran avec son 4e segment « Je ne sais pas encore » : il passe sur 2 lignes (retour à la ligne sur la racine d’instance, sans détachement). Segments de 34 px (Q26). 1 annotation copiée du desktop retirée ; référence et note. Contrôle : aucun débordement ni rognage. Capture vérifiée. | Q26. Texte desktop « commande et pose sur place » : rescan final. |
+| 58 | 2026-09-30 | 8848:13041 Revendeurs & Partenaires | Contenu identique au desktop (26 textes sur 26). **Mise en page** : 1 image écrasée remise au ratio desktop, 3 cadres en hauteur libre (cartes partenaires rognées). 1 annotation copiée du desktop retirée ; référence. Contrôle : aucun débordement ni rognage. Capture vérifiée. | — |
 
 ---
 
@@ -274,6 +278,8 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 **Q24 — Section « Explorez nos catégories » présente seulement sur l'Accueil mobile.** 4 cartes (Kits aménagement, Accessoires, Pièces & électricité, Nouveautés), avec des emplacements photo à produire et des annotations « À RÉDIGER ». Le desktop n'a pas cette section. Je l'ai conservée et annotée : faut-il l'ajouter au desktop ou la retirer du mobile ?
 **Q25 — « Card / Véhicule — Mobile » (composant maître) : CTA différent du desktop.** La carte desktop porte le bouton « En savoir + » ; le maître mobile le remplace par un bouton « Ajout rapide au devis » (+, 40 px, sous le minimum de 44 px). Le desktop faisant foi pour les CTA, faut-il aligner le maître (bouton « En savoir + », ou carte entière cliquable + bouton « + » à 44 px) ? Il est utilisé sur l'Accueil, la Fiche kit et les pages véhicules.
 
+**Q26 — « Segmented control » (composant maître) : cibles tactiles et largeur.** Les segments font 34 px de haut, sous le minimum de 44 px. Sur Contact, le 4e segment « Je ne sais pas encore » dépassait l’écran à 390 px : je l’ai passé sur 2 lignes par surcharge d’instance, sans détachement. Faut-il ajouter au maître une hauteur de 44 px et une variante mobile (retour à la ligne natif ou pile verticale) ?
+
 
 ### Signalements wording (non réécrits ; comparaison au desktop en phase 2)
 
@@ -315,6 +321,7 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 - SEO — Véhicules à vendre `8850:147344` : pastille `8850:147386` « Ford Transit Custom ». Carte `8850:147445` « Ford Transit Custom » (Card / Produit). Calques masqués orphelins du titre des réalisations : `8850:147461` surtitre « Nos clients », `8850:147464` texte « Des vans neufs ou d’occasion… ». Réassurance `8850:147477` « Livraison possible ». FAQ `8850:147495` « La livraison est-elle possible hors de la région bordelaise ? ». Tous absents du desktop.
 - SEO — Kit aménagement van `8850:144076` et fourgon `8850:146643` (reprise) : textes masqués orphelins `8850:144216` et `8850:146763` « Des vans neufs ou d’occasion… », absents du desktop.
 - SEO — Bordeaux `8850:136229` : ellipses masquées `8850:136235` et `8850:136236` du hero, absentes du desktop. Calques masqués orphelins du titre des réalisations : `8850:138501` surtitre « Boutique · Véhicules à vendre », `8850:138504` texte « Des vans neufs ou d'occasion… ».
+- À propos `8848:9678` : sections masquées `8848:9702` « section » (« nos offres », 3 cartes formule) et `8848:10808` « configurateur » ; cadre masqué `8848:11911` « Container » (« Nos vans aménagés à vendre », 4 cartes véhicule) ; textes masqués `8848:11941` « Aménageur de vans depuis 2012 », `8848:11950` « [CITATION À VALIDER WILLY] — … », `8848:12027` « Boutique · Véhicules à vendre », `8848:12030` « Des vans neufs ou d'occasion… ». Tous absents du desktop.
 
 ## 5. Nœuds bloqués
 
@@ -335,6 +342,8 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 - `8849:131837` Actualités — Article (template) : 5 annotations identiques au desktop (visuels placeholder, CTA, articles liés).
 - `8849:131590` Actualités — Article « Vérifier la compatibilité » : 5 annotations identiques au desktop.
 - `8849:9679` Ressources — Guides : 1 annotation identique au desktop.
+- `8848:12741` Contact : 1 annotation identique au desktop.
+- `8848:13041` Revendeurs & Partenaires : 1 annotation identique au desktop.
 
 ## 7. Résumés de fin de section
 ### 07 · Système (8 écrans) — terminé
@@ -391,3 +400,9 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 3. **Exception.** Le tableau de compatibilité reste une grille à 4 colonnes (reconstruit après une première conversion en une colonne, les tableaux sont exclus de la règle), colonne « Véhicule » élargie.
 4. **Annotations.** 101 copies d’annotations desktop retirées (notes de rédaction et de câblage) ; références et notes mobiles ajoutées (galeries défilantes, frises et fiches empilées, sommaire d’article en ligne, étiquettes d’image masquées).
 5. **Wording.** Textes desktop avec « commander », « commande », « panier », « acheter », « achat » : à signaler au rescan final. Pas de nouvelle question.
+### 09 · Institutionnel (4 écrans) — terminé
+1. **Contenu.** Les 4 écrans avaient les mêmes textes que le desktop. À propos portait 7 calques masqués sans équivalent desktop (2 sections entières, 1 bloc véhicules, 4 textes) : supprimés comme orphelins.
+2. **Mise en page.** À propos était le plus touché : cadre d’écran figé à la hauteur desktop, qui cachait la moitié de la page. Galerie empilée sur 4 872 px, équipe en colonnes de 78 px. Les 3 autres écrans avaient des cadres à hauteur fixe qui rognaient et des images écrasées.
+3. **Composants.** Accordéon et avis traités comme sur Bordeaux et l’Accueil (Q15). Le « Segmented control » du formulaire de contact passe sur 2 lignes par surcharge d’instance (Q26).
+4. **Annotations.** 2 copies desktop retirées ; références et notes mobiles ajoutées (galerie, équipe, carrousel de valeurs, accordéon, avis, sélecteur).
+5. **Questions.** Q26 (Segmented control). Wording : « commande » dans la FAQ et le contact, à signaler au rescan final.
