@@ -2,7 +2,7 @@
 
 Fichier Figma : `oGJVoOgpCvgf0DnCJTBLdU` · Page Desktop `2353:1248` (référence) · Page Mobile `8468:31767` · Page Archives `1:6`
 
-**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Section terminée : 07 · Système. Section suivante : 10 · Légal.
+**Phase courante : 2 — Boucle par écran EN COURS** (Thomas a demandé d'enchaîner jusqu'au bout sans pause de validation ; les résumés de section sont consignés en §7). Sections terminées : 07 · Système, 10 · Légal. Section suivante : 06 · Devis.
 
 Décisions de Thomas sur Q1–Q7 : Q1 noms desktop exacts, parenthèses comprises, + « · Mobile » · Q2 nommage menu OK · Q3 modale Choix de formule en 06 · Devis · Q4 prise de RDV dans Overlays mobiles · Q5 section « Masters — Mobile » conservée à gauche · Q6 supprimer les 4 sections vides · Q7 aligner les libellés du menu sur le desktop (phase 2).
 
@@ -33,11 +33,11 @@ Statuts possibles : à faire · en cours · fait · bloqué · à revoir Thomas
 
 | Mobile ID | Ancien nom (avant phase 1) | Ancienne section | Desktop ID | Nom desktop | Nom actuel | Statut |
 |---|---|---|---|---|---|---|
-| 8844:8161 | Kapam / Légal / CGV — Mobile 390 | ⚖️ Légal & Système | 7776:11317 | Légal — CGV | Légal — CGV · Mobile | à faire |
-| 8844:8359 | Kapam / Légal / Confidentialité — Mobile 390 | ⚖️ Légal & Système | 7777:21258 | Légal — Confidentialité | Légal — Confidentialité · Mobile | à faire |
-| 8844:8556 | Kapam / Légal / Cookies — Mobile 390 | ⚖️ Légal & Système | 7778:11864 | Légal — Cookies | Légal — Cookies · Mobile | à faire |
-| 8844:8809 | Kapam / Légal / Retours & SAV — Mobile 390 | ⚖️ Légal & Système | 7779:21821 | Légal — Retours & SAV | Légal — Retours & SAV · Mobile | à faire |
-| 8843:8019 | Légal / Mentions légales (template) — Mobile 390 | ⚖️ Légal & Système | 7527:4605 | Légal — Mentions légales (template) | Légal — Mentions légales (template) · Mobile | à faire |
+| 8844:8161 | Kapam / Légal / CGV — Mobile 390 | ⚖️ Légal & Système | 7776:11317 | Légal — CGV | Légal — CGV · Mobile | fait |
+| 8844:8359 | Kapam / Légal / Confidentialité — Mobile 390 | ⚖️ Légal & Système | 7777:21258 | Légal — Confidentialité | Légal — Confidentialité · Mobile | fait |
+| 8844:8556 | Kapam / Légal / Cookies — Mobile 390 | ⚖️ Légal & Système | 7778:11864 | Légal — Cookies | Légal — Cookies · Mobile | fait |
+| 8844:8809 | Kapam / Légal / Retours & SAV — Mobile 390 | ⚖️ Légal & Système | 7779:21821 | Légal — Retours & SAV | Légal — Retours & SAV · Mobile | fait |
+| 8843:8019 | Légal / Mentions légales (template) — Mobile 390 | ⚖️ Légal & Système | 7527:4605 | Légal — Mentions légales (template) | Légal — Mentions légales (template) · Mobile | fait |
 
 ### 06 · Devis (desktop `7624:4151` · section mobile `8850:13789`)
 
@@ -187,6 +187,11 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 | 8 | 2026-09-30 | 8850:139882 Recherche · 6 Aucun résultat | Contenu identique (26 textes). 2 annotations copiées retirées ; ajout de la référence et des cibles tactiles (filtres et recherches fréquentes). Capture vérifiée. | — |
 | 9 | 2026-09-30 | 8850:140116 Recherche · 7 Sans JavaScript | Contenu identique. 1 annotation copiée retirée ; référence et filtres annotés. Capture vérifiée. | — |
 | 10 | 2026-09-30 | 8844:9022 Système — 404 | Contenu identique (11 textes). Liens de rattrapage déjà à 44 px. Référence ajoutée. Capture vérifiée. | Placeholder coupé (Q10). |
+| 11 | 2026-09-30 | 8844:8161 Légal — CGV | Contenu identique au desktop (29 textes). 7 annotations copiées du desktop retirées (PLACEHOLDER) ; référence ajoutée. Capture vérifiée : lisible, sans débordement. | Footer maître (Q8). |
+| 12 | 2026-09-30 | 8844:8359 Légal — Confidentialité | Contenu identique (28 textes). 5 annotations copiées retirées ; référence ajoutée. Capture vérifiée. | — |
+| 13 | 2026-09-30 | 8844:8556 Légal — Cookies | Contenu identique (38 textes). **Correctif** : le tableau `8844:8570` était une grille de 4 colonnes de 160 px (640 px) rognée à 358 px, avec « Durée » et « Éditeur » coupés. Il est restructuré en 4 blocs « Cookie n » de 4 rangées libellé | valeur, avec les mêmes instances Table / Cellule : 16 cellules de valeur et 4 en-têtes déplacés, 12 en-têtes clonés. Libellés en largeur `measure/112`, espacements `component/gap/none`, tableau en hauteur Hug. Nœuds créés : cadres `9113:29796`→`9113:29838` (4 blocs, 16 rangées, 12 cellules). 2 annotations copiées retirées ; référence et note d'intégration du tableau ajoutées. Captures vérifiées. | Valider le motif de tableau empilé. |
+| 14 | 2026-09-30 | 8844:8809 Légal — Retours & SAV | Contenu identique (30 textes). **Correctif** : « Engagement de suivi » `8844:8818` était une rangée horizontale de hauteur fixe (241 px) avec 3 étapes d'environ 103 px. Le texte se cassait lettre à lettre et chevauchait les sections suivantes. La rangée est passée en pile verticale Hug, avec les 3 étapes en largeur Fill et hauteur Hug ; écarts et marges liés à `component/gap/lg`, `component/gap/sm` et `component/padding/lg`. 4 annotations copiées retirées ; référence ajoutée. Capture vérifiée. | — |
+| 15 | 2026-09-30 | 8843:8019 Légal — Mentions légales (template) | Contenu identique. Référence ajoutée. Capture vérifiée. | — |
 
 ---
 
@@ -247,6 +252,7 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 
 ## 6. Annotations desktop dupliquées retirées du mobile
 - 07 · Système : Recherche 3 `8850:139206` (1), Recherche 4 `8850:139415` (5), Recherche 5 `8850:139661` (1), Recherche 6 `8850:139882` (2), Recherche 7 `8850:140116` (1). Toutes étaient des copies exactes d'annotations du desktop (FINSWEET, PLACEHOLDER, PÉRIMÈTRE…). Elles restent consultables sur le desktop, vers lequel pointe l'annotation de référence.
+- 10 · Légal : CGV `8844:8161` (7), Confidentialité `8844:8359` (5), Cookies `8844:8556` (2), Retours & SAV `8844:8809` (4). Ce sont des copies exactes des annotations PLACEHOLDER du desktop.
 
 ## 7. Résumés de fin de section
 ### 07 · Système (8 écrans) — terminé
@@ -255,3 +261,9 @@ Sections vidées par le regroupement (conteneurs seuls, aucun écran) : `8850:14
 3. Annotations : 8 références desktop ajoutées, 10 copies d'annotations desktop retirées, comportements mobiles annotés (panneau plein écran, filtres, cibles tactiles).
 4. Globaux : le footer mobile maître n'a ni la mention prix indicatifs ni Facebook/Instagram (Q8, non modifié car maître) ; les boutons de l'en-tête font 44 px.
 5. Questions ouvertes : Q8 footer, Q9 taille tactile des tags, Q10 placeholders longs.
+### 10 · Légal (5 écrans) — terminé
+1. Contenu : les 5 pages étaient identiques au desktop, texte par texte.
+2. Mise en page : le tableau des cookies passe de 4 colonnes rognées à des blocs libellé | valeur, et les 3 étapes de Retours & SAV sont en une colonne. Il n'y a plus de chevauchement ni de débordement.
+3. Annotations : 5 références desktop ajoutées et 18 copies d'annotations desktop retirées ; une note d'intégration pour le tableau.
+4. Globaux : le footer maître n'est pas conforme (Q8, déjà signalé).
+5. Pas de nouvelle question ; à valider au passage : le motif de tableau empilé pour les cookies.
