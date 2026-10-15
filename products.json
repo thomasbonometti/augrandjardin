@@ -13,7 +13,7 @@
 },{
   "Nom": "Betterave cuite",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Betterave cuite Bio 7.20 €/kg",
+  "Etiquette": "Betterave cuite Bio 7.20 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/206.jpg"
 },{
@@ -23,15 +23,21 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/4.jpg"
 },{
-  "Nom": "Carotte - Botte",
+  "Nom": "Carotte vrac",
   "En vente": true,
-  "Etiquette": "Carotte - Botte Bio 2.20 € la botte",
+  "Etiquette": "✨ Nouveau : Carotte vrac Bio 3.10 €/kg",
   "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/76.jpg"
+  "IMG": "img-products/6.jpg"
+},{
+  "Nom": "Céleri Rave",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Céleri Rave Bio 3.70 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/8.jpg"
 },{
   "Nom": "Concombre",
   "En vente": true,
-  "Etiquette": "Concombre Bio 3.50 €/kg",
+  "Etiquette": "Concombre Bio 3.50 €/kg*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/20.jpg"
 },{
@@ -65,6 +71,18 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/84.jpg"
 },{
+  "Nom": "Navet Violet",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Navet Violet Bio 3.00 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/.jpg"
+},{
+  "Nom": "Poireau",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Poireau Bio 3.80 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/46.jpg"
+},{
   "Nom": "Poivron",
   "En vente": true,
   "Etiquette": "Poivron Bio 5.20 €/kg",
@@ -82,6 +100,18 @@
   "Etiquette": "Pomme de terre grenaille (Sachet de 1kg) Bio 3.20 € le sachet",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/80.jpg"
+},{
+  "Nom": "Radis Rave",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Radis Rave Bio 3.80 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/95.jpg"
+},{
+  "Nom": "Chou Kale",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Chou Kale Bio 5.70 €/kg",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/17.jpg"
 },{
   "Nom": "Oignon Jaune",
   "En vente": true,
@@ -119,29 +149,11 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/43.jpg"
 },{
-  "Nom": "Melon",
-  "En vente": true,
-  "Etiquette": "Melon Bio 4.00 €/kg*",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/35.jpg"
-},{
-  "Nom": "Rhubarbe",
-  "En vente": true,
-  "Etiquette": "Rhubarbe Bio 4.40 €/kg",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/117.jpg"
-},{
   "Nom": "Confiture Cerise Bigarreaux",
   "En vente": true,
   "Etiquette": "Confiture Cerise Bigarreaux 4.10 € le pot",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/211.jpg"
-},{
-  "Nom": "Gelée Coing",
-  "En vente": true,
-  "Etiquette": "Gelée Coing 4.50 € le pot",
-  "Producteur": "Au Grand Jardin",
-  "IMG": "img-products/251.jpg"
 },{
   "Nom": "Jus de Pomme de la Ferme",
   "En vente": true,
