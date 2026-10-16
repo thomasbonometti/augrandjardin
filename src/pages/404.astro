@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base titre="Page introuvable | Au Grand Jardin" description="Cette page n’existe pas ou plus." indexer={false}>
+  <section class="wrap introuvable">
+    <p class="eyebrow">Erreur 404</p>
+    <h1 class="h1-page">Cette page n’existe pas, ou plus.</h1>
+    <p class="lg muted">L’ancien lien a peut-être changé avec le nouveau site.</p>
+    <div class="btns">
+      <a class="btn btn-primaire btn-bloc" href="/produits/">Voir les produits de la semaine</a>
+      <a class="btn btn-secondaire btn-bloc" href="/">Revenir à l’accueil</a>
+    </div>
+  </section>
+</Base>
+<style>
+  .introuvable { padding-top: 64px; padding-bottom: 112px; display: flex; flex-direction: column; gap: 20px; }
+  .introuvable > * { max-width: 760px; }
+</style>

@@ -1,0 +1,140 @@
+---
+// Espace pro — grille tarifaire. Frames Figma 18:2 (desktop) et 43:2 (mobile).
+// Servie seulement aux pros connectés (functions/pro/_middleware.js). Prix HT = prix TTC ÷ 1,055.
+import Base from '../../layouts/Base.astro';
+import Icone from '../../components/Icone.astro';
+import { ferme } from '../../data/ferme.js';
+import { rayons, misAJour } from '../../lib/donnees.js';
+import { euros, prixHT } from '../../lib/vente.js';
+const dispo = (p: any) => (p.quantiteLimitee ? 'limite' : p.estNouveau ? 'nouveau' : 'dispo');
+---
+<Base
+  titre="Grille tarifaire professionnels | Au Grand Jardin"
+  description="Grille tarifaire de la semaine, réservée aux clients professionnels de la ferme Au Grand Jardin."
+  page="pros"
+  indexer={false}
+>
+  <section class="wrap tete">
+    <div class="tete__textes">
+      <div class="tete__badge">
+        <span class="chip chip-vert"><Icone nom="cadenas" taille={14} />Espace professionnels</span>
+        <p class="sm muted seulement-ordi">Mis à jour {misAJour.texte}</p>
+      </div>
+      <h1 class="tete__titre">Grille tarifaire de la semaine</h1>
+      <p class="lg muted tete__intro">Prix hors taxes, TVA 5,5&nbsp;%.<span class="seulement-mobile"> Mis à jour {misAJour.texte}.</span> Commandez par téléphone ou par message avant le jour de récolte convenu.</p>
+    </div>
+    <div class="btns tete__actions">
+      <a class="btn btn-primaire btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />Commander : {ferme.telephone}</a>
+      <button class="btn btn-secondaire btn-bloc" type="button" data-imprimer><Icone nom="telecharger" taille={18} />Télécharger en PDF</button>
+    </div>
+  </section>
+
+  <section class="wrap grille-zone" aria-label="Grille tarifaire">
+    <table class="grille">
+      <caption class="visually-hidden">Prix professionnels de la semaine, par rayon</caption>
+      <thead>
+        <tr><th scope="col">Produit</th><th scope="col">Conditionnement</th><th scope="col">Disponibilité</th><th scope="col" class="num">Prix HT</th><th scope="col" class="num">Prix TTC</th></tr>
+      </thead>
+      {rayons.map((r) => (
+        <tbody>
+          <tr class="rayon"><th scope="rowgroup" colspan="5"><span>{r.titre}</span><span class="sm muted rayon__ht">Prix HT</span></th></tr>
+          {r.produits.map((p) => (
+            <tr class="rangee">
+              <th scope="row" class="produit">
+                <span class="produit__nom">{p.nom}</span>
+                <span class="sm muted produit__cond">{p.prix?.unite || '—'}</span>
+                {dispo(p) === 'limite' && <span class="chip chip-peche chip-petit produit__etat">Quantité limitée</span>}
+                {dispo(p) === 'nouveau' && <span class="chip chip-vif chip-petit produit__etat">Nouveau</span>}
+              </th>
+              <td class="cond muted">{p.prix?.unite || '—'}</td>
+              <td class="etat">
+                {dispo(p) === 'limite' ? <span class="chip chip-peche">Quantité limitée</span>
+                  : dispo(p) === 'nouveau' ? <span class="chip chip-vif">Nouveau</span>
+                  : <span class="sm muted">Disponible</span>}
+              </td>
+              <td class="num ht">{p.prix ? euros(prixHT(p.prix.montant)) : '—'}</td>
+              <td class="num ttc muted">{p.prix ? <>{euros(p.prix.montant)}<span class="seulement-mobile"> TTC</span></> : '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      ))}
+    </table>
+    <p class="sm muted pied-grille">Grille du {misAJour.jour}. <a href="/pro/deconnexion/">Se déconnecter</a></p>
+  </section>
+</Base>
+
+<script>
+  document.querySelector('[data-imprimer]')?.addEventListener('click', () => window.print());
+</script>
+
+<style>
+  .tete { padding-top: 28px; padding-bottom: 28px; display: flex; flex-direction: column; gap: 18px; }
+  .tete__textes { display: flex; flex-direction: column; gap: 18px; }
+  .tete__badge { display: flex; gap: 10px; align-items: center; }
+  .tete__titre { font-size: 32px; line-height: 38px; letter-spacing: -0.03em; }
+  .tete__intro { font-size: 16px; line-height: 24px; }
+  @media (min-width: 1100px) {
+    .tete { padding-top: 56px; padding-bottom: 48px; flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 0; }
+    .tete__textes { flex: 1 1 auto; min-width: 0; max-width: 820px; gap: 20px; }
+    .tete__actions { flex: none; }
+    .tete__titre { font-size: 64px; line-height: 72px; }
+    .tete__intro { font-size: 20px; line-height: 30px; }
+    .tete__actions { flex-direction: row-reverse; flex-wrap: nowrap; }
+    .tete__actions .btn { width: auto; }
+  }
+
+  .grille-zone { padding-bottom: 64px; }
+  .grille { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--ligne); border-radius: 16px; overflow: hidden; background: var(--blanc); }
+  .grille, .grille tbody { display: block; }
+  .grille thead { display: none; }
+  .grille th, .grille td { text-align: left; font-weight: 400; }
+  .rayon th { padding: 10px 16px; background: var(--sable); border-top: 1px solid var(--ligne); color: var(--texte); }
+  tbody:first-of-type .rayon th { border-top: 0; }
+  .rayon th { display: flex; justify-content: space-between; align-items: center; }
+  .rangee { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 14px 16px; border-top: 1px solid var(--bordure-claire); }
+  .produit { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .produit__nom { color: var(--texte); }
+  .cond, .etat { display: none; }
+  .num { text-align: right; }
+  .ht { font-size: 18px; line-height: 26px; color: var(--texte); white-space: nowrap; }
+  .ttc { grid-column: 2; font-size: 14px; line-height: 20px; white-space: nowrap; }
+  .rangee .ht { grid-column: 2; grid-row: 1; align-self: start; }
+  .rangee .ttc { grid-row: 1; align-self: start; margin-top: 28px; }
+  .pied-grille { padding-top: 16px; }
+  .pied-grille a { text-decoration: underline; text-underline-offset: 3px; }
+  @media (min-width: 1100px) {
+    .grille-zone { padding-bottom: 112px; }
+    .grille { display: table; }
+    .grille tbody { display: table-row-group; }
+    .grille thead { display: table-header-group; }
+    .grille thead th { padding: 16px 24px; background: var(--creme); font-size: 14px; line-height: 20px; color: var(--secondaire); }
+    .grille thead th:first-child { width: 420px; }
+    .rayon th { display: table-cell; padding: 12px 24px; font-size: 18px; line-height: 26px; }
+    .rayon__ht { display: none; }
+    .rangee { display: table-row; }
+    .rangee > * { padding: 14px 24px; border-top: 1px solid var(--bordure-claire); vertical-align: middle; }
+    .produit { display: table-cell; color: var(--texte); }
+    .produit__cond, .produit__etat { display: none !important; }
+    .cond, .etat { display: table-cell; }
+    .ht { font-size: 18px; width: 160px; }
+    .ttc { font-size: 16px; width: 160px; }
+    .rangee .ttc { margin-top: 0; }
+  }
+  @media print {
+    .tete__actions, .pied-grille, .seulement-mobile { display: none !important; }
+    .seulement-ordi { display: revert !important; }
+    .tete { padding: 0 0 16px; flex-direction: column; align-items: flex-start; }
+    .tete__titre { font-size: 28px; line-height: 34px; }
+    .grille { display: table; }
+    .grille tbody { display: table-row-group; }
+    .grille thead { display: table-header-group; }
+    .rayon th { display: table-cell; }
+    .rangee { display: table-row; break-inside: avoid; }
+    .rangee > * { padding: 6px 10px; border-top: 1px solid #ddd; }
+    .produit { display: table-cell; }
+    .produit__cond, .produit__etat, .rayon__ht { display: none !important; }
+    .cond, .etat { display: table-cell; }
+    .grille { border-radius: 0; font-size: 12px; }
+    .grille .chip { height: auto; padding: 0; background: none; color: inherit; font-size: 12px; }
+  }
+</style>

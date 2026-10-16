@@ -1,0 +1,70 @@
+---
+// Mentions légales (pas de frame Figma : mise en page des pages intérieures)
+import Base from '../layouts/Base.astro';
+import { ferme, adresseComplete, legal } from '../data/ferme.js';
+---
+<Base
+  titre="Mentions légales | Au Grand Jardin"
+  description="Mentions légales du site augrandjardin.fr : éditeur, hébergeur, données personnelles."
+>
+  <article class="wrap legal">
+    <p class="eyebrow">Informations légales</p>
+    <h1 class="h1-page">Mentions légales</h1>
+
+    <section>
+      <h2>Éditeur du site</h2>
+      <dl>
+        <div><dt>Exploitation</dt><dd>{legal.editeur}</dd></div>
+        <div><dt>Adresse</dt><dd>{adresseComplete}</dd></div>
+        <div><dt>Téléphone</dt><dd><a href={ferme.telephoneLien}>{ferme.telephone}</a></dd></div>
+        <div><dt>E-mail</dt><dd><a href={`mailto:${ferme.email}`}>{ferme.email}</a></dd></div>
+        <div><dt>SIREN</dt><dd>{legal.siren}</dd></div>
+        <div><dt>SIRET (siège)</dt><dd>{legal.siret}</dd></div>
+        <div><dt>TVA intracommunautaire</dt><dd>{legal.tva}</dd></div>
+        <div><dt>Activité</dt><dd>{legal.naf}</dd></div>
+        <div><dt>Directeur de la publication</dt><dd>{legal.directeur}</dd></div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Hébergement</h2>
+      <p>{legal.hebergeur}</p>
+    </section>
+
+    <section>
+      <h2>Conception</h2>
+      <p>Design et développement : <a href="https://thomasbonometti.fr" rel="noopener">Thomas Bonometti</a>.</p>
+    </section>
+
+    <section>
+      <h2>Données personnelles</h2>
+      <p>Les informations que vous laissez sur ce site servent uniquement à la ferme et ne sont jamais transmises à qui que ce soit :</p>
+      <ul>
+        <li><strong>commande de pommes de terre</strong> : nom, e-mail et téléphone servent à préparer la commande et à vous prévenir quand elle est prête ;</li>
+        <li><strong>liste par SMS</strong> : votre numéro sert à vous envoyer la liste de la semaine, un SMS au plus par semaine, du 15 avril au 15 novembre. Répondez STOP pour ne plus la recevoir ;</li>
+        <li><strong>demande d’accès professionnel</strong> : vos coordonnées servent à vous rappeler et à vous envoyer la grille tarifaire.</li>
+      </ul>
+      <p>Pour consulter, corriger ou effacer vos informations, écrivez à <a href={`mailto:${ferme.email}`}>{ferme.email}</a>. Vous pouvez aussi saisir la CNIL (cnil.fr).</p>
+      <p>Le site ne dépose aucun cookie de mesure d’audience ni de publicité. Seul l’espace professionnel utilise un cookie technique, pour rester connecté.</p>
+    </section>
+
+    <section>
+      <h2>Photos</h2>
+      <p>Les photos sont celles de la ferme et de ses partenaires. Toute reproduction demande l’accord de la ferme.</p>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .legal { padding-top: 32px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 20px; max-width: 880px; margin-left: 0; }
+  @media (min-width: 1100px) { .legal { padding-top: 64px; padding-bottom: 112px; margin-left: max(0px, calc((100vw - var(--max)) / 2)); } }
+  .legal section { display: flex; flex-direction: column; gap: 12px; padding-top: 24px; border-top: 1px solid var(--ligne); }
+  .legal h2 { font-size: 24px; line-height: 32px; letter-spacing: -0.02em; }
+  .legal dl { display: flex; flex-direction: column; }
+  .legal dl > div { display: flex; flex-direction: column; gap: 2px; padding: 10px 0; border-bottom: 1px solid var(--bordure-claire); }
+  @media (min-width: 720px) { .legal dl > div { flex-direction: row; gap: 24px; } .legal dt { width: 240px; flex: none; } }
+  .legal dt { color: var(--secondaire); }
+  .legal dd, .legal p, .legal li { color: var(--texte); }
+  .legal ul { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .legal a { text-decoration: underline; text-underline-offset: 3px; }
+</style>
