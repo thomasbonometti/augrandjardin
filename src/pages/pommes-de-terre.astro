@@ -1,0 +1,236 @@
+---
+// Pommes de terre — frames Figma 16:2 (desktop) et 41:2 (mobile), branchée sur l'outil de commande
+// (API /api/agj/catalog et /api/agj/order du Worker « formulaires », relayées par functions/api/agj/).
+// Le catalogue réel remplace les sacs de 15/25 kg de la maquette ; le jour de retrait se choisit
+// plus tard, par le lien du mail « commande prête ».
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import Photo from '../components/Photo.astro';
+import { agjCatalogue, agjConfig } from '../lib/donnees.js';
+import { resumePdt } from '../lib/pdt.js';
+import { rendreCategories } from '../lib/commande-rendu.js';
+import { ferme } from '../data/ferme.js';
+import { fileAriane } from '../lib/seo.js';
+
+const pdt = resumePdt(agjCatalogue);
+const ouvert = !!agjCatalogue.open;
+const textes = agjConfig.texts;
+const titre = `Pommes de terre de garde${pdt.formatsTitre ? `, ${pdt.formatsTitre}` : ''}`;
+const listeHtml = rendreCategories(agjCatalogue, agjConfig);
+const donnees = JSON.stringify({ catalogue: agjCatalogue, config: agjConfig }).replace(/</g, '\\u003c');
+const champ = (id: string) => agjConfig.fields?.find((f: any) => f.id === id) || {};
+---
+<Base
+  titre="Pommes de terre en filets, à commander en ligne — Lostroff | Au Grand Jardin"
+  description={`Commandez vos pommes de terre de garde (${pdt.varietes} variétés${pdt.formatsCarte ? `, ${pdt.formatsCarte}` : ''}) et vos oignons en ligne. Pierre prépare la commande, vous choisissez ensuite votre jour de retrait à la ferme de Lostroff. Paiement sur place.`}
+  page="pdt"
+  schema={fileAriane([{ nom: 'Pommes de terre', url: '/pommes-de-terre/' }])}
+>
+  <section class="wrap hero">
+    <div class="hero__texte">
+      <div><span class="chip chip-vif" data-statut>{ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span></div>
+      <h1 class="h1-page" data-titre>{titre}</h1>
+      <p class="lg muted"><span class="seulement-ordi">Cultivées à Lostroff. Choisissez vos variétés, Pierre prépare votre commande, puis vous choisissez le jour où vous passez la chercher à la ferme.</span><span class="seulement-mobile">Cultivées à Lostroff. Choisissez vos variétés, on vous prévient quand votre commande est prête.</span></p>
+      <div class="prix" data-prix>
+        {pdt.cartes.map((c) => (
+          <div class="prix__carte"><p class="prix__kg">{c.parKg}</p><p class="sm muted">{c.detail}</p></div>
+        ))}
+      </div>
+    </div>
+    <div class="photo hero__photo"><Photo nom="pdt" alt="Pommes de terre de la ferme" sizes="(min-width: 1100px) 560px, calc(100vw - 40px)" largeurs={[400, 700, 1080]} prioritaire /></div>
+  </section>
+
+  <section class="wrap etapes" aria-label="Comment ça marche">
+    <ol class="etapes__liste">
+      <li><span class="etapes__num" aria-hidden="true">1</span><div><h2 class="etapes__titre">Vous commandez</h2><p class="muted">Choisissez vos variétés et le nombre de filets.<span class="seulement-ordi"> Le paiement se fait sur place, au retrait.</span><span class="seulement-mobile"> Paiement sur place, au retrait.</span></p></div></li>
+      <li><span class="etapes__num" aria-hidden="true">2</span><div><h2 class="etapes__titre">Pierre prépare votre commande</h2><p class="muted">Vous recevez un e-mail de confirmation, puis un e-mail, et un SMS si vous le souhaitez, quand la commande est prête.</p></div></li>
+      <li><span class="etapes__num" aria-hidden="true">3</span><div><h2 class="etapes__titre">Vous choisissez votre jour</h2><p class="muted">Ce dernier e-mail contient un lien pour choisir votre créneau de retrait à la ferme, au 43 rue Principale à Lostroff.</p></div></li>
+    </ol>
+  </section>
+
+  <div class="wrap commande-zone" id="commande-zone">
+    <p class="bandeau-test" data-bandeau-test hidden={agjCatalogue.live}>Mode test : les commandes sont marquées « Test » et les e-mails ne partent qu’à l’adresse de test.</p>
+
+    <div class="ferme-fermee" data-fermee hidden={ouvert}>
+      <h2>{textes.closed?.title}</h2>
+      <p class="lg muted">{textes.closed?.text}</p>
+      <div class="btns"><a class="btn btn-primaire btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />Appeler Pierre</a></div>
+    </div>
+
+    <form class="commande" id="commande" method="post" action="/api/agj/order" novalidate hidden={!ouvert}>
+      <div class="commande__gauche">
+        <section class="bloc" aria-labelledby="bloc-produits">
+          <div class="bloc__tete">
+            <h2 class="bloc__titre" id="bloc-produits">1. Vos produits</h2>
+            <p class="muted bloc__sous">{pdt.varietes ? `${pdt.varietes} variétés de la dernière récolte. ` : ''}Les stocks se mettent à jour à chaque commande.</p>
+          </div>
+          <div class="liste" data-liste set:html={listeHtml} />
+        </section>
+
+        <section class="bloc bloc--coord" aria-labelledby="bloc-coord">
+          <h2 class="bloc__titre" id="bloc-coord">2. Vos coordonnées</h2>
+          <div class="champs">
+            <div class="champ"><label for="prenom">Prénom</label><input class="saisie" id="prenom" name="prenom" autocomplete="given-name" placeholder="Léa" required maxlength="80" /><p class="erreur" data-erreur="prenom"></p></div>
+            <div class="champ"><label for="nom">Nom</label><input class="saisie" id="nom" name="nom" autocomplete="family-name" placeholder="Martin" required maxlength="80" /><p class="erreur" data-erreur="nom"></p></div>
+            <div class="champ"><label for="email">E-mail</label><input class="saisie" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="lea.martin@exemple.fr" required maxlength="120" aria-describedby="email-aide" /><p class="aide visually-hidden" id="email-aide">{champ('email').help}</p><p class="erreur" data-erreur="email"></p></div>
+            <div class="champ"><label for="telephone">Téléphone</label><input class="saisie" id="telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 12 34 56 78" required maxlength="30" aria-describedby="tel-aide" /><p class="aide visually-hidden" id="tel-aide">{champ('telephone').help}</p><p class="erreur" data-erreur="telephone"></p></div>
+          </div>
+          <label class="case"><input type="checkbox" name="sms" /><span>Me prévenir aussi par SMS quand ma commande est prête</span></label>
+          <div class="champ"><label for="commentaire">Commentaire (facultatif)</label><textarea class="saisie" id="commentaire" name="comment" placeholder="Une question, une précision sur votre commande…" maxlength="1000"></textarea></div>
+          <p class="xs muted">{textes.privacy}</p>
+          <div class="piege" aria-hidden="true"><label>Site web <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+        </section>
+      </div>
+
+      <aside class="recap carte-sable" aria-labelledby="recap-titre">
+        <h3 id="recap-titre" class="recap__titre">Votre commande</h3>
+        <div class="recap__lignes" data-recap-lignes><p class="muted recap__vide">Votre panier est vide : choisissez vos produits.</p></div>
+        <div class="recap__trait" aria-hidden="true"></div>
+        <div class="recap__total"><p class="fonce">Total</p><p class="recap__montant" data-total aria-live="polite">0,00&nbsp;€</p></div>
+        <p class="sm muted" data-poids></p>
+        <div class="recap__avertissements" data-avertissements></div>
+        <button class="btn btn-primaire recap__bouton" type="submit" data-envoyer>Commander</button>
+        <p class="message-form ko" data-erreur-envoi role="alert"></p>
+        <p class="sm muted">{textes.payment} Vous choisirez votre jour de retrait quand la commande sera prête.</p>
+      </aside>
+    </form>
+
+    <section class="fin" data-fin hidden tabindex="-1" aria-labelledby="fin-titre">
+      <div class="fin__marque" aria-hidden="true"><Icone nom="coche" taille={28} epaisseur={2.2} /></div>
+      <h2 id="fin-titre">{textes.done?.title}</h2>
+      <p class="fin__numero" data-fin-numero></p>
+      <p class="lg muted">{textes.done?.text}</p>
+      <div class="fin__recap carte-sable" data-fin-recap></div>
+      <p class="muted">Retrait à la ferme : {agjConfig.farm?.address}. {textes.payment}</p>
+      <div class="btns">
+        <a class="btn btn-primaire btn-bloc" data-fin-bon href="#" target="_blank" rel="noopener">Voir mon bon de commande</a>
+        <button class="btn btn-secondaire btn-bloc" type="button" data-nouvelle>Passer une autre commande</button>
+      </div>
+    </section>
+  </div>
+
+  <script type="application/json" id="donnees-commande" set:html={donnees} />
+</Base>
+
+<script src="../scripts/commande.ts"></script>
+
+<style>
+  .hero { padding-top: 32px; padding-bottom: 48px; display: flex; flex-direction: column; gap: 20px; }
+  .hero__texte { display: flex; flex-direction: column; gap: 20px; }
+  .prix { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .prix :global(.prix__carte) { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border-radius: var(--rayon); background: var(--sable); }
+  .prix :global(.prix__kg) { font-size: 22px; line-height: 30px; color: var(--texte); }
+  .prix:has(> :nth-child(3)) > :global(:first-child) { grid-column: 1 / -1; }
+  .hero h1 { text-wrap: balance; }
+  .hero__photo { height: 240px; }
+  @media (min-width: 1100px) {
+    .hero { padding-top: 56px; padding-bottom: 96px; flex-direction: row; justify-content: space-between; align-items: center; gap: 40px; }
+    .hero__texte { width: 640px; gap: 28px; }
+    .prix { display: flex; gap: 12px; }
+    .prix :global(.prix__carte) { width: 240px; padding: 16px 20px; }
+    .prix :global(.prix__kg) { font-size: 28px; line-height: 36px; }
+    .hero__photo { width: 560px; height: 520px; flex: none; }
+  }
+
+  .etapes { padding-bottom: 48px; }
+  .etapes__liste { list-style: none; display: flex; flex-direction: column; gap: 20px; padding-top: 28px; border-top: 1px solid var(--bordure-soutenue); }
+  .etapes__liste li { display: flex; gap: 14px; align-items: flex-start; }
+  .etapes__liste li > div { display: flex; flex-direction: column; gap: 4px; }
+  .etapes__num { width: 36px; height: 36px; border-radius: 18px; background: var(--vert-foret); color: var(--blanc); display: grid; place-items: center; flex: none; font-size: 16px; }
+  .etapes__titre { font-size: 18px; line-height: 26px; letter-spacing: 0; }
+  .etapes__liste p { font-size: 14px; line-height: 20px; }
+  @media (min-width: 1100px) {
+    .etapes { padding-bottom: 96px; }
+    .etapes__liste { flex-direction: row; gap: 40px; padding-top: 40px; }
+    .etapes__liste li { width: 400px; flex-direction: column; gap: 14px; }
+    .etapes__liste li > div { gap: 14px; }
+    .etapes__num { width: 44px; height: 44px; border-radius: 22px; font-size: 18px; }
+    .etapes__titre { font-size: 24px; line-height: 32px; letter-spacing: -0.02em; }
+    .etapes__liste p { font-size: 16px; line-height: 24px; }
+  }
+
+  .commande-zone { padding-bottom: 64px; }
+  .bandeau-test { margin-bottom: 20px; padding: 10px 14px; border-radius: 8px; background: var(--peche); color: var(--rouille); font-size: 14px; line-height: 20px; }
+  .commande { display: flex; flex-direction: column; gap: 40px; }
+  .commande__gauche { display: flex; flex-direction: column; gap: 40px; }
+  .bloc { display: flex; flex-direction: column; gap: 18px; }
+  .bloc__tete { display: flex; flex-direction: column; gap: 8px; }
+  .bloc__titre { font-size: 26px; line-height: 32px; letter-spacing: -0.03em; }
+  .bloc__sous { font-size: 14px; line-height: 20px; }
+  .champs { display: flex; flex-direction: column; gap: 18px; }
+  .champ .erreur:empty { display: none; }
+  @media (min-width: 720px) { .champs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } }
+  @media (min-width: 1100px) {
+    .commande-zone { padding-bottom: 112px; }
+    .commande { flex-direction: row; align-items: flex-start; gap: 64px; }
+    .commande__gauche { width: 776px; gap: 48px; flex: none; }
+    .bloc { gap: 24px; }
+    .bloc__tete { gap: 8px; }
+    .bloc__titre { font-size: 36px; line-height: 44px; }
+    .bloc__sous { font-size: 16px; line-height: 24px; }
+  }
+
+  /* Liste (HTML produit par src/lib/commande-rendu.js) */
+  .liste :global(.categorie) { display: flex; flex-direction: column; }
+  .liste :global(.categorie + .categorie) { margin-top: 28px; }
+  .liste :global(.categorie__titre) { font-size: 13px; line-height: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gris-fonce); padding-bottom: 4px; border-bottom: 1px solid var(--ligne); }
+  .liste :global(.categorie__intro) { margin: 14px 0 4px; padding: 14px 16px; border-radius: var(--rayon); background: var(--sable); color: var(--gris-fonce); }
+  .liste :global(.variete) { display: flex; flex-direction: column; gap: 12px; padding: 18px 0; border-bottom: 1px solid var(--ligne); }
+  .liste :global(.categorie:last-child .variete:last-child) { border-bottom: 0; }
+  .liste :global(.variete--epuisee) { opacity: 0.6; }
+  .liste :global(.variete__infos) { display: flex; flex-direction: column; gap: 2px; }
+  .liste :global(.variete__nom) { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .liste :global(.variete__nom h4) { font-weight: 400; font-size: 18px; line-height: 26px; color: var(--texte); }
+  .liste :global(.variete__avis) { color: var(--gris-fonce); font-style: italic; }
+  .liste :global(.variete__formats) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .liste :global(.format) { display: flex; flex-direction: column; gap: 6px; }
+  .liste :global(.format__prix s) { color: var(--discret); }
+  .liste :global(.format__stock) { color: var(--rouille); }
+  .liste :global(.stepper) { display: flex; align-items: center; justify-content: space-between; height: 44px; border: 1px solid var(--bordure-soutenue); border-radius: 8px; background: var(--blanc); }
+  .liste :global(.format--choisi .stepper) { border-color: var(--vert-foret); box-shadow: inset 0 0 0 1px var(--vert-foret); }
+  .liste :global(.stepper button) { width: 44px; height: 42px; display: grid; place-items: center; color: var(--texte); border-radius: 8px; }
+  .liste :global(.stepper button:hover:not(:disabled)) { background: var(--sable); }
+  .liste :global(.stepper button:disabled) { opacity: 0.3; cursor: not-allowed; }
+  .liste :global(.stepper output) { min-width: 28px; text-align: center; color: var(--texte); font-variant-numeric: tabular-nums; }
+  .liste :global(.format--epuise .stepper) { opacity: 0.35; }
+  @media (min-width: 1100px) {
+    .liste :global(.variete) { flex-direction: row; justify-content: space-between; align-items: center; gap: 24px; padding: 20px 0; }
+    .liste :global(.variete__infos) { width: 420px; gap: 4px; }
+    .liste :global(.variete__nom) { gap: 10px; }
+    .liste :global(.variete__nom h4) { font-size: 20px; line-height: 28px; }
+    .liste :global(.variete__formats) { display: flex; gap: 20px; flex: none; }
+    .liste :global(.format) { width: 120px; align-items: center; text-align: center; }
+    .liste :global(.stepper) { width: 108px; }
+    .liste :global(.stepper button) { width: 40px; }
+  }
+
+  /* Récapitulatif */
+  .recap { display: flex; flex-direction: column; gap: 16px; padding: 24px; }
+  .recap__titre { font-size: 20px; line-height: 28px; }
+  .recap__lignes { display: flex; flex-direction: column; gap: 10px; }
+  .recap__lignes :global(.recap__ligne) { display: flex; justify-content: space-between; gap: 12px; color: var(--texte); }
+  .recap__trait { height: 1px; background: #d9cdae; }
+  .recap__total { display: flex; justify-content: space-between; align-items: baseline; }
+  .recap__montant { font-size: 30px; line-height: 36px; letter-spacing: -0.03em; color: var(--texte); }
+  .recap__avertissements { display: flex; flex-direction: column; gap: 8px; }
+  .recap__avertissements:empty { display: none; }
+  .recap__avertissements :global(p) { padding: 10px 12px; border-radius: 8px; background: var(--peche); color: var(--rouille); font-size: 13px; line-height: 18px; }
+  .recap__bouton { height: 56px; width: 100%; }
+  .recap .message-form:empty { display: none; }
+  @media (min-width: 1100px) {
+    .recap { width: 440px; flex: none; padding: 32px; gap: 20px; position: sticky; top: 24px; }
+    .recap__titre { font-size: 24px; line-height: 32px; }
+    .recap__lignes { gap: 12px; }
+    .recap__montant { font-size: 36px; line-height: 44px; }
+  }
+
+  /* Fermé / confirmation */
+  .ferme-fermee, .fin { display: flex; flex-direction: column; gap: 20px; max-width: 720px; }
+  .fin { outline: none; }
+  .fin__marque { width: 56px; height: 56px; border-radius: 28px; background: var(--vert-vif); color: var(--blanc); display: grid; place-items: center; }
+  .fin__numero { font-size: 22px; line-height: 30px; color: var(--texte); }
+  .fin__recap { padding: 20px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .fin__recap :global(.recap__ligne) { display: flex; justify-content: space-between; gap: 12px; color: var(--texte); }
+  .fin__recap :global(.avertissement) { padding: 10px 12px; border-radius: 8px; background: var(--peche); color: var(--rouille); font-size: 13px; line-height: 18px; }
+  @media (min-width: 720px) { .fin .btns .btn, .ferme-fermee .btns .btn { width: auto; } }
+</style>

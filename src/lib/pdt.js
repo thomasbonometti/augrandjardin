@@ -41,7 +41,7 @@ export function resumePdt(catalogue) {
   const mots = [...new Set(base.map((p) => motFormat(p.format)))];
   const poids = [...new Set(base.map((p) => p.weightKg).filter((w) => w > 0))].sort((a, b) => a - b);
   const formats = (et) => (poids.length
-    ? `${mots.length === 1 ? `en ${pluriel(mots[0])}` : 'en filets et en sacs'} de ${liste(poids.map(nombre), et)} kg`
+    ? `${mots.length === 1 ? `en ${pluriel(mots[0])}` : 'en filets et en sacs'} de ${liste(poids.map(nombre), et)}\u00a0kg`
     : '');
   // Une carte de prix par format (le prix au kilo le plus bas du format)
   const parFormat = new Map();
