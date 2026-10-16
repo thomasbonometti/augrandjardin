@@ -1,0 +1,224 @@
+---
+import { reglages, creneaux, fmtHeure, misAJour } from '../lib/site.js';
+
+const { title, description, depth = 0, page = '', noindex = false } = Astro.props;
+const up = '../'.repeat(depth);
+const href = (p) => up + p;
+const { adresse, contact } = reglages;
+const nav = [
+  { id: 'produits', label: 'Produits', href: href('produits.html') },
+  { id: 'pdt', label: 'Pommes de terre', href: href('pommes-de-terre.html') },
+  { id: 'pros', label: 'Professionnels', href: href('professionnels.html') },
+];
+const creneauxJs = JSON.stringify(creneaux.map(({ jourNum, debut, fin, jour, lieu }) => ({ jourNum, debut, fin, jour, lieu })));
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Au Grand Jardin',
+  description: 'Maraîcher bio à Lostroff (Moselle) : vente de fruits et légumes de saison à la ferme.',
+  telephone: contact.telephoneLien,
+  email: contact.email,
+  address: { '@type': 'PostalAddress', streetAddress: adresse.rue, postalCode: adresse.codePostal, addressLocality: adresse.ville, addressCountry: 'FR' },
+  openingHoursSpecification: creneaux.filter((c) => c.aLaFerme).map((c) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: `https://schema.org/${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][c.jourNum]}`,
+    opens: fmtHeure(c.debut).replace('h', ':').padEnd(5, '0'),
+    closes: fmtHeure(c.fin).replace('h', ':').padEnd(5, '0'),
+  })),
+};
+---
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:locale" content="fr_FR" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Zilla+Slab:wght@500;600;700&display=swap" />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <style is:global>
+    /* Mise en page : étiquettes de marché sur fond de champ — prix en slab, contenu en colonne étroite, barre d'actions fixe sur mobile */
+    :root {
+      --paper: #eef2e8;
+      --surface: #ffffff;
+      --ink: #132017;
+      --muted: #536357;
+      --line: #d3dbcd;
+      --leaf: #24652f;
+      --leaf-ink: #ffffff;
+      --leaf-soft: #dceadb;
+      --carrot: #b84d14;
+      --carrot-soft: #f8e3d4;
+      --display: 'Zilla Slab', 'Rockwell', 'Roboto Slab', Georgia, serif;
+      --body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --radius: 6px;
+      --wrap: 72rem;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme='light']) {
+        --paper: #0e1510; --surface: #162019; --ink: #e5ede4; --muted: #9bac9e; --line: #28362b;
+        --leaf: #7cc488; --leaf-ink: #0d1a10; --leaf-soft: #1d3322; --carrot: #f0925c; --carrot-soft: #3a2316;
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme='dark'] {
+      --paper: #0e1510; --surface: #162019; --ink: #e5ede4; --muted: #9bac9e; --line: #28362b;
+      --leaf: #7cc488; --leaf-ink: #0d1a10; --leaf-soft: #1d3322; --carrot: #f0925c; --carrot-soft: #3a2316;
+      color-scheme: dark;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--paper); color: var(--ink);
+      font: 400 1.0625rem/1.55 var(--body);
+      padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    }
+    @media (min-width: 760px) { body { padding-bottom: 0; } }
+    img { max-width: 100%; display: block; }
+    a { color: var(--leaf); text-underline-offset: 3px; }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--carrot); outline-offset: 2px;
+    }
+    h1, h2, h3 { font-family: var(--display); line-height: 1.12; text-wrap: balance; margin: 0; }
+    h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700; letter-spacing: -0.01em; }
+    h2 { font-size: clamp(1.45rem, 3vw, 1.9rem); font-weight: 700; }
+    h3 { font-size: 1.15rem; font-weight: 600; }
+    p { margin: 0; }
+    .wrap {
+      max-width: var(--wrap); margin: 0 auto;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+    }
+    .eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .lede { font-size: 1.15rem; color: var(--muted); max-width: 40rem; }
+
+    /* En-tête */
+    .topbar { background: var(--leaf); color: var(--leaf-ink); font-size: 0.95rem; }
+    .topbar .wrap { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; align-items: center; justify-content: space-between; padding-block: 0.55rem; }
+    .topbar strong { font-weight: 700; }
+    .topbar a { color: inherit; }
+    .status-dot { display: inline-block; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: currentColor; margin-right: 0.45rem; vertical-align: 0.08em; opacity: 0.85; }
+    .status-dot.live { background: #ffd34d; box-shadow: 0 0 0 3px rgba(255, 211, 77, 0.35); }
+    header.site { border-bottom: 1px solid var(--line); background: var(--surface); }
+    header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; flex-wrap: wrap; }
+    .logo { font-family: var(--display); font-weight: 700; font-size: 1.45rem; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; display: flex; align-items: baseline; gap: 0.5rem; }
+    .logo small { font-family: var(--body); font-size: 0.8rem; font-weight: 400; color: var(--muted); letter-spacing: 0; }
+    nav.main { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+    nav.main a { text-decoration: none; color: var(--ink); padding: 0.45rem 0.75rem; border-radius: var(--radius); font-weight: 700; font-size: 0.98rem; }
+    nav.main a:hover { background: var(--leaf-soft); }
+    nav.main a[aria-current='page'] { background: var(--leaf-soft); color: var(--leaf); }
+
+    /* Boutons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0.7rem 1.2rem; border-radius: var(--radius); font: 700 1rem/1.2 var(--body); text-decoration: none; border: 2px solid var(--leaf); background: var(--leaf); color: var(--leaf-ink); cursor: pointer; }
+    .btn:hover { filter: brightness(1.08); }
+    .btn.ghost { background: transparent; color: var(--leaf); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    /* Pied de page */
+    footer.site { margin-top: 4rem; border-top: 1px solid var(--line); background: var(--surface); font-size: 0.95rem; }
+    footer.site .wrap { display: grid; gap: 1.5rem 3rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); padding-block: 2.5rem; }
+    footer.site h2 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+    footer.site p { color: var(--muted); }
+    .copy-line { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .sync-note { font-size: 0.85rem; color: var(--muted); }
+
+    /* Barre d'actions mobile */
+    .actionbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border-top: 1px solid var(--line);
+      padding-bottom: env(safe-area-inset-bottom, 0px); padding-left: max(0px, env(safe-area-inset-left, 0px)); padding-right: max(0px, env(safe-area-inset-right, 0px)); }
+    .actionbar a { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; padding: 0.55rem 0.25rem; text-decoration: none; color: var(--ink); font-size: 0.8rem; font-weight: 700; }
+    .actionbar svg { width: 1.35rem; height: 1.35rem; stroke: var(--leaf); }
+    @media (min-width: 760px) { .actionbar { display: none; } }
+
+    .demo-flag { background: var(--carrot-soft); color: var(--ink); border: 1px dashed var(--carrot); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 0.95rem; }
+    .demo-flag strong { color: var(--carrot); }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="topbar" role="status">
+    <div class="wrap">
+      <span id="status-text">
+        <span class="status-dot"></span>
+        {creneaux.length
+          ? <>Cette semaine : {creneaux.map((c, i) => <>{i > 0 && ' · '}<strong>{c.jour.toLowerCase()} {fmtHeure(c.debut)}–{fmtHeure(c.fin)}</strong> {c.lieu}</>)}</>
+          : <>Prochaines ventes annoncées en fin de semaine</>}
+      </span>
+      <a href={adresse.maps} rel="noopener">{adresse.rue}, {adresse.ville}</a>
+    </div>
+  </div>
+  <header class="site">
+    <div class="wrap">
+      <a class="logo" href={href('index.html')}>Au Grand Jardin <small>maraîcher bio · Lostroff</small></a>
+      <nav class="main" aria-label="Navigation principale">
+        {nav.map((n) => <a href={n.href} aria-current={page === n.id ? 'page' : undefined}>{n.label}</a>)}
+      </nav>
+    </div>
+  </header>
+
+  <slot />
+
+  <footer class="site">
+    <div class="wrap">
+      <div>
+        <h2>Au Grand Jardin</h2>
+        <p>{adresse.rue}<br />{adresse.codePostal} {adresse.ville}</p>
+        <p><a href={adresse.maps} rel="noopener">Itinéraire</a></p>
+      </div>
+      <div>
+        <h2>{contact.nom}</h2>
+        <p class="copy-line">Tél. <a href={`tel:${contact.telephoneLien}`}>{contact.telephone}</a></p>
+        <p class="copy-line"><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+      </div>
+      <div>
+        <h2>Ventes de la semaine</h2>
+        {creneaux.length
+          ? creneaux.map((c) => <p>{c.jour} {fmtHeure(c.debut)}–{fmtHeure(c.fin)}, {c.lieu}</p>)
+          : <p>Annoncées en fin de semaine</p>}
+        <p class="sync-note">Liste et horaires mis à jour {misAJour}</p>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="actionbar" aria-label="Actions rapides">
+    <a href={href('produits.html')}><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16l-1.5 11a2 2 0 0 1-2 1.7H7.5a2 2 0 0 1-2-1.7L4 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>Produits</a>
+    <a href={adresse.maps} rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Itinéraire</a>
+    <a href={`tel:${contact.telephoneLien}`}><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Appeler</a>
+  </nav>
+
+  <script is:inline define:vars={{ creneauxJs }}>
+    // « Ouvert maintenant » ou « Prochaine vente » calculé dans le navigateur, à partir du Planning Notion
+    (function () {
+      var c = JSON.parse(creneauxJs);
+      if (!c.length) return;
+      var el = document.getElementById('status-text');
+      var now = new Date();
+      var paris = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Paris' }));
+      var jour = paris.getDay(), min = paris.getHours() * 60 + paris.getMinutes();
+      var h = function (m) { return Math.floor(m / 60) + 'h' + (m % 60 ? String(m % 60).padStart(2, '0') : ''); };
+      var ouvert = c.find(function (s) { return s.jourNum === jour && min >= s.debut && min < s.fin; });
+      if (ouvert) {
+        el.innerHTML = '<span class="status-dot live"></span><strong>Ouvert maintenant</strong> jusqu’à ' + h(ouvert.fin) + ', ' + ouvert.lieu;
+        return;
+      }
+      var lun = function (d) { return (d + 6) % 7; };
+      var suivant = c.find(function (s) { return lun(s.jourNum) > lun(jour) || (s.jourNum === jour && min < s.debut); });
+      if (suivant) {
+        var diff = (suivant.jourNum - jour + 7) % 7;
+        var d = new Date(paris); d.setDate(paris.getDate() + diff);
+        var quand = diff === 0 ? 'aujourd’hui' : diff === 1 ? 'demain' : d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+        el.innerHTML = '<span class="status-dot"></span>Prochaine vente <strong>' + quand + ', ' + h(suivant.debut) + '–' + h(suivant.fin) + '</strong> ' + suivant.lieu;
+      } else {
+        el.innerHTML = '<span class="status-dot"></span>Les ventes de la semaine prochaine sont annoncées jeudi';
+      }
+    })();
+  </script>
+</body>
+</html>

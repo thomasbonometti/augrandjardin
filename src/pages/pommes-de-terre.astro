@@ -1,0 +1,203 @@
+---
+import Base from '../layouts/Base.astro';
+import { reglages, fmtEuro } from '../lib/site.js';
+const pdt = reglages.pommesDeTerre;
+const limite = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long' }).format(new Date(pdt.dateLimite));
+const config = JSON.stringify({ sacs: pdt.sacs, varietes: pdt.varietes, oignons: pdt.oignons });
+---
+<Base
+  title="Réservation de pommes de terre bio en sacs | Au Grand Jardin"
+  description={`Réservez vos pommes de terre bio de Lostroff en sacs de 15 ou 25 kg : ${pdt.varietes.map((v) => v.nom).join(', ')}. Retrait à la ferme.`}
+  page="pdt"
+>
+  <main class="wrap">
+    <div class="intro">
+      <p class="eyebrow">{pdt.ouvert ? `Réservations ouvertes jusqu’au ${limite}` : 'Réservations fermées'}</p>
+      <h1>Pommes de terre de garde, en sacs</h1>
+      <p class="lede">Cultivées sans traitement chimique à Lostroff. Choisissez vos variétés, nous vous prévenons dès que vos sacs sont prêts et vous passez les chercher à la ferme.</p>
+    </div>
+
+    {!pdt.ouvert ? (
+      <div class="closed">
+        <h2>La campagne est terminée</h2>
+        <p>Les réservations rouvrent à l’automne. Inscrivez-vous aux SMS de la ferme pour être prévenu.</p>
+      </div>
+    ) : (
+      <form id="commande" class="commande" novalidate>
+        <fieldset>
+          <legend><h2>1. Vos sacs</h2></legend>
+          <p class="hint">Prix au kg : {pdt.sacs.map((s) => `${fmtEuro(s.prix / s.poids)} en ${s.libelle.toLowerCase()} (${fmtEuro(s.prix)})`).join(' · ')}</p>
+          <div class="table-scroll">
+            <table class="varietes">
+              <thead>
+                <tr><th scope="col">Variété</th>{pdt.sacs.map((s) => <th scope="col" class="num">{s.libelle}</th>)}</tr>
+              </thead>
+              <tbody>
+                {pdt.varietes.map((v, i) => (
+                  <tr class={v.stockKg <= 0 ? 'epuise' : ''}>
+                    <th scope="row">
+                      <strong>{v.nom}</strong>
+                      <span class="chair">{v.chair} · {v.usages}</span>
+                      {v.stockKg <= 0 ? <span class="stock out">Épuisé</span> : v.stockKg < 150 ? <span class="stock low">Plus que {v.stockKg} kg</span> : null}
+                    </th>
+                    {pdt.sacs.map((s) => (
+                      <td class="num">
+                        <label class="sr" for={`v${i}-${s.id}`}>{v.nom}, {s.libelle}</label>
+                        <input type="number" inputmode="numeric" min="0" max="6" value="0" id={`v${i}-${s.id}`} name={`sac:${v.nom}:${s.id}`} disabled={v.stockKg <= 0} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+                {pdt.oignons.map((o) => (
+                  <tr class="oignons">
+                    <th scope="row"><strong>{o.libelle}</strong><span class="chair">{fmtEuro(o.prix)} le sac</span></th>
+                    <td class="num" colspan={pdt.sacs.length}>
+                      <label class="sr" for={`o-${o.id}`}>{o.libelle}</label>
+                      <input type="number" inputmode="numeric" min="0" max="6" value="0" id={`o-${o.id}`} name={`oignon:${o.id}`} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="total" aria-live="polite">Total : <strong id="total">0,00 €</strong> <span id="total-detail"></span></p>
+        </fieldset>
+
+        <fieldset>
+          <legend><h2>2. Vos coordonnées</h2></legend>
+          <div class="champs">
+            <div><label for="prenom">Prénom</label><input id="prenom" name="prenom" autocomplete="given-name" required /></div>
+            <div><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="family-name" required /></div>
+            <div><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
+            <div><label for="tel">Téléphone</label><input id="tel" name="telephone" type="tel" autocomplete="tel" required /></div>
+          </div>
+          <label class="check"><input type="checkbox" id="sms" name="sms" checked /> Me prévenir aussi par SMS quand ma commande est prête</label>
+          <label for="commentaire">Commentaire (facultatif)</label>
+          <textarea id="commentaire" name="commentaire" rows="3"></textarea>
+        </fieldset>
+
+        <p id="erreur" class="erreur" role="alert" hidden></p>
+        <div class="btn-row"><button class="btn" type="submit" id="envoyer">Réserver</button></div>
+        <p class="hint">Retrait {pdt.retrait}. Paiement sur place.</p>
+      </form>
+    )}
+
+    <section id="confirmation" class="confirmation" hidden aria-live="polite">
+      <h2>Commande reçue, merci !</h2>
+      <p id="conf-texte"></p>
+      <div id="demo-detail" class="demo-flag" hidden>
+        <p><strong>Mode démonstration.</strong> Aucune commande n’a été envoyée. Sur le site en ligne, cette fiche serait créée dans la base Notion « Commandes clients », puis un e-mail de confirmation partirait au client :</p>
+        <pre id="demo-json"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline define:vars={{ config }}>
+    (function () {
+      var cfg = JSON.parse(config);
+      var form = document.getElementById('commande');
+      if (!form) return;
+      var eur = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
+
+      function lignes() {
+        var out = [];
+        form.querySelectorAll('input[type=number]').forEach(function (inp) {
+          var q = parseInt(inp.value, 10) || 0;
+          if (q <= 0) return;
+          var parts = inp.name.split(':');
+          if (parts[0] === 'sac') {
+            var sac = cfg.sacs.find(function (s) { return s.id === parts[2]; });
+            out.push({ type: 'pdt', variete: parts[1], sac: sac.id, quantite: q, poids: sac.poids * q, prix: sac.prix * q, libelle: q + ' × ' + sac.libelle.toLowerCase() + ' de ' + parts[1] });
+          } else {
+            var o = cfg.oignons.find(function (x) { return x.id === parts[1]; });
+            out.push({ type: 'oignon', id: o.id, quantite: q, prix: o.prix * q, libelle: q + ' × ' + o.libelle.toLowerCase() });
+          }
+        });
+        return out;
+      }
+      function majTotal() {
+        var l = lignes();
+        var total = l.reduce(function (a, x) { return a + x.prix; }, 0);
+        var kg = l.reduce(function (a, x) { return a + (x.poids || 0); }, 0);
+        document.getElementById('total').textContent = eur.format(total);
+        document.getElementById('total-detail').textContent = kg ? '(' + kg + ' kg de pommes de terre)' : '';
+      }
+      form.addEventListener('input', majTotal);
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var err = document.getElementById('erreur');
+        err.hidden = true;
+        var l = lignes();
+        if (!l.length) { err.textContent = 'Choisissez au moins un sac.'; err.hidden = false; return; }
+        var nbSacs = l.filter(function (x) { return x.type === 'pdt'; }).reduce(function (a, x) { return a + x.quantite; }, 0);
+        if (nbSacs > 5) { err.textContent = '5 sacs de pommes de terre maximum par réservation en ligne. Pour plus, appelez la ferme.'; err.hidden = false; return; }
+        if (!form.checkValidity()) { err.textContent = 'Merci de renseigner votre prénom, nom, e-mail et téléphone.'; err.hidden = false; form.reportValidity(); return; }
+        var fd = new FormData(form);
+        var payload = {
+          prenom: fd.get('prenom'), nom: fd.get('nom'), email: fd.get('email'), telephone: fd.get('telephone'),
+          sms: fd.get('sms') === 'on', commentaire: fd.get('commentaire') || '', lignes: l,
+        };
+        var btn = document.getElementById('envoyer');
+        btn.disabled = true; btn.textContent = 'Envoi…';
+        var demo = false, res, data;
+        try {
+          res = await fetch('api/commande-pdt', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          if (res.status === 404 || res.status === 405) demo = true;
+          else data = await res.json();
+        } catch (_) { demo = true; }
+        btn.disabled = false; btn.textContent = 'Réserver';
+        if (!demo && !res.ok) { err.textContent = (data && data.erreur) || 'La commande n’a pas pu être enregistrée. Réessayez ou appelez la ferme.'; err.hidden = false; return; }
+        form.hidden = true;
+        document.getElementById('confirmation').hidden = false;
+        document.getElementById('conf-texte').textContent = 'Un récapitulatif part à ' + payload.email + '. Nous vous prévenons dès que vos sacs sont prêts.';
+        if (demo || (data && data.demo)) {
+          document.getElementById('demo-detail').hidden = false;
+          document.getElementById('demo-json').textContent = JSON.stringify((data && data.fiche) || {
+            'Nom du client': payload.nom, 'Prénom du client': payload.prenom, 'Email du client': payload.email,
+            'Numéro de téléphone': payload.telephone, 'Être alerté par SMS': payload.sms,
+            'Sacs': l.map(function (x) { return x.libelle + ' (' + eur.format(x.prix) + ')'; }),
+            'Commentaire client': payload.commentaire, 'Statut': 'En attente',
+          }, null, 2);
+        }
+        document.getElementById('confirmation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    })();
+  </script>
+</Base>
+
+<style>
+  .intro { display: flex; flex-direction: column; gap: 0.75rem; padding-block: 2.5rem 1.5rem; }
+  .commande { display: flex; flex-direction: column; gap: 1.75rem; max-width: 52rem; }
+  fieldset { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 1.25rem; margin: 0; display: flex; flex-direction: column; gap: 0.85rem; min-width: 0; }
+  legend { padding: 0; float: left; width: 100%; }
+  legend h2 { font-size: 1.3rem; }
+  .hint { color: var(--muted); font-size: 0.95rem; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 0.7rem 0.5rem; border-top: 1px solid var(--line); text-align: left; vertical-align: middle; }
+  thead th { border-top: 0; font-size: 0.85rem; color: var(--muted); font-weight: 700; }
+  tbody th { font-weight: 400; display: flex; flex-direction: column; gap: 0.1rem; }
+  .num { text-align: right; white-space: nowrap; }
+  .chair { color: var(--muted); font-size: 0.88rem; }
+  .stock { align-self: flex-start; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.1rem 0.45rem; border-radius: 3px; margin-top: 0.2rem; }
+  .stock.low { background: var(--carrot-soft); color: var(--carrot); }
+  .stock.out { background: var(--line); color: var(--muted); }
+  tr.epuise strong { color: var(--muted); }
+  input[type='number'] { width: 4.25rem; text-align: center; font-variant-numeric: tabular-nums; }
+  input, textarea { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.6rem 0.7rem; width: 100%; }
+  input[type='number'] { width: 4.25rem; }
+  input:disabled { opacity: 0.45; }
+  .champs { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.85rem; }
+  .champs > div { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+  label { font-weight: 700; font-size: 0.95rem; }
+  .check { display: flex; gap: 0.6rem; align-items: center; font-weight: 400; }
+  .check input { width: 1.2rem; height: 1.2rem; accent-color: var(--leaf); }
+  .total { font-size: 1.05rem; }
+  .total strong { font: 700 1.5rem/1 var(--display); font-variant-numeric: tabular-nums; }
+  .erreur { color: var(--carrot); font-weight: 700; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .confirmation { max-width: 52rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .confirmation pre { margin: 0.75rem 0 0; overflow-x: auto; font-size: 0.82rem; background: var(--surface); padding: 0.75rem; border-radius: var(--radius); }
+  .closed { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; max-width: 40rem; }
+</style>

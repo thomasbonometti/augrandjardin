@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import Produit from '../components/Produit.astro';
+import { produits, rayons, misAJour } from '../lib/site.js';
+const nbLimites = produits.filter((p) => p.quantiteLimitee).length;
+---
+<Base
+  title="Légumes bio de la semaine à Lostroff | Au Grand Jardin"
+  description={`${produits.length} produits disponibles à la ferme cette semaine : ${rayons.map((r) => r.titre.toLowerCase()).join(', ')}. Prix et disponibilités mis à jour avant chaque vente.`}
+  page="produits"
+>
+  <main class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Mis à jour {misAJour}</p>
+      <h1>Produits de la semaine</h1>
+      <p class="lede">{produits.length} produits disponibles à la vente à la ferme. Les prix sont TTC.{nbLimites > 0 && ` ${nbLimites} produits sont en quantité limitée : venez tôt.`}</p>
+    </div>
+
+    <nav class="rayons" aria-label="Rayons">
+      {rayons.map((r) => <a href={`#${r.slug}`}>{r.titre} <span>{r.items.length}</span></a>)}
+    </nav>
+
+    {rayons.map((r) => (
+      <section class="rayon" id={r.slug} aria-labelledby={`t-${r.slug}`}>
+        <h2 id={`t-${r.slug}`}>{r.titre}</h2>
+        <div class="grid">
+          {r.items.map((p) => <Produit p={p} />)}
+        </div>
+      </section>
+    ))}
+  </main>
+</Base>
+
+<style>
+  .intro { display: flex; flex-direction: column; gap: 0.75rem; padding-block: 2.5rem 1.25rem; }
+  .rayons { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: flex; gap: 0.5rem; overflow-x: auto; padding-block: 0.75rem; background: var(--paper); scrollbar-width: thin; }
+  .rayons a { flex: none; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0.4rem 0.9rem; font-weight: 700; font-size: 0.95rem; }
+  .rayons a span { color: var(--muted); font-weight: 400; margin-left: 0.2rem; font-variant-numeric: tabular-nums; }
+  .rayons a:hover { border-color: var(--leaf); }
+  .rayon { padding-block: 1.75rem 0.5rem; display: flex; flex-direction: column; gap: 1rem; scroll-margin-top: 4rem; }
+  .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
+  @media (max-width: 520px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; } }
+</style>

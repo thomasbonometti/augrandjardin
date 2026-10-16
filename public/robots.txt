@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /pro/
+Sitemap: https://augrandjardin.fr/sitemap.xml

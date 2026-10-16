@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import Produit from '../components/Produit.astro';
+import { produits, reglages, creneaux, fmtHeure, fmtEuro } from '../lib/site.js';
+
+const nouveautes = produits.filter((p) => p.estNouveau && p.image);
+const vedettes = [...produits.filter((p) => p.aLaUne || p.produitAppel), ...nouveautes, ...produits.filter((p) => p.image)]
+  .filter((p, i, a) => a.findIndex((x) => x.id === p.id) === i)
+  .slice(0, 4);
+const pdt = reglages.pommesDeTerre;
+const prixMinKg = Math.min(...pdt.sacs.map((s) => s.prix / s.poids));
+const samedi = creneaux.find((c) => c.aLaFerme);
+---
+<Base
+  title="Au Grand Jardin, maraîcher bio à Lostroff (57)"
+  description="Légumes bio de saison cultivés à Lostroff, en Moselle. Vente à la ferme chaque semaine, liste des produits disponibles mise à jour avant chaque vente."
+>
+  <main>
+    <section class="hero wrap">
+      <div class="hero-text">
+        <p class="eyebrow">Ferme maraîchère bio · Lostroff, Moselle</p>
+        <h1>Les légumes de la semaine, cueillis pour la vente {samedi ? `du ${samedi.jour.toLowerCase()}` : 'à la ferme'}</h1>
+        <p class="lede">Semences paysannes, variétés anciennes, aucun produit chimique. Pierre récolte ce qui est prêt et publie ici la liste avant chaque vente.</p>
+        <div class="btn-row">
+          <a class="btn" href="produits.html">Voir les {produits.length} produits de la semaine</a>
+          <a class="btn ghost" href={reglages.adresse.maps} rel="noopener">Itinéraire</a>
+        </div>
+      </div>
+      <aside class="horaires" aria-labelledby="h-horaires">
+        <h2 id="h-horaires">Venir à la ferme</h2>
+        {creneaux.length ? (
+          <ul>
+            {creneaux.map((c) => (
+              <li><span class="jour">{c.jour}</span><span class="heure">{fmtHeure(c.debut)} – {fmtHeure(c.fin)}</span><span class="lieu">{c.lieu}</span></li>
+            ))}
+          </ul>
+        ) : <p>Les prochaines ventes sont annoncées en fin de semaine.</p>}
+        <p class="adr">{reglages.adresse.rue}, {reglages.adresse.codePostal} {reglages.adresse.ville}</p>
+      </aside>
+    </section>
+
+    <section class="wrap section">
+      <div class="section-head">
+        <h2>Cette semaine à la ferme</h2>
+        <a href="produits.html">Toute la liste</a>
+      </div>
+      <div class="grid">
+        {vedettes.map((p) => <Produit p={p} />)}
+      </div>
+      {nouveautes.length > 0 && (
+        <p class="nouveaux">Nouveau cette semaine : {nouveautes.map((p) => p.nom).join(', ')}.</p>
+      )}
+    </section>
+
+    {pdt.ouvert && (
+      <section class="wrap section">
+        <div class="bandeau-pdt">
+          <div>
+            <p class="eyebrow">Réservation ouverte</p>
+            <h2>Pommes de terre de garde en sacs de 15 et 25 kg</h2>
+            <p>{pdt.varietes.filter((v) => v.stockKg > 0).length} variétés, à partir de {fmtEuro(prixMinKg)} le kg. Vous réservez en ligne, vous retirez à la ferme quand la commande est prête.</p>
+          </div>
+          <a class="btn" href="pommes-de-terre.html">Réserver mes sacs</a>
+        </div>
+      </section>
+    )}
+
+    <section class="wrap section deux">
+      <div>
+        <h2>Commandez par SMS</h2>
+        <p>Recevez chaque semaine la liste des légumes disponibles et réservez votre panier par SMS, du 15 avril au 15 novembre.</p>
+      </div>
+      <div>
+        <h2>Restaurants et épiceries</h2>
+        <p>Livraison hebdomadaire de légumes bio et locaux. Consultez l’offre et demandez l’accès à la grille tarifaire.</p>
+        <p><a href="professionnels.html">Offre professionnels</a></p>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .hero { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: end; padding-block: 3rem 2.5rem; }
+  @media (max-width: 860px) { .hero { grid-template-columns: 1fr; padding-block: 2rem; } }
+  .hero-text { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+  .horaires { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .horaires h2 { font-size: 1.2rem; }
+  .horaires ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+  .horaires li { display: grid; grid-template-columns: auto 1fr; gap: 0 0.75rem; }
+  .jour { font-weight: 700; }
+  .heure { font: 700 1.2rem/1.2 var(--display); font-variant-numeric: tabular-nums; text-align: right; }
+  .lieu { grid-column: 1 / -1; color: var(--muted); font-size: 0.95rem; }
+  .adr { font-size: 0.95rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 0.75rem; }
+  .section { padding-block: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .grid { display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .nouveaux { color: var(--muted); }
+  .bandeau-pdt { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; align-items: center; justify-content: space-between; background: var(--leaf-soft); border-radius: var(--radius); padding: 1.5rem; }
+  .bandeau-pdt > div { display: flex; flex-direction: column; gap: 0.4rem; max-width: 40rem; min-width: 0; }
+  .deux { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem; }
+  .deux > div { display: flex; flex-direction: column; gap: 0.5rem; }
+</style>

@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import { reglages, produits } from '../lib/site.js';
+const { contact } = reglages;
+---
+<Base
+  title="Légumes bio pour restaurants et épiceries en Moselle | Au Grand Jardin"
+  description="Restaurants, épiceries, cantines : Au Grand Jardin livre chaque semaine des légumes bio cultivés à Lostroff. Offre sur mesure, réponse sous 48 h."
+  page="pros"
+>
+  <main class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Restaurants · épiceries · collectivités</p>
+      <h1>Des légumes bio de Lostroff livrés chaque semaine</h1>
+      <p class="lede">Vous cuisinez local et de saison ? Nous vous proposons une offre selon nos récoltes et vos besoins, avec une livraison hebdomadaire.</p>
+    </div>
+
+    <div class="cols">
+      <section class="offre">
+        <h2>Comment ça marche</h2>
+        <ol>
+          <li><strong>On fait connaissance.</strong> Vos volumes, vos jours de livraison, les produits qui comptent pour votre carte.</li>
+          <li><strong>Vous recevez votre accès.</strong> La grille tarifaire pro, mise à jour chaque semaine avec les {produits.length} produits du moment.</li>
+          <li><strong>Vous commandez.</strong> Par téléphone ou message, avant le jour de récolte convenu.</li>
+        </ol>
+        <p>Pour demander un accès : {contact.nom}, <a href={`tel:${contact.telephoneLien}`}>{contact.telephone}</a> ou <a href={`mailto:${contact.email}?subject=Accès%20professionnel`}>{contact.email}</a>. Réponse sous 48 h.</p>
+      </section>
+
+      <section class="acces" aria-labelledby="h-acces">
+        <h2 id="h-acces">Déjà client ?</h2>
+        <p>Entrez le mot de passe reçu pour consulter la grille tarifaire de la semaine.</p>
+        <form id="login" novalidate>
+          <label for="motdepasse">Mot de passe</label>
+          <input id="motdepasse" name="motdepasse" type="password" autocomplete="current-password" required />
+          <p id="login-err" class="erreur" role="alert" hidden></p>
+          <button class="btn" type="submit">Voir la grille tarifaire</button>
+        </form>
+        <p class="demo-flag" id="login-demo" hidden><strong>Mode démonstration</strong> : mot de passe <code>demo</code>. En ligne, il est vérifié par le serveur et la grille reste inaccessible sans lui.</p>
+      </section>
+    </div>
+  </main>
+
+  <script is:inline>
+    (function () {
+      var form = document.getElementById('login');
+      var err = document.getElementById('login-err');
+      // Hors du vrai hébergement (aperçu de test), l'API n'existe pas : on affiche le mode démo.
+      fetch('api/pro-login', { method: 'HEAD' }).then(function (r) { if (r.status === 404) document.getElementById('login-demo').hidden = false; })
+        .catch(function () { document.getElementById('login-demo').hidden = false; });
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        err.hidden = true;
+        var mdp = form.motdepasse.value;
+        if (!mdp) { err.textContent = 'Entrez votre mot de passe.'; err.hidden = false; return; }
+        try {
+          var res = await fetch('api/pro-login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ motdepasse: mdp }) });
+          if (res.ok) { location.href = 'pro/tarifs.html'; return; }
+          if (res.status !== 404 && res.status !== 405) { err.textContent = 'Mot de passe incorrect. Il figure dans le dernier message de la ferme.'; err.hidden = false; return; }
+        } catch (_) {}
+        if (mdp === 'demo') location.href = 'pro/tarifs.html';
+        else { err.textContent = 'Mot de passe incorrect (démo : « demo »).'; err.hidden = false; }
+      });
+    })();
+  </script>
+</Base>
+
+<style>
+  .intro { display: flex; flex-direction: column; gap: 0.75rem; padding-block: 2.5rem 1.5rem; }
+  .cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
+  @media (max-width: 820px) { .cols { grid-template-columns: 1fr; } }
+  .offre { display: flex; flex-direction: column; gap: 1rem; }
+  .offre ol { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.75rem; }
+  .acces { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem; }
+  .acces form { display: flex; flex-direction: column; gap: 0.5rem; }
+  label { font-weight: 700; font-size: 0.95rem; }
+  input { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.6rem 0.7rem; }
+  .erreur { color: var(--carrot); font-weight: 700; }
+  code { font-size: 0.95em; background: var(--surface); padding: 0 0.3rem; border-radius: 3px; }
+</style>

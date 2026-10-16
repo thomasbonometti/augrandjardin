@@ -1,0 +1,29 @@
+[
+  {
+    "nom": "Vente du samedi à la ferme",
+    "jour": "Samedi",
+    "horaire": "de 10h à 12h30",
+    "ou": "à la ferme",
+    "ville": "Lostroff",
+    "aLaFerme": true,
+    "cetteSemaine": true
+  },
+  {
+    "nom": "Vente du mercredi à la ferme",
+    "jour": "Mercredi",
+    "horaire": "de 17h à 19h",
+    "ou": "à la ferme",
+    "ville": "Lostroff",
+    "aLaFerme": true,
+    "cetteSemaine": false
+  },
+  {
+    "nom": "Marché des Producteurs de Bénestroff",
+    "jour": "Dimanche",
+    "horaire": "de 8h à 12h",
+    "ou": "au Marché des producteurs",
+    "ville": "Bénestroff",
+    "aLaFerme": false,
+    "cetteSemaine": false
+  }
+]

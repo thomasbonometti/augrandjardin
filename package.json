@@ -1,0 +1,18 @@
+{
+  "name": "au-grand-jardin-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-notion.mjs",
+    "build": "node scripts/sync-notion.mjs && astro build",
+    "dev": "astro dev",
+    "preview:cf": "wrangler pages dev dist"
+  },
+  "dependencies": {
+    "astro": "5.13.5",
+    "sharp": "0.34.3"
+  },
+  "devDependencies": {
+    "wrangler": "4.33.1"
+  }
+}

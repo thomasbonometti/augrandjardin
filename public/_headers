@@ -1,0 +1,4 @@
+/pro/*
+  X-Robots-Tag: noindex, nofollow
+/produits-img/*
+  Cache-Control: public, max-age=604800
