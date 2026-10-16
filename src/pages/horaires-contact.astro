@@ -1,0 +1,170 @@
+---
+// Horaires & contact — frames Figma 19:2 (desktop) et 44:2 (mobile). Créneaux lus dans le Planning Notion.
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import { ferme, adresseComplete } from '../data/ferme.js';
+import { creneaux, prochaineVente as v } from '../lib/donnees.js';
+import { plage } from '../lib/vente.js';
+import { schemaFerme, fileAriane } from '../lib/seo.js';
+const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
+---
+<Base
+  titre="Horaires et contact — vente à la ferme à Lostroff | Au Grand Jardin"
+  description={`Horaires de vente de la ferme Au Grand Jardin${v ? ` : ${v.jourDate}, ${v.heures}` : ''}. ${adresseComplete}. Téléphone ${ferme.telephone}, ${ferme.email}.`}
+  page="contact"
+  schema={[schemaFerme(creneaux), fileAriane([{ nom: 'Horaires & contact', url: '/horaires-contact/' }])]}
+>
+  <section class="wrap tete">
+    <p class="eyebrow">Horaires &amp; contact</p>
+    <h1>Venir à la ferme</h1>
+    <p class="lg muted tete__intro">Les ventes ont lieu à la ferme, au 43 rue Principale à Lostroff. Les créneaux changent selon la saison et les marchés : ils sont mis à jour ici chaque semaine.</p>
+  </section>
+
+  <section class="wrap creneaux" aria-label="Horaires de vente">
+    <div class="vente sur-sombre">
+      <div class="surtitre"><span class="point point-clair" aria-hidden="true"></span><h2 class="eyebrow">Prochaine vente</h2></div>
+      {v ? (
+        <p class="vente__quand"><span class="vente__jour" data-vente-sans-date={v.jour}>{jourVente}</span><span class="vente__heures">{v.heures}</span></p>
+      ) : (
+        <p class="vente__quand"><span class="vente__jour">Pas de vente cette semaine</span></p>
+      )}
+      <p class="muted">{v && !v.aLaFerme ? v.lieu : `À la ferme, ${adresseComplete}`}</p>
+      <div class="btns">
+        <a class="btn btn-blanc btn-bloc" href={ferme.itineraire} rel="noopener"><Icone nom="repere" taille={18} />Itinéraire</a>
+        <a class="btn btn-contour-clair btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} /><span>Appeler<span class="seulement-mobile"> la ferme</span></span></a>
+      </div>
+    </div>
+    <div class="rdv encart-blanc">
+      <h2 class="eyebrow rdv__titre">Les rendez-vous de la ferme</h2>
+      <ul role="list">
+        {creneaux.map((c) => (
+          <li class:list={['rdv__ligne', { inactif: !c.cetteSemaine }]}>
+            <div class="rdv__quand">
+              <p class="rdv__jour">{c.jour} · {plage(c)}</p>
+              <p class="muted rdv__lieu">{c.lieu}</p>
+            </div>
+            {c.cetteSemaine ? <span class="chip chip-vif rdv__etat">Cette semaine</span> : <span class="sm muted rdv__etat">Pas cette semaine</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap carte-section" aria-label="Plan d’accès">
+    <a class="plan" href={ferme.itineraire} rel="noopener">
+      <svg class="plan__ordi" viewBox="0 0 1280 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <rect width="1280" height="440" fill="#EFE9DA"/>
+        <path d="M0 300 C 260 280 420 330 640 300 S 1040 240 1280 270" stroke="#FFFFFF" stroke-width="18" fill="none"/>
+        <path d="M610 0 C 600 120 660 220 640 300 S 600 400 620 440" stroke="#FFFFFF" stroke-width="12" fill="none"/>
+        <path d="M0 120 C 200 140 360 100 520 150" stroke="#FFFFFF" stroke-width="8" fill="none"/>
+        <rect x="760" y="60" width="200" height="120" rx="10" fill="#DCE6C8"/><rect x="980" y="40" width="240" height="160" rx="10" fill="#D3DFBC"/>
+        <rect x="120" y="330" width="260" height="90" rx="10" fill="#DCE6C8"/><rect x="820" y="320" width="300" height="100" rx="10" fill="#D3DFBC"/>
+        <rect x="700" y="210" width="40" height="22" rx="4" fill="#FFFFFF" opacity="0.9"/><rect x="752" y="214" width="56" height="18" rx="4" fill="#FFFFFF" opacity="0.9"/>
+        <circle cx="640" cy="292" r="34" fill="#0C4B31" opacity="0.15"/><circle cx="640" cy="292" r="14" fill="#0C4B31"/><circle cx="640" cy="292" r="5" fill="#FFFFFF"/>
+      </svg>
+      <svg class="plan__mobile" viewBox="0 0 350 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <rect width="350" height="260" fill="#EFE9DA"/>
+        <path d="M0 170 C 80 160 120 190 180 172 S 290 140 350 155" stroke="#FFFFFF" stroke-width="12" fill="none"/>
+        <path d="M168 0 C 160 70 190 120 180 172 S 165 230 172 260" stroke="#FFFFFF" stroke-width="8" fill="none"/>
+        <rect x="215" y="30" width="110" height="70" rx="8" fill="#DCE6C8"/><rect x="20" y="200" width="120" height="50" rx="8" fill="#D3DFBC"/>
+        <rect x="230" y="190" width="100" height="56" rx="8" fill="#DCE6C8"/>
+        <circle cx="180" cy="166" r="26" fill="#0C4B31" opacity="0.15"/><circle cx="180" cy="166" r="11" fill="#0C4B31"/><circle cx="180" cy="166" r="4" fill="#FFFFFF"/>
+      </svg>
+      <span class="plan__carte">
+        <span class="plan__infos">
+          <span class="plan__nom">Au Grand Jardin</span>
+          <span class="sm muted">{adresseComplete}</span>
+        </span>
+        <span class="sm plan__lien"><span class="seulement-ordi">Ouvrir dans Google </span>Maps →</span>
+      </span>
+    </a>
+  </section>
+
+  <section class="wrap contacts" aria-label="Nous contacter">
+    <ul role="list">
+      <li><a class="contact" href={ferme.telephoneLien}><Icone nom="telephone" taille={26} /><span class="contact__textes"><span class="sm muted">Téléphone</span><span class="contact__valeur">{ferme.telephone}</span><span class="sm muted">{ferme.maraicher}</span></span></a></li>
+      <li><a class="contact" href={`mailto:${ferme.email}`}><Icone nom="mail" taille={26} /><span class="contact__textes"><span class="sm muted">E-mail</span><span class="contact__valeur">{ferme.email}</span><span class="sm muted">Réponse sous 48 h</span></span></a></li>
+      <li><a class="contact" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={26} /><span class="contact__textes"><span class="sm muted">Facebook</span><span class="contact__valeur">Au Grand Jardin</span><span class="sm muted">Les annonces de la semaine</span></span></a></li>
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .tete { padding-top: 32px; padding-bottom: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .tete__intro { font-size: 16px; line-height: 24px; }
+  @media (min-width: 1100px) {
+    .tete { padding-top: 64px; padding-bottom: 56px; gap: 20px; }
+    .tete > * { max-width: 820px; }
+    .tete__intro { font-size: 20px; line-height: 30px; }
+  }
+
+  .creneaux { padding-bottom: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .vente { background: var(--vert-foret); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+  .vente .surtitre { gap: 8px; }
+  .vente h2.eyebrow { font-size: 13px; line-height: 20px; letter-spacing: 0.16em; }
+  .vente__quand { display: flex; flex-direction: column; gap: 2px; }
+  .vente__jour, .vente__heures { font-size: 32px; line-height: 38px; letter-spacing: -0.03em; color: var(--blanc); }
+  .vente__heures { color: var(--vert-clair); }
+  .rdv { padding: 4px 20px 8px; }
+  .rdv h2.rdv__titre { font-size: 13px; line-height: 20px; letter-spacing: 0.16em; padding-top: 18px; padding-bottom: 2px; color: var(--gris-fonce); }
+  .rdv__ligne { display: grid; grid-template-columns: 1fr auto; grid-template-areas: 'jour etat' 'lieu lieu'; align-items: center; column-gap: 12px; row-gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--ligne); }
+  .rdv__quand { display: contents; }
+  .rdv__jour { grid-area: jour; font-size: 18px; line-height: 26px; color: var(--texte); }
+  .rdv__lieu { grid-area: lieu; font-size: 14px; line-height: 20px; }
+  .rdv__etat { grid-area: etat; }
+  .rdv__etat.chip { height: 26px; font-size: 12px; padding: 0 8px; }
+  .inactif { opacity: 0.55; }
+  @media (min-width: 1100px) {
+    .creneaux { padding-bottom: 64px; flex-direction: row; align-items: stretch; }
+    .vente { width: 520px; flex: none; padding: 40px; gap: 28px; justify-content: space-between; }
+    .vente .surtitre { gap: 10px; }
+    .vente__quand { gap: 8px; }
+    .vente__jour, .vente__heures { font-size: 48px; line-height: 56px; }
+    .vente .btns .btn { width: auto; }
+    .rdv { flex: 1; padding: 8px 40px; }
+    .rdv h2.rdv__titre { padding-top: 28px; padding-bottom: 8px; }
+    .rdv__ligne { display: flex; justify-content: space-between; padding: 20px 0; }
+    .rdv__quand { display: flex; flex-direction: column; gap: 2px; }
+    .rdv__jour { font-size: 20px; line-height: 28px; }
+    .rdv__lieu { font-size: 16px; line-height: 24px; }
+    .rdv__etat.chip { height: 30px; font-size: 13px; padding: 0 12px; }
+  }
+
+  .carte-section { padding-bottom: 32px; }
+  .plan { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; border: 1px solid var(--ligne); background: var(--blanc); }
+  .plan svg { width: 100%; height: auto; }
+  .plan__ordi { display: none; }
+  .plan__mobile { aspect-ratio: 350 / 260; }
+  .plan__carte { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; gap: 12px; }
+  .plan__infos { display: flex; flex-direction: column; gap: 2px; }
+  .plan__nom { color: var(--texte); }
+  .plan__lien { color: var(--vert-foret); white-space: nowrap; }
+  .plan:hover .plan__lien { text-decoration: underline; text-underline-offset: 3px; }
+  @media (min-width: 1100px) {
+    .carte-section { padding-bottom: 64px; }
+    .plan { position: relative; display: block; height: 440px; border: 0; }
+    .plan__ordi { display: block; height: 100%; }
+    .plan__mobile { display: none; }
+    .plan__carte { position: absolute; left: 32px; top: 32px; width: 340px; flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px 24px; border-radius: 12px; background: var(--blanc); }
+    .plan__nom { font-size: 18px; line-height: 26px; }
+    .plan__infos { gap: 8px; }
+    .plan__lien { padding-top: 4px; }
+  }
+
+  .contacts { padding-bottom: 64px; }
+  .contacts ul { display: flex; flex-direction: column; gap: 12px; }
+  .contact { display: flex; gap: 14px; align-items: center; padding: 18px; border-radius: 14px; background: var(--sable); color: var(--vert-foret); }
+  .contact :global(svg) { width: 24px; height: 24px; flex: none; }
+  .contact__textes { display: flex; flex-direction: column; gap: 2px; }
+  .contact__valeur { font-size: 18px; line-height: 26px; color: var(--texte); overflow-wrap: anywhere; }
+  .contact:hover .contact__valeur { text-decoration: underline; text-underline-offset: 3px; }
+  @media (min-width: 1100px) {
+    .contacts { padding-bottom: 112px; }
+    .contacts ul { flex-direction: row; gap: 16px; }
+    .contacts li { flex: 1; }
+    .contact { flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px; border-radius: 16px; height: 100%; }
+    .contact :global(svg) { width: 26px; height: 26px; }
+    .contact__textes { gap: 14px; }
+    .contact__valeur { font-size: 20px; line-height: 28px; }
+  }
+</style>
