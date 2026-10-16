@@ -1,9 +1,11 @@
-// Lit Notion au moment du build et prépare les données du site.
+// Lit Notion au moment de la construction et prépare les données du site.
 //
-// Mode « live » (sur Cloudflare) : NOTION_TOKEN est défini → on interroge l'API Notion,
-// on réécrit data/produits.json, data/planning.json, data/meta.json et on télécharge les photos.
-// Mode « instantané » (en local, sans jeton) : on garde les fichiers data/ tels quels.
-// Dans les deux cas, les photos de data/img-src/ sont converties en WebP légers dans public/.
+// Sur Cloudflare (NOTION_TOKEN défini) : interroge les bases « Produits de la ferme » et « Planning »,
+// réécrit data/produits.json, data/planning.json, data/meta.json et télécharge les photos.
+// En local, sans jeton : garde l'instantané de data/ tel quel.
+// Dans les deux cas, les photos de data/img-src/ sont converties en WebP (400 et 800 px) dans public/produits-img/.
+//
+// Si Notion ne répond pas, la construction échoue : Cloudflare garde alors la version en ligne précédente.
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -100,33 +102,46 @@ async function syncLive() {
   const planning = (await notionQuery(PLANNING_DS, {})).map(mapPlanning);
 
   // Les liens de fichiers Notion expirent au bout d'une heure : on télécharge maintenant.
+  await fs.rm(IMG_SRC, { recursive: true, force: true });
   await fs.mkdir(IMG_SRC, { recursive: true });
+  let photos = 0;
   for (const prod of produits) {
-    if (!prod.imageUrl || prod.ref == null) continue;
-    const res = await fetch(prod.imageUrl);
-    if (res.ok) await fs.writeFile(path.join(IMG_SRC, `${prod.ref}.jpg`), Buffer.from(await res.arrayBuffer()));
-    prod.imageUrl = null; // inutile après téléchargement, et le lien serait mort de toute façon
+    if (prod.imageUrl) {
+      const res = await fetch(prod.imageUrl);
+      if (res.ok) {
+        await fs.writeFile(path.join(IMG_SRC, `${prod.id}.img`), Buffer.from(await res.arrayBuffer()));
+        photos++;
+      } else console.warn(`  photo de « ${prod.nom} » illisible (${res.status})`);
+    }
+    delete prod.imageUrl; // le lien serait mort de toute façon
   }
 
   await fs.writeFile(path.join(DATA, 'produits.json'), JSON.stringify(produits, null, 2));
   await fs.writeFile(path.join(DATA, 'planning.json'), JSON.stringify(planning, null, 2));
-  await fs.writeFile(
-    path.join(DATA, 'meta.json'),
-    JSON.stringify({ syncedAt: new Date().toISOString(), source: 'Notion (live)' }, null, 2),
-  );
-  console.log(`✓ ${produits.length} produits en vente, ${planning.length} créneaux`);
+  await fs.writeFile(path.join(DATA, 'meta.json'), JSON.stringify({ syncedAt: new Date().toISOString(), source: 'Notion' }, null, 2));
+  console.log(`✓ ${produits.length} produits en vente (${photos} photos), ${planning.length} créneaux`);
 }
 
 async function buildImages() {
+  await fs.rm(IMG_OUT, { recursive: true, force: true });
   await fs.mkdir(IMG_OUT, { recursive: true });
-  const files = (await fs.readdir(IMG_SRC).catch(() => [])).filter((f) => /\.(jpe?g|png|webp)$/i.test(f));
+  const files = (await fs.readdir(IMG_SRC).catch(() => [])).filter((f) => !f.startsWith('.'));
+  let ok = 0;
   for (const f of files) {
-    const out = path.join(IMG_OUT, f.replace(/\.\w+$/, '.webp'));
-    await sharp(path.join(IMG_SRC, f)).rotate().resize(560, 560, { fit: 'cover' }).webp({ quality: 72 }).toFile(out);
+    const id = f.replace(/\.\w+$/, '');
+    try {
+      const src = sharp(path.join(IMG_SRC, f)).rotate();
+      for (const w of [400, 800]) {
+        await src.clone().resize(w, w, { fit: 'inside', withoutEnlargement: true }).webp({ quality: 74 }).toFile(path.join(IMG_OUT, `${id}-${w}.webp`));
+      }
+      ok++;
+    } catch (e) {
+      console.warn(`  photo ${f} ignorée : ${e.message}`);
+    }
   }
-  console.log(`✓ ${files.length} photos optimisées`);
+  console.log(`✓ ${ok} photos produits optimisées`);
 }
 
 if (process.env.NOTION_TOKEN) await syncLive();
-else console.log('→ Pas de NOTION_TOKEN : on utilise l’instantané de data/');
+else console.log('→ Pas de NOTION_TOKEN : on garde l’instantané de data/');
 await buildImages();

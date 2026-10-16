@@ -1,0 +1,32 @@
+---
+// Photo de la ferme : recadrée à la construction, servie en AVIF/WebP à la bonne taille.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/photos/*.jpg', { eager: true });
+interface Props {
+  nom: string;
+  alt: string;
+  sizes: string;
+  largeurs?: number[];
+  class?: string;
+  position?: string;
+  prioritaire?: boolean;
+}
+const { nom, alt, sizes, largeurs = [400, 800, 1200, 1600], class: classe = '', position, prioritaire = false } = Astro.props;
+const image = photos[`../assets/photos/${nom}.jpg`]?.default;
+if (!image) throw new Error(`Photo inconnue : ${nom}`);
+const widths = largeurs.filter((w) => w <= image.width).concat(largeurs.some((w) => w > image.width) ? [image.width] : []);
+---
+<Picture
+  src={image}
+  alt={alt}
+  formats={['webp']}
+  widths={[...new Set(widths)]}
+  sizes={sizes}
+  quality={72}
+  class={classe}
+  style={position ? `object-position: ${position}` : undefined}
+  loading={prioritaire ? 'eager' : 'lazy'}
+  fetchpriority={prioritaire ? 'high' : undefined}
+  decoding="async"
+/>

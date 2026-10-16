@@ -1,0 +1,12 @@
+---
+// Logo « au Grand Jardin » (fichier du site actuel), vert forêt ou blanc ; la feuille reste vert vif.
+import brut from '../assets/svg/logo.svg?raw';
+interface Props { blanc?: boolean; class?: string }
+const { blanc = false, class: classe = '' } = Astro.props;
+let svg = brut
+  .replace(/<\?xml[^>]*>/, '')
+  .replace(/\s(id|data-name)="[^"]*"/g, '')
+  .replace('<svg', `<svg class="${classe}" role="img" aria-label="Au Grand Jardin"`);
+if (blanc) svg = svg.replaceAll('#0c4b31', '#ffffff');
+---
+<Fragment set:html={svg} />

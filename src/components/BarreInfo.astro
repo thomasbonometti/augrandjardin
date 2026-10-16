@@ -1,0 +1,26 @@
+---
+import Icone from './Icone.astro';
+import { ferme, adresseCourte } from '../data/ferme.js';
+import { prochaineVente as v } from '../lib/donnees.js';
+const sansDate = v ? `${v.jour.toLowerCase()}, ${v.heures}` : '';
+const libelle = v ? (v.aLaFerme ? 'Prochaine vente à la ferme' : `Prochaine vente, ${v.lieu}`) : '';
+---
+<div class="barre-info" data-vente-fin={v?.finIso}>
+  <div class="wrap">
+    <div class="barre-info__vente">
+      <span class="point point-clair" aria-hidden="true"></span>
+      {v ? (
+        <>
+          <p class="seulement-ordi">{libelle} :&nbsp;<span class="medium" data-vente-sans-date={sansDate}>{v.jourDate}, {v.heures}</span></p>
+          <p class="seulement-mobile">Vente <span class="medium" data-vente-sans-date={sansDate}>{v.jourDateCourt}, {v.heures}</span></p>
+        </>
+      ) : (
+        <p><a href="/horaires-contact/">Pas de vente à la ferme cette semaine</a></p>
+      )}
+    </div>
+    <div class="barre-info__liens">
+      <a class="lien-adresse" href={ferme.itineraire} rel="noopener"><Icone nom="repere" taille={16} /><span>{adresseCourte}</span></a>
+      <a class="lien-tel" href={ferme.telephoneLien} aria-label={`Appeler la ferme : ${ferme.telephone}`}><Icone nom="telephone" taille={16} /><span>{ferme.telephone}</span></a>
+    </div>
+  </div>
+</div>

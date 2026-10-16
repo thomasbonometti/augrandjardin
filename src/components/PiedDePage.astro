@@ -1,0 +1,49 @@
+---
+import Icone from './Icone.astro';
+import Logo from './Logo.astro';
+import { ferme, navigation, lienProduits } from '../data/ferme.js';
+import { creneaux, misAJour } from '../lib/donnees.js';
+import { plage } from '../lib/vente.js';
+const aLaFerme = creneaux.filter((c) => c.cetteSemaine && c.aLaFerme);
+const annee = new Date().getFullYear();
+---
+<footer class="pied">
+  <div class="wrap">
+    <div class="pied__haut">
+      <div class="pied__ferme">
+        <Logo blanc class="logo" />
+        <p>Ferme maraîchère bio à Lostroff, en Moselle. Semences paysannes, variétés anciennes, partenaires à moins de 50&nbsp;km.</p>
+        <a class="pied__fb" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={18} />Suivez la ferme sur Facebook</a>
+      </div>
+      <div class="pied__colonnes">
+        <nav class="pied__col" aria-labelledby="pied-site">
+          <p class="titre-col" id="pied-site">Le site</p>
+          <a href={lienProduits.href}>{lienProduits.label}</a>
+          {navigation.map((l) => <a href={l.href}>{l.label}</a>)}
+        </nav>
+        <div class="pied__col">
+          <p class="titre-col">Venir à la ferme</p>
+          {aLaFerme.length
+            ? aLaFerme.map((c) => <span>{c.jour} {plage(c)}</span>)
+            : <a href="/horaires-contact/">Horaires de la semaine</a>}
+          <span>{ferme.rue}</span>
+          <span>{ferme.codePostal} {ferme.ville}</span>
+          <a href={ferme.itineraire} rel="noopener">Itinéraire</a>
+        </div>
+        <div class="pied__col pied__col--contact">
+          <p class="titre-col">Contact</p>
+          <p class="pied__contact"><span>{ferme.maraicher}</span><span class="sep" aria-hidden="true"> · </span><a href={ferme.telephoneLien}>{ferme.telephone}</a></p>
+          <a href={`mailto:${ferme.email}`}>{ferme.email}</a>
+        </div>
+      </div>
+    </div>
+    <div class="pied__trait" aria-hidden="true"></div>
+    <div class="pied__bas">
+      <p>© {annee} Au Grand Jardin · Liste et horaires mis à jour le {misAJour.jour}</p>
+      <nav aria-label="Informations légales">
+        <a href="/mentions-legales/">Mentions légales</a>
+        <a href="https://thomasbonometti.fr" rel="noopener">Design Thomas Bonometti</a>
+      </nav>
+    </div>
+  </div>
+</footer>

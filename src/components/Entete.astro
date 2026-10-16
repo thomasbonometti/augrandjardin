@@ -1,0 +1,50 @@
+---
+import Icone from './Icone.astro';
+import Logo from './Logo.astro';
+import { ferme, adresseComplete, navigation, lienProduits } from '../data/ferme.js';
+import { prochaineVente as v, produits } from '../lib/donnees.js';
+interface Props { page?: string }
+const { page = '' } = Astro.props;
+const courant = (id: string) => (id === page ? 'page' : undefined);
+const sansDate = v ? v.jour : '';
+---
+<header class="entete">
+  <div class="wrap">
+    <a class="entete__logo" href="/" aria-label="Au Grand Jardin, accueil"><Logo /></a>
+    <nav class="entete__nav" aria-label="Navigation principale">
+      {navigation.map((l) => <a href={l.href} aria-current={courant(l.id)}>{l.label}</a>)}
+    </nav>
+    <a class="btn btn-primaire entete__cta" href={lienProduits.href} aria-current={courant('produits')}>{lienProduits.label}</a>
+    <div class="entete__actions">
+      <a class="entete__cta-mobile" href={lienProduits.href} aria-current={courant('produits')}>Produits</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu">
+        <Icone nom="menu" taille={22} class="icone-menu" />
+        <Icone nom="fermer" taille={22} class="icone-fermer" />
+      </button>
+    </div>
+  </div>
+</header>
+<nav class="menu-mobile" id="menu-mobile" aria-label="Menu" hidden>
+  <div class="wrap">
+    <div class="menu-mobile__liens">
+      <a href={lienProduits.href} aria-current={courant('produits')}>
+        {lienProduits.label}<span class="chip chip-vif chip-petit">{produits.length} produits</span>
+      </a>
+      {navigation.map((l) => (
+        <a href={l.href} aria-current={courant(l.id)}>{l.label}<Icone nom="chevron" taille={20} /></a>
+      ))}
+    </div>
+    {v && (
+      <div class="menu-mobile__vente">
+        <div class="surtitre"><span class="point" aria-hidden="true"></span><p class="eyebrow">Prochaine vente</p></div>
+        <p class="quand"><span data-vente-sans-date={sansDate}>{v.jourDate.replace(/^./, (c) => c.toUpperCase())}</span><br />{v.heures}</p>
+        <p class="sm muted">{adresseComplete}</p>
+        <div class="btns">
+          <a class="btn btn-primaire" href={ferme.itineraire} rel="noopener"><Icone nom="repere" taille={18} />Itinéraire</a>
+          <a class="btn btn-secondaire" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />Appeler</a>
+        </div>
+      </div>
+    )}
+    <a class="menu-mobile__fb" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={18} />Suivez la ferme sur Facebook</a>
+  </div>
+</nav>

@@ -2,17 +2,21 @@
   "name": "au-grand-jardin-site",
   "private": true,
   "type": "module",
+  "engines": { "node": ">=20" },
   "scripts": {
-    "sync": "node scripts/sync-notion.mjs",
-    "build": "node scripts/sync-notion.mjs && astro build",
+    "sync": "node scripts/sync-notion.mjs && node scripts/fetch-agj.mjs",
+    "build": "npm run sync && astro build",
+    "build:local": "astro build",
     "dev": "astro dev",
-    "preview:cf": "wrangler pages dev dist"
+    "preview": "wrangler pages dev dist --compatibility-date=2026-09-15",
+    "test": "node --test tests/"
   },
   "dependencies": {
-    "astro": "5.13.5",
-    "sharp": "0.34.3"
+    "astro": "5.18.2",
+    "sharp": "0.35.5"
   },
   "devDependencies": {
-    "wrangler": "4.33.1"
+    "geist": "1.8.1",
+    "wrangler": "4.151.1"
   }
 }

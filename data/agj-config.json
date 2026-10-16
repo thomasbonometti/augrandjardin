@@ -1,0 +1,118 @@
+{
+  "version": "2026-10-16.1",
+  "farm": {
+    "name": "Au Grand Jardin",
+    "address": "Ferme Au Grand Jardin, 43 rue Principale, 57670 Lostroff",
+    "phone": "06 42 42 42 93",
+    "phoneIntl": "+33642424293",
+    "signature": "Pierre Fouquet · Au Grand Jardin"
+  },
+  "texts": {
+    "intro": {
+      "eyebrow": "Au Grand Jardin · Lostroff",
+      "title": "Commandez vos pommes de terre et vos oignons",
+      "text": "Choisissez vos filets et vos sacs, Pierre prépare votre commande. Quand elle est prête, vous recevez un e-mail pour choisir le jour où vous passez la chercher à la ferme. Vous réglez sur place.",
+      "how": [
+        "Vous choisissez vos produits.",
+        "Vous recevez un e-mail de confirmation.",
+        "Quand votre commande est prête, Pierre vous envoie un lien pour choisir votre créneau de retrait.",
+        "Vous la récupérez à la ferme et vous réglez sur place."
+      ]
+    },
+    "closed": {
+      "title": "Les commandes en ligne sont fermées pour le moment",
+      "text": "Revenez bientôt, ou appelez Pierre au 06 42 42 42 93."
+    },
+    "payment": "À régler sur place, quand vous venez récupérer votre commande.",
+    "defaultSlot": "aux horaires de la ferme",
+    "done": {
+      "title": "Merci, votre commande est enregistrée !",
+      "text": "Vous allez recevoir un e-mail de confirmation. Quand votre commande sera prête, Pierre vous enverra un lien pour choisir votre jour de retrait."
+    },
+    "retrait": {
+      "title": "Choisissez votre créneau de retrait",
+      "text": "Votre commande est prête. Choisissez quand vous passez la chercher à la ferme.",
+      "change": "Vous pouvez changer de créneau jusqu'à l'avant-veille du retrait.",
+      "notReady": "Pierre prépare encore votre commande. Vous recevrez un e-mail pour choisir votre créneau dès qu'elle sera prête.",
+      "tooLate": "Votre retrait approche : pour changer de jour, appelez Pierre.",
+      "none": "Aucun créneau n'est ouvert pour le moment. Pierre en ajoute régulièrement : revenez sur ce lien dans quelques jours, ou appelez-le.",
+      "done": "C'est noté ! Vous allez recevoir un e-mail de confirmation."
+    },
+    "privacy": "Vos coordonnées servent uniquement à préparer votre commande et à vous prévenir. Elles ne sont jamais transmises à qui que ce soit."
+  },
+  "categories": [
+    {
+      "name": "Pommes de terre non triées",
+      "intro": "Récolte difficile cette année : ces sacs mélangent 1er, 2e et 3e choix, d'où leur petit prix. Il y a du taupin (des petits trous) : on coupe et c'est bon, sans danger. Les pommes de terre vertes ou abîmées sont écartées. À consommer dans les semaines qui viennent : elles ne passeront pas l'hiver en cave."
+    },
+    {
+      "name": "Pommes de terre"
+    },
+    {
+      "name": "Oignons et échalotes"
+    },
+    {
+      "name": "Autres"
+    }
+  ],
+  "fields": [
+    {
+      "id": "prenom",
+      "type": "text",
+      "label": "Prénom",
+      "required": true,
+      "half": true,
+      "autocomplete": "given-name"
+    },
+    {
+      "id": "nom",
+      "type": "text",
+      "label": "Nom",
+      "required": true,
+      "half": true,
+      "autocomplete": "family-name"
+    },
+    {
+      "id": "email",
+      "type": "email",
+      "label": "Adresse e-mail",
+      "help": "Pour recevoir la confirmation de commande.",
+      "required": true,
+      "autocomplete": "email"
+    },
+    {
+      "id": "telephone",
+      "type": "tel",
+      "label": "Téléphone",
+      "help": "Au cas où Pierre doive vous joindre.",
+      "required": true,
+      "autocomplete": "tel"
+    },
+    {
+      "id": "sms",
+      "type": "checkbox",
+      "label": "Je préfère aussi être prévenu par SMS quand ma commande est prête"
+    }
+  ],
+  "rules": {
+    "minTotal": 0,
+    "maxQtyPerLine": 20,
+    "pickupCutoffHours": 24,
+    "slotReminderDays": 3,
+    "restockOnCancel": true,
+    "notices": [
+      {
+        "category": "Pommes de terre non triées",
+        "text": "Pommes de terre non triées : 1er, 2e et 3e choix mélangés, avec du taupin (des petits trous : on coupe et c'est bon, sans danger). À consommer dans les semaines qui viennent, elles ne se gardent pas tout l'hiver."
+      },
+      {
+        "category": [
+          "Pommes de terre",
+          "Pommes de terre non triées"
+        ],
+        "weightOverKg": 60,
+        "text": "Votre commande dépasse 60 kg de pommes de terre. Pour servir tout le monde, Pierre prépare les grosses commandes en deux fois : 60 kg au premier retrait, le reste quelques semaines plus tard."
+      }
+    ]
+  }
+}

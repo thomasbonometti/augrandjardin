@@ -1,0 +1,39 @@
+---
+// Icônes Lucide (licence ISC), les mêmes que dans les maquettes Figma.
+interface Props { nom: string; taille?: number; epaisseur?: number; class?: string; titre?: string }
+const { nom, taille = 20, epaisseur = 1.6, class: classe, titre } = Astro.props;
+const chemins: Record<string, string> = {
+  fleche: '<path d="M7 17 17 7"/><path d="M8 7h9v9"/>',
+  droite: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  repere: '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><path d="M12 7a3 3 0 1 0 0 6 3 3 0 1 0 0-6Z"/>',
+  telephone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>',
+  horloge: '<path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20Z"/><path d="M12 6v6l4 2"/>',
+  mail: '<path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m22 7-10 6L2 7"/>',
+  cadenas: '<path d="M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  telecharger: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/>',
+  coche: '<path d="M20 6 9 17l-5-5"/>',
+  moins: '<path d="M5 12h14"/>',
+  plus: '<path d="M5 12h14"/><path d="M12 5v14"/>',
+  pousse: '<path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/>',
+  facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+  menu: '<path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/>',
+  fermer: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  chevron: '<path d="m9 18 6-6-6-6"/>',
+};
+const contenu = chemins[nom];
+if (!contenu) throw new Error(`Icône inconnue : ${nom}`);
+---
+<svg
+  class={classe}
+  width={taille}
+  height={taille}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width={epaisseur}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden={titre ? undefined : 'true'}
+  role={titre ? 'img' : undefined}
+  focusable="false"
+>{titre && <title>{titre}</title>}<Fragment set:html={contenu} /></svg>
