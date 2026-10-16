@@ -101,6 +101,18 @@
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/80.jpg"
 },{
+  "Nom": "Radis Noir (long)",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Radis Noir (long) Bio 3.40 €/kg*",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/54.jpg"
+},{
+  "Nom": "Radis Noir (rond)",
+  "En vente": true,
+  "Etiquette": "✨ Nouveau : Radis Noir (rond) Bio 3.40 €/kg*",
+  "Producteur": "Au Grand Jardin",
+  "IMG": "img-products/54.jpg"
+},{
   "Nom": "Radis Rave",
   "En vente": true,
   "Etiquette": "✨ Nouveau : Radis Rave Bio 3.80 €/kg",
