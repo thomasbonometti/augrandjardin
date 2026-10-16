@@ -1,0 +1,213 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Prototype Au Grand Jardin</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Zilla+Slab:wght@600;700&display=swap">
+<style>
+  /* Fiche de test : colonne de lecture, un schéma du circuit, puis le tableau « geste → effet » */
+  :root {
+    --paper: #eef2e8; --surface: #ffffff; --ink: #132017; --muted: #536357; --line: #d3dbcd;
+    --leaf: #24652f; --leaf-ink: #ffffff; --leaf-soft: #dceadb; --carrot: #b84d14; --carrot-soft: #f8e3d4;
+    --display: 'Zilla Slab', 'Rockwell', Georgia, serif;
+    --body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0e1510; --surface: #162019; --ink: #e5ede4; --muted: #9bac9e; --line: #28362b;
+      --leaf: #7cc488; --leaf-ink: #0d1a10; --leaf-soft: #1d3322; --carrot: #f0925c; --carrot-soft: #3a2316;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0e1510; --surface: #162019; --ink: #e5ede4; --muted: #9bac9e; --line: #28362b;
+    --leaf: #7cc488; --leaf-ink: #0d1a10; --leaf-soft: #1d3322; --carrot: #f0925c; --carrot-soft: #3a2316;
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.55 var(--body); }
+  .page { max-width: 54rem; margin: 0 auto; padding-block: 2.5rem 4rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: flex; flex-direction: column; gap: 2.5rem; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.15; margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); }
+  h2 { font-size: 1.4rem; }
+  p { margin: 0; }
+  a { color: var(--leaf); text-underline-offset: 3px; }
+  a:focus-visible { outline: 3px solid var(--carrot); outline-offset: 2px; }
+  .eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  section { display: flex; flex-direction: column; gap: 1rem; }
+  .head { display: flex; flex-direction: column; gap: 0.75rem; }
+  .lede { color: var(--muted); font-size: 1.12rem; max-width: 42rem; }
+
+  .open { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; justify-content: space-between;
+    background: var(--leaf); color: var(--leaf-ink); border-radius: 8px; padding: 1.25rem 1.5rem; }
+  .open p { max-width: 30rem; }
+  .btn { display: inline-flex; align-items: center; min-height: 3rem; padding: 0.7rem 1.25rem; border-radius: 6px;
+    background: var(--leaf-ink); color: var(--leaf); font-weight: 700; text-decoration: none; }
+  .pages { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pages a { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.85rem;
+    text-decoration: none; color: var(--ink); font-weight: 700; font-size: 0.95rem; }
+  .pages a:hover { border-color: var(--leaf); }
+
+  /* Schéma du circuit */
+  .flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 0.75rem; align-items: stretch; }
+  .node { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
+  .node h3 { font-size: 1.1rem; }
+  .node ul { margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.93rem; display: grid; gap: 0.2rem; }
+  .node.notion { border-color: var(--ink); }
+  .arrow { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; color: var(--muted); font-size: 0.82rem; text-align: center; }
+  .arrow svg { width: 2rem; height: 1rem; stroke: var(--leaf); }
+  .back { grid-column: 1 / -1; display: flex; gap: 0.6rem; align-items: center; background: var(--leaf-soft); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.95rem; }
+  .back svg { flex: none; width: 1.5rem; height: 1.5rem; stroke: var(--leaf); }
+  @media (max-width: 720px) {
+    .flow { grid-template-columns: 1fr; }
+    .arrow { flex-direction: row; }
+    .arrow svg { transform: rotate(90deg); }
+  }
+
+  /* Tableau gestes */
+  .table-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+  table { width: 100%; border-collapse: collapse; min-width: 36rem; }
+  th, td { text-align: left; vertical-align: top; padding: 0.75rem 1rem; border-top: 1px solid var(--line); }
+  thead th { border-top: 0; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  tbody th { font-weight: 700; width: 34%; }
+  td.delai { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+  .card.demo { background: var(--carrot-soft); border: 1px dashed var(--carrot); }
+  .card h3 { font-size: 1.1rem; }
+  .card ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.35rem; }
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
+  .checks li { display: flex; gap: 0.6rem; align-items: baseline; }
+  .checks li::before { content: "✓"; color: var(--leaf); font-weight: 700; }
+  .journal { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .journal li { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 0.75rem; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 0.7rem 1rem; }
+  .journal .t { font: 700 1rem/1.5 var(--display); font-variant-numeric: tabular-nums; color: var(--leaf); }
+  code { font-size: 0.92em; background: var(--leaf-soft); padding: 0.05rem 0.35rem; border-radius: 4px; }
+</style>
+
+<main class="page">
+  <header class="head">
+    <p class="eyebrow">Test du dispositif · option A</p>
+    <h1>Le site, construit à partir de tes vraies données Notion</h1>
+    <p class="lede">Les 32 produits « En vente », leurs prix, badges et photos, et le créneau coché « Cette semaine » dans le Planning ont été lus dans Notion aujourd’hui à 16h26. Le site est généré à partir de ça, sans rien ressaisir. La mise en forme est provisoire : la DA viendra d’Aurova.</p>
+  </header>
+
+  <section>
+    <div class="open">
+      <p><strong>Ouvre le site et navigue comme un client.</strong> Teste la réservation de pommes de terre et l’accès pro (mot de passe <code style="background:transparent;color:inherit;padding:0">demo</code>).</p>
+      <a class="btn" href="site/index.html">Ouvrir le site</a>
+    </div>
+    <nav class="pages" aria-label="Pages du site">
+      <a href="site/index.html">Accueil</a>
+      <a href="site/produits.html">Produits de la semaine</a>
+      <a href="site/pommes-de-terre.html">Pommes de terre</a>
+      <a href="site/professionnels.html">Professionnels</a>
+    </nav>
+  </section>
+
+  <section aria-labelledby="h-journal">
+    <h2 id="h-journal">Journal du test de mise à jour</h2>
+    <ol class="journal">
+      <li><span class="t">16h24</span><span>Dans Notion, sur <strong>Chou Kale</strong> : cases « À mettre en avant » et « Quantité limitée » cochées.</span></li>
+      <li><span class="t">16h24</span><span>Site relu depuis Notion et reconstruit en 13 secondes : Chou Kale passe en tête de l’accueil avec le badge « Quantité limitée », la page Produits compte désormais 6 produits en quantité limitée. Aucun autre champ n’avait bougé.</span></li>
+      <li><span class="t">16h26</span><span>Les deux cases décochées dans Notion, site reconstruit : Chou Kale revient à sa place, sans badge. Ta base est exactement dans son état de départ.</span></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="h-circuit">
+    <h2 id="h-circuit">Le circuit</h2>
+    <div class="flow">
+      <div class="node notion">
+        <h3>Notion</h3>
+        <ul>
+          <li>Produits de la ferme</li>
+          <li>Planning semaine</li>
+          <li>Réglages du site</li>
+          <li>Commandes clients</li>
+        </ul>
+      </div>
+      <div class="arrow"><svg viewBox="0 0 32 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M2 8h26M22 2l6 6-6 6"/></svg>bouton<br>« Publier »</div>
+      <div class="node">
+        <h3>Reconstruction</h3>
+        <ul>
+          <li>lit Notion</li>
+          <li>télécharge et allège les photos</li>
+          <li>génère les pages HTML</li>
+        </ul>
+      </div>
+      <div class="arrow"><svg viewBox="0 0 32 16" fill="none" stroke-width="2" stroke-linecap="round"><path d="M2 8h26M22 2l6 6-6 6"/></svg>~1 min</div>
+      <div class="node">
+        <h3>augrandjardin.fr</h3>
+        <ul>
+          <li>pages lisibles par Google</li>
+          <li>horaires de la semaine</li>
+          <li>grille pro protégée</li>
+        </ul>
+      </div>
+      <div class="back">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>
+        <p>Dans l’autre sens, une réservation de pommes de terre crée directement sa fiche dans « Commandes clients », au même format qu’aujourd’hui. Plus de Fillout ni de scénario Make entre les deux.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-gestes">
+    <h2 id="h-gestes">Ce que tu fais, ce que ça change</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">Dans Notion</th><th scope="col">Sur le site</th><th scope="col">En ligne après</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Cocher ou décocher « En vente », changer un prix, cocher « Quantité limitée »</th><td>Liste des produits, prix, badges, date de mise à jour</td><td class="delai">1 min après le clic</td></tr>
+          <tr><th scope="row">Modifier « Date nouveauté »</th><td>Badge « Nouveau » pendant 10 jours, mention en page d’accueil</td><td class="delai">1 min après le clic</td></tr>
+          <tr><th scope="row">Cocher « Cette semaine » dans le Planning</th><td>Bandeau du haut, bloc horaires, pied de page, données Google</td><td class="delai">1 min après le clic</td></tr>
+          <tr><th scope="row">Rien</th><td>« Ouvert maintenant » ou « Prochaine vente demain » se calcule à l’heure du visiteur</td><td class="delai">en direct</td></tr>
+          <tr><th scope="row">Ouvrir ou fermer la campagne, ajuster un stock (Réglages)</th><td>Page Pommes de terre ouverte ou fermée, variétés épuisées grisées</td><td class="delai">1 min après le clic</td></tr>
+          <tr><th scope="row">Un client réserve sur le site</th><td>Fiche « En attente » dans Commandes clients, stock vérifié, e-mail de confirmation</td><td class="delai">immédiat</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Un seul geste : le bouton « Publier » dans Notion, à la place de celui qui met à jour la liste produits aujourd’hui. Il prévient directement Cloudflare, sans passer par Make, et le site est à jour une minute après. Si le clic est oublié, le site garde la liste précédente, avec sa date de mise à jour bien visible.</p>
+  </section>
+
+  <section aria-labelledby="h-statut">
+    <h2 id="h-statut">Ce qui est réel, ce qui est simulé</h2>
+    <div class="cols">
+      <div class="card">
+        <h3>Réel</h3>
+        <ul>
+          <li>Produits, prix, rayons, badges : base Produits de la ferme</li>
+          <li>Samedi 10h–12h30 : Planning, seul créneau coché cette semaine</li>
+          <li>Variétés, sacs et prix des pommes de terre : ta dernière campagne</li>
+          <li>Format des fiches de commande : identique à ta base actuelle</li>
+        </ul>
+      </div>
+      <div class="card demo">
+        <h3>Simulé dans cet aperçu</h3>
+        <ul>
+          <li>Stocks de pommes de terre inventés (Goldmarie « épuisée » pour l’exemple)</li>
+          <li>Prix pros = prix publics ramenés au HT</li>
+          <li>Formulaires : rien n’est envoyé, la page montre la fiche qui serait créée</li>
+          <li>Mot de passe pro <code>demo</code> vérifié dans le navigateur, faute de serveur ici</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-tests">
+    <h2 id="h-tests">Testé sur un serveur Cloudflare local</h2>
+    <p>La partie serveur ne tourne pas dans cet aperçu. Je l’ai donc lancée localement, avec le même moteur que Cloudflare :</p>
+    <ul class="checks">
+      <li>Grille pro sans connexion : renvoi vers la page Professionnels</li>
+      <li>Mauvais mot de passe refusé, bon mot de passe accepté pour 60 jours</li>
+      <li>Cookie falsifié refusé, grille jamais indexée ni mise en cache</li>
+      <li>Commande incomplète refusée avec un message clair</li>
+      <li>Plus de 5 sacs refusé, variété épuisée refusée</li>
+      <li>Prix recalculés côté serveur : un prix trafiqué dans le navigateur est ignoré</li>
+    </ul>
+  </section>
+</main>
+
+</body></html>
