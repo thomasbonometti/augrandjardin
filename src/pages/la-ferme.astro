@@ -1,0 +1,173 @@
+---
+// La ferme — frames Figma 15:2 (desktop) et 40:2 (mobile), section Sol Vivant 15:116 / 40:102
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import Photo from '../components/Photo.astro';
+import { Picture } from 'astro:assets';
+import solVivant from '../assets/illustrations/sol-vivant.png';
+import { ferme, partenaires, restaurants, pointsDeVente } from '../data/ferme.js';
+import { prochaineVente as v } from '../lib/donnees.js';
+import { fileAriane } from '../lib/seo.js';
+const jour = v ? v.jour.toLowerCase() : 'samedi';
+---
+<Base
+  titre="La ferme — Pierre Fouquet, maraîcher bio à Lostroff | Au Grand Jardin"
+  description="Au Grand Jardin, ferme maraîchère bio à Lostroff (Moselle) : maraîchage sol vivant, semences paysannes, aucun produit chimique, et des partenaires à moins de 50 km."
+  page="ferme"
+  schema={fileAriane([{ nom: 'La ferme', url: '/la-ferme/' }])}
+>
+  <section class="wrap intro">
+    <div class="photo intro__photo">
+      <Photo nom="pierre" alt="Pierre Fouquet, le maraîcher, sous un tunnel de la ferme" sizes="(min-width: 1100px) 600px, calc(100vw - 40px)" largeurs={[400, 700, 1000, 1200]} prioritaire />
+    </div>
+    <div class="intro__texte">
+      <div class="intro__titres">
+        <p class="eyebrow">La ferme</p>
+        <h1 class="h1-page">Pierre Fouquet, maraîcher bio à Lostroff</h1>
+        <p class="lg muted">Au Grand Jardin, on a fait le choix d’une agriculture qui respecte la terre et la biodiversité<span class="seulement-ordi">, dans le jardin et autour</span> : un paillage plutôt qu’un labour, des fleurs pour les <span class="seulement-ordi">insectes </span>pollinisateurs, aucun produit chimique.</p>
+        <p class="muted">Chaque {jour}, la récolte de la semaine est en vente à la ferme, avec les produits de nos partenaires bio et le pain d’Aux Gourmandises de Thomas.</p>
+      </div>
+      <div class="btns">
+        <a class="btn btn-primaire btn-bloc" href="/produits/">Voir les produits de la semaine</a>
+        <a class="btn btn-secondaire btn-bloc" href="/horaires-contact/"><Icone nom="repere" taille={18} />Venir {jour}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap engagements" aria-labelledby="engagements-titre">
+    <div class="tete-section">
+      <p class="eyebrow">Nos engagements</p>
+      <h2 id="engagements-titre">Ce qui pousse ici, et comment</h2>
+    </div>
+    <ul class="valeurs" role="list">
+      <li><Icone nom="pousse" taille={28} /><h3>Des produits bio et de qualité</h3><p class="muted">Aucun produit chimique, aucune semence hybride F1 : uniquement des semences paysannes et des variétés anciennes.</p></li>
+      <li><Icone nom="repere" taille={28} /><h3>Une production et des partenaires locaux</h3><p class="muted">Tous nos fruits et légumes bio sont cultivés à Lostroff. Nos partenaires, bio eux aussi, sont à moins de 50&nbsp;km.</p></li>
+      <li><Icone nom="coche" taille={28} /><h3>Des engagements pour la terre</h3><p class="muted"><span class="seulement-ordi">Une agriculture sans destruction de l’environnement : paillage</span><span class="seulement-mobile">Paillage</span>, sol couvert, haies et fleurs pour la biodiversité.</p></li>
+    </ul>
+  </section>
+
+  <div class="galerie defile" role="group" aria-label="Photos de la ferme">
+    <div class="galerie__photo galerie__photo--g"><Photo nom="tunnel" alt="Un tunnel de culture, l’été" sizes="(min-width: 1100px) 480px, 300px" largeurs={[300, 600, 960]} /></div>
+    <div class="galerie__photo galerie__photo--m"><Photo nom="aerien" alt="La ferme et ses tunnels vus du ciel" sizes="(min-width: 1100px) 464px, 300px" largeurs={[300, 600, 792]} /></div>
+    <div class="galerie__photo galerie__photo--d"><Photo nom="semis" alt="Jeunes plants sous tunnel" sizes="(min-width: 1100px) 480px, 300px" largeurs={[300, 600, 960, 1200]} /></div>
+  </div>
+
+  <section class="section-sable sol-vivant" aria-labelledby="sol-titre">
+    <div class="wrap sol-vivant__wrap">
+      <Picture src={solVivant} formats={['webp']} widths={[350, 720, 915]} sizes="(min-width: 1100px) 720px, calc(100vw - 40px)" alt="Illustration du sol vivant : la paille couvre la terre, les racines, les vers et les champignons y travaillent" class="sol-vivant__illu" loading="lazy" />
+      <div class="sol-vivant__texte">
+        <p class="eyebrow">Notre démarche</p>
+        <h2 id="sol-titre">Maraîchage Sol Vivant</h2>
+        <p class="lg muted">La ferme s’inscrit dans la démarche Maraîchage Sol Vivant : on cultive sans retourner la terre, on la couvre de paille et de matière organique, pour garder un sol vivant et fertile d’une saison à l’autre.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="partenaires" aria-labelledby="partenaires-titre">
+    <div class="wrap tete-section">
+      <p class="eyebrow">Partenaires</p>
+      <h2 id="partenaires-titre">Nos partenaires, tous à moins de 50&nbsp;km</h2>
+      <p class="lg muted partenaires__intro">Leurs produits sont en vente à la ferme le {jour}<span class="seulement-ordi">, et nos légumes se retrouvent dans leurs cuisines et leurs rayons</span>.</p>
+    </div>
+    <ul class="partenaires__cartes defile" role="list">
+      {partenaires.map((p) => (
+        <li class="partenaire">
+          <div class="photo partenaire__photo"><Photo nom={p.photo} alt="" sizes="(min-width: 1100px) 416px, 280px" largeurs={[280, 416, 560, 832]} /></div>
+          <div class="partenaire__texte"><h3>{p.nom}</h3><p class="muted">{p.activite}</p></div>
+          <span class="chip"><Icone nom="repere" taille={14} />{p.ville}</span>
+        </li>
+      ))}
+    </ul>
+    <div class="wrap listes">
+      <div>
+        <h3 class="eyebrow">Ils cuisinent nos légumes</h3>
+        <ul class="liste" role="list">{restaurants.map((r) => <li><span class="liste__nom">{r.nom}</span><span class="muted liste__ville">{r.ville}</span></li>)}</ul>
+      </div>
+      <div>
+        <h3 class="eyebrow">Où trouver nos produits</h3>
+        <ul class="liste" role="list">{pointsDeVente.map((r) => <li><span class="liste__nom">{r.nom}</span><span class="muted liste__ville">{r.ville}</span></li>)}</ul>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { padding-top: 20px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 28px; }
+  .intro__photo { height: 400px; }
+  .intro__photo :global(img) { object-position: 55% 35%; }
+  .intro__texte { display: flex; flex-direction: column; gap: 28px; }
+  .intro__titres { display: flex; flex-direction: column; gap: 18px; }
+  @media (min-width: 1100px) {
+    .intro { padding-top: 56px; padding-bottom: 112px; flex-direction: row; align-items: center; gap: 80px; }
+    .intro__photo { width: 600px; height: 680px; flex: none; }
+    .intro__photo :global(img) { object-position: 55% 40%; }
+    .intro__texte { width: 600px; gap: 32px; }
+    .intro__titres { gap: 32px; }
+    .intro .btns .btn { width: auto; }
+  }
+
+  .tete-section { display: flex; flex-direction: column; gap: 14px; }
+  @media (min-width: 1100px) { .tete-section { gap: 18px; } }
+
+  .engagements { padding-bottom: 64px; display: flex; flex-direction: column; gap: 28px; }
+  .valeurs { display: flex; flex-direction: column; gap: 28px; }
+  .valeurs li { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid var(--bordure-soutenue); color: var(--vert-foret); }
+  .valeurs :global(svg) { width: 26px; height: 26px; }
+  @media (min-width: 1100px) {
+    .engagements { padding-bottom: 112px; gap: 56px; }
+    .valeurs { flex-direction: row; gap: 40px; }
+    .valeurs li { width: 400px; gap: 16px; padding-top: 24px; }
+    .valeurs :global(svg) { width: 28px; height: 28px; }
+  }
+
+  .galerie { gap: 8px; padding-bottom: 64px; }
+  .galerie__photo { width: 300px; height: 280px; border-radius: var(--rayon); overflow: hidden; background: var(--sable); }
+  .galerie__photo :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .galerie__photo--d :global(img) { object-position: 15% 60%; }
+  @media (min-width: 1100px) {
+    .galerie { display: grid; grid-template-columns: minmax(0, 480px) 464px minmax(0, 480px); justify-content: center; padding-inline: 0; overflow: visible; padding-bottom: 112px; }
+    .galerie__photo { width: auto; height: 440px; }
+    .galerie__photo--g { border-radius: 0 12px 12px 0; }
+    .galerie__photo--d { border-radius: 12px 0 0 12px; }
+  }
+
+  .sol-vivant__wrap { padding-top: 56px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 28px; }
+  .sol-vivant :global(.sol-vivant__illu) { width: 100%; height: auto; aspect-ratio: 720 / 450; object-fit: contain; }
+  .sol-vivant__texte { display: flex; flex-direction: column; gap: 14px; }
+  .sol-vivant__texte .lg { font-size: 16px; line-height: 24px; }
+  @media (min-width: 1100px) {
+    .sol-vivant__wrap { padding-top: 96px; padding-bottom: 96px; flex-direction: row; align-items: center; gap: 80px; }
+    .sol-vivant :global(.sol-vivant__illu) { width: 720px; height: 450px; flex: none; }
+    .sol-vivant__texte { width: 480px; gap: 20px; }
+    .sol-vivant__texte .lg { font-size: 20px; line-height: 30px; }
+  }
+
+  .partenaires { padding-top: 64px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 28px; }
+  .partenaires__intro { font-size: 16px; line-height: 24px; }
+  .partenaires__cartes { gap: 12px; }
+  .partenaire { width: 280px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .partenaire__photo { width: 100%; height: 210px; }
+  .partenaire__texte { display: flex; flex-direction: column; gap: 4px; }
+  .partenaire__texte p { font-size: 14px; line-height: 20px; }
+  .listes { display: flex; flex-direction: column; gap: 36px; padding-top: 8px; }
+  .listes h3.eyebrow { padding-bottom: 4px; font-size: 13px; line-height: 20px; letter-spacing: 0.16em; color: var(--gris-fonce); }
+  .liste li { display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--ligne); }
+  .liste__nom { color: var(--texte); }
+  .liste__ville { font-size: 14px; line-height: 20px; }
+  @media (min-width: 1100px) {
+    .partenaires { padding-top: 112px; padding-bottom: 112px; gap: 56px; }
+    .partenaires__intro { font-size: 20px; line-height: 30px; width: 760px; }
+    .partenaires__cartes { display: grid; grid-template-columns: repeat(3, 416px); gap: 16px; overflow: visible; max-width: var(--max); margin-inline: auto; width: 100%; }
+    .partenaire { width: auto; gap: 16px; }
+    .partenaire__photo { height: 300px; }
+    .partenaire__texte { gap: 6px; }
+    .partenaire__texte p { font-size: 16px; line-height: 24px; }
+    .listes { flex-direction: row; gap: 80px; padding-top: 24px; }
+    .listes > div { width: 600px; }
+    .listes h3.eyebrow { padding-bottom: 8px; }
+    .liste li { flex-direction: row; justify-content: space-between; align-items: center; padding: 18px 0; }
+    .liste__nom { font-size: 18px; line-height: 26px; }
+    .liste__ville { font-size: 16px; line-height: 24px; }
+  }
+  .partenaire__photo :global(img) { width: 100%; height: 100%; object-fit: cover; }
+</style>
