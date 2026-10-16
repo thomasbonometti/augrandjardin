@@ -140,8 +140,9 @@ export function dateLongue(iso) {
 export function dateHeure(iso) {
   const d = new Date(iso);
   const jour = new Intl.DateTimeFormat('fr-FR', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long' }).format(d);
+  const court = new Intl.DateTimeFormat('fr-FR', { timeZone: TZ, weekday: 'short', day: 'numeric', month: 'short' }).format(d);
   const { minutes } = partiesParis(d);
-  return { jour, heure: `${Math.floor(minutes / 60)}h${String(minutes % 60).padStart(2, '0')}` };
+  return { jour, court, heure: `${Math.floor(minutes / 60)}h${String(minutes % 60).padStart(2, '0')}` };
 }
 
 export const TVA = 0.055;

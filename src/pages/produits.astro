@@ -1,0 +1,145 @@
+---
+// Produits de la semaine — frames Figma 14:2 (desktop) et 39:2 (mobile). Liste lue dans Notion à la construction.
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import ProduitCarte from '../components/ProduitCarte.astro';
+import FormulaireSms from '../components/FormulaireSms.astro';
+import { produits, rayons, prochaineVente as v, misAJour, nbQuantiteLimitee } from '../lib/donnees.js';
+import { fileAriane } from '../lib/seo.js';
+
+const nb = produits.length;
+const jour = v ? v.jour.toLowerCase() : 'samedi';
+const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heures}` : null;
+---
+<Base
+  titre={`Produits de la semaine — légumes bio à Lostroff | Au Grand Jardin`}
+  description={`Les ${nb} produits en vente à la ferme Au Grand Jardin cette semaine, avec leurs prix TTC${v ? `. Vente ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale à Lostroff.`}
+  page="produits"
+  schema={fileAriane([{ nom: 'Produits de la semaine', url: '/produits/' }])}
+>
+  <section class="wrap tete">
+    <div class="surtitre"><span class="point" aria-hidden="true"></span><p class="eyebrow"><span class="seulement-ordi">Mis à jour {misAJour.texte}</span><span class="seulement-mobile">Mis à jour {misAJour.court}, {misAJour.heure}</span></p></div>
+    <div class="tete__ligne">
+      <div class="tete__textes">
+        <h1>Produits de la semaine</h1>
+        <p class="lg muted tete__intro">{nb} produits à venir chercher à la ferme {jour}. <span class="seulement-ordi">Les prix sont TTC.</span><span class="seulement-mobile">Prix TTC.</span> Ceux marqués « Quantité limitée » partent vite : venez tôt.</p>
+      </div>
+      <div class="tete__infos">
+        {quand && <span class="chip chip-contour"><Icone nom="horloge" taille={16} />{quand}</span>}
+        {nbQuantiteLimitee > 0 && <span class="chip">{nbQuantiteLimitee} produit{nbQuantiteLimitee > 1 ? 's' : ''} en quantité limitée</span>}
+      </div>
+    </div>
+  </section>
+
+  <nav class="filtres" aria-label="Rayons">
+    <div class="filtres__liste defile">
+      <a class="chip filtre" href="#produits" data-filtre="" aria-current="true">Tout <span class="compte">{nb}</span></a>
+      {rayons.map((r) => (
+        <a class="chip filtre" href={`#${r.slug}`} data-filtre={r.slug}>{r.titre} <span class="compte">{r.produits.length}</span></a>
+      ))}
+    </div>
+  </nav>
+
+  <div class="wrap rayons" id="produits">
+    {rayons.map((r) => (
+      <section class="rayon" id={r.slug} data-rayon={r.slug} aria-labelledby={`t-${r.slug}`}>
+        <div class="rayon__tete">
+          <h2 class="rayon__titre" id={`t-${r.slug}`}>{r.titre}</h2>
+          <p class="muted rayon__compte">{r.produits.length} produit{r.produits.length > 1 ? 's' : ''}</p>
+        </div>
+        <ul class="grille" role="list">
+          {r.produits.map((p) => <ProduitCarte p={p} />)}
+        </ul>
+      </section>
+    ))}
+  </div>
+
+  <section class="wrap sms" id="sms" aria-labelledby="sms-titre">
+    <div class="carte-sable sms__carte">
+      <div class="sms__textes">
+        <h2 class="sms__titre" id="sms-titre">Recevez la liste chaque semaine par SMS</h2>
+        <p class="muted sms__texte"><span class="seulement-ordi">Pas de commande en ligne : vous</span><span class="seulement-mobile">Vous</span> répondez au SMS avec votre panier et on le met de côté pour {jour}. Du 15 avril au 15 novembre.</p>
+      </div>
+      <FormulaireSms source="produits" variante="clair" />
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Filtres par rayon : sans JavaScript, ce sont des liens vers chaque rayon.
+  const filtres = [...document.querySelectorAll<HTMLAnchorElement>('.filtre')];
+  const rayons = [...document.querySelectorAll<HTMLElement>('[data-rayon]')];
+  const appliquer = (slug: string) => {
+    filtres.forEach((f) => f.setAttribute('aria-current', String(f.dataset.filtre === slug)));
+    rayons.forEach((r) => { r.hidden = !!slug && r.dataset.rayon !== slug; });
+  };
+  filtres.forEach((f) => f.addEventListener('click', (e) => {
+    e.preventDefault();
+    appliquer(f.dataset.filtre || '');
+    history.replaceState(null, '', f.dataset.filtre ? `#${f.dataset.filtre}` : location.pathname);
+    document.getElementById('produits')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+  const depart = location.hash.slice(1);
+  if (depart && rayons.some((r) => r.dataset.rayon === depart)) appliquer(depart);
+</script>
+
+<style>
+  .tete { padding-top: 32px; padding-bottom: 24px; display: flex; flex-direction: column; gap: 18px; }
+  .tete .surtitre { gap: 8px; }
+  .tete__ligne { display: flex; flex-direction: column; gap: 18px; }
+  .tete__textes { display: flex; flex-direction: column; gap: 18px; }
+  .tete__intro { font-size: 16px; line-height: 24px; }
+  .tete__infos { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .tete__infos .chip { height: 36px; font-size: 14px; }
+  @media (min-width: 1100px) {
+    .tete { padding-top: 64px; padding-bottom: 32px; gap: 28px; }
+    .tete .surtitre { gap: 10px; }
+    .tete__ligne { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 40px; }
+    .tete__textes { width: 760px; gap: 20px; }
+    .tete__intro { font-size: 20px; line-height: 30px; }
+    .tete__infos { align-items: flex-end; gap: 10px; }
+    .tete__infos .chip { height: 40px; }
+  }
+
+  .filtres { border-top: 1px solid var(--bordure-claire); border-bottom: 1px solid var(--bordure-claire); background: var(--creme); }
+  .filtres__liste { padding-top: 12px; padding-bottom: 12px; gap: 8px; max-width: var(--max); margin-inline: auto; }
+  .filtre { height: 38px; padding: 0 14px; font-size: 14px; background: transparent; border: 1px solid var(--bordure-soutenue); }
+  .filtre .compte { color: var(--discret); margin-left: 2px; }
+  .filtre[aria-current='true'] { background: var(--vert-foret); border-color: var(--vert-foret); color: var(--blanc); }
+  .filtre[aria-current='true'] .compte { color: var(--blanc); opacity: 0.7; }
+  .filtre:hover { border-color: var(--texte); }
+  @media (min-width: 1100px) {
+    .filtres__liste { padding-top: 16px; padding-bottom: 16px; flex-wrap: wrap; overflow: visible; }
+    .filtre { height: 40px; padding: 0 16px; }
+  }
+
+  .rayons { padding-bottom: 64px; }
+  .rayon { padding-top: 40px; display: flex; flex-direction: column; gap: 18px; scroll-margin-top: 12px; }
+  .rayon__tete { display: flex; gap: 10px; align-items: baseline; }
+  .rayon__titre { font-size: 24px; line-height: 30px; letter-spacing: -0.02em; }
+  .rayon__compte { font-size: 14px; line-height: 20px; }
+  .grille { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
+  .grille :global(.carte-produit__nom) { letter-spacing: 0; }
+  @media (min-width: 720px) { .grille { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 20px; } }
+  @media (min-width: 1100px) {
+    .rayons { padding-bottom: 112px; }
+    .rayon { padding-top: 56px; gap: 28px; }
+    .rayon__tete { gap: 12px; }
+    .rayon__titre { font-size: 32px; line-height: 40px; letter-spacing: -0.03em; }
+    .rayon__compte { font-size: 16px; line-height: 24px; }
+    .grille { grid-template-columns: repeat(4, 302px); gap: 40px 24px; }
+  }
+
+  .sms { padding-bottom: 64px; }
+  .sms__carte { display: flex; flex-direction: column; gap: 14px; padding: 24px; }
+  .sms__textes { display: flex; flex-direction: column; gap: 14px; }
+  .sms__titre { font-size: 24px; line-height: 30px; letter-spacing: -0.02em; }
+  .sms__texte { font-size: 14px; line-height: 20px; }
+  @media (min-width: 1100px) {
+    .sms { padding-bottom: 112px; }
+    .sms__carte { flex-direction: row; justify-content: space-between; align-items: center; padding: 48px; }
+    .sms__textes { width: 560px; }
+    .sms__titre { font-size: 32px; line-height: 40px; letter-spacing: -0.03em; }
+    .sms__texte { font-size: 16px; line-height: 24px; }
+  }
+</style>

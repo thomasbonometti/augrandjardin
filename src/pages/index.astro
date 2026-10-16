@@ -83,7 +83,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
     <ul class="semaine__cartes defile" role="list">
       {vedettes.map((p) => (
         <li>
-          <a class="vedette" href={`/produits/#${p.id}`}>
+          <a class="vedette" href={`/produits/#p-${p.id}`}>
             <img src={p.image.grand} srcset={`${p.image.petit} 400w, ${p.image.grand} 800w`} sizes="(min-width: 1100px) 308px, 260px" alt="" loading="lazy" decoding="async" width="308" height="400" />
             {p.estNouveau && <span class="chip chip-vif vedette__badge">Nouveau</span>}
             <span class="vedette__fleche" aria-hidden="true"><Icone nom="fleche" taille={18} /></span>

@@ -1,0 +1,31 @@
+---
+// Carte produit de la page « Produits de la semaine » (302 px en desktop, 167 px en mobile)
+import { euros } from '../lib/vente.js';
+interface Props { p: any }
+const { p } = Astro.props;
+const producteur = p.producteur && p.producteur !== 'Au Grand Jardin' ? ` · ${p.producteur}` : '';
+---
+<li class="carte-produit" id={`p-${p.id}`}>
+  <div class="carte-produit__visuel">
+    {p.image
+      ? <img src={p.image.petit} srcset={`${p.image.petit} 400w, ${p.image.grand} 800w`} sizes="(min-width: 1100px) 302px, (min-width: 720px) 30vw, 46vw" alt="" loading="lazy" decoding="async" width="400" height="400" />
+      : <span class="carte-produit__initiale" aria-hidden="true">{p.initiale}</span>}
+    {(p.estNouveau || p.quantiteLimitee) && (
+      <div class="carte-produit__badges">
+        {p.estNouveau && <span class="chip chip-vif">Nouveau</span>}
+        {p.quantiteLimitee && <span class="chip chip-blanc">Quantité limitée</span>}
+      </div>
+    )}
+  </div>
+  <div class="carte-produit__infos">
+    <h3 class="carte-produit__nom">{p.nom}</h3>
+    {p.prix && (
+      <p class="carte-produit__prix">
+        <strong>{euros(p.prix.montant)}</strong>
+        {p.prix.ancien && <s aria-label={`au lieu de ${euros(p.prix.ancien)}`}>{euros(p.prix.ancien)}</s>}
+        <span class="sm muted">{p.prix.unite}</span>
+      </p>
+    )}
+    <p class="sm muted">{p.pasBio ? 'Non certifié bio' : 'Bio'}{producteur}</p>
+  </div>
+</li>
