@@ -46,7 +46,7 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
     </ul>
   </section>
 
-  <div class="galerie defile" role="group" aria-label="Photos de la ferme">
+  <div class="galerie defile" role="group" aria-label="Photos de la ferme" tabindex="0">
     <div class="galerie__photo galerie__photo--g"><Photo nom="tunnel" alt="Un tunnel de culture, l’été" sizes="(min-width: 1100px) 480px, 300px" largeurs={[300, 600, 960]} /></div>
     <div class="galerie__photo galerie__photo--m"><Photo nom="aerien" alt="La ferme et ses tunnels vus du ciel" sizes="(min-width: 1100px) 464px, 300px" largeurs={[300, 600, 792]} /></div>
     <div class="galerie__photo galerie__photo--d"><Photo nom="semis" alt="Jeunes plants sous tunnel" sizes="(min-width: 1100px) 480px, 300px" largeurs={[300, 600, 960, 1200]} /></div>
@@ -69,7 +69,7 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
       <h2 id="partenaires-titre">Nos partenaires, tous à moins de 50&nbsp;km</h2>
       <p class="lg muted partenaires__intro">Leurs produits sont en vente à la ferme le {jour}<span class="seulement-ordi">, et nos légumes se retrouvent dans leurs cuisines et leurs rayons</span>.</p>
     </div>
-    <ul class="partenaires__cartes defile" role="list">
+    <ul class="partenaires__cartes defile" role="list" tabindex="0" aria-label="Nos partenaires">
       {partenaires.map((p) => (
         <li class="partenaire">
           <div class="photo partenaire__photo"><Photo nom={p.photo} alt="" sizes="(min-width: 1100px) 416px, 280px" largeurs={[280, 416, 560, 832]} /></div>

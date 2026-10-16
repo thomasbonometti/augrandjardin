@@ -13,3 +13,5 @@ __pycache__/
 .env.*
 .dev.vars
 .dev.vars.*
+e2e/resultats/
+playwright-report/

@@ -50,7 +50,8 @@ function enregistrer() {
   ecrireStockage({ items: etat.items, ref: etat.ref, sid: etat.sid, client: client() });
 }
 
-const calculer = () => panier.computeCart(catalogue.products, etat.items, config.rules || {});
+const connus = () => Object.fromEntries(Object.entries(etat.items).filter(([id]) => catalogue.products.some((p) => p.id === id)));
+const calculer = () => panier.computeCart(catalogue.products, connus(), config.rules || {});
 
 // ---------- liste et quantités ----------
 
@@ -194,7 +195,7 @@ form.addEventListener('submit', async (e) => {
       method: 'POST',
       headers: { 'content-type': 'application/json', accept: 'application/json' },
       body: JSON.stringify({
-        ref: etat.ref, sid: etat.sid, items: etat.items,
+        ref: etat.ref, sid: etat.sid, items: connus(),
         customer: { prenom: cl.prenom, nom: cl.nom, email: cl.email, telephone: cl.telephone, sms: cl.sms },
         comment: cl.comment, meta: { source }, website,
       }),
@@ -281,10 +282,8 @@ async function demarrer() {
   await rechargerCatalogue(Object.keys(etat.items).length > 0);
 }
 
-// Premier affichage avec le panier gardé, avant la réponse du serveur
-if (Object.keys(etat.items).length) {
-  for (const id of Object.keys(etat.items)) if (!catalogue.products.some((p) => p.id === id)) delete etat.items[id];
-  majListe();
-}
+// Premier affichage avec le panier gardé, avant la réponse du serveur. Les produits absents
+// du catalogue de la construction restent dans le panier jusqu'à la lecture en direct.
+if (Object.keys(etat.items).length) majListe();
 majRecap();
 demarrer();

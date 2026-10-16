@@ -28,6 +28,8 @@
 :root {
   /* Marque */
   --vert-vif: #00a544;
+  /* Vert vif un peu plus soutenu sous du texte blanc (contraste 4,5:1, WCAG AA) */
+  --vert-vif-fond: #00843a;
   --vert-foret: #0c4b31;
   --vert-fonce: #083b26;
   --vert-clair: #7be39b;
@@ -41,6 +43,7 @@
   --gris-fonce: #333333;
   --secondaire: #565656;
   --discret: #8a867d;
+  --discret-lisible: #6f6b63;
   /* Bordures */
   --bordure-claire: #ece6d8;
   --bordure-soutenue: #d9d2c1;
@@ -173,7 +176,7 @@ h3, .h3 { font-size: 20px; line-height: 28px; letter-spacing: -0.02em; }
   background: var(--sable); color: var(--texte); font-size: 13px; line-height: 18px; white-space: nowrap;
 }
 .chip-vert { background: var(--vert-foret); color: var(--blanc); }
-.chip-vif { background: var(--vert-vif); color: var(--blanc); }
+.chip-vif { background: var(--vert-vif-fond); color: var(--blanc); }
 .chip-blanc { background: var(--blanc); color: var(--texte); }
 .chip-contour { background: transparent; border: 1px solid var(--bordure-soutenue); }
 .chip-peche { background: var(--peche); color: var(--rouille); }
@@ -327,7 +330,7 @@ body.menu-ouvert { overflow: hidden; }
 .carte-produit__nom { font-size: 15px; line-height: 22px; color: var(--texte); }
 .carte-produit__prix { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; }
 .carte-produit__prix strong { font-weight: 400; font-size: 20px; line-height: 26px; letter-spacing: -0.02em; color: var(--texte); }
-.carte-produit__prix s { font-size: 14px; color: var(--discret); }
+.carte-produit__prix s { font-size: 14px; color: var(--secondaire); }
 @media (min-width: 1100px) {
   .carte-produit { gap: 14px; }
   .carte-produit__badges { left: 12px; top: 12px; flex-direction: row; gap: 6px; }

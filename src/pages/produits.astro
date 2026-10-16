@@ -104,9 +104,9 @@ const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heur
   .filtres { border-top: 1px solid var(--bordure-claire); border-bottom: 1px solid var(--bordure-claire); background: var(--creme); }
   .filtres__liste { padding-top: 12px; padding-bottom: 12px; gap: 8px; max-width: var(--max); margin-inline: auto; }
   .filtre { height: 38px; padding: 0 14px; font-size: 14px; background: transparent; border: 1px solid var(--bordure-soutenue); }
-  .filtre .compte { color: var(--discret); margin-left: 2px; }
+  .filtre .compte { color: var(--discret-lisible); margin-left: 2px; }
   .filtre[aria-current='true'] { background: var(--vert-foret); border-color: var(--vert-foret); color: var(--blanc); }
-  .filtre[aria-current='true'] .compte { color: var(--blanc); opacity: 0.7; }
+  .filtre[aria-current='true'] .compte { color: var(--blanc); opacity: 0.85; }
   .filtre:hover { border-color: var(--texte); }
   @media (min-width: 1100px) {
     .filtres__liste { padding-top: 16px; padding-bottom: 16px; flex-wrap: wrap; overflow: visible; }
