@@ -63,6 +63,12 @@ Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. 
   - **AGJ-3** (1 filet 7 kg Chérie et 1 filet 5 kg d'oignons jaunes, 26,00 €), cochée « Test » dans Commandes AGJ, source « site ».
   - Deux mails reçus sur hey@ : « [TEST → hey@…] Votre commande AGJ-3 est bien enregistrée » et « [TEST → pierre@…] Nouvelle commande AGJ-3 ».
   - Archivée ensuite par `/agj/pierre/diagnostic` : commande AGJ-3 et client « Test Site 2026 », ligne de statistiques retirée, stock rendu. Commandes AGJ et Clients AGJ sont vides.
+- Formulaires depuis l'adresse de test, le 17/10 :
+  - l'inscription SMS (06 00 00 00 01) et la demande pro « Test (à supprimer) » ont créé leurs lignes « Test » dans Notion ;
+  - ces deux lignes ont ensuite été mises à la corbeille.
+- Espace pro : un mauvais mot de passe est refusé (401), et `/pro/tarifs/` renvoie vers la connexion. La connexion avec le vrai mot de passe est à tester par Thomas.
+- Publication du 17/10 à 8 h 51, avec les données Notion : 32 produits (30 photos), 9 créneaux, 16 produits de l'outil.
+- Revue Figma / site, page par page, au téléphone et à l'ordinateur : artifact « Revue site AGJ 2026 », https://claude.ai/artifact/QCPcPS8N1G7SwUF6TDYSWw
 
 ## 5. Règles
 
@@ -72,6 +78,7 @@ Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. 
 
 ## 6. Points ouverts
 
+- **Espace pro** : Thomas teste la connexion avec le mot de passe pro, et remplace `PRO_SECRET` dans Cloudflare (il a circulé dans une conversation).
 - **« Sans traitement chimique »** sur la page Pommes de terre : à valider avec Pierre.
 - **Horaires** : le Planning ne coche que le samedi 10h – 12h30 ; l'ancien site affichait aussi le mercredi.
 - **Photos** : quelques produits sans photo dans Notion affichent une initiale.
