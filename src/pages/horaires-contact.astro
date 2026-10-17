@@ -4,8 +4,9 @@ import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import { ferme, adresseComplete } from '../data/ferme.js';
 import { creneaux, prochaineVente as v } from '../lib/donnees.js';
-import { plage } from '../lib/vente.js';
+import { lireLieux } from '../lib/vente.js';
 import { schemaFerme, fileAriane } from '../lib/seo.js';
+const lieux = lireLieux(creneaux);
 const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
 ---
 <Base
@@ -35,49 +36,53 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
       </div>
     </div>
     <div class="rdv encart-blanc" data-anim>
-      <h2 class="eyebrow rdv__titre">Les rendez-vous de la ferme</h2>
-      <ul role="list">
-        {creneaux.map((c) => (
-          <li class:list={['rdv__ligne', { inactif: !c.cetteSemaine }]}>
-            <div class="rdv__quand">
-              <p class="rdv__jour">{c.jour} · {plage(c)}</p>
-              <p class="muted rdv__lieu">{c.lieu}</p>
-            </div>
-            {c.cetteSemaine ? <span class="chip chip-vif rdv__etat">Cette semaine</span> : <span class="sm muted rdv__etat">Pas cette semaine</span>}
+      <h2 class="eyebrow rdv__titre">Où nous retrouver</h2>
+      <p class="muted rdv__intro">À la ferme chaque semaine, et sur les marchés et fêtes de la région selon la saison. La prochaine date est toujours indiquée en haut du site.</p>
+      <ul class="lieux" role="list">
+        {lieux.map((l) => (
+          <li class="lieu">
+            <span class="lieu__textes"><span class="lieu__nom">{l.nom}</span>{l.ville && <span class="muted lieu__ville">{l.ville}</span>}</span>
+            {l.cetteSemaine && <span class="chip chip-vif lieu__etat">Cette semaine</span>}
           </li>
         ))}
       </ul>
     </div>
   </section>
 
-  <section class="wrap carte-section" aria-label="Plan d’accès">
-    <a class="plan" href={ferme.itineraire} rel="noopener" data-anim>
-      <svg class="plan__ordi" viewBox="0 0 1280 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-        <rect width="1280" height="440" fill="#EFE9DA"/>
-        <path d="M0 300 C 260 280 420 330 640 300 S 1040 240 1280 270" stroke="#FFFFFF" stroke-width="18" fill="none"/>
-        <path d="M610 0 C 600 120 660 220 640 300 S 600 400 620 440" stroke="#FFFFFF" stroke-width="12" fill="none"/>
-        <path d="M0 120 C 200 140 360 100 520 150" stroke="#FFFFFF" stroke-width="8" fill="none"/>
-        <rect x="760" y="60" width="200" height="120" rx="10" fill="#DCE6C8"/><rect x="980" y="40" width="240" height="160" rx="10" fill="#D3DFBC"/>
-        <rect x="120" y="330" width="260" height="90" rx="10" fill="#DCE6C8"/><rect x="820" y="320" width="300" height="100" rx="10" fill="#D3DFBC"/>
-        <rect x="700" y="210" width="40" height="22" rx="4" fill="#FFFFFF" opacity="0.9"/><rect x="752" y="214" width="56" height="18" rx="4" fill="#FFFFFF" opacity="0.9"/>
-        <g data-anim="epingle"><circle cx="640" cy="292" r="34" fill="#0C4B31" opacity="0.15"/><circle cx="640" cy="292" r="14" fill="#0C4B31"/><circle cx="640" cy="292" r="5" fill="#FFFFFF"/></g>
-      </svg>
-      <svg class="plan__mobile" viewBox="0 0 350 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-        <rect width="350" height="260" fill="#EFE9DA"/>
-        <path d="M0 170 C 80 160 120 190 180 172 S 290 140 350 155" stroke="#FFFFFF" stroke-width="12" fill="none"/>
-        <path d="M168 0 C 160 70 190 120 180 172 S 165 230 172 260" stroke="#FFFFFF" stroke-width="8" fill="none"/>
-        <rect x="215" y="30" width="110" height="70" rx="8" fill="#DCE6C8"/><rect x="20" y="200" width="120" height="50" rx="8" fill="#D3DFBC"/>
-        <rect x="230" y="190" width="100" height="56" rx="8" fill="#DCE6C8"/>
-        <g data-anim="epingle"><circle cx="180" cy="166" r="26" fill="#0C4B31" opacity="0.15"/><circle cx="180" cy="166" r="11" fill="#0C4B31"/><circle cx="180" cy="166" r="4" fill="#FFFFFF"/></g>
-      </svg>
-      <span class="plan__carte">
+  <section class="wrap carte-section" aria-label="Plan d’accès" data-anim>
+    <div class="plan">
+      <div class="plan__fond" data-carte={ferme.carteGoogle}>
+        <svg class="plan__ordi" viewBox="0 0 1280 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          <rect width="1280" height="440" fill="#EFE9DA"/>
+          <path d="M0 300 C 260 280 420 330 640 300 S 1040 240 1280 270" stroke="#FFFFFF" stroke-width="18" fill="none"/>
+          <path d="M610 0 C 600 120 660 220 640 300 S 600 400 620 440" stroke="#FFFFFF" stroke-width="12" fill="none"/>
+          <path d="M0 120 C 200 140 360 100 520 150" stroke="#FFFFFF" stroke-width="8" fill="none"/>
+          <rect x="760" y="60" width="200" height="120" rx="10" fill="#DCE6C8"/><rect x="980" y="40" width="240" height="160" rx="10" fill="#D3DFBC"/>
+          <rect x="120" y="330" width="260" height="90" rx="10" fill="#DCE6C8"/><rect x="820" y="320" width="300" height="100" rx="10" fill="#D3DFBC"/>
+          <rect x="700" y="210" width="40" height="22" rx="4" fill="#FFFFFF" opacity="0.9"/><rect x="752" y="214" width="56" height="18" rx="4" fill="#FFFFFF" opacity="0.9"/>
+          <g data-anim="epingle"><circle cx="640" cy="292" r="34" fill="#0C4B31" opacity="0.15"/><circle cx="640" cy="292" r="14" fill="#0C4B31"/><circle cx="640" cy="292" r="5" fill="#FFFFFF"/></g>
+        </svg>
+        <svg class="plan__mobile" viewBox="0 0 350 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          <rect width="350" height="260" fill="#EFE9DA"/>
+          <path d="M0 170 C 80 160 120 190 180 172 S 290 140 350 155" stroke="#FFFFFF" stroke-width="12" fill="none"/>
+          <path d="M168 0 C 160 70 190 120 180 172 S 165 230 172 260" stroke="#FFFFFF" stroke-width="8" fill="none"/>
+          <rect x="215" y="30" width="110" height="70" rx="8" fill="#DCE6C8"/><rect x="20" y="200" width="120" height="50" rx="8" fill="#D3DFBC"/>
+          <rect x="230" y="190" width="100" height="56" rx="8" fill="#DCE6C8"/>
+          <g data-anim="epingle"><circle cx="180" cy="166" r="26" fill="#0C4B31" opacity="0.15"/><circle cx="180" cy="166" r="11" fill="#0C4B31"/><circle cx="180" cy="166" r="4" fill="#FFFFFF"/></g>
+        </svg>
+        <div class="plan__accord" data-carte-accord hidden>
+          <button class="btn btn-primaire" type="button"><Icone nom="repere" taille={18} />Afficher la carte Google Maps</button>
+          <p class="xs plan__mention">Google peut alors déposer ses propres cookies.</p>
+        </div>
+      </div>
+      <div class="plan__carte">
         <span class="plan__infos">
           <span class="plan__nom">Au Grand Jardin</span>
           <span class="sm muted">{adresseComplete}</span>
         </span>
-        <span class="sm plan__lien"><span class="seulement-ordi">Ouvrir dans Google </span>Maps →</span>
-      </span>
-    </a>
+        <a class="sm plan__lien" href={ferme.itineraire} rel="noopener"><span class="seulement-ordi">Ouvrir dans Google </span>Maps →</a>
+      </div>
+    </div>
   </section>
 
   <section class="wrap contacts" aria-label="Nous contacter">
@@ -106,15 +111,14 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
   .vente__jour, .vente__heures { font-size: 32px; line-height: 38px; letter-spacing: -0.03em; color: var(--blanc); }
   .vente__heures { color: var(--vert-clair); }
   .rdv { padding: 4px 20px 8px; }
-  .rdv h2.rdv__titre { font-size: 13px; line-height: 20px; letter-spacing: 0.16em; padding-top: 18px; padding-bottom: 2px; color: var(--gris-fonce); }
-  .rdv__ligne { display: grid; grid-template-columns: 1fr auto; grid-template-areas: 'jour etat' 'lieu lieu'; align-items: center; column-gap: 12px; row-gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--ligne); }
-  .rdv__quand { display: contents; }
-  .rdv__jour { grid-area: jour; font-size: 18px; line-height: 26px; color: var(--texte); }
-  .rdv__lieu { grid-area: lieu; font-size: 14px; line-height: 20px; }
-  .rdv__etat { grid-area: etat; }
-  .rdv__etat.chip { height: 26px; font-size: 12px; padding: 0 8px; }
-  .inactif .rdv__jour { color: var(--secondaire); }
-  .inactif .rdv__lieu, .inactif .rdv__etat { color: var(--discret-lisible); }
+  .rdv h2.rdv__titre { font-size: 13px; line-height: 20px; letter-spacing: 0.16em; padding-top: 18px; padding-bottom: 6px; color: var(--gris-fonce); }
+  .rdv__intro { font-size: 14px; line-height: 20px; padding-bottom: 6px; max-width: 520px; }
+  .lieu { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--ligne); }
+  .lieu:last-child { border-bottom: 0; }
+  .lieu__textes { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .lieu__nom { font-size: 17px; line-height: 24px; color: var(--texte); }
+  .lieu__ville { font-size: 14px; line-height: 20px; }
+  .lieu__etat.chip { height: 26px; font-size: 12px; padding: 0 8px; flex: none; }
   @media (min-width: 1100px) {
     .creneaux { padding-bottom: 64px; flex-direction: row; align-items: stretch; }
     .vente { width: 520px; flex: none; padding: 40px; gap: 28px; justify-content: space-between; }
@@ -122,31 +126,38 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
     .vente__quand { gap: 8px; }
     .vente__jour, .vente__heures { font-size: 48px; line-height: 56px; }
     .vente .btns .btn { width: auto; }
-    .rdv { flex: 1; padding: 8px 40px; }
+    .rdv { flex: 1; padding: 8px 40px 16px; }
     .rdv h2.rdv__titre { padding-top: 28px; padding-bottom: 8px; }
-    .rdv__ligne { display: flex; justify-content: space-between; padding: 20px 0; }
-    .rdv__quand { display: flex; flex-direction: column; gap: 2px; }
-    .rdv__jour { font-size: 20px; line-height: 28px; }
-    .rdv__lieu { font-size: 16px; line-height: 24px; }
-    .rdv__etat.chip { height: 30px; font-size: 13px; padding: 0 12px; }
+    .rdv__intro { font-size: 16px; line-height: 24px; padding-bottom: 8px; }
+    .lieu { padding: 18px 0; }
+    .lieu__textes { flex-direction: row; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .lieu__nom { font-size: 20px; line-height: 28px; }
+    .lieu__ville { font-size: 16px; line-height: 24px; }
+    .lieu__etat.chip { height: 30px; font-size: 13px; padding: 0 12px; }
   }
 
   .carte-section { padding-bottom: 32px; }
   .plan { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; border: 1px solid var(--ligne); background: var(--blanc); }
-  .plan svg { width: 100%; height: auto; }
+  .plan__fond { position: relative; aspect-ratio: 350 / 260; background: #efe9da; }
+  .plan__fond svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .plan__ordi { display: none; }
-  .plan__mobile { aspect-ratio: 350 / 260; }
+  .plan__fond :global(.plan__iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .plan__fond:has(:global(.plan__iframe)) svg { display: none; }
+  .plan__accord { position: absolute; left: 16px; right: 16px; top: 18%; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+  .plan__mention { background: rgba(255, 255, 255, 0.9); color: var(--secondaire); padding: 2px 10px; border-radius: 999px; }
   .plan__carte { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; gap: 12px; }
   .plan__infos { display: flex; flex-direction: column; gap: 2px; }
   .plan__nom { color: var(--texte); }
   .plan__lien { color: var(--vert-foret); white-space: nowrap; }
-  .plan:hover .plan__lien { text-decoration: underline; text-underline-offset: 3px; }
+  .plan__lien:hover { text-decoration: underline; text-underline-offset: 3px; }
   @media (min-width: 1100px) {
     .carte-section { padding-bottom: 64px; }
     .plan { position: relative; display: block; height: 440px; border: 0; }
-    .plan__ordi { display: block; height: 100%; }
+    .plan__fond { aspect-ratio: auto; height: 100%; }
+    .plan__ordi { display: block; }
     .plan__mobile { display: none; }
-    .plan__carte { position: absolute; left: 32px; top: 32px; width: 340px; flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px 24px; border-radius: 12px; background: var(--blanc); }
+    .plan__accord { top: 26%; }
+    .plan__carte { position: absolute; left: 32px; top: 32px; width: 340px; flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px 24px; border-radius: 12px; background: var(--blanc); box-shadow: 0 2px 12px rgba(17, 17, 17, 0.12); }
     .plan__nom { font-size: 18px; line-height: 26px; }
     .plan__infos { gap: 8px; }
     .plan__lien { padding-top: 4px; }
@@ -169,3 +180,35 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
     .contact__valeur { font-size: 20px; line-height: 28px; }
   }
 </style>
+
+<script>
+  // Carte Google Maps : chargée seulement quand le visiteur la demande (Google dépose ses propres cookies),
+  // puis automatiquement aux visites suivantes.
+  const CLE = 'agj-carte-google';
+  const fond = document.querySelector<HTMLElement>('[data-carte]');
+  if (fond?.dataset.carte) {
+    const accord = fond.querySelector<HTMLElement>('[data-carte-accord]');
+    const afficher = (focus: boolean) => {
+      const carte = document.createElement('iframe');
+      carte.className = 'plan__iframe';
+      carte.src = fond.dataset.carte!;
+      carte.title = 'Carte Google Maps : Au Grand Jardin, 43 rue Principale, 57670 Lostroff';
+      carte.loading = 'lazy';
+      carte.referrerPolicy = 'no-referrer-when-downgrade';
+      carte.allowFullscreen = true;
+      fond.append(carte);
+      accord?.remove();
+      if (focus) carte.focus();
+    };
+    let accepte = false;
+    try { accepte = localStorage.getItem(CLE) === 'oui'; } catch {}
+    if (accepte) afficher(false);
+    else if (accord) {
+      accord.hidden = false;
+      accord.querySelector('button')?.addEventListener('click', () => {
+        try { localStorage.setItem(CLE, 'oui'); } catch {}
+        afficher(true);
+      });
+    }
+  }
+</script>

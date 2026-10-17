@@ -96,6 +96,19 @@ export function lireCreneaux(planning) {
 }
 const capitale = (s) => (s ? s[0].toUpperCase() + s.slice(1) : s);
 
+// Lieux où retrouver la ferme, sans jours ni horaires : la ferme d'abord, puis les marchés.
+// Un lieu présent plusieurs fois dans le Planning (samedi et mercredi à la ferme) n'apparaît qu'une fois.
+export function lireLieux(creneaux) {
+  const parLieu = new Map();
+  for (const c of creneaux) {
+    const [nom, ...reste] = c.lieu.replace(/-s\/-/g, '-sur-').split(', ');
+    const lieu = parLieu.get(c.lieu) ?? { nom, ville: reste.join(', '), aLaFerme: !!c.aLaFerme, cetteSemaine: false };
+    lieu.cetteSemaine ||= !!c.cetteSemaine;
+    parLieu.set(c.lieu, lieu);
+  }
+  return [...parLieu.values()].sort((a, b) => (b.aLaFerme - a.aLaFerme) || (b.cetteSemaine - a.cetteSemaine) || a.nom.localeCompare(b.nom, 'fr') || a.ville.localeCompare(b.ville, 'fr'));
+}
+
 // Date et heure à Paris (sans dépendance)
 export function partiesParis(date) {
   const f = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'short', hourCycle: 'h23' });

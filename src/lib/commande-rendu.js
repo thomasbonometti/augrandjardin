@@ -1,6 +1,7 @@
 // Rendu HTML de la liste de commande (page Pommes de terre), partagé entre la construction
 // (HTML déjà rempli, lisible sans JavaScript) et le navigateur (catalogue relu en direct).
-// Aucune dépendance : chaînes HTML échappées.
+// Chaînes HTML échappées, avec les espaces insécables de la typographie française.
+import { espacesInsecables } from './typo.js';
 
 const EUR = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 export const euros = (c) => EUR.format((Number(c) || 0) / 100).replace(/\s/g, ' ');
@@ -9,7 +10,7 @@ export const kg = (n) => `${nombre(n)} kg`;
 const parKg = (p) => (p?.weightKg > 0 && p.priceCents > 0 ? Math.round(p.priceCents / p.weightKg) : null);
 
 export function echapper(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  return espacesInsecables(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 }
 
 // Affichable : en vente, nommé, avec un prix (un format épuisé reste visible, grisé).

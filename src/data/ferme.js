@@ -13,6 +13,8 @@ export const ferme = {
   telephoneIntl: '+33642424293',
   email: 'pierre@augrandjardin.fr',
   itineraire: 'https://www.google.com/maps/search/?api=1&query=Au+Grand+Jardin%2C+43+rue+Principale%2C+57670+Lostroff',
+  // Carte Google Maps intégrée (page Horaires & contact), chargée seulement après un clic du visiteur.
+  carteGoogle: 'https://www.google.com/maps?q=Au+Grand+Jardin%2C+43+rue+Principale%2C+57670+Lostroff&hl=fr&z=15&output=embed',
   // Page Facebook de la ferme (identifiant de la page)
   facebook: 'https://www.facebook.com/237722416967635',
 };

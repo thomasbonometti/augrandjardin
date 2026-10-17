@@ -1,6 +1,7 @@
 // Formulaires simples (inscription SMS, demande d'accès pro, mot de passe pro) :
 // envoi sans recharger la page, message de réponse lu par les lecteurs d'écran.
 // Sans JavaScript, le formulaire est envoyé normalement et la fonction renvoie vers la page.
+import { espacesInsecables } from '../lib/typo.js';
 
 for (const form of document.querySelectorAll<HTMLFormElement>('form[data-form-api]')) {
   const message = form.querySelector<HTMLElement>('.message-form');
@@ -40,7 +41,7 @@ for (const form of document.querySelectorAll<HTMLFormElement>('form[data-form-ap
   });
   function afficher(texte: string, ok: boolean) {
     if (!message) return;
-    message.textContent = texte;
+    message.textContent = espacesInsecables(texte);
     message.classList.toggle('ok', ok);
     message.classList.toggle('ko', !ok);
   }

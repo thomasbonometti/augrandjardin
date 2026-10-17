@@ -5,6 +5,7 @@
 import * as panierSecours from '../lib/agj/cart.js';
 import { rendreCategories, rendreLignesRecap, textePoids, maximum, euros, echapper } from '../lib/commande-rendu.js';
 import { resumePdt } from '../lib/pdt.js';
+import { espacesInsecables as typo } from '../lib/typo.js';
 
 type Produit = { id: string; name: string; product?: string; format?: string; category?: string; priceCents: number; oldPriceCents?: number; weightKg?: number; stock?: number | null; minimum?: number | null; maximum?: number | null; ordre?: number; enVente: boolean; description?: string };
 type Catalogue = { open: boolean; live?: boolean; products: Produit[] };
@@ -100,7 +101,7 @@ function majRecap() {
   const c = calculer();
   $('[data-recap-lignes]').innerHTML = rendreLignesRecap(c.lines);
   $('[data-total]').textContent = euros(c.totalCents);
-  $('[data-poids]').textContent = c.lines.length ? textePoids(c.lines) : '';
+  $('[data-poids]').textContent = c.lines.length ? typo(textePoids(c.lines)) : '';
   $('[data-avertissements]').innerHTML = avertissementsHtml(c.notices || []);
 }
 
@@ -155,7 +156,7 @@ function afficherErreursChamps(erreurs: Record<string, string>) {
     if (!el) continue;
     if (erreurs[nom]) {
       el.setAttribute('aria-invalid', 'true');
-      if (msg) { msg.textContent = erreurs[nom]; msg.id = `${nom}-erreur`; el.setAttribute('aria-errormessage', msg.id); }
+      if (msg) { msg.textContent = typo(erreurs[nom]); msg.id = `${nom}-erreur`; el.setAttribute('aria-errormessage', msg.id); }
     } else {
       el.removeAttribute('aria-invalid');
       if (msg) msg.textContent = '';
@@ -188,7 +189,7 @@ form.addEventListener('submit', async (e) => {
     return;
   }
   const erreurPanier = c.errors.find((x: any) => x.id);
-  if (erreurPanier) { erreurEnvoi.textContent = erreurPanier.message; return; }
+  if (erreurPanier) { erreurEnvoi.textContent = typo(erreurPanier.message); return; }
   if (Object.keys(erreurs).length) {
     const premier = form.querySelector<HTMLElement>('[aria-invalid="true"]');
     premier?.focus();
@@ -212,14 +213,14 @@ form.addEventListener('submit', async (e) => {
     });
     const data = await res.json().catch(() => ({}));
     if (res.ok && data.ok) return terminer(data, c);
-    erreurEnvoi.textContent = data.error || 'La commande n’a pas pu être envoyée. Réessayez dans un instant, ou appelez Pierre au 06 42 42 42 93.';
+    erreurEnvoi.textContent = typo(data.error || 'La commande n’a pas pu être envoyée. Réessayez dans un instant, ou appelez Pierre au 06 42 42 42 93.');
     if (data.fields && Object.keys(data.fields).length) {
       afficherErreursChamps(data.fields);
       form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
     }
     if (data.cart?.length) await rechargerCatalogue(true);
   } catch {
-    erreurEnvoi.textContent = 'Pas de connexion : la commande n’est pas partie. Réessayez dans un instant.';
+    erreurEnvoi.textContent = typo('Pas de connexion : la commande n’est pas partie. Réessayez dans un instant.');
   } finally {
     etat.envoi = false;
     bouton.disabled = false;
@@ -230,7 +231,7 @@ form.addEventListener('submit', async (e) => {
 function terminer(data: any, c: any) {
   const fin = $('[data-fin]');
   const total = data.order?.totalCents ?? c.totalCents;
-  $('[data-fin-numero]').textContent = `Commande ${data.numero} · ${euros(total)}, à régler sur place`;
+  $('[data-fin-numero]').textContent = typo(`Commande ${data.numero} · ${euros(total)}, à régler sur place`);
   const lignes = data.order?.lines?.length ? data.order.lines : c.lines;
   const notices = c.notices || [];
   $('[data-fin-recap]').innerHTML = rendreLignesRecap(lignes) + avertissementsHtml(notices, 'avertissement');
