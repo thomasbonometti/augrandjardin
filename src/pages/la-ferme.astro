@@ -17,17 +17,17 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
   schema={fileAriane([{ nom: 'La ferme', url: '/la-ferme/' }])}
 >
   <section class="wrap intro">
-    <div class="photo intro__photo">
+    <div class="photo intro__photo" data-anim="photo">
       <Photo nom="pierre" alt="Pierre Fouquet, le maraîcher, sous un tunnel de la ferme" sizes="(min-width: 1100px) 600px, calc(100vw - 40px)" largeurs={[400, 700, 1000, 1200]} prioritaire />
     </div>
     <div class="intro__texte">
-      <div class="intro__titres">
+      <div class="intro__titres" data-anim-groupe="monte">
         <p class="eyebrow">La ferme</p>
-        <h1 class="h1-page">Pierre Fouquet, maraîcher bio à Lostroff</h1>
+        <h1 class="h1-page" data-anim="mots">Pierre Fouquet, maraîcher bio à Lostroff</h1>
         <p class="lg muted">Au Grand Jardin, on a fait le choix d’une agriculture qui respecte la terre et la biodiversité<span class="seulement-ordi">, dans le jardin et autour</span> : un paillage plutôt qu’un labour, des fleurs pour les <span class="seulement-ordi">insectes </span>pollinisateurs, aucun produit chimique.</p>
         <p class="muted">Chaque {jour}, la récolte de la semaine est en vente à la ferme, avec les produits de nos partenaires bio et le pain d’Aux Gourmandises de Thomas.</p>
       </div>
-      <div class="btns">
+      <div class="btns" data-anim>
         <a class="btn btn-primaire btn-bloc" href="/produits/">Voir les produits de la semaine</a>
         <a class="btn btn-secondaire btn-bloc" href="/horaires-contact/"><Icone nom="repere" taille={18} />Venir {jour}</a>
       </div>
@@ -35,18 +35,18 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
   </section>
 
   <section class="wrap engagements" aria-labelledby="engagements-titre">
-    <div class="tete-section">
+    <div class="tete-section" data-anim>
       <p class="eyebrow">Nos engagements</p>
       <h2 id="engagements-titre">Ce qui pousse ici, et comment</h2>
     </div>
-    <ul class="valeurs" role="list">
+    <ul class="valeurs" role="list" data-anim-groupe="pop">
       <li><Icone nom="pousse" taille={28} /><h3>Des produits bio et de qualité</h3><p class="muted">Aucun produit chimique, aucune semence hybride F1 : uniquement des semences paysannes et des variétés anciennes.</p></li>
       <li><Icone nom="repere" taille={28} /><h3>Une production et des partenaires locaux</h3><p class="muted">Tous nos fruits et légumes bio sont cultivés à Lostroff. Nos partenaires, bio eux aussi, sont à moins de 50&nbsp;km.</p></li>
       <li><Icone nom="coche" taille={28} /><h3>Des engagements pour la terre</h3><p class="muted"><span class="seulement-ordi">Une agriculture sans destruction de l’environnement : paillage</span><span class="seulement-mobile">Paillage</span>, sol couvert, haies et fleurs pour la biodiversité.</p></li>
     </ul>
   </section>
 
-  <div class="galerie defile" role="group" aria-label="Photos de la ferme" tabindex="0">
+  <div class="galerie defile" data-anim-groupe="photo" role="group" aria-label="Photos de la ferme" tabindex="0">
     <div class="galerie__photo galerie__photo--g"><Photo nom="tunnel" alt="Un tunnel de culture, l’été" sizes="(min-width: 1100px) 480px, 300px" largeurs={[300, 600, 960]} /></div>
     <div class="galerie__photo galerie__photo--m"><Photo nom="aerien" alt="La ferme et ses tunnels vus du ciel" sizes="(min-width: 1100px) 464px, 300px" largeurs={[300, 600, 792]} /></div>
     <div class="galerie__photo galerie__photo--d"><Photo nom="semis" alt="Jeunes plants sous tunnel" sizes="(min-width: 1100px) 480px, 300px" largeurs={[300, 600, 960, 1200]} /></div>
@@ -54,8 +54,8 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
 
   <section class="section-sable sol-vivant" aria-labelledby="sol-titre">
     <div class="wrap sol-vivant__wrap">
-      <Picture src={solVivant} formats={['webp']} widths={[350, 720, 915]} sizes="(min-width: 1100px) 720px, calc(100vw - 40px)" alt="Illustration du sol vivant : la paille couvre la terre, les racines, les vers et les champignons y travaillent" class="sol-vivant__illu" loading="lazy" />
-      <div class="sol-vivant__texte">
+      <Picture src={solVivant} data-anim="pop" data-parallaxe="flotte" formats={['webp']} widths={[350, 720, 915]} sizes="(min-width: 1100px) 720px, calc(100vw - 40px)" alt="Illustration du sol vivant : la paille couvre la terre, les racines, les vers et les champignons y travaillent" class="sol-vivant__illu" loading="lazy" />
+      <div class="sol-vivant__texte" data-anim-groupe="monte">
         <p class="eyebrow">Notre démarche</p>
         <h2 id="sol-titre">Maraîchage Sol Vivant</h2>
         <p class="lg muted">La ferme s’inscrit dans la démarche Maraîchage Sol Vivant : on cultive sans retourner la terre, on la couvre de paille et de matière organique, pour garder un sol vivant et fertile d’une saison à l’autre.</p>
@@ -64,12 +64,12 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
   </section>
 
   <section class="partenaires" aria-labelledby="partenaires-titre">
-    <div class="wrap tete-section">
+    <div class="wrap tete-section" data-anim>
       <p class="eyebrow">Partenaires</p>
       <h2 id="partenaires-titre">Nos partenaires, tous à moins de 50&nbsp;km</h2>
       <p class="lg muted partenaires__intro">Leurs produits sont en vente à la ferme le {jour}<span class="seulement-ordi">, et nos légumes se retrouvent dans leurs cuisines et leurs rayons</span>.</p>
     </div>
-    <ul class="partenaires__cartes defile" role="list" tabindex="0" aria-label="Nos partenaires">
+    <ul class="partenaires__cartes defile" data-anim-groupe="cartes" role="list" tabindex="0" aria-label="Nos partenaires">
       {partenaires.map((p) => (
         <li class="partenaire">
           <div class="photo partenaire__photo"><Photo nom={p.photo} alt="" sizes="(min-width: 1100px) 416px, 280px" largeurs={[280, 416, 560, 832]} /></div>
@@ -78,7 +78,7 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
         </li>
       ))}
     </ul>
-    <div class="wrap listes">
+    <div class="wrap listes" data-anim-groupe="monte">
       <div>
         <h3 class="eyebrow">Ils cuisinent nos légumes</h3>
         <ul class="liste" role="list">{restaurants.map((r) => <li><span class="liste__nom">{r.nom}</span><span class="muted liste__ville">{r.ville}</span></li>)}</ul>

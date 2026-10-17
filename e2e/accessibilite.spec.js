@@ -2,6 +2,9 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+// Contrôle de l'état final des pages : sans les apparitions au défilement (testées dans animations.spec.js).
+test.use({ contextOptions: { reducedMotion: 'reduce' } });
+
 for (const chemin of ['/', '/produits/', '/la-ferme/', '/pommes-de-terre/', '/professionnels/', '/horaires-contact/', '/mentions-legales/']) {
   test(`accessibilité ${chemin}`, async ({ page }) => {
     await page.goto(chemin);

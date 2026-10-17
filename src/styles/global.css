@@ -277,7 +277,7 @@ body.menu-ouvert { overflow: hidden; }
 @media (min-width: 1100px) { .menu-mobile { display: none !important; } }
 
 /* ---------- Pied de page ---------- */
-.pied { background: var(--nuit); color: var(--blanc); border-radius: 20px 20px 0 0; }
+.pied { background: var(--nuit); color: var(--blanc); }
 .pied .wrap { padding-top: 48px; padding-bottom: 28px; display: flex; flex-direction: column; gap: 40px; }
 .pied__haut { display: flex; flex-direction: column; gap: 40px; }
 .pied__ferme { display: flex; flex-direction: column; gap: 18px; max-width: 360px; }
@@ -299,7 +299,6 @@ body.menu-ouvert { overflow: hidden; }
 .pied__bas { display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 20px; color: var(--blanc); }
 .pied__bas nav { display: flex; gap: 20px; }
 @media (min-width: 1100px) {
-  .pied { border-radius: 24px 24px 0 0; }
   .pied .wrap { padding-top: 64px; padding-bottom: 32px; gap: 56px; }
   .pied__haut { flex-direction: row; justify-content: space-between; }
   .pied__ferme { gap: 20px; width: 360px; }
@@ -368,7 +367,17 @@ body.menu-ouvert { overflow: hidden; }
 .icone-ligne { display: inline-flex; align-items: center; gap: 8px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 
+/* ---------- Apparitions au défilement (src/scripts/animer.ts) ----------
+   La classe .anime n'est posée sur <html> que si le visiteur accepte les animations.
+   [data-anim] : l'élément apparaît seul ; [data-anim-groupe] : ses enfants apparaissent l'un après l'autre.
+   Valeurs : monte (par défaut), pop, cartes, photo, mots, tampon, epingle. */
+.anime [data-anim]:not([data-anim-fait]),
+.anime [data-anim-groupe] > :not([data-anim-fait]) { opacity: 0; }
+.mot { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.mot__in { display: inline-block; will-change: transform; }
+
 @media print {
   .barre-info, .entete, .pied, .menu-mobile, .pas-imprime { display: none !important; }
   body { background: #fff; }
+  [data-anim], [data-anim-groupe] > *, .mot__in { opacity: 1 !important; visibility: visible !important; transform: none !important; }
 }

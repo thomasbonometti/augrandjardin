@@ -15,36 +15,36 @@ import { fileAriane } from '../lib/seo.js';
 >
   <section class="wrap hero">
     <div class="hero__texte">
-      <p class="eyebrow">Restaurants · épiceries · collectivités</p>
-      <h1 class="h1-page">Des légumes bio de Lostroff, livrés chaque semaine</h1>
-      <p class="lg muted">Vous cuisinez local et de saison ? On vous propose une offre selon nos récoltes et vos besoins, avec une livraison hebdomadaire.</p>
-      <div class="btns">
+      <p class="eyebrow" data-anim>Restaurants · épiceries · collectivités</p>
+      <h1 class="h1-page" data-anim="mots">Des légumes bio de Lostroff, livrés chaque semaine</h1>
+      <p class="lg muted" data-anim>Vous cuisinez local et de saison ? On vous propose une offre selon nos récoltes et vos besoins, avec une livraison hebdomadaire.</p>
+      <div class="btns" data-anim>
         <a class="btn btn-primaire btn-bloc" href="#demande">Demander un accès</a>
         <a class="btn btn-secondaire btn-bloc" href="#acces"><Icone nom="cadenas" taille={18} />J’ai déjà un accès</a>
       </div>
-      <dl class="stats">
-        <div><dt class="sm muted">pour vous répondre</dt><dd class="chiffre">48&nbsp;h</dd></div>
-        <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre">{produits.length}</dd></div>
-        <div><dt class="sm muted">restaurants partenaires</dt><dd class="chiffre">{restaurants.length}</dd></div>
+      <dl class="stats" data-anim-groupe="monte">
+        <div><dt class="sm muted">pour vous répondre</dt><dd class="chiffre" data-compteur>48&nbsp;h</dd></div>
+        <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre" data-compteur>{produits.length}</dd></div>
+        <div><dt class="sm muted">restaurants partenaires</dt><dd class="chiffre" data-compteur>{restaurants.length}</dd></div>
       </dl>
     </div>
-    <div class="photo hero__photo"><Photo nom="echange" alt="Pierre échange avec un client sous un tunnel de la ferme" sizes="(min-width: 1100px) 580px, calc(100vw - 40px)" largeurs={[400, 700, 1000, 1400]} prioritaire /></div>
+    <div class="photo hero__photo" data-anim="photo"><Photo nom="echange" alt="Pierre échange avec un client sous un tunnel de la ferme" sizes="(min-width: 1100px) 580px, calc(100vw - 40px)" largeurs={[400, 700, 1000, 1400]} prioritaire /></div>
   </section>
 
   <section class="wrap clients" aria-labelledby="clients-titre">
     <div class="clients__bloc">
       <h2 class="eyebrow" id="clients-titre">Ils cuisinent nos légumes</h2>
-      <ul class="clients__liste" role="list">{restaurants.map((r) => <li class="chip chip-contour">{r.court}</li>)}</ul>
+      <ul class="clients__liste" role="list" data-anim-groupe="pop">{restaurants.map((r) => <li class="chip chip-contour">{r.court}</li>)}</ul>
     </div>
   </section>
 
   <section class="section-sombre sur-sombre etapes" aria-labelledby="etapes-titre">
     <div class="wrap etapes__wrap">
-      <div class="etapes__tete">
+      <div class="etapes__tete" data-anim>
         <p class="eyebrow">Comment ça marche</p>
         <h2 id="etapes-titre">Trois étapes pour travailler ensemble</h2>
       </div>
-      <ol class="etapes__liste">
+      <ol class="etapes__liste" data-anim-groupe="pop">
         <li><p class="etapes__num" aria-hidden="true">01</p><h3>On fait connaissance</h3><p class="muted">Vos volumes, vos jours de livraison, les produits qui comptent pour votre carte.</p></li>
         <li><p class="etapes__num" aria-hidden="true">02</p><h3>Vous recevez votre accès</h3><p class="muted">La grille tarifaire pro, mise à jour chaque semaine avec ce qui est prêt à la récolte.</p></li>
         <li><p class="etapes__num" aria-hidden="true">03</p><h3>Vous commandez</h3><p class="muted">Par téléphone ou message, avant le jour de récolte convenu. On livre.</p></li>
@@ -53,7 +53,7 @@ import { fileAriane } from '../lib/seo.js';
   </section>
 
   <section class="wrap formulaires">
-    <form class="demande encart-blanc" id="demande" action="/api/demande-pro" method="post" data-form-api novalidate aria-labelledby="demande-titre">
+    <form class="demande encart-blanc" data-anim id="demande" action="/api/demande-pro" method="post" data-form-api novalidate aria-labelledby="demande-titre">
       <h2 class="formulaires__titre" id="demande-titre">Demander un accès</h2>
       <p class="muted demande__intro">Pierre vous rappelle sous 48 h pour parler de vos besoins.</p>
       <div class="demande__champs">
@@ -68,7 +68,7 @@ import { fileAriane } from '../lib/seo.js';
       <p class="message-form" role="status" aria-live="polite"></p>
     </form>
 
-    <form class="acces carte-sable" id="acces" action="/api/pro-login" method="post" data-form-api novalidate aria-labelledby="acces-titre">
+    <form class="acces carte-sable" data-anim id="acces" action="/api/pro-login" method="post" data-form-api novalidate aria-labelledby="acces-titre">
       <span class="acces__icone"><Icone nom="cadenas" taille={28} /></span>
       <h2 class="formulaires__titre" id="acces-titre">Déjà client ?</h2>
       <p class="muted acces__intro">Entrez le mot de passe reçu pour consulter la grille tarifaire de la semaine.</p>

@@ -30,57 +30,57 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
   <section class="wrap hero">
     <div class="hero__haut">
       <div class="hero__principal">
-        <div class="surtitre"><span class="point" aria-hidden="true"></span><p class="eyebrow">Maraîcher bio · Lostroff<span class="seulement-ordi">, Moselle</span></p></div>
-        <h1>Des légumes bio cueillis à Lostroff pour la vente du samedi</h1>
-        <p class="lg muted hero__intro hero__intro--mobile">Semences paysannes, variétés anciennes, aucun produit chimique. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
-        <div class="btns">
+        <div class="surtitre" data-anim><span class="point" aria-hidden="true"></span><p class="eyebrow">Maraîcher bio · Lostroff<span class="seulement-ordi">, Moselle</span></p></div>
+        <h1 data-anim="mots">Des légumes bio cueillis à Lostroff pour la vente du samedi</h1>
+        <p class="lg muted hero__intro hero__intro--mobile" data-anim>Semences paysannes, variétés anciennes, aucun produit chimique. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
+        <div class="btns" data-anim>
           <a class="btn btn-primaire btn-bloc" href="/produits/">Voir les {nb} produits de la semaine</a>
           <a class="btn btn-secondaire btn-bloc" href="/horaires-contact/"><Icone nom="repere" taille={18} />Venir à la ferme</a>
         </div>
       </div>
-      <p class="lg muted hero__intro hero__intro--ordi">Semences paysannes, variétés anciennes, aucun produit chimique. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
+      <p class="lg muted hero__intro hero__intro--ordi" data-anim>Semences paysannes, variétés anciennes, aucun produit chimique. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
     </div>
-    <dl class="stats">
-      <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre">{nb}</dd></div>
-      {v && <div><dt class="sm muted">prochaine vente{v.aLaFerme ? ', à la ferme' : ''}</dt><dd class="chiffre">{v.jourCourt}</dd></div>}
-      <div><dt class="sm muted">légumes bio</dt><dd class="chiffre">100&nbsp;%</dd></div>
-      <div class="stat-ordi"><dt class="sm muted">semence hybride F1</dt><dd class="chiffre">0</dd></div>
-      <div><dt class="sm muted">au plus pour nos partenaires</dt><dd class="chiffre">50&nbsp;km</dd></div>
+    <dl class="stats" data-anim-groupe="monte">
+      <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre" data-compteur>{nb}</dd></div>
+      {v && <div><dt class="sm muted">prochaine vente{v.aLaFerme ? ', à la ferme' : ''}</dt><dd class="chiffre" data-compteur>{v.jourCourt}</dd></div>}
+      <div><dt class="sm muted">légumes bio</dt><dd class="chiffre" data-compteur>100&nbsp;%</dd></div>
+      <div class="stat-ordi"><dt class="sm muted">semence hybride F1</dt><dd class="chiffre" data-compteur>0</dd></div>
+      <div><dt class="sm muted">au plus pour nos partenaires</dt><dd class="chiffre" data-compteur>50&nbsp;km</dd></div>
     </dl>
   </section>
 
-  <div class="photo-large">
+  <div class="photo-large" data-parallaxe>
     <Photo nom="semis" alt="Jeunes pousses de blettes multicolores sous un tunnel de la ferme" sizes="100vw" largeurs={[480, 800, 1200, 1600, 2000]} prioritaire />
   </div>
 
   <!-- ENGAGEMENT -->
   <section class="wrap engagement" aria-labelledby="engagement-titre">
     <div class="engagement__gauche">
-      <p class="eyebrow" id="engagement-titre">La ferme Au Grand Jardin</p>
-      <div class="engagement__tampon" set:html={tamponSvg} />
+      <p class="eyebrow" id="engagement-titre" data-anim>La ferme Au Grand Jardin</p>
+      <div class="engagement__tampon" data-anim="tampon" set:html={tamponSvg} />
     </div>
     <div class="engagement__droite">
-      <p class="engagement__texte">Pierre cultive en permaculture : pas de labour, de la paille plutôt que du désherbant, des fleurs pour les pollinisateurs. <span class="discret">Ce qui pousse ici dépend de la saison, et c’est exactement ce que vous trouvez le samedi.</span></p>
-      <ul class="cartes-douces" role="list">
-        <li><span class="valeur">0</span><span>produit chimique sur l’exploitation</span></li>
-        <li><span class="valeur">100&nbsp;%</span><span>semences paysannes et variétés anciennes</span></li>
-        <li><span class="valeur">50&nbsp;km</span><span>au plus pour nos partenaires bio</span></li>
-        <li><span class="valeur">Label</span><span>Maraîchage Sol Vivant</span></li>
+      <p class="engagement__texte" data-anim>Pierre cultive en permaculture : pas de labour, de la paille plutôt que du désherbant, des fleurs pour les pollinisateurs. <span class="discret">Ce qui pousse ici dépend de la saison, et c’est exactement ce que vous trouvez le samedi.</span></p>
+      <ul class="cartes-douces" role="list" data-anim-groupe="pop">
+        <li><span class="valeur" data-compteur>0</span><span>produit chimique sur l’exploitation</span></li>
+        <li><span class="valeur" data-compteur>100&nbsp;%</span><span>semences paysannes et variétés anciennes</span></li>
+        <li><span class="valeur" data-compteur>50&nbsp;km</span><span>au plus pour nos partenaires bio</span></li>
+        <li><span class="valeur" data-compteur>Label</span><span>Maraîchage Sol Vivant</span></li>
       </ul>
-      <div><a class="btn btn-secondaire btn-bloc engagement__btn" href="/la-ferme/">Découvrir la ferme<Icone nom="droite" taille={18} /></a></div>
+      <div data-anim><a class="btn btn-secondaire btn-bloc engagement__btn" href="/la-ferme/">Découvrir la ferme<Icone nom="droite" taille={18} /></a></div>
     </div>
   </section>
 
   <!-- PRODUITS DE LA SEMAINE -->
   <section class="section-sombre sur-sombre semaine" aria-labelledby="semaine-titre">
     <div class="wrap semaine__tete">
-      <div class="semaine__titres">
+      <div class="semaine__titres" data-anim>
         <p class="eyebrow">Cette semaine à la ferme</p>
         <h2 id="semaine-titre">{v ? `Ce qui est prêt pour ${jourVente}` : 'Ce qui est prêt cette semaine'}</h2>
       </div>
-      <div class="surtitre semaine__maj"><span class="point point-clair" aria-hidden="true"></span><p class="sm muted"><span class="seulement-ordi">Liste mise</span><span class="seulement-mobile">Mise</span> à jour {misAJour.virgule}</p></div>
+      <div class="surtitre semaine__maj" data-anim><span class="point point-clair" aria-hidden="true"></span><p class="sm muted"><span class="seulement-ordi">Liste mise</span><span class="seulement-mobile">Mise</span> à jour {misAJour.virgule}</p></div>
     </div>
-    <ul class="semaine__cartes defile" role="list">
+    <ul class="semaine__cartes defile" role="list" data-anim-groupe="cartes">
       {vedettes.map((p) => (
         <li>
           <a class="vedette" href={`/produits/#p-${p.id}`}>
@@ -95,7 +95,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
         </li>
       ))}
     </ul>
-    <div class="wrap semaine__bas">
+    <div class="wrap semaine__bas" data-anim>
       <p class="muted">Et {nb - vedettes.length} autres produits : {autresTexte}. Prix TTC, vente à la ferme.</p>
       <a class="btn btn-blanc btn-bloc" href="/produits/">Voir toute la liste</a>
     </div>
@@ -103,12 +103,12 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
 
   <!-- QUATRE FAÇONS -->
   <section class="wrap facons" aria-labelledby="facons-titre">
-    <div class="facons__tete">
+    <div class="facons__tete" data-anim>
       <p class="eyebrow">À la ferme et au-delà</p>
       <h2 id="facons-titre">Quatre façons de manger nos légumes</h2>
       <p class="muted seulement-ordi">Venez le samedi, commandez vos pommes de terre, commandez par SMS ou faites-vous livrer si vous êtes un professionnel.</p>
     </div>
-    <ul class="facons__grille" role="list">
+    <ul class="facons__grille" role="list" data-anim-groupe="monte">
       <li>
         <a class="facon" href="/horaires-contact/">
           <div class="photo facon__photo"><Photo nom="stand" alt="Le stand de la ferme, sous la tente, un samedi matin" sizes="(min-width: 1100px) 400px, 88px" largeurs={[176, 400, 800]} class="pos-stand" /></div>
@@ -158,8 +158,8 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
 
   <!-- VENIR À LA FERME -->
   <section class="wrap venir" aria-labelledby="venir-titre">
-    <div class="carte-sable venir__carte">
-      <div class="photo venir__photo"><Photo nom="tunnel" alt="Un tunnel de culture de la ferme, vu de l’intérieur" sizes="(min-width: 1100px) 420px, calc(100vw - 64px)" largeurs={[400, 700, 900]} class="pos-tunnel" /></div>
+    <div class="carte-sable venir__carte" data-anim>
+      <div class="photo venir__photo" data-anim="photo"><Photo nom="tunnel" alt="Un tunnel de culture de la ferme, vu de l’intérieur" sizes="(min-width: 1100px) 420px, calc(100vw - 64px)" largeurs={[400, 700, 900]} class="pos-tunnel" /></div>
       <div class="venir__texte">
         <div class="surtitre"><Icone nom="horloge" taille={18} /><p class="eyebrow" id="venir-titre">Venir à la ferme</p></div>
         {quand
@@ -178,11 +178,11 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
   </section>
 
   <!-- SMS -->
-  <section class="sms sur-sombre" id="sms" aria-labelledby="sms-titre">
+  <section class="sms sur-sombre" id="sms" aria-labelledby="sms-titre" data-parallaxe>
     <Photo nom="echange" alt="" sizes="100vw" largeurs={[480, 800, 1200, 1600, 2000]} class="sms__photo" />
     <div class="sms__voile" aria-hidden="true"></div>
     <div class="wrap sms__wrap">
-      <div class="sms__contenu">
+      <div class="sms__contenu" data-anim-groupe="monte">
         <p class="eyebrow">Chaque semaine, un seul SMS</p>
         <h2 id="sms-titre">La liste des légumes, directement sur votre téléphone</h2>
         <p class="muted">Du 15 avril au 15 novembre, recevez la liste<span class="seulement-ordi"> de la semaine</span> et réservez votre panier en répondant au message.</p>

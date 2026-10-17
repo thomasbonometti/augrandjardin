@@ -28,20 +28,20 @@ const champ = (id: string) => agjConfig.fields?.find((f: any) => f.id === id) ||
 >
   <section class="wrap hero">
     <div class="hero__texte">
-      <div><span class="chip chip-vif" data-statut>{ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span></div>
-      <h1 class="h1-page" data-titre>{titre}</h1>
-      <p class="lg muted"><span class="seulement-ordi">Cultivées à Lostroff. Choisissez vos variétés, Pierre prépare votre commande, puis vous choisissez le jour où vous passez la chercher à la ferme.</span><span class="seulement-mobile">Cultivées à Lostroff. Choisissez vos variétés, on vous prévient quand votre commande est prête.</span></p>
-      <div class="prix" data-prix>
+      <div data-anim="pop"><span class="chip chip-vif" data-statut>{ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span></div>
+      <h1 class="h1-page" data-titre data-anim="mots">{titre}</h1>
+      <p class="lg muted" data-anim><span class="seulement-ordi">Cultivées à Lostroff. Choisissez vos variétés, Pierre prépare votre commande, puis vous choisissez le jour où vous passez la chercher à la ferme.</span><span class="seulement-mobile">Cultivées à Lostroff. Choisissez vos variétés, on vous prévient quand votre commande est prête.</span></p>
+      <div class="prix" data-prix data-anim-groupe="pop">
         {pdt.cartes.map((c) => (
           <div class="prix__carte"><p class="prix__kg">{c.parKg}</p><p class="sm muted">{c.detail}</p></div>
         ))}
       </div>
     </div>
-    <div class="photo hero__photo"><Photo nom="pdt" alt="Pommes de terre de la ferme" sizes="(min-width: 1100px) 560px, calc(100vw - 40px)" largeurs={[400, 700, 1080]} prioritaire /></div>
+    <div class="photo hero__photo" data-anim="photo"><Photo nom="pdt" alt="Pommes de terre de la ferme" sizes="(min-width: 1100px) 560px, calc(100vw - 40px)" largeurs={[400, 700, 1080]} prioritaire /></div>
   </section>
 
   <section class="wrap etapes" aria-label="Comment ça marche">
-    <ol class="etapes__liste">
+    <ol class="etapes__liste" data-anim-groupe="pop">
       <li><span class="etapes__num" aria-hidden="true">1</span><div><h2 class="etapes__titre">Vous commandez</h2><p class="muted">Choisissez vos variétés et le nombre de filets.<span class="seulement-ordi"> Le paiement se fait sur place, au retrait.</span><span class="seulement-mobile"> Paiement sur place, au retrait.</span></p></div></li>
       <li><span class="etapes__num" aria-hidden="true">2</span><div><h2 class="etapes__titre">Pierre prépare votre commande</h2><p class="muted">Vous recevez un e-mail de confirmation, puis un e-mail, et un SMS si vous le souhaitez, quand la commande est prête.</p></div></li>
       <li><span class="etapes__num" aria-hidden="true">3</span><div><h2 class="etapes__titre">Vous choisissez votre jour</h2><p class="muted">Ce dernier e-mail contient un lien pour choisir votre créneau de retrait à la ferme, au 43 rue Principale à Lostroff.</p></div></li>

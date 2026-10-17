@@ -110,10 +110,20 @@ function majEntete() {
   const r = resumePdt(catalogue);
   const statut = $('[data-statut]');
   if (statut) statut.textContent = r.ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment';
+  // On ne réécrit l'en-tête que s'il a changé depuis la construction (sinon l'animation d'arrivée serait coupée).
+  const memeTexte = (a: string, b: string) => a.replace(/\s+/g, ' ').trim() === b.replace(/\s+/g, ' ').trim();
   if (r.cartes.length) {
-    $('[data-prix]').innerHTML = r.cartes.map((c) => `<div class="prix__carte"><p class="prix__kg">${echapper(c.parKg)}</p><p class="sm muted">${echapper(c.detail)}</p></div>`).join('');
+    const prix = $('[data-prix]');
+    const html = r.cartes.map((c) => `<div class="prix__carte"><p class="prix__kg">${echapper(c.parKg)}</p><p class="sm muted">${echapper(c.detail)}</p></div>`).join('');
+    const neuf = document.createElement('div');
+    neuf.innerHTML = html;
+    if (!memeTexte(neuf.textContent || '', prix.textContent || '')) prix.innerHTML = html;
   }
-  if (r.formatsTitre) $('[data-titre]').textContent = `Pommes de terre de garde, ${r.formatsTitre}`;
+  if (r.formatsTitre) {
+    const titre = $('[data-titre]');
+    const texte = `Pommes de terre de garde, ${r.formatsTitre}`;
+    if (!memeTexte(texte, titre.textContent || '')) titre.textContent = texte;
+  }
   $('[data-bandeau-test]').hidden = !!catalogue.live;
   const ouvert = r.ouvert;
   form.hidden = !ouvert || !$('[data-fin]').hidden;

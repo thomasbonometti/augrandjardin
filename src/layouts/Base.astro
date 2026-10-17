@@ -43,6 +43,15 @@ const schemas = schema ? [].concat(schema) : [];
   <meta property="og:image" content={imageAbsolue} />
   <meta name="twitter:card" content="summary_large_image" />
   {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  <script is:inline>
+    // Apparitions au défilement : seulement si le visiteur accepte les animations.
+    // Les éléments [data-anim] restent masqués jusqu'à leur entrée ; si GSAP ne se charge pas, tout réapparaît.
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var r = document.documentElement;
+      r.classList.add('anime');
+      setTimeout(function () { if (!r.classList.contains('anime-pret')) r.classList.remove('anime'); }, 3000);
+    }
+  </script>
   <slot name="head" />
 </head>
 <body>
@@ -54,6 +63,10 @@ const schemas = schema ? [].concat(schema) : [];
   </main>
   <PiedDePage />
   <script src="../scripts/formulaires.ts"></script>
+  <script>
+    // GSAP n'est téléchargé que si les animations sont permises (classe posée dans <head>).
+    if (document.documentElement.classList.contains('anime')) import('../scripts/animer').then((m) => m.animer()).catch(() => document.documentElement.classList.remove('anime'));
+  </script>
   <script>
     // Menu mobile : ouverture, fermeture (bouton, Échap, lien), focus.
     const bouton = document.querySelector<HTMLButtonElement>('.burger');

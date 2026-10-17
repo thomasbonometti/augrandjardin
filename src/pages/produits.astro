@@ -18,13 +18,13 @@ const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heur
   schema={fileAriane([{ nom: 'Produits de la semaine', url: '/produits/' }])}
 >
   <section class="wrap tete">
-    <div class="surtitre"><span class="point" aria-hidden="true"></span><p class="eyebrow"><span class="seulement-ordi">Mis à jour {misAJour.texte}</span><span class="seulement-mobile">Mis à jour {misAJour.court}, {misAJour.heure}</span></p></div>
+    <div class="surtitre" data-anim><span class="point" aria-hidden="true"></span><p class="eyebrow"><span class="seulement-ordi">Mis à jour {misAJour.texte}</span><span class="seulement-mobile">Mis à jour {misAJour.court}, {misAJour.heure}</span></p></div>
     <div class="tete__ligne">
       <div class="tete__textes">
-        <h1>Produits de la semaine</h1>
-        <p class="lg muted tete__intro">{nb} produits à venir chercher à la ferme {jour}. <span class="seulement-ordi">Les prix sont TTC.</span><span class="seulement-mobile">Prix TTC.</span> Ceux marqués « Quantité limitée » partent vite : venez tôt.</p>
+        <h1 data-anim="mots">Produits de la semaine</h1>
+        <p class="lg muted tete__intro" data-anim>{nb} produits à venir chercher à la ferme {jour}. <span class="seulement-ordi">Les prix sont TTC.</span><span class="seulement-mobile">Prix TTC.</span> Ceux marqués « Quantité limitée » partent vite : venez tôt.</p>
       </div>
-      <div class="tete__infos">
+      <div class="tete__infos" data-anim-groupe="pop">
         {quand && <span class="chip chip-contour"><Icone nom="horloge" taille={16} />{quand}</span>}
         {nbQuantiteLimitee > 0 && <span class="chip">{nbQuantiteLimitee} produit{nbQuantiteLimitee > 1 ? 's' : ''} en quantité limitée</span>}
       </div>
@@ -43,11 +43,11 @@ const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heur
   <div class="wrap rayons" id="produits">
     {rayons.map((r) => (
       <section class="rayon" id={r.slug} data-rayon={r.slug} aria-labelledby={`t-${r.slug}`}>
-        <div class="rayon__tete">
+        <div class="rayon__tete" data-anim>
           <h2 class="rayon__titre" id={`t-${r.slug}`}>{r.titre}</h2>
           <p class="muted rayon__compte">{r.produits.length} produit{r.produits.length > 1 ? 's' : ''}</p>
         </div>
-        <ul class="grille" role="list">
+        <ul class="grille" role="list" data-anim-groupe="pop">
           {r.produits.map((p) => <ProduitCarte p={p} />)}
         </ul>
       </section>
@@ -55,7 +55,7 @@ const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heur
   </div>
 
   <section class="wrap sms" id="sms" aria-labelledby="sms-titre">
-    <div class="carte-sable sms__carte">
+    <div class="carte-sable sms__carte" data-anim>
       <div class="sms__textes">
         <h2 class="sms__titre" id="sms-titre">Recevez la liste chaque semaine par SMS</h2>
         <p class="muted sms__texte"><span class="seulement-ordi">Pas de commande en ligne : vous</span><span class="seulement-mobile">Vous</span> répondez au SMS avec votre panier et on le met de côté pour {jour}. Du 15 avril au 15 novembre.</p>
