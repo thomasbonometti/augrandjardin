@@ -89,6 +89,36 @@ const schemas = schema ? [].concat(schema) : [];
       matchMedia('(min-width: 1100px)').addEventListener('change', (m) => { if (m.matches) ouvrir(false); });
     }
 
+    // En-tête : il glisse sous la barre verte quand on descend, et revient dès qu'on remonte.
+    // Il reste affiché en haut de page, menu ouvert, quand on y navigue au clavier,
+    // et reste caché pendant un saut vers une ancre de la page (filtres, « Demander un accès »…).
+    const entete = document.querySelector<HTMLElement>('.entete');
+    if (entete) {
+      const racine = document.documentElement;
+      const cacher = (oui: boolean) => racine.classList.toggle('entete-cache', oui);
+      let reference = scrollY;
+      let enAttente = false;
+      let sautJusqua = 0;
+      const surDefilement = () => {
+        enAttente = false;
+        const y = scrollY;
+        const ecart = y - reference;
+        if (document.body.classList.contains('menu-ouvert')) { reference = y; return; }
+        if (y <= entete.offsetHeight) cacher(false);
+        else if (performance.now() < sautJusqua) cacher(true);
+        else if (ecart > 8) cacher(true);
+        else if (ecart < -8) cacher(false);
+        if (Math.abs(ecart) > 8 || y <= entete.offsetHeight) reference = y;
+      };
+      addEventListener('scroll', () => { if (!enAttente) { enAttente = true; requestAnimationFrame(surDefilement); } }, { passive: true });
+      surDefilement();
+      entete.addEventListener('focusin', () => cacher(false));
+      document.addEventListener('click', (e) => {
+        const lien = (e.target as Element).closest?.('a[href*="#"]') as HTMLAnchorElement | null;
+        if (lien && lien.hash && lien.pathname === location.pathname && !lien.closest('.entete, .menu-mobile')) sautJusqua = performance.now() + 1200;
+      });
+    }
+
     // Prochaine vente : si la date affichée est passée (site pas encore republié),
     // on garde le jour et l'heure sans la date.
     const fin = document.querySelector<HTMLElement>('[data-vente-fin]')?.dataset.venteFin;

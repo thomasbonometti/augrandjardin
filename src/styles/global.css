@@ -62,10 +62,13 @@
 }
 @media (min-width: 720px) { :root { --gouttiere: 40px; } }
 @media (min-width: 1100px) { :root { --gouttiere: 80px; } }
+/* Hauteurs de la barre verte et de l'en-tête (bordure comprise), qui restent collés en haut au défilement */
+:root { --h-barre: 40px; --h-entete: 65px; }
+@media (min-width: 1100px) { :root { --h-barre: 44px; --h-entete: 89px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: 16px; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--h-barre) + 16px); }
 body {
   background: var(--creme);
   color: var(--gris-fonce);
@@ -212,7 +215,8 @@ textarea.saisie { height: 96px; padding: 14px 16px; resize: vertical; line-heigh
 .sur-sombre .message-form.ko { color: #ffb4a8; }
 
 /* ---------- Barre d'info ---------- */
-.barre-info { background: var(--vert-foret); color: var(--blanc); font-size: 14px; line-height: 20px; }
+/* Toujours visible : collée en haut, au-dessus de l'en-tête qui glisse dessous quand on descend (script dans Base.astro) */
+.barre-info { background: var(--vert-foret); color: var(--blanc); font-size: 14px; line-height: 20px; position: sticky; top: 0; z-index: 30; }
 .barre-info .wrap { height: 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .barre-info__vente { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .barre-info__vente p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -229,7 +233,9 @@ textarea.saisie { height: 96px; padding: 14px 16px; resize: vertical; line-heigh
 }
 
 /* ---------- En-tête ---------- */
-.entete { border-bottom: 1px solid var(--bordure-claire); background: var(--creme); position: relative; z-index: 20; }
+.entete { border-bottom: 1px solid var(--bordure-claire); background: var(--creme); position: sticky; top: var(--h-barre); z-index: 20; transition: transform 0.3s ease; }
+html.entete-cache .entete { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .entete { transition: none; } }
 .entete .wrap { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .entete__logo svg { width: 140px; height: auto; }
 .entete__nav { display: none; }
