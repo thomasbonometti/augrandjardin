@@ -121,7 +121,8 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
   .lieu__etat.chip { height: 26px; font-size: 12px; padding: 0 8px; flex: none; }
   @media (min-width: 1100px) {
     .creneaux { padding-bottom: 64px; flex-direction: row; align-items: stretch; }
-    .vente { width: 520px; flex: none; padding: 40px; gap: 28px; justify-content: space-between; }
+    .vente { width: 520px; flex: none; padding: 40px; gap: 28px; }
+    .vente > .surtitre { margin-bottom: auto; }
     .vente .surtitre { gap: 10px; }
     .vente__quand { gap: 8px; }
     .vente__jour, .vente__heures { font-size: 48px; line-height: 56px; }
@@ -138,10 +139,12 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
 
   .carte-section { padding-bottom: 32px; }
   .plan { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; border: 1px solid var(--ligne); background: var(--blanc); }
-  .plan__fond { position: relative; aspect-ratio: 350 / 260; background: #efe9da; }
+  /* Sur ordinateur, la carte Google est rognée en haut (--rogne) : sa fiche de lieu passerait sous la nôtre.
+     Le logo et les mentions de Google restent visibles en bas. Sur téléphone, notre fiche est sous la carte : rien à rogner. */
+  .plan__fond { position: relative; aspect-ratio: 350 / 260; background: #efe9da; overflow: hidden; --rogne: 0px; }
   .plan__fond svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .plan__ordi { display: none; }
-  .plan__fond :global(.plan__iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .plan__fond :global(.plan__iframe) { position: absolute; left: 0; bottom: 0; top: calc(-1 * var(--rogne)); width: 100%; height: calc(100% + var(--rogne)); border: 0; }
   .plan__fond:has(:global(.plan__iframe)) svg { display: none; }
   .plan__accord { position: absolute; left: 16px; right: 16px; top: 18%; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
   .plan__mention { background: rgba(255, 255, 255, 0.9); color: var(--secondaire); padding: 2px 10px; border-radius: 999px; }
@@ -153,7 +156,7 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
   @media (min-width: 1100px) {
     .carte-section { padding-bottom: 64px; }
     .plan { position: relative; display: block; height: 440px; border: 0; }
-    .plan__fond { aspect-ratio: auto; height: 100%; }
+    .plan__fond { aspect-ratio: auto; height: 100%; --rogne: 160px; }
     .plan__ordi { display: block; }
     .plan__mobile { display: none; }
     .plan__accord { top: 26%; }
