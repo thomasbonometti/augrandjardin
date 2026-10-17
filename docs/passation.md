@@ -32,6 +32,10 @@ Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. 
   - Le client choisit son jour plus tard, par le lien du mail « prête ». La page l'explique en 3 étapes.
 - **Espace pro.** Un mot de passe partagé (`PRO_PASSWORD`) et un cookie signé de 60 jours (`PRO_SECRET`). Les prix HT sont calculés depuis le TTC (TVA 5,5 %). « Imprimer / PDF » et « Se déconnecter » sont sur la page.
 - **Bio.** Validé par Thomas le 16/10 : « il est bien en bio ». Les produits cochés « Pas bio » dans Notion portent leur mention.
+- **Apparitions au défilement (GSAP, demandé par Thomas le 17/10).** Le script est dans `src/scripts/animer.ts`, et chaque page porte des attributs `data-anim`, `data-anim-groupe`, `data-compteur` ou `data-parallaxe` (le mode d'emploi est en tête du script).
+  - GSAP n'est téléchargé que si le visiteur accepte les animations (`prefers-reduced-motion`). Le contenu reste visible sans JavaScript, et tout réapparaît si GSAP ne se charge pas en 3 secondes.
+  - Le formulaire de commande et la grille pro ne bougent pas, à part le total qui rebondit.
+  - Le pied de page n'a plus d'arrondis.
 - **Accessibilité.** Niveau WCAG AA vérifié avec axe sur toutes les pages, au téléphone et à l'ordinateur.
 - **Référencement local.** Fiche LocalBusiness (JSON-LD), avec horaires lus dans le Planning, fil d'Ariane, sitemap, adresses canoniques sur augrandjardin.fr.
 
