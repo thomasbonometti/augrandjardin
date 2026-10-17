@@ -42,6 +42,9 @@ Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. 
     - L'adresse de la carte est dans `src/data/ferme.js` (`carteGoogle`).
     - Sur ordinateur, le haut de la carte Google est rogné, pour que sa fiche de lieu ne dépasse pas sous la nôtre. Le logo et les mentions de Google restent visibles.
   - **« Où nous retrouver »** remplace la liste des créneaux : les lieux du Planning sans jours ni horaires (fonction `lireLieux`), la ferme en tête, avec la pastille « Cette semaine » sur les lieux de la semaine.
+- **En-tête collant (17/10, demandé par Thomas).** La barre verte « Prochaine vente » reste toujours visible en haut. Le menu glisse dessous quand on descend et revient dès qu'on remonte (script dans `Base.astro`, hauteurs `--h-barre` et `--h-entete` dans `global.css`).
+  - Le menu reste affiché en haut de page, quand le menu mobile est ouvert, et quand on y navigue au clavier.
+  - Il reste caché pendant un saut vers une ancre de la page.
 - **Typographie française.** Espaces insécables autour des guillemets, avant « : ; ! ? », entre un nombre et son unité, et dans les plages horaires.
   - Ils sont posés à la construction sur toutes les pages (intégration dans `astro.config.mjs`, règles dans `src/lib/typo.js`).
   - Les textes écrits par les scripts (commande, formulaires) passent aussi par ces règles.
