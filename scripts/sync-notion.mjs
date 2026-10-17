@@ -20,7 +20,7 @@ const NOTION_VERSION = '2025-09-03';
 const PRODUITS_DS = process.env.NOTION_PRODUITS_DS || '5fb0d75e-67d6-4840-a703-2c6e0b3eaa11';
 const PLANNING_DS = process.env.NOTION_PLANNING_DS || '152a41f4-8718-45e1-9025-40f3da0572e3';
 
-async function notionQuery(dataSourceId, body) {
+async function notionQuery(nomBase, dataSourceId, body) {
   const rows = [];
   let cursor;
   do {
@@ -33,7 +33,16 @@ async function notionQuery(dataSourceId, body) {
       },
       body: JSON.stringify({ ...body, page_size: 100, ...(cursor ? { start_cursor: cursor } : {}) }),
     });
-    if (!res.ok) throw new Error(`Notion ${res.status} : ${await res.text()}`);
+    if (!res.ok) {
+      const detail = await res.text();
+      const aide =
+        res.status === 404
+          ? `\n→ L'intégration Notion « Site Au Grand Jardin » n'a pas accès à la base « ${nomBase} » : ouvrir la base dans Notion → ••• → Connexions → ajouter « Site Au Grand Jardin ».`
+          : res.status === 401
+            ? '\n→ NOTION_TOKEN refusé : vérifier le secret dans Cloudflare (projet agj-site-2026 → Settings → Variables and Secrets).'
+            : '';
+      throw new Error(`Notion ${res.status} sur « ${nomBase} » : ${detail}${aide}`);
+    }
     const json = await res.json();
     rows.push(...json.results);
     cursor = json.has_more ? json.next_cursor : undefined;
@@ -94,12 +103,12 @@ function mapPlanning(page) {
 async function syncLive() {
   console.log('→ Lecture de Notion…');
   const produits = (
-    await notionQuery(PRODUITS_DS, {
+    await notionQuery('Produits de la ferme', PRODUITS_DS, {
       filter: { property: 'En vente', checkbox: { equals: true } },
       sorts: [{ property: 'Nom', direction: 'ascending' }],
     })
   ).map(mapProduit);
-  const planning = (await notionQuery(PLANNING_DS, {})).map(mapPlanning);
+  const planning = (await notionQuery('Planning semaine', PLANNING_DS, {})).map(mapPlanning);
 
   // Les liens de fichiers Notion expirent au bout d'une heure : on télécharge maintenant.
   await fs.rm(IMG_SRC, { recursive: true, force: true });

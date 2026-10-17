@@ -1,8 +1,77 @@
 # Au Grand Jardin — site 2026
 
-Branche de travail du nouveau site augrandjardin.fr. La branche `main` sert toujours le site actuel (GitHub Pages) : ne pas y toucher avant la bascule.
+Nouveau site d'augrandjardin.fr, construit d'après les maquettes Figma « Au Grand Jardin | Site 2026 » (frames desktop 1440 px et mobile 390 px).
+La branche `main` sert toujours le site actuel (GitHub Pages) : **ne pas y toucher avant la bascule**. Tout le travail se fait sur `site-2026`.
 
-- `docs/passation.md` : tout ce qu'il faut savoir avant de coder (maquettes Figma et leurs node IDs, décisions, outil de commande et son API, écarts entre maquette et réalité, règles, points ouverts). À lire en premier.
-- `reference/prototype-2026-10-16/` : pages construites du prototype du 16 octobre 2026 (Astro, lu dans Notion), pour référence seulement. Ouvrir `index.html`. Sa réservation de pommes de terre ne doit pas être reprise : la commande passe par l'outil de commande (dépôt `thomasbonometti/brief`).
+- Hébergement : Cloudflare Pages, projet `agj-site-2026` (branche de production `site-2026`), adresse de test `*.pages.dev`.
+- Données : Notion, lu au moment de la construction. Bouton « Publier le site » dans la page Notion **Site augrandjardin.fr** → adresse de reconstruction Cloudflare → site à jour environ une minute après.
+- Commandes de pommes de terre : outil de commande du dépôt `thomasbonometti/brief` (Worker `formulaires`). Le site n'en dessine que l'écran ; prix, stock, Notion, mails et choix du créneau restent dans l'outil.
+- Aucun framework envoyé au navigateur : pages HTML statiques (Astro), un peu de JavaScript seulement pour le menu mobile, les filtres, les formulaires et la commande.
 
-Maquettes : https://www.figma.com/design/zrlhOtAHZaw02nvLTnaswz/Au-Grand-Jardin-%7C-Site-2026
+`docs/passation.md` : décisions, écarts avec la maquette, points ouverts. À lire avant de reprendre.
+
+## Pages
+
+| Page | Adresse | Frames Figma |
+|---|---|---|
+| Accueil | `/` | 13:2 / 38:2 |
+| Produits de la semaine | `/produits/` | 14:2 / 39:2 |
+| La ferme | `/la-ferme/` | 15:2 / 40:2 |
+| Pommes de terre (commande) | `/pommes-de-terre/` | 16:2 / 41:2 |
+| Professionnels | `/professionnels/` | 17:2 / 42:2 |
+| Espace pro (mot de passe) | `/pro/tarifs/` | 18:2 / 43:2 |
+| Horaires & contact | `/horaires-contact/` | 19:2 / 44:2 |
+| Menu mobile | (toutes les pages) | 37:2 |
+| Mentions légales, 404 | `/mentions-legales/` | — |
+
+## D'où viennent les données
+
+| Donnée | Source | Quand |
+|---|---|---|
+| Produits de la semaine, prix, photos, « Nouveau », « Quantité limitée », « Pas bio » | Notion « Produits de la ferme » (`En vente` coché) | à la construction |
+| Horaires, prochaine vente (barre du haut, accueil, contact) | Notion « Planning » (`Cette semaine`) | à la construction |
+| Catalogue de commande (filets, non trié, prix, stock) | API de l'outil `/api/agj/catalog` | à la construction, puis relu en direct dans la page |
+| Grille pro (HT = TTC ÷ 1,055) | Notion « Produits de la ferme » | à la construction |
+| Inscriptions SMS, demandes d'accès pro | écrit par le site dans Notion « Inscriptions SMS », « Demandes d'accès pro » (page Site augrandjardin.fr) | à l'envoi du formulaire |
+| Adresse, téléphone, partenaires, restaurants, mentions légales | `src/data/ferme.js` | dans le code |
+
+Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare garde la version en ligne précédente. Si l'outil de commande ne répond pas, la construction continue avec la copie précédente du catalogue (`data/agj-*.json`).
+
+## Fonctions Cloudflare (`functions/`)
+
+| Adresse | Rôle |
+|---|---|
+| `/api/agj/catalog`, `/api/agj/order`, `/agj/config.json`, `/agj/lib/cart.js` | relais vers le Worker `formulaires` (même adresse pour le navigateur, rien à changer côté outil) |
+| `/api/inscription-sms`, `/api/demande-pro` | écriture dans les deux bases Notion du site ; lignes du site de test cochées « Test » |
+| `/api/pro-login`, `/pro/*` | espace pro : mot de passe partagé, cookie de 60 jours, `/pro/deconnexion/` |
+
+## Secrets (Cloudflare → projet → Settings → Variables and Secrets, type Secret)
+
+- `NOTION_TOKEN` : intégration Notion « Site Au Grand Jardin » (lecture + insertion), connectée aux pages « Au Grand Jardin 2025 » et « Site augrandjardin.fr ». Elle n'a pas accès aux bases de l'outil de commande.
+- `PRO_PASSWORD` : mot de passe donné aux pros. Le changer déconnecte tout le monde.
+- `PRO_SECRET` : longue chaîne au hasard (signature du cookie pro).
+
+Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne sur augrandjardin.fr : autorise l'indexation), `AGJ_URL` (adresse de l'outil, par défaut `https://formulaires.hey-d8b.workers.dev`).
+Jamais de secret dans le dépôt : en local, `.dev.vars` (ignoré par git).
+
+## Travailler en local
+
+```
+npm install
+npm run build:local      # construit avec l'instantané de data/ (sans jeton Notion)
+npm run build            # lit Notion (NOTION_TOKEN) et l'outil de commande, puis construit
+npm run preview          # sert dist/ avec les fonctions Cloudflare (http://localhost:8788)
+npm test                 # fonctions du site
+npm run e2e              # tests navigateur, téléphone et ordinateur
+```
+
+Pour tester la commande sans toucher à l'outil en ligne : dans le dépôt `brief`, `AGJ_FAKE=1 npm run dev` (outil simulé sur le port 8787), puis ici un `.dev.vars` avec `AGJ_URL=http://localhost:8787`, et
+`E2E_COMMANDE=1 AGJ_DEV_URL=http://localhost:8787 E2E_PRO_PASSWORD=… npm run e2e`.
+Sur l'adresse de test : `BASE_URL=https://agj-site-2026.pages.dev npm run e2e` (lecture seule ; `E2E_COMMANDE=1` passe une vraie commande « Test »).
+
+## Bascule (plus tard)
+
+1. Pierre valide les textes « bio » et les photos.
+2. Fusionner `site-2026` dans `main`, passer la branche de production Cloudflare sur `main`, ajouter `SITE_INDEXABLE=oui`.
+3. Domaine augrandjardin.fr sur le projet Cloudflare Pages (et retirer `CNAME` / GitHub Pages).
+4. Éteindre le scénario Make « Au Grand Jardin | Notion -> Github (Optimisé) » (Thomas).
