@@ -36,6 +36,15 @@ Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. 
   - GSAP n'est téléchargé que si le visiteur accepte les animations (`prefers-reduced-motion`). Le contenu reste visible sans JavaScript, et tout réapparaît si GSAP ne se charge pas en 3 secondes.
   - Le formulaire de commande et la grille pro ne bougent pas, à part le total qui rebondit.
   - Le pied de page n'a plus d'arrondis.
+- **Horaires & contact (17/10, à la demande de Thomas).**
+  - **Carte Google Maps** à la place du plan dessiné.
+    - Elle ne se charge qu'après un clic sur « Afficher la carte Google Maps », parce que Google dépose ses propres cookies et que les mentions légales promettent « aucun cookie ». Le choix est retenu dans le navigateur (`localStorage`, clé `agj-carte-google`), et les mentions légales le disent.
+    - L'adresse de la carte est dans `src/data/ferme.js` (`carteGoogle`).
+    - Sur ordinateur, le haut de la carte Google est rogné, pour que sa fiche de lieu ne dépasse pas sous la nôtre. Le logo et les mentions de Google restent visibles.
+  - **« Où nous retrouver »** remplace la liste des créneaux : les lieux du Planning sans jours ni horaires (fonction `lireLieux`), la ferme en tête, avec la pastille « Cette semaine » sur les lieux de la semaine.
+- **Typographie française.** Espaces insécables autour des guillemets, avant « : ; ! ? », entre un nombre et son unité, et dans les plages horaires.
+  - Ils sont posés à la construction sur toutes les pages (intégration dans `astro.config.mjs`, règles dans `src/lib/typo.js`).
+  - Les textes écrits par les scripts (commande, formulaires) passent aussi par ces règles.
 - **Accessibilité.** Niveau WCAG AA vérifié avec axe sur toutes les pages, au téléphone et à l'ordinateur.
 - **Référencement local.** Fiche LocalBusiness (JSON-LD), avec horaires lus dans le Planning, fil d'Ariane, sitemap, adresses canoniques sur augrandjardin.fr.
 
