@@ -124,7 +124,7 @@ Autres documents :
 - **Lot 2** à lancer quand Thomas le demande (voir le plan d'évolutions).
 
 - **Espace pro** : Thomas teste la connexion avec le mot de passe pro, et remplace `PRO_SECRET` dans Cloudflare (il a circulé dans une conversation).
-- **Bouton Notion « Publier »** : pas encore testé. Un clic doit faire apparaître une nouvelle construction dans Cloudflare environ une minute plus tard.
+- **Bouton Notion « Publier »** : essayé par Thomas le 21/10 ; la construction de 20 h 27, lancée sans push, est passée. Un clic fait apparaître une nouvelle construction dans Cloudflare environ une minute plus tard.
 - **Revue Figma / site** (artifact « Revue site AGJ 2026 ») : les captures datent du 17/10 au matin, avant le pied de page sans arrondis, les animations, l'en-tête collant, la carte Google et la liste des lieux. Elle est à refaire si Thomas veut une revue à jour.
 - **Idées d'évolution** : trier les idées 31 à 60 avec Thomas (`docs/idees.md`), puis les ajouter à la note Notion.
 - **« Sans traitement chimique »** sur la page Pommes de terre : à valider avec Pierre.
