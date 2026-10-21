@@ -1,10 +1,13 @@
 # Site Au Grand Jardin 2026 — passation
 
-À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 17 octobre 2026.
+À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 21 octobre 2026.
 
 Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. Il suit les maquettes Figma (bureau et téléphone) et lit Notion. On peut y commander des pommes de terre, en mode test. Le site actuel (branche `main`, GitHub Pages) n'a pas bougé.
 
-`README.md` décrit le fonctionnement technique : pages, sources de données, fonctions, secrets, travail en local.
+Autres documents :
+- `CLAUDE.md` à la racine : règles, emplacements, plan du code, tâches courantes et méthode de vérification. C'est le mode d'emploi pour toute session qui modifie le site.
+- `README.md` : fonctionnement technique (pages, sources de données, fonctions, secrets, travail en local, bascule).
+- `docs/idees.md` : 60 idées d'évolution. Les idées 31 à 60 sont à trier avec Thomas.
 
 ---
 
@@ -95,6 +98,9 @@ Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. 
 ## 6. Points ouverts
 
 - **Espace pro** : Thomas teste la connexion avec le mot de passe pro, et remplace `PRO_SECRET` dans Cloudflare (il a circulé dans une conversation).
+- **Bouton Notion « Publier »** : pas encore testé. Un clic doit faire apparaître une nouvelle construction dans Cloudflare environ une minute plus tard.
+- **Revue Figma / site** (artifact « Revue site AGJ 2026 ») : les captures datent du 17/10 au matin, avant le pied de page sans arrondis, les animations, l'en-tête collant, la carte Google et la liste des lieux. Elle est à refaire si Thomas veut une revue à jour.
+- **Idées d'évolution** : trier les idées 31 à 60 avec Thomas (`docs/idees.md`), puis les ajouter à la note Notion.
 - **« Sans traitement chimique »** sur la page Pommes de terre : à valider avec Pierre.
 - **Horaires** : le Planning ne coche que le samedi 10h – 12h30 ; l'ancien site affichait aussi le mercredi.
 - **Photos** : quelques produits sans photo dans Notion affichent une initiale.
