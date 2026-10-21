@@ -25,13 +25,13 @@
 },{
   "Nom": "Carotte vrac",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Carotte vrac Bio 3.10 €/kg",
+  "Etiquette": "Carotte vrac Bio 3.10 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/6.jpg"
 },{
   "Nom": "Céleri Rave",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Céleri Rave Bio 3.70 €/kg",
+  "Etiquette": "Céleri Rave Bio 3.70 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/8.jpg"
 },{
@@ -73,13 +73,13 @@
 },{
   "Nom": "Navet Violet",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Navet Violet Bio 3.00 €/kg",
+  "Etiquette": "Navet Violet Bio 3.00 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/.jpg"
 },{
   "Nom": "Poireau",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Poireau Bio 3.80 €/kg",
+  "Etiquette": "Poireau Bio 3.80 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/46.jpg"
 },{
@@ -103,25 +103,25 @@
 },{
   "Nom": "Radis Noir (long)",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Radis Noir (long) Bio 3.40 €/kg*",
+  "Etiquette": "Radis Noir (long) Bio 3.40 €/kg*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/54.jpg"
 },{
   "Nom": "Radis Noir (rond)",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Radis Noir (rond) Bio 3.40 €/kg*",
+  "Etiquette": "Radis Noir (rond) Bio 3.40 €/kg*",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/54.jpg"
 },{
   "Nom": "Radis Rave",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Radis Rave Bio 3.80 €/kg",
+  "Etiquette": "Radis Rave Bio 3.80 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/95.jpg"
 },{
   "Nom": "Chou Kale",
   "En vente": true,
-  "Etiquette": "✨ Nouveau : Chou Kale Bio 5.70 €/kg",
+  "Etiquette": "Chou Kale Bio 5.70 €/kg",
   "Producteur": "Au Grand Jardin",
   "IMG": "img-products/17.jpg"
 },{
