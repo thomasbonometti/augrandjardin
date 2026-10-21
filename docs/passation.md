@@ -1,6 +1,6 @@
 # Site Au Grand Jardin 2026 — passation
 
-À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 21 octobre 2026.
+À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 21 octobre 2026 au soir, lot 1 du plan d'évolutions compris.
 
 Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. Il suit les maquettes Figma (bureau et téléphone) et lit Notion. On peut y commander des pommes de terre, en mode test. Le site actuel (branche `main`, GitHub Pages) n'a pas bougé.
 
@@ -20,8 +20,11 @@ Autres documents :
 | Adresse de test | https://agj-site-2026.pages.dev (`noindex`, et `robots.txt` interdit tout tant que `SITE_INDEXABLE` ne vaut pas `oui`) |
 | Maquettes | Figma « Au Grand Jardin \| Site 2026 » (`zrlhOtAHZaw02nvLTnaswz`). Bureau : `13:2` Accueil, `14:2` Produits, `15:2` La ferme (Sol Vivant `15:116`), `16:2` Pommes de terre, `17:2` Professionnels, `18:2` Espace pro, `19:2` Horaires & contact. Téléphone : `38:2`, menu `37:2`, `39:2` à `44:2`, dans le même ordre. |
 | Outil de commande | Dépôt `thomasbonometti/brief`, Worker `formulaires` (https://formulaires.hey-d8b.workers.dev). Le site relaie son API, sans lire ni écrire ses bases Notion. |
-| Notion lu par le site | « Produits de la ferme » (`collection://5fb0d75e-67d6-4840-a703-2c6e0b3eaa11`, lignes « En vente ») et « 📅 Planning semaine » (`collection://152a41f4-8718-45e1-9025-40f3da0572e3`). |
-| Notion écrit par le site | Page « Site augrandjardin.fr » (`3fb70bd669cd81a5a2a0cfc84d7016a2`) : bases « Inscriptions SMS » (`collection://1f9db94f-6b9f-4ba2-aae7-d67ea66cae6f`) et « Demandes d'accès pro » (`collection://95af73b3-86bc-4013-adb6-ccbe215a44d0`). Ce qui vient de l'adresse de test est coché « Test ». |
+| Notion lu par le site | « Produits de la ferme » (`collection://5fb0d75e-67d6-4840-a703-2c6e0b3eaa11`, lignes « En vente ») et « 📅 Planning semaine » (`collection://152a41f4-8718-45e1-9025-40f3da0572e3`). Sous la page « Site augrandjardin.fr » : « Réglages du site » (`collection://cc35fc8e-c976-44f0-b213-31eed14e3bee`) et « Questions fréquentes » (`collection://a8d7a11c-2204-4c8b-ab4e-23c749bd4452`). |
+| Notion écrit par le site | Page « Site augrandjardin.fr » (`3fb70bd669cd81a5a2a0cfc84d7016a2`) : bases « Inscriptions SMS » (`collection://1f9db94f-6b9f-4ba2-aae7-d67ea66cae6f`) et « Demandes d'accès pro » (`collection://95af73b3-86bc-4013-adb6-ccbe215a44d0`). Ce qui vient de l'adresse de test est coché « Test ». « Historique des listes » (`collection://5fced6cb-eabb-46cd-beb2-00ee278afd91`), écrit par chaque construction Cloudflare. |
+| Plan d'évolutions | Document du projet Claude « Au Grand Jardin » : `site-web/plan-evolutions.md` (fait foi, un lot à la fois). |
+| Statistiques de visite | Cloudflare Web Analytics, activé par Thomas le 21/10 sur le projet. Le script est ajouté par Cloudflare, rien dans le code. |
+| Affichette QR codes | https://claude.ai/artifact/VeEkgWUy3TQc5uHP3j2pR2 (A5 à imprimer pour la vente à la ferme). |
 | Intégration Notion | « Site Au Grand Jardin » (lecture et insertion). Elle doit être connectée à la base Produits, à la base Planning et à la page « Site augrandjardin.fr ». Sans l'une d'elles, la construction échoue avec un message qui nomme la base. |
 
 ## 2. Ce qui a été décidé
@@ -53,6 +56,14 @@ Autres documents :
   - Les textes écrits par les scripts (commande, formulaires) passent aussi par ces règles.
 - **Accessibilité.** Niveau WCAG AA vérifié avec axe sur toutes les pages, au téléphone et à l'ordinateur.
 - **Référencement local.** Fiche LocalBusiness (JSON-LD), avec horaires lus dans le Planning, fil d'Ariane, sitemap, adresses canoniques sur augrandjardin.fr.
+- **Lot 1 du plan d'évolutions (21/10, demandé par Thomas : « Lance le lot 1 »).**
+  - **Mode fermé (idée 28)** : case « Fermé » de « Réglages du site », avec « Reprise le » et « Message de fermeture ». Barre verte « Ventes en pause, reprise le … », encart à la place de la liste, de la commande de pommes de terre et de la grille pro, chiffres « reprise des ventes », pas de lieu « Cette semaine ». Le site rouvre à la publication de la semaine de la reprise (prochaine vente du Planning le jour de la reprise ou après) ou à toute publication à partir de ce jour.
+  - **Message de la semaine (idée 12)** : bandeau « À noter » sous la barre verte, quand « Afficher le message » est coché.
+  - **Questions fréquentes (idée 11)** : accordéon `<details>` en bas de 6 pages, données structurées FAQPage, base Notion « Questions fréquentes ». 14 questions écrites par Claude d'après les sujets validés par Thomas : 8 publiées, qui ne reprennent que des informations déjà sur le site, et 6 brouillons qui attendent Pierre (paiement, parking, sacs, conservation des pommes de terre, zone de livraison et facturation des pros).
+  - **Statistiques (B1)** : Cloudflare Web Analytics, sans cookie ; une ligne des mentions légales en parle.
+  - **Historique des listes (B2, démarrage)** : chaque construction Cloudflare copie la liste dans Notion si elle a changé, pour le bilan de saison.
+  - **Outil de commande (pull request n° 4 du dépôt `brief`, à fusionner par Thomas)** : mode fermé de `/agj` (même case), rappel la veille du retrait (idée 9), alerte de stock bas à Pierre sous 10 kg par variété de pommes de terre (idée 30), merci avec lien d'avis Google au retrait (idée 27).
+  - **Affichette A5 (idée 27)** : deux QR codes, la liste de la semaine (`https://produits.augrandjardin.fr/?src=qr`) et l'avis Google (`https://g.page/r/CVcpGhGHIj7rEAE/review`).
 
 ## 3. Écarts avec la maquette (volontaires)
 
@@ -88,14 +99,29 @@ Autres documents :
 - Espace pro : un mauvais mot de passe est refusé (401), et `/pro/tarifs/` renvoie vers la connexion. La connexion avec le vrai mot de passe est à tester par Thomas.
 - Publication du 17/10 à 8 h 51, avec les données Notion : 32 produits (30 photos), 9 créneaux, 16 produits de l'outil.
 - Revue Figma / site, page par page, au téléphone et à l'ordinateur : artifact « Revue site AGJ 2026 », https://claude.ai/artifact/QCPcPS8N1G7SwUF6TDYSWw
+- **Lot 1, le 21/10 :**
+  - Tests unitaires : 19 sur 19 (mode fermé et réouverture, message de la semaine, questions fréquentes, historique). Tests navigateur des questions fréquentes, du mode fermé (`E2E_FERME=1`, site construit fermé) et de la commande contre l'outil simulé : verts, au téléphone et à l'ordinateur.
+  - Construction Cloudflare du commit `8eb6e1f` : 8 questions fréquentes, « Site ouvert », copie de la liste dans l'historique (32 produits, semaine 2026-S43), ligne vue dans Notion.
+  - Adresse de test, dans Chrome : accordéon des questions sur Produits et Horaires & contact ; script Cloudflare Web Analytics chargé, et mesure envoyée.
+  - Lien d'avis Google ouvert : il mène bien à la fiche Au Grand Jardin (rien n'a été saisi).
+  - QR codes de l'affichette décodés après affichage dans un navigateur : ils mènent aux deux adresses ci-dessus.
+  - Outil (pull request n° 4) : 82 tests unitaires et d'API, parcours Playwright au téléphone et à l'ordinateur, tous verts.
 
 ## 5. Règles
 
 - Outil de commande en **mode test** (`AGJ_LIVE` = "0") : commandes « Test », mails seulement vers hey@thomasbonometti.fr. Ne jamais toucher aux vraies commandes, à « Commandes 2025 » ni aux scénarios Make.
 - Secrets uniquement dans Cloudflare (`NOTION_TOKEN`, `PRO_PASSWORD`, `PRO_SECRET`), et `.dev.vars` en local (ignoré par git).
 - Modifications du dépôt `brief` par pull request, que Thomas fusionne.
+- « Réglages du site » est lue par le site et par l'outil de commande ; ni l'un ni l'autre n'y écrit.
+- Questions fréquentes : « Publiée » seulement après l'accord de Pierre.
 
 ## 6. Points ouverts
+
+- **Lot 1, côté Thomas** :
+  - connecter l'intégration Notion de l'outil de commande à la base « Réglages du site », puis fusionner la pull request n° 4 du dépôt `brief` (étapes dans sa description) ;
+  - imprimer l'affichette A5 (artifact ci-dessus, export PDF).
+- **Lot 1, côté Pierre** : relire les 6 questions en brouillon et les publier ; remplir « Stock » dans Produits AGJ pour que l'alerte de stock bas serve ; dire si le seuil de 10 kg lui convient (Claude conseille 25 à 30 kg pour avoir le temps de réagir), si le merci avec lien d'avis doit partir à chaque retrait ou seulement au premier, et s'il veut l'alerte pour les oignons aussi.
+- **Lot 2** à lancer quand Thomas le demande (voir le plan d'évolutions).
 
 - **Espace pro** : Thomas teste la connexion avec le mot de passe pro, et remplace `PRO_SECRET` dans Cloudflare (il a circulé dans une conversation).
 - **Bouton Notion « Publier »** : pas encore testé. Un clic doit faire apparaître une nouvelle construction dans Cloudflare environ une minute plus tard.
@@ -108,6 +134,6 @@ Autres documents :
   - fusionner `site-2026` dans `main` et passer la production Cloudflare sur `main` ;
   - `SITE_INDEXABLE=oui` ;
   - domaine augrandjardin.fr sur le projet Pages ;
-  - rediriger `produits.augrandjardin.fr` (lien des SMS) vers `/produits/` ;
+  - rediriger `produits.augrandjardin.fr` (lien des SMS et QR code de l'affichette) vers `/produits/`, en gardant les paramètres de l'adresse (`?src=qr`) ;
   - éteindre le scénario Make « Notion -> Github » (Thomas).
 - **Plus tard** : habiller les pages de l'outil (`/agj/retrait/`, bon de commande) à la charte du site, en CSS seul dans `brief`.

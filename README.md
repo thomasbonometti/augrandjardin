@@ -32,10 +32,13 @@ La branche `main` sert toujours le site actuel (GitHub Pages) : **ne pas y touch
 | Horaires, prochaine vente (barre du haut, accueil, contact) | Notion « Planning » (`Cette semaine`) | à la construction |
 | Catalogue de commande (filets, non trié, prix, stock) | API de l'outil `/api/agj/catalog` | à la construction, puis relu en direct dans la page |
 | Grille pro (HT = TTC ÷ 1,055) | Notion « Produits de la ferme » | à la construction |
+| Mode fermé (« Fermé », « Reprise le », « Message de fermeture ») et message de la semaine | Notion « Réglages du site » (page Site augrandjardin.fr, une seule ligne), lue aussi par l'outil de commande | à la construction |
+| Questions fréquentes (accordéon en bas des pages) | Notion « Questions fréquentes » (lignes « Publiée ») | à la construction |
 | Inscriptions SMS, demandes d'accès pro | écrit par le site dans Notion « Inscriptions SMS », « Demandes d'accès pro » (page Site augrandjardin.fr) | à l'envoi du formulaire |
+| Historique des listes (une ligne par liste publiée qui a changé) | écrit par la construction dans Notion « Historique des listes » (page Site augrandjardin.fr), sur Cloudflare seulement | à la construction |
 | Adresse, téléphone, partenaires, restaurants, mentions légales | `src/data/ferme.js` | dans le code |
 
-Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare garde la version en ligne précédente. Si l'outil de commande ne répond pas, la construction continue avec la copie précédente du catalogue (`data/agj-*.json`).
+Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare garde la version en ligne précédente (les questions fréquentes font exception : la copie précédente de `data/faq.json` est gardée). Si l'outil de commande ne répond pas, la construction continue avec la copie précédente du catalogue (`data/agj-*.json`).
 
 ## Fonctions Cloudflare (`functions/`)
 
@@ -47,7 +50,7 @@ Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare ga
 
 ## Secrets (Cloudflare → projet → Settings → Variables and Secrets, type Secret)
 
-- `NOTION_TOKEN` : intégration Notion « Site Au Grand Jardin » (lecture + insertion), connectée aux pages « Au Grand Jardin 2025 » et « Site augrandjardin.fr ». Elle n'a pas accès aux bases de l'outil de commande.
+- `NOTION_TOKEN` : intégration Notion « Site Au Grand Jardin » (lecture + insertion), connectée aux pages « Au Grand Jardin 2025 » et « Site augrandjardin.fr » (Réglages du site, Questions fréquentes et Historique des listes compris). Elle n'a pas accès aux bases de l'outil de commande.
 - `PRO_PASSWORD` : mot de passe donné aux pros. Le changer déconnecte tout le monde.
 - `PRO_SECRET` : longue chaîne au hasard (signature du cookie pro).
 
@@ -74,4 +77,5 @@ Sur l'adresse de test : `BASE_URL=https://agj-site-2026.pages.dev npm run e2e` (
 1. Pierre valide les textes « bio » et les photos.
 2. Fusionner `site-2026` dans `main`, passer la branche de production Cloudflare sur `main`, ajouter `SITE_INDEXABLE=oui`.
 3. Domaine augrandjardin.fr sur le projet Cloudflare Pages (et retirer `CNAME` / GitHub Pages).
-4. Éteindre le scénario Make « Au Grand Jardin | Notion -> Github (Optimisé) » (Thomas).
+4. Rediriger `produits.augrandjardin.fr` (lien des SMS et QR code de l'affichette) vers `/produits/` en gardant les paramètres de l'adresse (`?src=qr`).
+5. Éteindre le scénario Make « Au Grand Jardin | Notion -> Github (Optimisé) » (Thomas).

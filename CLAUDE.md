@@ -50,8 +50,11 @@ Avant de modifier quoi que ce soit, lire :
 | Secrets Cloudflare | `NOTION_TOKEN` (intégration Notion « Site Au Grand Jardin »), `PRO_PASSWORD`, `PRO_SECRET`. Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne réelle), `AGJ_URL` |
 | Bouton « Publier » | Dans la page Notion « Site augrandjardin.fr » : il appelle l'adresse de reconstruction (deploy hook) de Cloudflare. Pas encore testé par Claude |
 | Intégration Notion | « Site Au Grand Jardin » (lecture et insertion). Elle doit rester connectée à la base Produits de la ferme, à la base 📅 Planning semaine et à la page « Site augrandjardin.fr ». Sans l'une d'elles, la construction échoue avec un message qui nomme la base |
-| Notion lu | Produits de la ferme `collection://5fb0d75e-67d6-4840-a703-2c6e0b3eaa11` (lignes « En vente ») ; Planning `collection://152a41f4-8718-45e1-9025-40f3da0572e3` (base https://www.notion.so/thomasbonometti/e03d71b964dd43a4be5595d72c401383) |
-| Notion écrit par le site | Page « Site augrandjardin.fr » `3fb70bd669cd81a5a2a0cfc84d7016a2` : bases Inscriptions SMS `collection://1f9db94f-6b9f-4ba2-aae7-d67ea66cae6f` et Demandes d'accès pro `collection://95af73b3-86bc-4013-adb6-ccbe215a44d0`. Ce qui vient de l'adresse de test est coché « Test » |
+| Notion lu | Produits de la ferme `collection://5fb0d75e-67d6-4840-a703-2c6e0b3eaa11` (lignes « En vente ») ; Planning `collection://152a41f4-8718-45e1-9025-40f3da0572e3` (base https://www.notion.so/thomasbonometti/e03d71b964dd43a4be5595d72c401383). Sous la page « Site augrandjardin.fr » : Réglages du site `collection://cc35fc8e-c976-44f0-b213-31eed14e3bee` (une seule ligne : mode fermé, message de la semaine ; l'outil de commande la lit aussi) et Questions fréquentes `collection://a8d7a11c-2204-4c8b-ab4e-23c749bd4452` (lignes « Publiée ») |
+| Notion écrit par le site | Page « Site augrandjardin.fr » `3fb70bd669cd81a5a2a0cfc84d7016a2` : bases Inscriptions SMS `collection://1f9db94f-6b9f-4ba2-aae7-d67ea66cae6f` et Demandes d'accès pro `collection://95af73b3-86bc-4013-adb6-ccbe215a44d0`. Ce qui vient de l'adresse de test est coché « Test ». Historique des listes `collection://5fced6cb-eabb-46cd-beb2-00ee278afd91` : écrit par la construction (voir Tâches courantes) |
+| Statistiques de visite | Cloudflare Web Analytics, activé par Thomas le 21/10 : Cloudflare ajoute lui-même son script (`static.cloudflareinsights.com`), rien dans le code. `public/_headers` n'a pas de Content-Security-Policy ; si on en ajoute une, autoriser ce script et `cloudflareinsights.com`. Une ligne des mentions légales en parle |
+| Plan d'évolutions | Document du projet Claude « Au Grand Jardin » : `site-web/plan-evolutions.md`. Il fait foi, un lot à la fois. Lot 1 livré le 21/10 |
+| Affichette QR codes | Artifact « Affichette QR codes Au Grand Jardin » (A5 à imprimer) : https://claude.ai/artifact/VeEkgWUy3TQc5uHP3j2pR2. Codes vers `https://produits.augrandjardin.fr/?src=qr` et l'avis Google `https://g.page/r/CVcpGhGHIj7rEAE/review` |
 | Outil de commande | Dépôt `thomasbonometti/brief`, Worker `formulaires` : https://formulaires.hey-d8b.workers.dev. Page de Pierre `/agj/pierre`, vérification et archivage des données de test `/agj/pierre/diagnostic` |
 | Maquettes | Figma « Au Grand Jardin \| Site 2026 », fileKey `zrlhOtAHZaw02nvLTnaswz`. Bureau : 13:2 Accueil, 14:2 Produits, 15:2 La ferme, 16:2 Pommes de terre, 17:2 Professionnels, 18:2 Espace pro, 19:2 Horaires & contact. Téléphone : 38:2, menu 37:2, 39:2 à 44:2 dans le même ordre |
 | Revue Figma / site | Artifact « Revue site AGJ 2026 » : https://claude.ai/artifact/QCPcPS8N1G7SwUF6TDYSWw (captures du 17/10) |
@@ -61,7 +64,8 @@ Avant de modifier quoi que ce soit, lire :
 
 ## Plan du code
 
-- `scripts/sync-notion.mjs` : lit Produits et Planning, télécharge les photos, écrit `data/*.json` et les photos WebP. Sans `NOTION_TOKEN`, garde l'instantané de `data/`. La correspondance des champs est dans `mapProduit` et `mapPlanning`.
+- `scripts/sync-notion.mjs` : lit Produits, Planning, Réglages du site et Questions fréquentes, télécharge les photos, écrit `data/*.json` (dont `reglages.json` et `faq.json`) et les photos WebP, puis copie la liste dans Historique des listes (sur Cloudflare seulement). Sans `NOTION_TOKEN`, garde l'instantané de `data/`. La correspondance des champs est dans `mapProduit`, `mapPlanning`, `mapReglages` et `mapQuestion`.
+- `scripts/construire-ferme.mjs` : construit le site en mode fermé dans `dist-ferme/`, pour les tests du mode fermé.
 - `scripts/fetch-agj.mjs` : catalogue et configuration de l'outil de commande dans `data/agj-*.json`. Si l'outil ne répond pas, la copie précédente est gardée.
 - `src/data/ferme.js` : coordonnées, mentions légales, partenaires, restaurants, points de vente, navigation, lien de la carte Google (`carteGoogle`).
 - `src/lib/` :
@@ -70,10 +74,12 @@ Avant de modifier quoi que ce soit, lire :
   - `pdt.js` : résumé du catalogue des pommes de terre ;
   - `commande-rendu.js` : rendu HTML de la liste de commande, partagé entre construction et navigateur ;
   - `typo.js` : espaces insécables ;
+  - `reglages.js` : mode fermé (`lireFermeture`), message de la semaine (`lireAnnonce`), questions fréquentes (réponse Notion en HTML sûr, données structurées FAQPage) ;
+  - `historique.js` : texte et JSON de la liste copiée dans Historique des listes ;
   - `seo.js` : données structurées ;
   - `agj/cart.js` : copie de secours du panier de l'outil.
 - `src/layouts/Base.astro` : `<head>`, menu mobile, en-tête collant (caché en descendant, de retour en remontant), chargement des animations.
-- `src/components/` : barre verte, en-tête, pied de page, photo, carte produit, formulaire SMS, icônes, logo.
+- `src/components/` : barre verte (avec le message de la semaine), en-tête, pied de page, photo, carte produit, formulaire SMS, icônes, logo, `EncartFermeture.astro` (encart « Ventes en pause » à la place d'une liste, de la commande ou de la grille pro), `QuestionsFrequentes.astro` (accordéon `<details>` et données structurées).
 - `src/scripts/` :
   - `formulaires.ts` : formulaires SMS, demande pro, connexion pro ;
   - `commande.ts` : commande de pommes de terre ;
@@ -110,6 +116,18 @@ Avant de modifier quoi que ce soit, lire :
   - Le lien est dans `ferme.carteGoogle`.
   - La carte se charge au clic, et le choix est retenu (`localStorage` `agj-carte-google`). Les mentions légales en parlent.
   - Sur ordinateur, le haut de la carte est rogné de `--rogne` (160 px) pour masquer la fiche Google sous la nôtre.
+- **Mode fermé (pause d'hiver, congés) :**
+  - Dans Notion, base « Réglages du site » (page « Site augrandjardin.fr ») : cocher « Fermé », remplir « Reprise le » et, si besoin, « Message de fermeture » (sinon un texte par défaut), puis « Publier ».
+  - Sur le site : barre verte « Ventes en pause, reprise le … » ; la liste de la semaine, la commande de pommes de terre et la grille pro laissent la place à `EncartFermeture` (inscription SMS, Facebook) ; chiffres « reprise des ventes » ; aucun lieu « Cette semaine » ; pas de copie dans l'historique.
+  - L'outil de commande lit la même case, en direct (pull request n° 4 du dépôt `brief`) : `/agj` fermé jusqu'au jour de la reprise, commandes par téléphone toujours possibles, mails des commandes en cours maintenus.
+  - Réouverture : le site est statique, il rouvre à une publication. Celle de la semaine de la reprise suffit (la prochaine vente du Planning tombe le jour de la reprise ou après), comme toute publication faite à partir du jour de la reprise. Sans date de reprise, décocher « Fermé ». La semaine de la reprise, mettre la liste à jour avant de publier : elle s'affiche aussitôt.
+- **Message de la semaine :** même base, « Afficher le message » coché et « Message de la semaine » rempli : un bandeau « À noter » sous la barre verte, sur toutes les pages, à la publication suivante. Décocher pour l'enlever.
+- **Questions fréquentes :**
+  - Base « Questions fréquentes » (page « Site augrandjardin.fr ») : `Question`, `Réponse` (gras, italique et liens gardés ; un retour à la ligne = un paragraphe), `Pages` (où elle s'affiche : Accueil, Produits, La ferme, Pommes de terre, Professionnels, Horaires & contact), `Ordre` (petit = en haut), `Publiée`.
+  - Seules les lignes « Publiée » partent sur le site, à la publication suivante. Si la base est illisible, la construction garde `data/faq.json`.
+  - Premier jet de Claude, validation de Pierre : ne cocher « Publiée » qu'après son accord (6 brouillons attendent au 21/10).
+  - Nouvelle page : ajouter l'option dans `Pages`, puis `<QuestionsFrequentes page="…" />` dans la page.
+- **Historique des listes :** rien à faire. Chaque construction sur Cloudflare (branches `site-2026` et `main`) ajoute une ligne quand la liste a changé depuis la dernière (texte lisible et JSON), sauf en mode fermé. Il servira au bilan de saison (B2).
 - **Données de test :**
   - Une commande de test depuis l'adresse de test est permise (outil en mode test).
   - Ensuite, archiver par `/agj/pierre/diagnostic`, « Archiver les données de test ». Le bouton ouvre un `confirm()` qui bloque l'outil Chrome : remplacer d'abord `window.confirm = () => true` dans la page, ou demander à Thomas.
@@ -128,9 +146,10 @@ Avant de modifier quoi que ce soit, lire :
    - Dans le dépôt `brief`, lancer `AGJ_FAKE=1 npm run dev` (outil simulé sur le port 8787).
    - Ici, servir sans `--binding` : `.dev.vars` pointe vers `localhost:8787`.
    - Lancer `E2E_COMMANDE=1 AGJ_DEV_URL=http://localhost:8787 E2E_PRO_PASSWORD=<valeur de .dev.vars> npx playwright test`.
-4. Push sur `site-2026`, puis vérifier dans Cloudflare (Deployments) que la construction a réussi.
-5. Le conteneur de travail n'atteint pas `*.pages.dev` : vérifier l'adresse de test avec Claude in Chrome, dans le Chrome de Thomas. Ouvrir son propre onglet, et ne laisser aucune trace (pas de choix mémorisé, pas de mot de passe).
-6. Si la construction Cloudflare échoue :
+4. Mode fermé : `node scripts/construire-ferme.mjs` (version fermée dans `dist-ferme/`, reprise dans 90 jours, `data/reglages.json` remis tel quel), la servir sur le port 8790 comme au point 2, puis `E2E_FERME=1 BASE_URL=http://localhost:8790 npx playwright test e2e/fermeture.spec.js`.
+5. Push sur `site-2026`, puis vérifier dans Cloudflare (Deployments) que la construction a réussi. Le journal de construction indique « Site ouvert » ou « mode fermé », le nombre de questions fréquentes et ce qui est arrivé à l'historique des listes.
+6. Le conteneur de travail n'atteint pas `*.pages.dev` : vérifier l'adresse de test avec Claude in Chrome, dans le Chrome de Thomas. Ouvrir son propre onglet, et ne laisser aucune trace (pas de choix mémorisé, pas de mot de passe).
+7. Si la construction Cloudflare échoue :
    - Ouvrir le déploiement et faire défiler le panneau « Build log » avec des captures (lire le texte par JavaScript est bloqué sur le tableau de bord).
    - Une erreur Notion 404 nomme la base à connecter à l'intégration.
 
@@ -143,3 +162,5 @@ Avant de modifier quoi que ce soit, lire :
 - `commande.ts` ne réécrit le titre et les prix de la page Pommes de terre que s'ils ont changé, pour ne pas couper l'animation d'arrivée.
 - Un `confirm()` ou un `alert()` déclenché dans le Chrome de Thomas bloque l'outil Chrome.
 - Les heures de vente sont calculées à la construction. Après la vente du samedi, la barre annonce le samedi suivant dès la prochaine publication ; entre-temps, un script retire la date passée.
+- Le mode fermé aussi est calculé à la construction : la date de reprise ne rouvre le site qu'à une publication (voir Tâches courantes).
+- Notion change parfois les espaces insécables d'un texte : l'historique compare les listes sans tenir compte des espaces.
