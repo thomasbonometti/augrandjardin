@@ -13,12 +13,14 @@ export const MESSAGE_FERMETURE =
   'Les ventes reprennent bientôt. Pour être prévenu de la reprise, inscrivez-vous à la liste par SMS ou suivez la ferme sur Facebook.';
 
 // Mode fermé : null si le site est ouvert.
-// « Fermé » coché, avec ou sans date de reprise. Le jour de la reprise, le site rouvre tout seul
-// (à la publication suivante) : un « Fermé » oublié ne bloque pas la nouvelle saison.
-export function lireFermeture(reglages, maintenant = new Date()) {
+// « Fermé » coché, avec ou sans date de reprise. Avec une date, le site rouvre tout seul à la
+// publication qui suit la reprise, ou dès la semaine de la reprise : quand la prochaine vente du
+// Planning (venteIso, « 2027-03-06 ») tombe le jour de la reprise ou après. Pierre publie ainsi la
+// première liste de la saison sans décocher « Fermé », et un « Fermé » oublié ne bloque rien.
+export function lireFermeture(reglages, maintenant = new Date(), { venteIso = null } = {}) {
   if (!reglages?.ferme) return null;
   const reprise = /^\d{4}-\d{2}-\d{2}/.test(reglages.repriseLe || '') ? reglages.repriseLe.slice(0, 10) : null;
-  if (reprise && reprise <= isoAujourdhui(maintenant)) return null;
+  if (reprise && (reprise <= isoAujourdhui(maintenant) || (venteIso && venteIso >= reprise))) return null;
   return {
     reprise,
     repriseLong: reprise ? jour(reprise, { weekday: 'long', day: 'numeric', month: 'long' }) : null, // samedi 7 mars

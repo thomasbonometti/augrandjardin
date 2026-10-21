@@ -164,9 +164,9 @@ async function enregistrerHistorique(produits, planning, reglages) {
     return;
   }
   const maintenant = new Date();
-  if (lireFermeture(reglages, maintenant)) return console.log('→ Historique des listes : site fermé, rien à garder');
-  if (!produits.length) return console.log('→ Historique des listes : aucun produit en vente');
   const vente = prochaineVente(lireCreneaux(planning), maintenant);
+  if (lireFermeture(reglages, maintenant, { venteIso: vente?.iso })) return console.log('→ Historique des listes : site fermé, rien à garder');
+  if (!produits.length) return console.log('→ Historique des listes : aucun produit en vente');
   const ligne = contenuListe(produits, { prochaineVente: vente, maintenant });
   const derniere = await notionAppel('Historique des listes', `data_sources/${HISTORIQUE_DS}/query`, {
     sorts: [{ property: 'Publiée le', direction: 'descending' }],
@@ -235,7 +235,7 @@ async function syncLive() {
   await fs.writeFile(path.join(DATA, 'reglages.json'), JSON.stringify(reglages, null, 2));
   if (faq) await fs.writeFile(path.join(DATA, 'faq.json'), JSON.stringify(faq, null, 2));
   await fs.writeFile(path.join(DATA, 'meta.json'), JSON.stringify({ syncedAt: new Date().toISOString(), source: 'Notion' }, null, 2));
-  const fermeture = lireFermeture(reglages);
+  const fermeture = lireFermeture(reglages, new Date(), { venteIso: prochaineVente(lireCreneaux(planning))?.iso });
   console.log(`✓ ${produits.length} produits en vente (${photos} photos), ${planning.length} créneaux, ${faq ? faq.length : 'copie des'} questions fréquentes`);
   console.log(fermeture ? `✓ Site en mode fermé (${fermeture.reprise ? `reprise le ${fermeture.reprise}` : 'sans date de reprise'})` : '✓ Site ouvert');
   if (reglages.afficherMessage && reglages.message) console.log(`✓ Message de la semaine : « ${reglages.message} »`);

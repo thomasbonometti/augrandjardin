@@ -20,9 +20,11 @@ const syncDate = new Date(meta.syncedAt);
 // Date de construction : sert à calculer la prochaine vente
 export const construitLe = new Date();
 
+const creneauxPlanning = lireCreneaux(planningBrut);
 // Mode fermé (« Réglages du site » dans Notion) : null quand le site est ouvert.
 // Fermé : pas de prochaine vente, aucun lieu « cette semaine », commandes en ligne fermées.
-export const fermeture = lireFermeture(reglages, construitLe);
+// La semaine de la reprise (prochaine vente du Planning le jour de la reprise ou après), le site rouvre.
+export const fermeture = lireFermeture(reglages, construitLe, { venteIso: calculerProchaineVente(creneauxPlanning, construitLe)?.iso });
 // Message de la semaine, sous la barre verte (null s'il n'est pas affiché)
 export const annonce = lireAnnonce(reglages);
 // Questions fréquentes publiées, pour une page (« Produits », « Pommes de terre »…)
@@ -44,7 +46,7 @@ export const rayons = grouperRayons(produits);
 export const vedettes = choisirVedettes(produits);
 export const nbQuantiteLimitee = produits.filter((p) => p.quantiteLimitee).length;
 
-export const creneaux = lireCreneaux(planningBrut).map((c) => (fermeture ? { ...c, cetteSemaine: false } : c));
+export const creneaux = creneauxPlanning.map((c) => (fermeture ? { ...c, cetteSemaine: false } : c));
 export const prochaineVente = fermeture ? null : calculerProchaineVente(creneaux, construitLe);
 
 // « vendredi 16 octobre à 16h24 »

@@ -28,6 +28,16 @@ test('mode fermé : fermé jusqu’à la reprise, qui rouvre le site toute seule
   assert.equal(lireFermeture({ ferme: true, repriseLe: '2027-03-06T09:00:00.000+01:00' }, MARDI).reprise, '2027-03-06');
 });
 
+test('mode fermé : la semaine de la reprise, la publication de la liste rouvre le site', () => {
+  const r = { ferme: true, repriseLe: '2027-03-06' };
+  const jeudi = new Date('2027-03-04T18:00:00+01:00');
+  assert.ok(lireFermeture(r, jeudi), 'sans vente au Planning : fermé jusqu’au jour de la reprise');
+  assert.equal(lireFermeture(r, jeudi, { venteIso: '2027-03-06' }), null, 'prochaine vente le jour de la reprise : ouvert');
+  assert.equal(lireFermeture({ ferme: true, repriseLe: '2027-03-04' }, new Date('2027-03-02T09:00:00+01:00'), { venteIso: '2027-03-06' }), null, 'vente après la reprise : ouvert');
+  assert.ok(lireFermeture(r, MARDI, { venteIso: '2026-11-21' }), 'Planning resté coché, vente avant la reprise : fermé');
+  assert.ok(lireFermeture({ ferme: true, repriseLe: null }, jeudi, { venteIso: '2027-03-06' }), 'sans date de reprise : fermé tant que la case est cochée');
+});
+
 test('message de la semaine : seulement si « Afficher le message » est coché et qu’il y a un texte', () => {
   assert.equal(lireAnnonce({ afficherMessage: true, message: '  Pas de vente\nsamedi 1er novembre  ' }), 'Pas de vente samedi 1er novembre');
   assert.equal(lireAnnonce({ afficherMessage: false, message: 'Pas de vente' }), null);
