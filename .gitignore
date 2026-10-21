@@ -15,3 +15,6 @@ __pycache__/
 .dev.vars.*
 e2e/resultats/
 playwright-report/
+
+# Construction de test en mode fermé (scripts/construire-ferme.mjs)
+dist-ferme/
