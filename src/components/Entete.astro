@@ -2,7 +2,7 @@
 import Icone from './Icone.astro';
 import Logo from './Logo.astro';
 import { ferme, adresseComplete, navigation, lienProduits } from '../data/ferme.js';
-import { prochaineVente as v, produits } from '../lib/donnees.js';
+import { prochaineVente as v, produits, fermeture } from '../lib/donnees.js';
 interface Props { page?: string }
 const { page = '' } = Astro.props;
 const courant = (id: string) => (id === page ? 'page' : undefined);
@@ -28,16 +28,18 @@ const sansDate = v ? v.jour : '';
   <div class="wrap">
     <div class="menu-mobile__liens">
       <a href={lienProduits.href} aria-current={courant('produits')}>
-        {lienProduits.label}<span class="chip chip-vif chip-petit">{produits.length} produits</span>
+        {lienProduits.label}<span class="chip chip-vif chip-petit">{fermeture ? 'En pause' : `${produits.length} produits`}</span>
       </a>
       {navigation.map((l) => (
         <a href={l.href} aria-current={courant(l.id)}>{l.label}<Icone nom="chevron" taille={20} /></a>
       ))}
     </div>
-    {v && (
+    {(v || fermeture) && (
       <div class="menu-mobile__vente">
-        <div class="surtitre"><span class="point" aria-hidden="true"></span><p class="eyebrow">Prochaine vente</p></div>
-        <p class="quand"><span data-vente-sans-date={sansDate}>{v.jourDate.replace(/^./, (c) => c.toUpperCase())}</span><br />{v.heures}</p>
+        <div class="surtitre"><span class="point" aria-hidden="true"></span><p class="eyebrow">{fermeture ? 'Ventes en pause' : 'Prochaine vente'}</p></div>
+        {fermeture
+          ? <p class="quand">{fermeture.reprise ? <>Reprise le<br />{fermeture.repriseLong}</> : 'Reprise bientôt'}</p>
+          : <p class="quand"><span data-vente-sans-date={sansDate}>{v.jourDate.replace(/^./, (c) => c.toUpperCase())}</span><br />{v.heures}</p>}
         <p class="sm muted">{adresseComplete}</p>
         <div class="btns">
           <a class="btn btn-primaire" href={ferme.itineraire} rel="noopener"><Icone nom="repere" taille={18} />Itinéraire</a>

@@ -1,7 +1,9 @@
 ---
+// Barre verte du haut (collée au défilement) : prochaine vente, ou date de reprise en mode fermé.
+// En dessous, le message de la semaine quand il est activé dans Notion (« Réglages du site ») : il défile avec la page.
 import Icone from './Icone.astro';
 import { ferme, adresseCourte } from '../data/ferme.js';
-import { prochaineVente as v } from '../lib/donnees.js';
+import { prochaineVente as v, fermeture, annonce } from '../lib/donnees.js';
 const sansDate = v ? `${v.jour.toLowerCase()}, ${v.heures}` : '';
 const libelle = v ? (v.aLaFerme ? 'Prochaine vente à la ferme' : `Prochaine vente, ${v.lieu}`) : '';
 ---
@@ -9,7 +11,16 @@ const libelle = v ? (v.aLaFerme ? 'Prochaine vente à la ferme' : `Prochaine ven
   <div class="wrap">
     <div class="barre-info__vente">
       <span class="point point-clair" aria-hidden="true"></span>
-      {v ? (
+      {fermeture ? (
+        fermeture.reprise ? (
+          <>
+            <p class="seulement-ordi">Ventes en pause,&nbsp;<span class="medium">reprise le {fermeture.repriseLong}</span></p>
+            <p class="seulement-mobile">En pause, <span class="medium">reprise le {fermeture.repriseCourt}</span></p>
+          </>
+        ) : (
+          <p>Ventes en pause <span class="medium">pour le moment</span></p>
+        )
+      ) : v ? (
         <>
           <p class="seulement-ordi">{libelle} :&nbsp;<span class="medium" data-vente-sans-date={sansDate}>{v.jourDate}, {v.heures}</span></p>
           <p class="seulement-mobile">Vente <span class="medium" data-vente-sans-date={sansDate}>{v.jourDateCourt}, {v.heures}</span></p>
@@ -24,3 +35,8 @@ const libelle = v ? (v.aLaFerme ? 'Prochaine vente à la ferme' : `Prochaine ven
     </div>
   </div>
 </div>
+{annonce && (
+  <aside class="annonce" aria-label="Message de la semaine" data-annonce>
+    <div class="wrap"><p><span class="annonce__etiquette">À noter</span>{annonce}</p></div>
+  </aside>
+)}

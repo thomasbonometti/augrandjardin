@@ -4,33 +4,48 @@ import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import ProduitCarte from '../components/ProduitCarte.astro';
 import FormulaireSms from '../components/FormulaireSms.astro';
-import { produits, rayons, prochaineVente as v, misAJour, nbQuantiteLimitee } from '../lib/donnees.js';
+import EncartFermeture from '../components/EncartFermeture.astro';
+import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
+import { produits, rayons, prochaineVente as v, misAJour, nbQuantiteLimitee, fermeture } from '../lib/donnees.js';
 import { fileAriane } from '../lib/seo.js';
 
 const nb = produits.length;
 const jour = v ? v.jour.toLowerCase() : 'samedi';
 const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heures}` : null;
+const reprise = fermeture?.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt';
+const description = fermeture
+  ? `Les ventes de la ferme Au Grand Jardin sont en pause, ${reprise}. Inscrivez-vous à la liste par SMS pour la recevoir dès la reprise. 43 rue Principale à Lostroff.`
+  : `Les ${nb} produits en vente à la ferme Au Grand Jardin cette semaine, avec leurs prix TTC${v ? `. Vente ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale à Lostroff.`;
 ---
 <Base
   titre={`Produits de la semaine — légumes bio à Lostroff | Au Grand Jardin`}
-  description={`Les ${nb} produits en vente à la ferme Au Grand Jardin cette semaine, avec leurs prix TTC${v ? `. Vente ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale à Lostroff.`}
+  description={description}
   page="produits"
   schema={fileAriane([{ nom: 'Produits de la semaine', url: '/produits/' }])}
 >
   <section class="wrap tete">
-    <div class="surtitre" data-anim><span class="point" aria-hidden="true"></span><p class="eyebrow"><span class="seulement-ordi">Mis à jour {misAJour.texte}</span><span class="seulement-mobile">Mis à jour {misAJour.court}, {misAJour.heure}</span></p></div>
+    {fermeture
+      ? <div class="surtitre" data-anim><span class="point" aria-hidden="true"></span><p class="eyebrow">Ventes en pause</p></div>
+      : <div class="surtitre" data-anim><span class="point" aria-hidden="true"></span><p class="eyebrow"><span class="seulement-ordi">Mis à jour {misAJour.texte}</span><span class="seulement-mobile">Mis à jour {misAJour.court}, {misAJour.heure}</span></p></div>}
     <div class="tete__ligne">
       <div class="tete__textes">
         <h1 data-anim="mots">Produits de la semaine</h1>
-        <p class="lg muted tete__intro" data-anim>{nb} produits à venir chercher à la ferme {jour}. <span class="seulement-ordi">Les prix sont TTC.</span><span class="seulement-mobile">Prix TTC.</span> Ceux marqués « Quantité limitée » partent vite : venez tôt.</p>
+        {fermeture
+          ? <p class="lg muted tete__intro" data-anim>Pas de liste en ce moment : la ferme fait une pause.</p>
+          : <p class="lg muted tete__intro" data-anim>{nb} produits à venir chercher à la ferme {jour}. <span class="seulement-ordi">Les prix sont TTC.</span><span class="seulement-mobile">Prix TTC.</span> Ceux marqués « Quantité limitée » partent vite : venez tôt.</p>}
       </div>
-      <div class="tete__infos" data-anim-groupe="pop">
-        {quand && <span class="chip chip-contour"><Icone nom="horloge" taille={16} />{quand}</span>}
-        {nbQuantiteLimitee > 0 && <span class="chip">{nbQuantiteLimitee} produit{nbQuantiteLimitee > 1 ? 's' : ''} en quantité limitée</span>}
-      </div>
+      {!fermeture && (
+        <div class="tete__infos" data-anim-groupe="pop">
+          {quand && <span class="chip chip-contour"><Icone nom="horloge" taille={16} />{quand}</span>}
+          {nbQuantiteLimitee > 0 && <span class="chip">{nbQuantiteLimitee} produit{nbQuantiteLimitee > 1 ? 's' : ''} en quantité limitée</span>}
+        </div>
+      )}
     </div>
   </section>
 
+  {fermeture && <section class="wrap pause" aria-label="Ventes en pause" data-anim><EncartFermeture lienSms="#sms" /></section>}
+
+  {!fermeture && <>
   <nav class="filtres" aria-label="Rayons">
     <div class="filtres__liste defile">
       <a class="chip filtre" href="#produits" data-filtre="" aria-current="true">Tout <span class="compte">{nb}</span></a>
@@ -53,6 +68,7 @@ const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heur
       </section>
     ))}
   </div>
+  </>}
 
   <section class="wrap sms" id="sms" aria-labelledby="sms-titre">
     <div class="carte-sable sms__carte" data-anim>
@@ -63,6 +79,8 @@ const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heur
       <FormulaireSms source="produits" variante="clair" />
     </div>
   </section>
+
+  <QuestionsFrequentes page="Produits" titre="Avant de venir" />
 </Base>
 
 <script>
@@ -129,6 +147,9 @@ const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heur
     .rayon__compte { font-size: 16px; line-height: 24px; }
     .grille { grid-template-columns: repeat(4, 302px); gap: 40px 24px; }
   }
+
+  .pause { padding-bottom: 48px; }
+  @media (min-width: 1100px) { .pause { padding-bottom: 96px; } }
 
   .sms { padding-bottom: 64px; }
   .sms__carte { display: flex; flex-direction: column; gap: 14px; padding: 24px; }

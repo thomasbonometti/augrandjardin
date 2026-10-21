@@ -1,0 +1,75 @@
+---
+// Questions fréquentes en bas de page (idée 11), lues dans la base Notion « Questions fréquentes ».
+// Accordéon sans JavaScript (<details>) : utilisable au clavier et par les lecteurs d'écran.
+// `page` = nom de l'option « Pages » dans Notion (« Produits », « Pommes de terre »…).
+// Rien ne s'affiche si aucune question publiée n'est rattachée à la page.
+import Icone from './Icone.astro';
+import { faqPour } from '../lib/donnees.js';
+import { reponseHtml, schemaFaq } from '../lib/reglages.js';
+import { slug } from '../lib/vente.js';
+
+interface Props { page: string; titre?: string; fond?: 'creme' | 'sable' }
+const { page, titre = 'Vos questions', fond = 'creme' } = Astro.props;
+const questions = faqPour(page);
+const schema = schemaFaq(questions);
+const id = `faq-${slug(page)}`;
+---
+{questions.length > 0 && (
+  <section class:list={['faq', fond === 'sable' && 'section-sable']} aria-labelledby={`${id}-titre`} data-faq={page}>
+    <div class="wrap faq__wrap">
+      <div class="faq__tete" data-anim>
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 class="faq__titre" id={`${id}-titre`}>{titre}</h2>
+      </div>
+      <div class="faq__liste" data-anim-groupe="monte">
+        {questions.map((q) => (
+          <details class="faq__item" id={`q-${q.id}`}>
+            <summary class="faq__question">
+              <span>{q.question}</span>
+              <span class="faq__signe" aria-hidden="true"><Icone nom="plus" taille={18} epaisseur={1.8} /></span>
+            </summary>
+            <div class="faq__reponse" set:html={reponseHtml(q.reponse)} />
+          </details>
+        ))}
+      </div>
+    </div>
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </section>
+)}
+
+<style>
+  .faq { padding-top: 48px; padding-bottom: 56px; border-top: 1px solid var(--bordure-claire); }
+  .faq.section-sable { border-top: 0; }
+  .faq__wrap { display: flex; flex-direction: column; gap: 24px; }
+  .faq__tete { display: flex; flex-direction: column; gap: 10px; }
+  .faq__titre { font-size: 28px; line-height: 34px; letter-spacing: -0.03em; }
+  .faq__liste { border-top: 1px solid var(--ligne); }
+  .faq__item { border-bottom: 1px solid var(--ligne); }
+  .faq__question {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+    padding: 18px 0; cursor: pointer; list-style: none;
+    font-size: 17px; line-height: 25px; color: var(--texte);
+  }
+  .faq__question::-webkit-details-marker { display: none; }
+  .faq__question:hover .faq__signe { border-color: var(--texte); }
+  .faq__question:focus-visible { outline-offset: 4px; }
+  .faq__signe {
+    flex: none; width: 30px; height: 30px; margin-top: -2px; border-radius: 15px; border: 1px solid var(--bordure-soutenue);
+    display: grid; place-items: center; color: var(--texte); transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .faq__item[open] .faq__signe { transform: rotate(45deg); background: var(--vert-foret); border-color: var(--vert-foret); color: var(--blanc); }
+  .faq__reponse { padding: 0 46px 20px 0; display: flex; flex-direction: column; gap: 10px; color: var(--gris-fonce); }
+  .faq__reponse :global(a) { color: var(--vert-foret); text-decoration: underline; text-underline-offset: 3px; }
+  .faq__reponse :global(strong) { font-weight: 500; color: var(--texte); }
+  @media (prefers-reduced-motion: reduce) { .faq__signe { transition: none; } }
+  @media (min-width: 1100px) {
+    .faq { padding-top: 96px; padding-bottom: 112px; }
+    .faq__wrap { flex-direction: row; justify-content: space-between; gap: 80px; }
+    .faq__tete { width: 360px; flex: none; gap: 14px; }
+    .faq__titre { font-size: 40px; line-height: 48px; }
+    .faq__liste { flex: 1 1 auto; max-width: 840px; }
+    .faq__question { padding: 22px 0; font-size: 20px; line-height: 28px; }
+    .faq__reponse { padding-bottom: 24px; font-size: 17px; line-height: 26px; }
+  }
+  @media print { .faq { display: none; } }
+</style>

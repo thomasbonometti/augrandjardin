@@ -4,15 +4,22 @@ import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import Photo from '../components/Photo.astro';
 import FormulaireSms from '../components/FormulaireSms.astro';
+import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
 import tampon from '../assets/svg/tampon.svg?raw';
 import { ferme, adresseComplete } from '../data/ferme.js';
-import { produits, rayons, vedettes, prochaineVente as v, creneaux, misAJour, agjCatalogue } from '../lib/donnees.js';
+import { produits, rayons, vedettes, prochaineVente as v, creneaux, misAJour, agjCatalogue, fermeture } from '../lib/donnees.js';
 import { euros, fmtHeure, plage } from '../lib/vente.js';
 import { resumePdt } from '../lib/pdt.js';
 import { schemaFerme } from '../lib/seo.js';
 
 const nb = produits.length;
 const pdt = resumePdt(agjCatalogue);
+// Mode fermé : la commande en ligne est fermée elle aussi.
+const pdtOuvert = pdt.ouvert && !fermeture;
+const reprise = fermeture?.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Reprise bientôt';
+const description = fermeture
+  ? `Légumes bio cueillis à Lostroff, 43 rue Principale. Ventes en pause : ${reprise.toLowerCase()}. Inscrivez-vous à la liste par SMS pour être prévenu.`
+  : `Légumes bio cueillis à Lostroff : ${nb} produits cette semaine, vente à la ferme${v ? ` ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale. Pommes de terre en ligne, offre pour les professionnels.`;
 const samediFerme = creneaux.find((c) => c.aLaFerme && c.jour === 'Samedi');
 const jourVente = v ? v.jour.toLowerCase() : 'samedi';
 const autres = rayons.filter((r) => r.titre !== 'Divers').map((r) => r.titre.toLowerCase());
@@ -22,7 +29,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
 ---
 <Base
   titre="Au Grand Jardin — maraîcher bio à Lostroff (Moselle), vente à la ferme le samedi"
-  description={`Légumes bio cueillis à Lostroff : ${nb} produits cette semaine, vente à la ferme${v ? ` ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale. Pommes de terre en ligne, offre pour les professionnels.`}
+  description={description}
   page="accueil"
   schema={schemaFerme(creneaux)}
 >
@@ -34,17 +41,21 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
         <h1 data-anim="mots">Des légumes bio cueillis à Lostroff pour la vente du samedi</h1>
         <p class="lg muted hero__intro hero__intro--mobile" data-anim>Semences paysannes, variétés anciennes, aucun produit chimique. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
         <div class="btns" data-anim>
-          <a class="btn btn-primaire btn-bloc" href="/produits/">Voir les {nb} produits de la semaine</a>
+          {fermeture
+            ? <a class="btn btn-primaire btn-bloc" href="#sms">Être prévenu de la reprise</a>
+            : <a class="btn btn-primaire btn-bloc" href="/produits/">Voir les {nb} produits de la semaine</a>}
           <a class="btn btn-secondaire btn-bloc" href="/horaires-contact/"><Icone nom="repere" taille={18} />Venir à la ferme</a>
         </div>
       </div>
       <p class="lg muted hero__intro hero__intro--ordi" data-anim>Semences paysannes, variétés anciennes, aucun produit chimique. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
     </div>
     <dl class="stats" data-anim-groupe="monte">
-      <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre" data-compteur>{nb}</dd></div>
+      {fermeture
+        ? <div><dt class="sm muted">reprise des ventes</dt><dd class="chiffre">{fermeture.reprise ? fermeture.repriseChiffre : 'Bientôt'}</dd></div>
+        : <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre" data-compteur>{nb}</dd></div>}
       {v && <div><dt class="sm muted">prochaine vente{v.aLaFerme ? ', à la ferme' : ''}</dt><dd class="chiffre" data-compteur>{v.jourCourt}</dd></div>}
       <div><dt class="sm muted">légumes bio</dt><dd class="chiffre" data-compteur>100&nbsp;%</dd></div>
-      <div class="stat-ordi"><dt class="sm muted">semence hybride F1</dt><dd class="chiffre" data-compteur>0</dd></div>
+      <div class:list={[!fermeture && 'stat-ordi']}><dt class="sm muted">semence hybride F1</dt><dd class="chiffre" data-compteur>0</dd></div>
       <div><dt class="sm muted">au plus pour nos partenaires</dt><dd class="chiffre" data-compteur>50&nbsp;km</dd></div>
     </dl>
   </section>
@@ -71,7 +82,24 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
     </div>
   </section>
 
-  <!-- PRODUITS DE LA SEMAINE -->
+  <!-- PRODUITS DE LA SEMAINE (ou pause, en mode fermé) -->
+  {fermeture ? (
+    <section class="section-sombre sur-sombre semaine semaine--pause" aria-labelledby="semaine-titre">
+      <div class="wrap semaine__tete">
+        <div class="semaine__titres" data-anim>
+          <p class="eyebrow">La ferme fait une pause</p>
+          <h2 id="semaine-titre">{reprise}</h2>
+        </div>
+      </div>
+      <div class="wrap semaine__bas" data-anim>
+        <p class="muted">{fermeture.message}</p>
+        <div class="btns">
+          <a class="btn btn-blanc btn-bloc" href="#sms">Recevoir la liste par SMS</a>
+          <a class="btn btn-contour-clair btn-bloc" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={18} />Suivre la ferme sur Facebook</a>
+        </div>
+      </div>
+    </section>
+  ) : (
   <section class="section-sombre sur-sombre semaine" aria-labelledby="semaine-titre">
     <div class="wrap semaine__tete">
       <div class="semaine__titres" data-anim>
@@ -100,6 +128,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
       <a class="btn btn-blanc btn-bloc" href="/produits/">Voir toute la liste</a>
     </div>
   </section>
+  )}
 
   <!-- QUATRE FAÇONS -->
   <section class="wrap facons" aria-labelledby="facons-titre">
@@ -125,9 +154,9 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
           <div class="photo facon__photo"><Photo nom="pdt" alt="Pommes de terre de la ferme" sizes="(min-width: 1100px) 400px, 88px" largeurs={[176, 400, 800]} /></div>
           <div class="facon__texte">
             <div class="facon__titre"><h3>Pommes de terre en sacs</h3><Icone nom="droite" taille={22} class="facon__fleche" /></div>
-            <p class="muted facon__desc"><span class="seulement-ordi">{pdt.varietes ? `${pdt.varietes} variétés ${pdt.formatsCarte}, commandées en ligne et retirées à la ferme.` : 'Commandées en ligne, retirées à la ferme.'}</span><span class="seulement-mobile">{pdt.ouvert ? 'Commandes ouvertes en ligne.' : 'Commandes en ligne fermées pour le moment.'}</span></p>
+            <p class="muted facon__desc"><span class="seulement-ordi">{pdt.varietes ? `${pdt.varietes} variétés ${pdt.formatsCarte}, commandées en ligne et retirées à la ferme.` : 'Commandées en ligne, retirées à la ferme.'}</span><span class="seulement-mobile">{pdtOuvert ? 'Commandes ouvertes en ligne.' : 'Commandes en ligne fermées pour le moment.'}</span></p>
           </div>
-          <span class="chip facon__chip">{pdt.ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span>
+          <span class="chip facon__chip">{pdtOuvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span>
           <Icone nom="chevron" taille={20} class="facon__chevron" />
         </a>
       </li>
@@ -162,9 +191,11 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
       <div class="photo venir__photo" data-anim="photo"><Photo nom="tunnel" alt="Un tunnel de culture de la ferme, vu de l’intérieur" sizes="(min-width: 1100px) 420px, calc(100vw - 64px)" largeurs={[400, 700, 900]} class="pos-tunnel" /></div>
       <div class="venir__texte">
         <div class="surtitre"><Icone nom="horloge" taille={18} /><p class="eyebrow" id="venir-titre">Venir à la ferme</p></div>
-        {quand
-          ? <p class="venir__quand"><span data-vente-sans-date={v.jour}>{quand.jour}</span><br />{quand.heures}</p>
-          : <p class="venir__quand">Pas de vente cette semaine</p>}
+        {fermeture
+          ? <p class="venir__quand">Ventes en pause<br />{fermeture.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt'}</p>
+          : quand
+            ? <p class="venir__quand"><span data-vente-sans-date={v.jour}>{quand.jour}</span><br />{quand.heures}</p>
+            : <p class="venir__quand">Pas de vente cette semaine</p>}
         <div class="venir__adresse">
           <p class="lg fonce">{adresseComplete}</p>
           <p class="muted"><span class="seulement-ordi">Les horaires changent selon les saisons et les marchés. Ils sont mis à jour ici chaque semaine, en même temps que la liste des produits.</span><span class="seulement-mobile sm">Horaires mis à jour ici chaque semaine, avec la liste des produits.</span></p>
@@ -190,6 +221,8 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
       </div>
     </div>
   </section>
+
+  <QuestionsFrequentes page="Accueil" titre="Vos questions" />
 </Base>
 
 <style>
@@ -257,6 +290,9 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
     .semaine__bas { flex-direction: row; justify-content: space-between; align-items: center; }
     .semaine__bas p { width: 620px; color: var(--blanc); }
     .semaine__bas .btn { width: auto; }
+    .semaine--pause { gap: 32px; }
+    .semaine--pause .semaine__bas { flex-direction: column; align-items: flex-start; gap: 28px; }
+    .semaine--pause .semaine__bas p { width: 760px; font-size: 20px; line-height: 30px; }
   }
 
   /* Quatre façons */

@@ -4,7 +4,8 @@ import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import Photo from '../components/Photo.astro';
 import { restaurants } from '../data/ferme.js';
-import { produits } from '../lib/donnees.js';
+import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
+import { produits, fermeture } from '../lib/donnees.js';
 import { fileAriane } from '../lib/seo.js';
 ---
 <Base
@@ -24,7 +25,9 @@ import { fileAriane } from '../lib/seo.js';
       </div>
       <dl class="stats" data-anim-groupe="monte">
         <div><dt class="sm muted">pour vous répondre</dt><dd class="chiffre" data-compteur>48&nbsp;h</dd></div>
-        <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre" data-compteur>{produits.length}</dd></div>
+        {fermeture
+          ? <div><dt class="sm muted">reprise des ventes</dt><dd class="chiffre">{fermeture.reprise ? fermeture.repriseChiffre : 'Bientôt'}</dd></div>
+          : <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre" data-compteur>{produits.length}</dd></div>}
         <div><dt class="sm muted">restaurants partenaires</dt><dd class="chiffre" data-compteur>{restaurants.length}</dd></div>
       </dl>
     </div>
@@ -78,6 +81,8 @@ import { fileAriane } from '../lib/seo.js';
       <p class="sm muted seulement-ordi">Le mot de passe figure dans le dernier message de la ferme.</p>
     </form>
   </section>
+
+  <QuestionsFrequentes page="Professionnels" titre="Travailler avec la ferme" />
 </Base>
 
 <style>

@@ -3,7 +3,8 @@
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import { ferme, adresseComplete } from '../data/ferme.js';
-import { creneaux, prochaineVente as v } from '../lib/donnees.js';
+import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
+import { creneaux, prochaineVente as v, fermeture } from '../lib/donnees.js';
 import { lireLieux } from '../lib/vente.js';
 import { schemaFerme, fileAriane } from '../lib/seo.js';
 const lieux = lireLieux(creneaux);
@@ -11,7 +12,7 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
 ---
 <Base
   titre="Horaires et contact — vente à la ferme à Lostroff | Au Grand Jardin"
-  description={`Horaires de vente de la ferme Au Grand Jardin${v ? ` : ${v.jourDate}, ${v.heures}` : ''}. ${adresseComplete}. Téléphone ${ferme.telephone}, ${ferme.email}.`}
+  description={`Horaires de vente de la ferme Au Grand Jardin${fermeture ? ` : ventes en pause, ${fermeture.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt'}` : v ? ` : ${v.jourDate}, ${v.heures}` : ''}. ${adresseComplete}. Téléphone ${ferme.telephone}, ${ferme.email}.`}
   page="contact"
   schema={[schemaFerme(creneaux), fileAriane([{ nom: 'Horaires & contact', url: '/horaires-contact/' }])]}
 >
@@ -23,13 +24,15 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
 
   <section class="wrap creneaux" aria-label="Horaires de vente">
     <div class="vente sur-sombre" data-anim>
-      <div class="surtitre"><span class="point point-clair" aria-hidden="true"></span><h2 class="eyebrow">Prochaine vente</h2></div>
-      {v ? (
+      <div class="surtitre"><span class="point point-clair" aria-hidden="true"></span><h2 class="eyebrow">{fermeture ? 'Ventes en pause' : 'Prochaine vente'}</h2></div>
+      {fermeture ? (
+        <p class="vente__quand"><span class="vente__jour">{fermeture.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Reprise bientôt'}</span></p>
+      ) : v ? (
         <p class="vente__quand"><span class="vente__jour" data-vente-sans-date={v.jour}>{jourVente}</span><span class="vente__heures">{v.heures}</span></p>
       ) : (
         <p class="vente__quand"><span class="vente__jour">Pas de vente cette semaine</span></p>
       )}
-      <p class="muted">{v && !v.aLaFerme ? v.lieu : `À la ferme, ${adresseComplete}`}</p>
+      <p class="muted">{fermeture ? fermeture.message : v && !v.aLaFerme ? v.lieu : `À la ferme, ${adresseComplete}`}</p>
       <div class="btns">
         <a class="btn btn-blanc btn-bloc" href={ferme.itineraire} rel="noopener"><Icone nom="repere" taille={18} />Itinéraire</a>
         <a class="btn btn-contour-clair btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} /><span>Appeler<span class="seulement-mobile"> la ferme</span></span></a>
@@ -92,6 +95,8 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
       <li><a class="contact" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={26} /><span class="contact__textes"><span class="sm muted">Facebook</span><span class="contact__valeur">Au Grand Jardin</span><span class="sm muted">Les annonces de la semaine</span></span></a></li>
     </ul>
   </section>
+
+  <QuestionsFrequentes page="Horaires & contact" titre="Avant de venir" fond="sable" />
 </Base>
 
 <style>

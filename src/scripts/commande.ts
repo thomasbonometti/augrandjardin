@@ -8,13 +8,16 @@ import { resumePdt } from '../lib/pdt.js';
 import { espacesInsecables as typo } from '../lib/typo.js';
 
 type Produit = { id: string; name: string; product?: string; format?: string; category?: string; priceCents: number; oldPriceCents?: number; weightKg?: number; stock?: number | null; minimum?: number | null; maximum?: number | null; ordre?: number; enVente: boolean; description?: string };
-type Catalogue = { open: boolean; live?: boolean; products: Produit[] };
+// pause : envoyée par l'outil quand le réglage Notion « Fermé » est coché (date de reprise et message).
+type Catalogue = { open: boolean; live?: boolean; products: Produit[]; pause?: { until?: string | null; untilLabel?: string; message?: string } | null };
 
 const CLE = 'agj-site-commande-v1';
 const $ = <T extends Element = HTMLElement>(sel: string, racine: ParentNode = document) => racine.querySelector<T>(sel) as T;
 const donnees = JSON.parse($('#donnees-commande').textContent || '{}');
 let catalogue: Catalogue = donnees.catalogue;
 let config = donnees.config;
+// Site publié en mode fermé (Notion « Réglages du site ») : la commande reste fermée, même si l'outil répond « ouvert ».
+const fermeSite = !!donnees.fermeSite;
 let panier: any = panierSecours;
 
 const form = $<HTMLFormElement>('#commande');
@@ -110,7 +113,8 @@ function majRecap() {
 function majEntete() {
   const r = resumePdt(catalogue);
   const statut = $('[data-statut]');
-  if (statut) statut.textContent = r.ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment';
+  const ouvert = r.ouvert && !fermeSite;
+  if (statut) statut.textContent = ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment';
   // On ne réécrit l'en-tête que s'il a changé depuis la construction (sinon l'animation d'arrivée serait coupée).
   const memeTexte = (a: string, b: string) => a.replace(/\s+/g, ' ').trim() === b.replace(/\s+/g, ' ').trim();
   if (r.cartes.length) {
@@ -126,9 +130,14 @@ function majEntete() {
     if (!memeTexte(texte, titre.textContent || '')) titre.textContent = texte;
   }
   $('[data-bandeau-test]').hidden = !!catalogue.live;
-  const ouvert = r.ouvert;
   form.hidden = !ouvert || !$('[data-fin]').hidden;
   $('[data-fermee]').hidden = ouvert;
+  // Fermé dans Notion depuis la dernière publication du site : l'outil donne la date de reprise et le message.
+  const pause = catalogue.pause;
+  if (!ouvert && pause && !fermeSite) {
+    $('[data-fermee-titre]').textContent = typo(`Les commandes reprendront ${pause.untilLabel ? `le ${pause.untilLabel}` : 'bientôt'}`);
+    if (pause.message) $('[data-fermee-texte]').textContent = typo(pause.message);
+  }
 }
 
 // ---------- validation et envoi ----------

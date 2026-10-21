@@ -231,6 +231,20 @@ textarea.saisie { height: 96px; padding: 14px 16px; resize: vertical; line-heigh
   .barre-info__liens .lien-adresse { display: none; }
   .barre-info__liens .lien-tel span { display: none; }
 }
+/* Message de la semaine (Notion « Réglages du site ») : sous la barre verte, sur toutes les pages.
+   Il ne colle pas en haut : il défile avec la page, et l'en-tête vient se coller sous la barre. */
+.annonce { background: var(--vert-foret); color: var(--blanc); border-top: 1px solid rgba(255, 255, 255, 0.16); font-size: 14px; line-height: 20px; }
+.annonce .wrap { padding-top: 10px; padding-bottom: 11px; }
+.annonce p { text-wrap: pretty; }
+.annonce__etiquette {
+  display: inline-block; margin-right: 10px; padding: 0 7px; border-radius: 4px; vertical-align: 1px;
+  background: var(--vert-clair); color: var(--texte); font-size: 11px; line-height: 18px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+@media (min-width: 1100px) {
+  .annonce { font-size: 15px; line-height: 22px; }
+  .annonce .wrap { padding-top: 11px; padding-bottom: 12px; }
+}
 
 /* ---------- En-tête ---------- */
 .entete { border-bottom: 1px solid var(--bordure-claire); background: var(--creme); position: sticky; top: var(--h-barre); z-index: 20; transition: transform 0.3s ease; }

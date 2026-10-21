@@ -2,7 +2,7 @@
 import Icone from './Icone.astro';
 import Logo from './Logo.astro';
 import { ferme, navigation, lienProduits } from '../data/ferme.js';
-import { creneaux, misAJour } from '../lib/donnees.js';
+import { creneaux, misAJour, fermeture } from '../lib/donnees.js';
 import { plage } from '../lib/vente.js';
 const aLaFerme = creneaux.filter((c) => c.cetteSemaine && c.aLaFerme);
 const annee = new Date().getFullYear();
@@ -23,9 +23,11 @@ const annee = new Date().getFullYear();
         </nav>
         <div class="pied__col">
           <p class="titre-col">Venir à la ferme</p>
-          {aLaFerme.length
-            ? aLaFerme.map((c) => <span>{c.jour} {plage(c)}</span>)
-            : <a href="/horaires-contact/">Horaires de la semaine</a>}
+          {fermeture
+            ? <><span>Ventes en pause</span><span>{fermeture.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Reprise bientôt'}</span></>
+            : aLaFerme.length
+              ? aLaFerme.map((c) => <span>{c.jour} {plage(c)}</span>)
+              : <a href="/horaires-contact/">Horaires de la semaine</a>}
           <span>{ferme.rue}</span>
           <span>{ferme.codePostal} {ferme.ville}</span>
           <a href={ferme.itineraire} rel="noopener">Itinéraire</a>

@@ -1,0 +1,37 @@
+---
+// Mode fermé (Notion « Réglages du site ») : encart affiché à la place de la liste, de la commande ou de la grille pro.
+// N'affiche rien quand le site est ouvert.
+import Icone from './Icone.astro';
+import { ferme } from '../data/ferme.js';
+import { fermeture } from '../lib/donnees.js';
+
+interface Props { titre?: string; texte?: string; lienSms?: string | null; niveau?: 'h2' | 'h3' }
+const { titre, texte, lienSms = null, niveau = 'h2' } = Astro.props;
+const Titre = niveau;
+const reprise = fermeture?.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Reprise bientôt';
+---
+{fermeture && (
+  <div class="fermeture carte-sable" data-fermeture>
+    <span class="chip chip-vert fermeture__etat"><span class="point point-clair" aria-hidden="true"></span>Ventes en pause</span>
+    <Titre class="fermeture__titre">{titre ?? reprise}</Titre>
+    <p class="lg muted fermeture__texte">{texte ?? fermeture.message}</p>
+    <div class="btns">
+      {lienSms && <a class="btn btn-primaire btn-bloc" href={lienSms}>Recevoir la liste par SMS</a>}
+      <a class="btn btn-secondaire btn-bloc" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={18} />Suivre la ferme sur Facebook</a>
+    </div>
+  </div>
+)}
+
+<style>
+  .fermeture { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+  .fermeture__etat { gap: 8px; }
+  .fermeture__titre { font-size: 26px; line-height: 32px; letter-spacing: -0.03em; text-wrap: balance; }
+  .fermeture__texte { font-size: 16px; line-height: 24px; max-width: 640px; }
+  .fermeture .btns { width: 100%; }
+  @media (min-width: 720px) { .fermeture .btns .btn { width: auto; } }
+  @media (min-width: 1100px) {
+    .fermeture { padding: 48px; gap: 20px; }
+    .fermeture__titre { font-size: 40px; line-height: 48px; }
+    .fermeture__texte { font-size: 20px; line-height: 30px; }
+  }
+</style>

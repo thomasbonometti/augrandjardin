@@ -6,6 +6,7 @@ import Photo from '../components/Photo.astro';
 import { Picture } from 'astro:assets';
 import solVivant from '../assets/illustrations/sol-vivant.png';
 import { ferme, partenaires, restaurants, pointsDeVente } from '../data/ferme.js';
+import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
 import { prochaineVente as v } from '../lib/donnees.js';
 import { fileAriane } from '../lib/seo.js';
 const jour = v ? v.jour.toLowerCase() : 'samedi';
@@ -89,6 +90,8 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
       </div>
     </div>
   </section>
+
+  <QuestionsFrequentes page="La ferme" titre="Vos questions" />
 </Base>
 
 <style>

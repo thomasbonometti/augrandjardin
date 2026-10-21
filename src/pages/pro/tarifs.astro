@@ -3,10 +3,13 @@
 // Servie seulement aux pros connectés (functions/pro/_middleware.js). Prix HT = prix TTC ÷ 1,055.
 import Base from '../../layouts/Base.astro';
 import Icone from '../../components/Icone.astro';
+import EncartFermeture from '../../components/EncartFermeture.astro';
 import { ferme } from '../../data/ferme.js';
-import { rayons, misAJour } from '../../lib/donnees.js';
+import { rayons, misAJour, fermeture } from '../../lib/donnees.js';
 import { euros, prixHT } from '../../lib/vente.js';
 const dispo = (p: any) => (p.quantiteLimitee ? 'limite' : p.estNouveau ? 'nouveau' : 'dispo');
+// Mode fermé (Notion « Réglages du site ») : pas de grille, la date de reprise à la place.
+const reprise = fermeture?.reprise ? `le ${fermeture.repriseLong}` : 'bientôt';
 ---
 <Base
   titre="Grille tarifaire professionnels | Au Grand Jardin"
@@ -21,15 +24,24 @@ const dispo = (p: any) => (p.quantiteLimitee ? 'limite' : p.estNouveau ? 'nouvea
         <p class="sm muted seulement-ordi">Mis à jour {misAJour.texte}</p>
       </div>
       <h1 class="tete__titre">Grille tarifaire de la semaine</h1>
-      <p class="lg muted tete__intro">Prix hors taxes, TVA 5,5&nbsp;%.<span class="seulement-mobile"> Mis à jour {misAJour.texte}.</span> Commandez par téléphone ou par message avant le jour de récolte convenu.</p>
+      {fermeture
+        ? <p class="lg muted tete__intro">Les ventes sont en pause : la grille revient {reprise}.</p>
+        : <p class="lg muted tete__intro">Prix hors taxes, TVA 5,5&nbsp;%.<span class="seulement-mobile"> Mis à jour {misAJour.texte}.</span> Commandez par téléphone ou par message avant le jour de récolte convenu.</p>}
     </div>
     <div class="btns tete__actions">
-      <a class="btn btn-primaire btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />Commander : {ferme.telephone}</a>
-      <button class="btn btn-secondaire btn-bloc" type="button" data-imprimer><Icone nom="telecharger" taille={18} />Télécharger en PDF</button>
+      <a class="btn btn-primaire btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />{fermeture ? 'Appeler' : 'Commander'} : {ferme.telephone}</a>
+      {!fermeture && <button class="btn btn-secondaire btn-bloc" type="button" data-imprimer><Icone nom="telecharger" taille={18} />Télécharger en PDF</button>}
     </div>
   </section>
 
-  <section class="wrap grille-zone" aria-label="Grille tarifaire">
+  {fermeture && (
+    <section class="wrap grille-zone" aria-label="Ventes en pause">
+      <EncartFermeture titre={`Pas de grille en ce moment, reprise ${reprise}`} texte={`Pour une demande en attendant, appelez Pierre au ${ferme.telephone}.`} />
+      <p class="sm muted pied-grille"><a href="/pro/deconnexion/">Se déconnecter</a></p>
+    </section>
+  )}
+
+  {!fermeture && <section class="wrap grille-zone" aria-label="Grille tarifaire">
     <table class="grille">
       <caption class="visually-hidden">Prix professionnels de la semaine, par rayon</caption>
       <thead>
@@ -60,7 +72,7 @@ const dispo = (p: any) => (p.quantiteLimitee ? 'limite' : p.estNouveau ? 'nouvea
       ))}
     </table>
     <p class="sm muted pied-grille">Grille du {misAJour.jour}. <a href="/pro/deconnexion/">Se déconnecter</a></p>
-  </section>
+  </section>}
 </Base>
 
 <script>
