@@ -1,0 +1,111 @@
+[
+  {
+    "id": "40070bd669cd81119d24d193ae86a817",
+    "question": "Comment commander des pommes de terre ?",
+    "reponse": [
+      {
+        "texte": "Choisissez vos filets sur cette page et validez : vous recevez un e-mail de confirmation. Quand Pierre a préparé votre commande, un second e-mail vous permet de choisir votre jour de retrait à la ferme.\nVous réglez sur place, au retrait."
+      }
+    ],
+    "pages": [
+      "Pommes de terre"
+    ],
+    "ordre": 10
+  },
+  {
+    "id": "40070bd669cd813cac25eeee16372944",
+    "question": "Comment se passe la vente à la ferme ?",
+    "reponse": [
+      {
+        "texte": "La vente a lieu à la ferme, au 43 rue Principale à Lostroff. Le jour et l’horaire de la prochaine vente sont toujours indiqués en haut du site : ils changent selon la saison et les marchés."
+      }
+    ],
+    "pages": [
+      "Horaires & contact",
+      "Produits"
+    ],
+    "ordre": 10
+  },
+  {
+    "id": "40070bd669cd81d5a47bfa5894dbdcd4",
+    "question": "Je suis restaurateur ou commerçant : comment commander ?",
+    "reponse": [
+      {
+        "texte": "Faites une demande d’accès sur cette page : Pierre vous rappelle pour parler de vos besoins, puis vous donne accès à la grille tarifaire de la semaine, avec les prix hors taxes."
+      }
+    ],
+    "pages": [
+      "Professionnels"
+    ],
+    "ordre": 10
+  },
+  {
+    "id": "40070bd669cd81bfad9ce67a3c30fa7d",
+    "question": "Je ne peux pas venir au créneau choisi : que faire ?",
+    "reponse": [
+      {
+        "texte": "Vous pouvez changer de jour vous-même jusqu’à l’avant-veille du retrait, avec le lien reçu par e-mail. Ensuite, répondez à l’e-mail de votre commande ou appelez Pierre au 06 42 42 42 93 : on trouvera une solution."
+      }
+    ],
+    "pages": [
+      "Pommes de terre"
+    ],
+    "ordre": 20
+  },
+  {
+    "id": "40070bd669cd8176b2ddceda37153b49",
+    "question": "Peut-on réserver ses légumes ?",
+    "reponse": [
+      {
+        "texte": "Oui, par SMS : inscrivez-vous à la liste de la semaine, puis répondez au SMS avec votre panier. Il est mis de côté pour le jour de la vente.\nLes pommes de terre et les oignons se commandent en ligne, sur la page Pommes de terre."
+      }
+    ],
+    "pages": [
+      "Produits",
+      "Accueil"
+    ],
+    "ordre": 20
+  },
+  {
+    "id": "40070bd669cd8125895bdb88c090e108",
+    "question": "Comment recevoir la liste de la semaine ?",
+    "reponse": [
+      {
+        "texte": "Inscrivez-vous à la liste par SMS avec le formulaire du site : un seul SMS par semaine, du 15 avril au 15 novembre. La liste est aussi publiée sur ce site et sur la page Facebook de la ferme."
+      }
+    ],
+    "pages": [
+      "Produits",
+      "Accueil"
+    ],
+    "ordre": 30
+  },
+  {
+    "id": "40070bd669cd81f9b1c5c1e45a5dee33",
+    "question": "Tous les produits sont-ils bio ?",
+    "reponse": [
+      {
+        "texte": "Les légumes de la ferme sont bio. La vente propose aussi des produits de partenaires de la région : dans la liste, chaque produit indique s’il est bio ou non certifié bio."
+      }
+    ],
+    "pages": [
+      "Produits",
+      "La ferme"
+    ],
+    "ordre": 40
+  },
+  {
+    "id": "40070bd669cd81c1bb70e0c51e61c3b4",
+    "question": "La ferme est-elle ouverte toute l’année ?",
+    "reponse": [
+      {
+        "texte": "La vente suit les saisons. Quand la ferme fait une pause, la date de reprise est affichée en haut du site. Pour ne pas la manquer, inscrivez-vous à la liste par SMS ou suivez la ferme sur Facebook."
+      }
+    ],
+    "pages": [
+      "Horaires & contact",
+      "Accueil"
+    ],
+    "ordre": 80
+  }
+]

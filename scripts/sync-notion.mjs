@@ -1,15 +1,21 @@
 // Lit Notion au moment de la construction et prépare les données du site.
 //
-// Sur Cloudflare (NOTION_TOKEN défini) : interroge les bases « Produits de la ferme » et « Planning »,
-// réécrit data/produits.json, data/planning.json, data/meta.json et télécharge les photos.
+// Sur Cloudflare (NOTION_TOKEN défini) : interroge les bases « Produits de la ferme », « Planning »,
+// « Réglages du site » et « Questions fréquentes », réécrit data/produits.json, data/planning.json,
+// data/reglages.json, data/faq.json, data/meta.json et télécharge les photos. Sur le site en ligne,
+// garde aussi une copie de la liste dans « Historique des listes » quand elle a changé.
 // En local, sans jeton : garde l'instantané de data/ tel quel.
 // Dans les deux cas, les photos de data/img-src/ sont converties en WebP (400 et 800 px) dans public/produits-img/.
 //
 // Si Notion ne répond pas, la construction échoue : Cloudflare garde alors la version en ligne précédente.
+// Exceptions : les questions fréquentes (on garde la copie précédente) et l'historique (simple avertissement).
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
+import { lireCreneaux, prochaineVente } from '../src/lib/vente.js';
+import { lireFermeture } from '../src/lib/reglages.js';
+import { contenuListe, morceauxTexte } from '../src/lib/historique.js';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const DATA = path.join(ROOT, 'data');
@@ -19,6 +25,26 @@ const IMG_OUT = path.join(ROOT, 'public', 'produits-img');
 const NOTION_VERSION = '2025-09-03';
 const PRODUITS_DS = process.env.NOTION_PRODUITS_DS || '5fb0d75e-67d6-4840-a703-2c6e0b3eaa11';
 const PLANNING_DS = process.env.NOTION_PLANNING_DS || '152a41f4-8718-45e1-9025-40f3da0572e3';
+// Bases de la page « Site augrandjardin.fr » (l'intégration y a accès par la page)
+const REGLAGES_DS = process.env.NOTION_REGLAGES_DS || 'cc35fc8e-c976-44f0-b213-31eed14e3bee';
+const FAQ_DS = process.env.NOTION_FAQ_DS || 'a8d7a11c-2204-4c8b-ab4e-23c749bd4452';
+const HISTORIQUE_DS = process.env.NOTION_HISTORIQUE_DS || '5fced6cb-eabb-46cd-beb2-00ee278afd91';
+// Branches publiées sur le vrai site (l'historique ne garde que leurs listes)
+const BRANCHES_EN_LIGNE = ['site-2026', 'main'];
+
+async function notionAppel(nomBase, chemin, body) {
+  const res = await fetch(`https://api.notion.com/v1/${chemin}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.NOTION_TOKEN}`,
+      'Notion-Version': NOTION_VERSION,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`Notion ${res.status} sur « ${nomBase} » : ${await res.text()}`);
+  return res.json();
+}
 
 async function notionQuery(nomBase, dataSourceId, body) {
   const rows = [];
@@ -100,6 +126,72 @@ function mapPlanning(page) {
   };
 }
 
+// « Réglages du site » : une seule ligne (la plus ancienne si quelqu'un en a ajouté une).
+function mapReglages(page) {
+  return {
+    ferme: chk(p(page, 'Fermé')),
+    repriseLe: date(p(page, 'Reprise le')),
+    messageFermeture: text(p(page, 'Message de fermeture')),
+    afficherMessage: chk(p(page, 'Afficher le message')),
+    message: text(p(page, 'Message de la semaine')),
+  };
+}
+
+// Réponse en texte riche : on garde le gras, l'italique et les liens.
+const segments = (prop) =>
+  (prop?.rich_text ?? []).map((t) => ({
+    texte: t.plain_text,
+    ...(t.annotations?.bold ? { gras: true } : {}),
+    ...(t.annotations?.italic ? { italique: true } : {}),
+    ...(t.href ? { lien: t.href } : {}),
+  }));
+
+function mapQuestion(page) {
+  return {
+    id: page.id.replaceAll('-', ''),
+    question: text(p(page, 'Question')),
+    reponse: segments(p(page, 'Réponse')),
+    pages: (p(page, 'Pages')?.multi_select ?? []).map((o) => o.name),
+    ordre: num(p(page, 'Ordre')),
+  };
+}
+
+// Historique des listes : une ligne par liste publiée, seulement si elle a changé depuis la dernière.
+async function enregistrerHistorique(produits, planning, reglages) {
+  const branche = process.env.CF_PAGES_BRANCH;
+  if (process.env.CF_PAGES !== '1' || !BRANCHES_EN_LIGNE.includes(branche)) {
+    console.log('→ Historique des listes : seulement sur le site en ligne (Cloudflare, branche de production)');
+    return;
+  }
+  const maintenant = new Date();
+  if (lireFermeture(reglages, maintenant)) return console.log('→ Historique des listes : site fermé, rien à garder');
+  if (!produits.length) return console.log('→ Historique des listes : aucun produit en vente');
+  const vente = prochaineVente(lireCreneaux(planning), maintenant);
+  const ligne = contenuListe(produits, { prochaineVente: vente, maintenant });
+  const derniere = await notionAppel('Historique des listes', `data_sources/${HISTORIQUE_DS}/query`, {
+    sorts: [{ property: 'Publiée le', direction: 'descending' }],
+    page_size: 1,
+  });
+  // Comparaison sans tenir compte des espaces (Notion peut changer les espaces insécables)
+  const normaliser = (s) => String(s).replace(/\s+/g, ' ').trim();
+  if (normaliser(text(p(derniere.results[0] ?? {}, 'Produits'))) === normaliser(ligne.texte)) {
+    return console.log('→ Historique des listes : liste inchangée depuis la dernière copie');
+  }
+  await notionAppel('Historique des listes', 'pages', {
+    parent: { type: 'data_source_id', data_source_id: HISTORIQUE_DS },
+    properties: {
+      Liste: { title: morceauxTexte(ligne.titre) },
+      'Publiée le': { date: { start: ligne.publieeLe } },
+      Semaine: { rich_text: morceauxTexte(ligne.semaine) },
+      'Prochaine vente': { rich_text: morceauxTexte(ligne.prochaineVente) },
+      'Nombre de produits': { number: ligne.nombre },
+      Produits: { rich_text: morceauxTexte(ligne.texte) },
+      'Données (JSON)': { rich_text: morceauxTexte(ligne.json) },
+    },
+  });
+  console.log(`✓ Historique des listes : copie de la liste (${ligne.nombre} produits, ${ligne.semaine})`);
+}
+
 async function syncLive() {
   console.log('→ Lecture de Notion…');
   const produits = (
@@ -109,6 +201,19 @@ async function syncLive() {
     })
   ).map(mapProduit);
   const planning = (await notionQuery('Planning semaine', PLANNING_DS, {})).map(mapPlanning);
+  const lignesReglages = await notionQuery('Réglages du site', REGLAGES_DS, { sorts: [{ timestamp: 'created_time', direction: 'ascending' }] });
+  const reglages = lignesReglages.length ? mapReglages(lignesReglages[0]) : { ferme: false, repriseLe: null, messageFermeture: '', afficherMessage: false, message: '' };
+  let faq = null;
+  try {
+    faq = (
+      await notionQuery('Questions fréquentes', FAQ_DS, {
+        filter: { property: 'Publiée', checkbox: { equals: true } },
+        sorts: [{ property: 'Ordre', direction: 'ascending' }, { property: 'Question', direction: 'ascending' }],
+      })
+    ).map(mapQuestion).filter((q) => q.question);
+  } catch (e) {
+    console.warn(`⚠ Questions fréquentes illisibles, on garde la copie précédente de data/faq.json : ${e.message}`);
+  }
 
   // Les liens de fichiers Notion expirent au bout d'une heure : on télécharge maintenant.
   await fs.rm(IMG_SRC, { recursive: true, force: true });
@@ -127,8 +232,15 @@ async function syncLive() {
 
   await fs.writeFile(path.join(DATA, 'produits.json'), JSON.stringify(produits, null, 2));
   await fs.writeFile(path.join(DATA, 'planning.json'), JSON.stringify(planning, null, 2));
+  await fs.writeFile(path.join(DATA, 'reglages.json'), JSON.stringify(reglages, null, 2));
+  if (faq) await fs.writeFile(path.join(DATA, 'faq.json'), JSON.stringify(faq, null, 2));
   await fs.writeFile(path.join(DATA, 'meta.json'), JSON.stringify({ syncedAt: new Date().toISOString(), source: 'Notion' }, null, 2));
-  console.log(`✓ ${produits.length} produits en vente (${photos} photos), ${planning.length} créneaux`);
+  const fermeture = lireFermeture(reglages);
+  console.log(`✓ ${produits.length} produits en vente (${photos} photos), ${planning.length} créneaux, ${faq ? faq.length : 'copie des'} questions fréquentes`);
+  console.log(fermeture ? `✓ Site en mode fermé (${fermeture.reprise ? `reprise le ${fermeture.reprise}` : 'sans date de reprise'})` : '✓ Site ouvert');
+  if (reglages.afficherMessage && reglages.message) console.log(`✓ Message de la semaine : « ${reglages.message} »`);
+
+  await enregistrerHistorique(produits, planning, reglages).catch((e) => console.warn(`⚠ Historique des listes non enregistré : ${e.message}`));
 }
 
 async function buildImages() {
