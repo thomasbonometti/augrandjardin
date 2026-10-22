@@ -4,7 +4,7 @@ Ces idées ont été proposées à Thomas les 18 et 21 octobre 2026.
 
 **Idées retenues par Thomas le 21/10 :** 3, 4, 6, 9, 11, 12, 19, 20, 21, 25, 26, 27, 28, 30, B1 et B2, plus l'idée 46 (un accès par pro, décision 2). Elles sont réparties en 4 lots dans le plan d'évolutions (document du projet Claude « Au Grand Jardin », `site-web/plan-evolutions.md`), qui fait foi. Les autres idées de 1 à 30 ne sont pas au programme.
 
-- **Lot 1, livré le 21/10 :** 9, 11, 12, 27, 28, 30, B1 et le démarrage de B2 (détail dans `docs/passation.md`). La partie outil de commande attend la fusion de la pull request n° 4 du dépôt `brief`.
+- **Lot 1, livré le 21/10 :** 9, 11, 12, 27, 28, 30, B1 et le démarrage de B2 (détail dans `docs/passation.md`). La partie outil de commande est en ligne depuis le 22/10 (pull requests n° 4 et 5 du dépôt `brief`).
 - **Lot 2 :** espace pro et espace de Pierre (19, 20, 21, 25, 46).
 - **Lot 3 :** conseils, calendrier, bilan (3, 4, B2).
 - **Lot 4 :** mail de la semaine et « Ma semaine » (6, 26).
@@ -25,7 +25,7 @@ Ces idées ont été proposées à Thomas les 18 et 21 octobre 2026.
 6. La liste de la semaine par mail, en plus du SMS. *Faible à moyen* **Retenue : lot 4.**
 7. Paniers de saison composés par Pierre. *Moyen, décision de Pierre*
 8. Bons cadeaux, notamment pour Noël et le Marché de Noël de Belles-Forêts. *Faible à moyen*
-9. Rappel la veille du retrait d'une commande. *Faible* **Retenue : lot 1, prête dans l'outil (pull request à fusionner).**
+9. Rappel la veille du retrait d'une commande. *Faible* **Retenue : lot 1, fait (en ligne dans l'outil le 22/10).**
 10. Rayon « Imparfaits » à prix doux. *Faible*
 11. Page de questions pratiques (paiement, parking, contenants, conservation). *Faible* **Retenue : lot 1, fait.**
 12. Annonce express dans la barre verte (« Message de la semaine » dans Notion). *Très faible* **Retenue : lot 1, fait.**
@@ -49,10 +49,10 @@ Ces idées ont été proposées à Thomas les 18 et 21 octobre 2026.
 
 25. Liste « À récolter » du vendredi. *Moyen* **Retenue : lot 2.**
 26. Mise à jour de la semaine depuis le téléphone, sans ouvrir Notion. *Moyen* **Retenue : lot 4.**
-27. Avis Google et QR codes. *Faible* **Retenue : lot 1. Affichette faite ; lien d'avis prêt dans l'outil (pull request à fusionner).**
-28. Mode « fermé » (« Fermé jusqu'au… »), utile dès la fin de saison mi-novembre. *Faible* **Retenue : lot 1. Fait sur le site ; prêt dans l'outil (pull request à fusionner).**
+27. Avis Google et QR codes. *Faible* **Retenue : lot 1, fait (affichette ; lien d'avis en ligne dans l'outil le 22/10).**
+28. Mode « fermé » (« Fermé jusqu'au… »), utile dès la fin de saison mi-novembre. *Faible* **Retenue : lot 1, fait (site le 21/10, outil le 22/10).**
 29. Un seul bouton pour tout publier (site, SMS ou mail, Facebook). *Moyen*
-30. Alerte de stock bas pour les pommes de terre. *Faible* **Retenue : lot 1, prête dans l'outil (pull request à fusionner).**
+30. Alerte de stock bas pour les pommes de terre. *Faible* **Retenue : lot 1, fait (en ligne dans l'outil le 22/10).**
 
 **Bonus**
 - B1 : statistiques de visite Cloudflare, sans cookie. *Très faible* **Retenue : lot 1, fait.**
