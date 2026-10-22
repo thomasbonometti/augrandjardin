@@ -50,7 +50,7 @@ Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare ga
 
 ## Secrets (Cloudflare → projet → Settings → Variables and Secrets, type Secret)
 
-- `NOTION_TOKEN` : intégration Notion « Site Au Grand Jardin » (lecture + insertion), connectée aux pages « Au Grand Jardin 2025 » et « Site augrandjardin.fr » (Réglages du site, Questions fréquentes et Historique des listes compris). Elle n'a pas accès aux bases de l'outil de commande.
+- `NOTION_TOKEN` : intégration Notion « Site Au Grand Jardin » (lecture + insertion), connectée aux pages « Au Grand Jardin 2025 » et « Site augrandjardin.fr » (Réglages du site, Questions fréquentes et Historique des listes compris). Dans Notion, elle est en fait connectée à toute la page « Au Grand Jardin » (vu le 22/10) : elle voit donc aussi les bases de l'outil de commande, mais le code du site ne les lit ni ne les écrit (il passe par l'API de l'outil).
 - `PRO_PASSWORD` : mot de passe donné aux pros. Le changer déconnecte tout le monde.
 - `PRO_SECRET` : longue chaîne au hasard (signature du cookie pro).
 
