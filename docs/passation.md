@@ -108,6 +108,7 @@ Autres documents :
   - Lien d'avis Google ouvert : il mène bien à la fiche Au Grand Jardin (rien n'a été saisi).
   - QR codes de l'affichette décodés après affichage dans un navigateur : ils mènent aux deux adresses ci-dessus.
   - Outil (pull request n° 4) : 82 tests unitaires et d'API, parcours Playwright au téléphone et à l'ordinateur, tous verts.
+  - Alerte de stock en ligne, le 22/10 à 8 h 53 (à la demande de Thomas) : commande test AGJ-5, 1 filet de 15 kg de Chérie (37 → 22 kg). Trois mails reçus sur hey@ : confirmation, nouvelle commande et « Stock bas : Chérie, il reste 22 kg ». Commande et client de test archivés ensuite, stock rendu ; Commandes AGJ et Clients AGJ sont vides.
 
 ## 5. Règles
 
