@@ -63,7 +63,7 @@ Autres documents :
   - **Statistiques (B1)** : Cloudflare Web Analytics, sans cookie ; une ligne des mentions légales en parle.
   - **Historique des listes (B2, démarrage)** : chaque construction Cloudflare copie la liste dans Notion si elle a changé, pour le bilan de saison.
   - **Outil de commande (pull request n° 4 du dépôt `brief`, fusionnée par Thomas le 22/10)** : mode fermé de `/agj` (même case), rappel la veille du retrait (idée 9), alerte de stock bas à Pierre (idée 30), merci avec lien d'avis Google à chaque retrait (idée 27).
-  - **Choix de Thomas du 22/10 (pull request n° 5, à fusionner)** : alerte sous 30 kg par variété (au lieu de 10 kg), pour les pommes de terre triées ou non et pour les oignons et échalotes ; merci à chaque retrait, habitués compris.
+  - **Choix de Thomas du 22/10 (pull request n° 5, fusionnée le 22/10)** : alerte sous 30 kg par variété (au lieu de 10 kg), pour les pommes de terre triées ou non et pour les oignons et échalotes ; merci à chaque retrait, habitués compris.
   - **Stock de test (22/10, à la demande de Thomas)** : colonne « Stock » de Produits AGJ remplie sur les 16 formats en vente, avec des valeurs de test. Chérie (37 kg) et oignons jaunes (35 kg) sont juste au-dessus du seuil pour essayer l'alerte ; les autres variétés ont 110 à 190 kg. Les formats pas en vente restent vides.
   - **Affichette A5 (idée 27)** : deux QR codes, la liste de la semaine (`https://produits.augrandjardin.fr/?src=qr`) et l'avis Google (`https://g.page/r/CVcpGhGHIj7rEAE/review`).
 
@@ -119,10 +119,7 @@ Autres documents :
 
 ## 6. Points ouverts
 
-- **Lot 1, côté Thomas** :
-  - connecter l'intégration Notion de l'outil, « Formulaire brief », à la base « Réglages du site » (••• en haut à droite → Plus → Connexions → Ajouter une connexion) ; la pull request n° 4 est fusionnée (22/10) ;
-  - fusionner la pull request n° 5 du dépôt `brief` (seuil de 30 kg, oignons) ;
-  - imprimer l'affichette A5 (artifact ci-dessus, export PDF).
+- **Lot 1, côté Thomas** : imprimer l'affichette A5 (artifact ci-dessus, export PDF). Le reste est fait le 22/10 : pull requests n° 4 et 5 fusionnées et en ligne (configuration `2026-10-22.1`), « Formulaire brief » connectée à « Réglages du site » par Claude à la demande de Thomas (la page de vérification de l'outil ne signale plus rien).
 - **Lot 1, côté Pierre** : relire les 6 questions en brouillon et les publier.
 - **Avant le passage en réel de l'outil** : remplacer le stock de test de Produits AGJ par le vrai stock de Pierre, ou vider la colonne (vide = pas de limite, pas d'alerte).
 - **Accès Notion du site** : l'intégration « Site Au Grand Jardin » est connectée à toute la page « Au Grand Jardin » (vu le 22/10), donc elle voit aussi les commandes et les clients de l'outil, dont le site n'a pas besoin. À restreindre plus tard aux pages que le site lit et écrit, en vérifiant ensuite qu'une publication passe.
