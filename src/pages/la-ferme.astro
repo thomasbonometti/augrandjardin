@@ -1,5 +1,7 @@
 ---
-// La ferme — frames Figma 15:2 (desktop) et 40:2 (mobile), section Sol Vivant 15:116 / 40:102
+// La ferme — frames Figma 15:2 (desktop) et 40:2 (mobile), section sol 15:116 / 40:102.
+// Textes revus avec Pierre le 26/10/2026 : pas de « Maraîchage Sol Vivant » (il s’en rapproche sans le faire à 100 %),
+// pas de « aucun produit chimique », plus de partenaires ni de pain.
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import Photo from '../components/Photo.astro';
@@ -13,7 +15,7 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
 ---
 <Base
   titre="La ferme — Pierre Fouquet, maraîcher bio à Lostroff | Au Grand Jardin"
-  description="Au Grand Jardin, ferme maraîchère bio à Lostroff (Moselle) : maraîchage sol vivant, semences paysannes, aucun produit chimique, et des partenaires à moins de 50 km."
+  description="Au Grand Jardin, ferme maraîchère certifiée bio par Ecocert à Lostroff (Moselle) : Pierre Fouquet y cultive depuis 2020 des légumes de saison, choisis pour leur goût, dans le respect du sol."
   page="ferme"
   schema={fileAriane([{ nom: 'La ferme', url: '/la-ferme/' }])}
 >
@@ -24,9 +26,9 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
     <div class="intro__texte">
       <div class="intro__titres" data-anim-groupe="monte">
         <p class="eyebrow">La ferme</p>
-        <h1 class="h1-page" data-anim="mots">Pierre Fouquet, maraîcher bio à Lostroff</h1>
-        <p class="lg muted">Au Grand Jardin, on a fait le choix d’une agriculture qui respecte la terre et la biodiversité<span class="seulement-ordi">, dans le jardin et autour</span> : un paillage plutôt qu’un labour, des fleurs pour les <span class="seulement-ordi">insectes </span>pollinisateurs, aucun produit chimique.</p>
-        <p class="muted">Chaque {jour}, la récolte de la semaine est en vente à la ferme, avec les produits de nos partenaires bio et le pain d’Aux Gourmandises de Thomas.</p>
+        <h1 class="h1-page" data-anim="mots">Pierre Fouquet, maraîcher bio à Lostroff depuis 2020</h1>
+        <p class="lg muted">Au Grand Jardin, on a fait le choix d’une agriculture qui respecte la terre et la biodiversité<span class="seulement-ordi">, dans le jardin et autour</span> : un sol toujours paillé, des haies, des fleurs pour les <span class="seulement-ordi">insectes </span>pollinisateurs. En conversion bio dès 2020, la ferme est certifiée par Ecocert depuis 2023.</p>
+        <p class="muted">Chaque {jour}, la récolte de la semaine est en vente à la ferme.</p>
       </div>
       <div class="btns" data-anim>
         <a class="btn btn-primaire btn-bloc" href="/produits/">Voir les produits de la semaine</a>
@@ -41,9 +43,9 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
       <h2 id="engagements-titre">Ce qui pousse ici, et comment</h2>
     </div>
     <ul class="valeurs" role="list" data-anim-groupe="pop">
-      <li><Icone nom="pousse" taille={28} /><h3>Des produits bio et de qualité</h3><p class="muted">Aucun produit chimique, aucune semence hybride F1 : uniquement des semences paysannes et des variétés anciennes.</p></li>
-      <li><Icone nom="repere" taille={28} /><h3>Une production et des partenaires locaux</h3><p class="muted">Tous nos fruits et légumes bio sont cultivés à Lostroff. Nos partenaires, bio eux aussi, sont à moins de 50&nbsp;km.</p></li>
-      <li><Icone nom="coche" taille={28} /><h3>Des engagements pour la terre</h3><p class="muted"><span class="seulement-ordi">Une agriculture sans destruction de l’environnement : paillage</span><span class="seulement-mobile">Paillage</span>, sol couvert, haies et fleurs pour la biodiversité.</p></li>
+      <li><Icone nom="pousse" taille={28} /><h3>Des produits bio et de qualité</h3><p class="muted">Certifiée bio par Ecocert, la ferme teste beaucoup de variétés pour ne garder que les plus savoureuses, issues de semences paysannes ou hybrides.</p></li>
+      <li><Icone nom="repere" taille={28} /><h3>Une production 100&nbsp;% de la ferme</h3><p class="muted">Tout ce que nous vendons vient d’ici : nos légumes sont cultivés à Lostroff, et nous n’achetons rien pour le revendre.</p></li>
+      <li><Icone nom="coche" taille={28} /><h3>Des engagements pour la terre</h3><p class="muted"><span class="seulement-ordi">Une agriculture sans destruction de l’environnement : paillage</span><span class="seulement-mobile">Paillage</span>, sol couvert, haies et fleurs pour la biodiversité. Contre les pucerons, Pierre lâche des insectes prédateurs plutôt que de traiter, même au savon noir.</p></li>
     </ul>
   </section>
 
@@ -58,8 +60,8 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
       <Picture src={solVivant} data-anim="pop" data-parallaxe="flotte" formats={['webp']} widths={[350, 720, 915]} sizes="(min-width: 1100px) 720px, calc(100vw - 40px)" alt="Illustration du sol vivant : la paille couvre la terre, les racines, les vers et les champignons y travaillent" class="sol-vivant__illu" loading="lazy" />
       <div class="sol-vivant__texte" data-anim-groupe="monte">
         <p class="eyebrow">Notre démarche</p>
-        <h2 id="sol-titre">Maraîchage Sol Vivant</h2>
-        <p class="lg muted">La ferme s’inscrit dans la démarche Maraîchage Sol Vivant : on cultive sans retourner la terre, on la couvre de paille et de matière organique, pour garder un sol vivant et fertile d’une saison à l’autre.</p>
+        <h2 id="sol-titre">Prendre soin du sol</h2>
+        <p class="lg muted">Pierre nourrit la terre avec beaucoup de matière organique, la travaille le moins possible et la garde toujours couverte, pour qu’elle reste vivante et fertile d’une saison à l’autre.</p>
       </div>
     </div>
   </section>

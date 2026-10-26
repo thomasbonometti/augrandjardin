@@ -39,7 +39,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
       <div class="hero__principal">
         <div class="surtitre" data-anim><span class="point" aria-hidden="true"></span><p class="eyebrow">Maraîcher bio · Lostroff<span class="seulement-ordi">, Moselle</span></p></div>
         <h1 data-anim="mots">Des légumes bio cueillis à Lostroff pour la vente du samedi</h1>
-        <p class="lg muted hero__intro hero__intro--mobile" data-anim>Semences paysannes, variétés anciennes, aucun produit chimique. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
+        <p class="lg muted hero__intro hero__intro--mobile" data-anim>Ferme certifiée bio par Ecocert, variétés choisies pour leur goût. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
         <div class="btns" data-anim>
           {fermeture
             ? <a class="btn btn-primaire btn-bloc" href="#sms">Être prévenu de la reprise</a>
@@ -47,7 +47,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
           <a class="btn btn-secondaire btn-bloc" href="/horaires-contact/"><Icone nom="repere" taille={18} />Venir à la ferme</a>
         </div>
       </div>
-      <p class="lg muted hero__intro hero__intro--ordi" data-anim>Semences paysannes, variétés anciennes, aucun produit chimique. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
+      <p class="lg muted hero__intro hero__intro--ordi" data-anim>Ferme certifiée bio par Ecocert, variétés choisies pour leur goût. Chaque semaine, Pierre publie ici ce qui est prêt à la récolte.</p>
     </div>
     <dl class="stats" data-anim-groupe="monte">
       {fermeture
@@ -55,8 +55,8 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
         : <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre" data-compteur>{nb}</dd></div>}
       {v && <div><dt class="sm muted">prochaine vente{v.aLaFerme ? ', à la ferme' : ''}</dt><dd class="chiffre" data-compteur>{v.jourCourt}</dd></div>}
       <div><dt class="sm muted">légumes bio</dt><dd class="chiffre" data-compteur>100&nbsp;%</dd></div>
-      <div class:list={[!fermeture && 'stat-ordi']}><dt class="sm muted">semence hybride F1</dt><dd class="chiffre" data-compteur>0</dd></div>
-      <div><dt class="sm muted">au plus pour nos partenaires</dt><dd class="chiffre" data-compteur>50&nbsp;km</dd></div>
+      <div class:list={[!fermeture && 'stat-ordi']}><dt class="sm muted">cultivé à la ferme</dt><dd class="chiffre" data-compteur>100&nbsp;%</dd></div>
+      <div><dt class="sm muted">certifiée bio par Ecocert</dt><dd class="chiffre">2023</dd></div>
     </dl>
   </section>
 
@@ -71,12 +71,12 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
       <div class="engagement__tampon" data-anim="tampon" set:html={tamponSvg} />
     </div>
     <div class="engagement__droite">
-      <p class="engagement__texte" data-anim>Pierre cultive en permaculture : pas de labour, de la paille plutôt que du désherbant, des fleurs pour les pollinisateurs. <span class="discret">Ce qui pousse ici dépend de la saison, et c’est exactement ce que vous trouvez le samedi.</span></p>
+      <p class="engagement__texte" data-anim>Pierre cultive dans le respect du sol : un paillage toujours, des haies, des fleurs pour les pollinisateurs. <span class="discret">Ce qui pousse ici suit les saisons, et c’est exactement ce que vous trouvez le samedi.</span></p>
       <ul class="cartes-douces" role="list" data-anim-groupe="pop">
-        <li><span class="valeur" data-compteur>0</span><span>produit chimique sur l’exploitation</span></li>
-        <li><span class="valeur" data-compteur>100&nbsp;%</span><span>semences paysannes et variétés anciennes</span></li>
-        <li><span class="valeur" data-compteur>50&nbsp;km</span><span>au plus pour nos partenaires bio</span></li>
-        <li><span class="valeur" data-compteur>Label</span><span>Maraîchage Sol Vivant</span></li>
+        <li><span class="valeur">Bio</span><span>certifié par Ecocert depuis 2023</span></li>
+        <li><span class="valeur" data-compteur>100&nbsp;%</span><span>de nos légumes cultivés à la ferme</span></li>
+        <li><span class="valeur">Goût</span><span>des variétés testées et choisies pour leur saveur</span></li>
+        <li><span class="valeur">PBI</span><span>des insectes prédateurs contre les pucerons, plutôt qu’un traitement</span></li>
       </ul>
       <div data-anim><a class="btn btn-secondaire btn-bloc engagement__btn" href="/la-ferme/">Découvrir la ferme<Icone nom="droite" taille={18} /></a></div>
     </div>
