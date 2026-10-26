@@ -1,6 +1,6 @@
 # Site Au Grand Jardin 2026 — passation
 
-À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 26 octobre 2026, lots 1 et 2 du plan d'évolutions compris.
+À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 26 octobre 2026 : lots 1 et 2 du plan d'évolutions livrés, lot 3 en cours (code prêt, pas encore poussé : voir « Lot 3 » ci-dessous).
 
 Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. Il suit les maquettes Figma (bureau et téléphone) et lit Notion. On peut y commander des pommes de terre, et les pros commandent depuis leur espace (lot 2), en mode test. Le site actuel (branche `main`, GitHub Pages) n'a pas bougé.
 
@@ -69,6 +69,17 @@ Autres documents :
 - **Lot 2 du plan d'évolutions (22-26/10, demandé par Thomas : « Lance le lot 2 »).** Espace pro et espace de Pierre ; décisions de Thomas du 22/10 dans `docs/passation.md` du dépôt `brief`. Maquettes Figma validées le 26/10 (grille pro : 65:50 bureau, 68:286 et 68:1046 téléphone ; espace de Pierre refait dans la DA du site à sa demande).
   - **Site** : `/pro/tarifs/` relié à l'outil (`src/scripts/espace-pro.ts`, `src/lib/pro-grille.js`, `functions/api/agj/pro/[action].js`), connexion par e-mail sur la page Professionnels et sur `/pro/tarifs/`, étapes « Vous recevez votre accès » et « Vous commandez » mises à jour.
   - **Outil** (pull requests n° 6, fusionnée le 26/10, et n° 7) : accès pros, grille et commande, mails planifiés (grille du jeudi 18 h, relance du samedi 9 h, « À récolter » du samedi 18 h), prévisions, page de Pierre en quatre rubriques.
+- **Lot 3 du plan d'évolutions (26/10, demandé par Thomas : « attaque le lot 3 »)**. Décisions de Thomas du 26/10 (« Ok pour tout le reste », sauf la 5 qu'il a précisée) :
+  1. Champ « Légume » (sélection) dans « Produits de la ferme », prérempli par Claude : il regroupe les lignes d'un même légume (vrac, botte, 500 g). Conseils et mois valent pour tout le légume.
+  2. Mois du calendrier = ventes réelles de 2026 (publications Facebook), plus la saisonnalité de Moselle en hiver ; Claude ne touche pas aux 32 lignes préremplies au lot 2 et signale seulement les écarts.
+  3. Calendrier = légumes, aromates et fruits de la ferme vendus en 2026 ; pas de plants, de produits transformés ni de partenaires.
+  4. « Cuisson » et « Conservation » : premier jet de Claude, en ligne après relecture de Thomas. « Avis de Pierre » reste vide (Pierre l'écrit). Chaque partie n'apparaît que si elle est remplie.
+  5. Un légume pas en vente n'apparaît que dans le calendrier. Le panneau s'ouvre pour les produits en vente, depuis leur carte et depuis les lignes « En vente » du calendrier, avec sa propre adresse (`/produits/#carotte-vrac`) ; contenu dans le HTML.
+  6. Page `/calendrier-de-saison/` « Légumes de saison en Moselle », hors du menu : liens dans le pied de page, la page Produits, le panneau et l'encart « Ventes en pause ».
+  7. Bilan B2 : document partageable, exportable en PDF.
+  - **Code** (commits locaux `536ac35`, `34ede20`, `fe9dce6`) : `src/lib/saisons.js` (fiches par légume, calendrier, résumé du mois, plages de mois, ancres), `scripts/sync-notion.mjs` (lignes avec « Légume » → `data/legumes.json`), `src/components/PanneauProduit.astro` (un `<dialog>` par produit, script dans `produits.astro` : adresse, « Retour », Échap, clic sur le voile, focus rendu), `src/pages/calendrier-de-saison.astro` (trois cartes du mois, filtres, frises, bande du mois en cours).
+  - **Maquettes** : panneau 89:294 (bureau) et 91:1112 (téléphone), calendrier 90:323 et 91:1205, composants 88:286, notes 91:2595. En attente de la validation de Thomas ; rien n'est poussé avant.
+  - **Bilan B2** : document « Bilan de la saison 2026 — Au Grand Jardin » (https://claude.ai/artifact/KbKZhnHAqTwnXv9sqkrt6A), tiré des 26 publications « Jour J » du Calendrier éditorial. La partie pommes de terre attend la réponse de Thomas sur « Commandes 2025 ».
 
 ## 3. Écarts avec la maquette (volontaires)
 
@@ -99,6 +110,9 @@ Autres documents :
   - Date « Liste mise à jour le… » sur la page Produits.
 
 ## 4. Vérifications faites
+
+- **Lot 3, le 26/10 (en local, rien de poussé) :** 33 tests unitaires (dont `tests/saisons.test.js`) ; Playwright au téléphone et à l'ordinateur sur l'instantané `data/` : 99 verts, dont `e2e/saison.spec.js` (panneau : clic, adresse, Échap et focus, « Retour », croix, lien partagé, lien vers le calendrier ; calendrier : liens « En vente », filtres, texte des mois), axe sur `/calendrier-de-saison/`. Un échec intermittent au téléphone sur `commande.spec.js` (« panier : quantités ») existe aussi sans le lot 3 : le catalogue réel de l'outil recharge la liste pendant le test.
+  - Pour les tests navigateur ici, le Playwright du projet (1.56) ne trouve pas le Chromium préinstallé : installer `@playwright/test@1.63.0` avec `npm i --no-save` avant `npx playwright test`.
 
 - Tests unitaires (`npm test`) : 9 sur 9.
 - Tests navigateur en local (`npm run e2e`, Pixel 7 et 1440 × 900), contre l'outil simulé : 39 réussis et 1 ignoré, dont la commande de bout en bout. Accessibilité : 14 sur 14.
@@ -140,6 +154,8 @@ Autres documents :
 - **Avant le passage en réel de l'outil** : remplacer le stock de test de Produits AGJ par le vrai stock de Pierre, ou vider la colonne (vide = pas de limite, pas d'alerte).
 - **Accès Notion du site** : l'intégration « Site Au Grand Jardin » est connectée à toute la page « Au Grand Jardin » (vu le 22/10), donc elle voit aussi les commandes et les clients de l'outil, dont le site n'a pas besoin. À restreindre plus tard aux pages que le site lit et écrit, en vérifiant ensuite qu'une publication passe.
 - **Lot 2, côté Thomas** : fusionner la pull request n° 7 de `brief` ; supprimer les secrets `PRO_PASSWORD` et `PRO_SECRET` dans Cloudflare (ils ne servent plus) ; à la bascule, `AGJ_SITE_URL` = https://augrandjardin.fr dans `wrangler.jsonc` de `brief`.
+- **Lot 3, côté Thomas** : valider les maquettes (panneau 89:294 et 91:1112, calendrier 90:323 et 91:1205) ; relire les conseils (https://claude.ai/artifact/8PHNXukKyfwduNCQJ9QSbU) ; confirmer les écritures Notion refusées par le garde-fou (« Mois de récolte » de 24 lignes pas en vente, « Légume » = Carotte sur la page `d08f1fd4517d4e8eb8bb03ccdac11493`) ; dire si les commandes de pommes de terre 2026 sont dans « Commandes 2025 » et quand Pierre commande ses semences. Ensuite : push, vérification Cloudflare et Chrome, documents à jour.
+- **Lot 3, côté Pierre** : écrire « Avis de Pierre », corriger les conseils et les mois ; « Betterave cuite » porte le légume « Betterave » (conseils de la betterave crue) : vider son « Légume » si on préfère ne pas afficher ces conseils sur ce produit.
 - **Lot 2, côté Pierre** : corriger « Mois de récolte » dans « Produits de la ferme », remplir « Récolte prévue le » quand il la connaît, régler le minimum de commande dans « Réglages pros » s'il en veut un, puis créer les accès de ses pros (en réel seulement, après le passage de l'outil en réel).
 
 - **Bouton Notion « Publier »** : essayé par Thomas le 21/10 ; la construction de 20 h 27, lancée sans push, est passée. Un clic fait apparaître une nouvelle construction dans Cloudflare environ une minute plus tard.
