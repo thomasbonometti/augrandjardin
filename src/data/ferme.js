@@ -35,26 +35,40 @@ export const legal = {
   conception: 'Thomas Bonometti — thomasbonometti.fr',
 };
 
-// Partenaires et points de vente (page La ferme, frame 15:2)
-export const partenaires = [
-  { nom: 'Ferme de la Briquerie', activite: 'Œufs', ville: 'Azoudange', photo: 'oeufs' },
-  { nom: 'Frui’Thierry', activite: 'Champignons, fraises, framboises, pommes et poires', ville: 'Niederstinzel', photo: 'champignons' },
-  { nom: 'Joël Corre', activite: 'Miel', ville: 'Francaltroff', photo: 'ruches' },
+// Partenaires, restaurants et points de vente (page La ferme, page Professionnels).
+// Pierre ne veut rien effacer (revue du 26/10/2026) : un lieu qui ne travaille plus avec la ferme
+// passe à `actif: false` et disparaît du site ; on le remet à `true` s'il revient.
+// Ville inconnue : `ville: null` (rien n'est affiché), jamais une ville devinée.
+const actifs = (liste) => liste.filter((l) => l.actif);
+
+// Pierre n'achète plus rien à revendre depuis 2026 : plus de partenaire affiché.
+export const tousLesPartenaires = [
+  { nom: 'Ferme de la Briquerie', activite: 'Œufs', ville: 'Azoudange', photo: 'oeufs', actif: false },
+  { nom: 'Frui’Thierry', activite: 'Champignons, fraises, framboises, pommes et poires', ville: 'Niederstinzel', photo: 'champignons', actif: false },
+  { nom: 'Joël Corre', activite: 'Miel', ville: 'Francaltroff', photo: 'ruches', actif: false },
 ];
-export const restaurants = [
-  { nom: 'Hôtel Notre-Dame de Bonne Fontaine', court: 'Hôtel Notre-Dame de Bonne Fontaine', ville: 'Danne-et-Quatre-Vents' },
-  { nom: 'La Licorne Bleue', court: 'La Licorne Bleue', ville: 'Fénétrange' },
-  { nom: 'La Toque Blanche', court: 'La Toque Blanche', ville: 'Bénestroff' },
-  { nom: 'Ô Fredelices, pâtissier traiteur', court: 'Ô Fredelices', ville: 'Liocourt' },
+export const tousLesRestaurants = [
+  { nom: 'Hôtel Notre-Dame de Bonne Fontaine', court: 'Hôtel Notre-Dame de Bonne Fontaine', ville: 'Danne-et-Quatre-Vents', actif: true },
+  // Ajoutés le 26/10/2026 : orthographe et ville à confirmer par Pierre.
+  { nom: 'Le Greffin', court: 'Le Greffin', ville: null, actif: true },
+  { nom: 'Le Bistrot des Oiseaux', court: 'Le Bistrot des Oiseaux', ville: null, actif: true },
+  { nom: 'La Licorne Bleue', court: 'La Licorne Bleue', ville: 'Fénétrange', actif: false },
+  { nom: 'La Toque Blanche', court: 'La Toque Blanche', ville: 'Bénestroff', actif: false },
+  { nom: 'Ô Fredelices, pâtissier traiteur', court: 'Ô Fredelices', ville: 'Liocourt', actif: false },
 ];
-export const pointsDeVente = [
-  { nom: 'Inventerre du Pré Vert', ville: 'Dieuze' },
-  { nom: 'La Ruche qui dit Oui', ville: 'Dieuze' },
-  { nom: 'Marché de Bénestroff', ville: 'Bénestroff' },
-  { nom: 'Marché des producteurs', ville: 'Château-Salins' },
-  { nom: 'Supermarché Match', ville: 'Dieuze' },
-  { nom: 'Supérette Proxi', ville: 'Fénétrange' },
+export const tousLesPointsDeVente = [
+  { nom: 'Inventerre du Pré Vert', ville: 'Dieuze', actif: true },
+  // Ajouté le 26/10/2026 : orthographe et ville à confirmer par Pierre.
+  { nom: 'Ma Petite Cuillère', ville: null, actif: true },
+  { nom: 'La Ruche qui dit Oui', ville: 'Dieuze', actif: false },
+  { nom: 'Marché de Bénestroff', ville: 'Bénestroff', actif: false },
+  { nom: 'Marché des producteurs', ville: 'Château-Salins', actif: false },
+  { nom: 'Supermarché Match', ville: 'Dieuze', actif: false },
+  { nom: 'Supérette Proxi', ville: 'Fénétrange', actif: false },
 ];
+export const partenaires = actifs(tousLesPartenaires);
+export const restaurants = actifs(tousLesRestaurants);
+export const pointsDeVente = actifs(tousLesPointsDeVente);
 
 export const navigation = [
   { id: 'ferme', label: 'La ferme', href: '/la-ferme/' },

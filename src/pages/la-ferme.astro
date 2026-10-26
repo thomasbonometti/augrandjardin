@@ -65,29 +65,43 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
   </section>
 
   <section class="partenaires" aria-labelledby="partenaires-titre">
-    <div class="wrap tete-section" data-anim>
-      <p class="eyebrow">Partenaires</p>
-      <h2 id="partenaires-titre">Nos partenaires, tous à moins de 50&nbsp;km</h2>
-      <p class="lg muted partenaires__intro">Leurs produits sont en vente à la ferme le {jour}<span class="seulement-ordi">, et nos légumes se retrouvent dans leurs cuisines et leurs rayons</span>.</p>
-    </div>
-    <ul class="partenaires__cartes defile" data-anim-groupe="cartes" role="list" tabindex="0" aria-label="Nos partenaires">
-      {partenaires.map((p) => (
-        <li class="partenaire">
-          <div class="photo partenaire__photo"><Photo nom={p.photo} alt="" sizes="(min-width: 1100px) 416px, 280px" largeurs={[280, 416, 560, 832]} /></div>
-          <div class="partenaire__texte"><h3>{p.nom}</h3><p class="muted">{p.activite}</p></div>
-          <span class="chip"><Icone nom="repere" taille={14} />{p.ville}</span>
-        </li>
-      ))}
-    </ul>
+    {partenaires.length ? (
+      <div class="wrap tete-section" data-anim>
+        <p class="eyebrow">Partenaires</p>
+        <h2 id="partenaires-titre">Nos partenaires</h2>
+        <p class="lg muted partenaires__intro">Leurs produits sont en vente à la ferme le {jour}<span class="seulement-ordi">, et nos légumes se retrouvent dans leurs cuisines et leurs rayons</span>.</p>
+      </div>
+    ) : (
+      <div class="wrap tete-section" data-anim>
+        <p class="eyebrow">Au-delà de la ferme</p>
+        <h2 id="partenaires-titre">Où retrouver nos légumes</h2>
+        <p class="lg muted partenaires__intro">En dehors de la vente à la ferme, nos légumes se retrouvent aussi dans ces cuisines et ces rayons.</p>
+      </div>
+    )}
+    {partenaires.length > 0 && (
+      <ul class="partenaires__cartes defile" data-anim-groupe="cartes" role="list" tabindex="0" aria-label="Nos partenaires">
+        {partenaires.map((p) => (
+          <li class="partenaire">
+            <div class="photo partenaire__photo"><Photo nom={p.photo} alt="" sizes="(min-width: 1100px) 416px, 280px" largeurs={[280, 416, 560, 832]} /></div>
+            <div class="partenaire__texte"><h3>{p.nom}</h3><p class="muted">{p.activite}</p></div>
+            {p.ville && <span class="chip"><Icone nom="repere" taille={14} />{p.ville}</span>}
+          </li>
+        ))}
+      </ul>
+    )}
     <div class="wrap listes" data-anim-groupe="monte">
-      <div>
-        <h3 class="eyebrow">Ils cuisinent nos légumes</h3>
-        <ul class="liste" role="list">{restaurants.map((r) => <li><span class="liste__nom">{r.nom}</span><span class="muted liste__ville">{r.ville}</span></li>)}</ul>
-      </div>
-      <div>
-        <h3 class="eyebrow">Où trouver nos produits</h3>
-        <ul class="liste" role="list">{pointsDeVente.map((r) => <li><span class="liste__nom">{r.nom}</span><span class="muted liste__ville">{r.ville}</span></li>)}</ul>
-      </div>
+      {restaurants.length > 0 && (
+        <div>
+          <h3 class="eyebrow">Ils cuisinent nos légumes</h3>
+          <ul class="liste" role="list">{restaurants.map((r) => <li><span class="liste__nom">{r.nom}</span>{r.ville && <span class="muted liste__ville">{r.ville}</span>}</li>)}</ul>
+        </div>
+      )}
+      {pointsDeVente.length > 0 && (
+        <div>
+          <h3 class="eyebrow">Où trouver nos produits</h3>
+          <ul class="liste" role="list">{pointsDeVente.map((r) => <li><span class="liste__nom">{r.nom}</span>{r.ville && <span class="muted liste__ville">{r.ville}</span>}</li>)}</ul>
+        </div>
+      )}
     </div>
   </section>
 
