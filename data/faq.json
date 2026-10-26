@@ -17,7 +17,7 @@
     "question": "Comment se passe la vente à la ferme ?",
     "reponse": [
       {
-        "texte": "La vente a lieu à la ferme, au 43 rue Principale à Lostroff. Le jour et l’horaire de la prochaine vente sont toujours indiqués en haut du site : ils changent selon la saison et les marchés."
+        "texte": "La vente a lieu à la ferme, au 43 rue Principale à Lostroff. Le jour et l’horaire de la prochaine vente sont toujours indiqués en haut du site : ils changent selon la saison."
       }
     ],
     "pages": [
@@ -31,7 +31,14 @@
     "question": "Je suis restaurateur ou commerçant : comment commander ?",
     "reponse": [
       {
-        "texte": "Faites une demande d’accès sur cette page : Pierre vous rappelle pour parler de vos besoins, puis vous donne accès à la grille tarifaire de la semaine, avec les prix hors taxes."
+        "texte": "Appelez Pierre au 06 42 42 42 93 ou écrivez-lui à "
+      },
+      {
+        "texte": "pierre@augrandjardin.fr",
+        "lien": "mailto:pierre@augrandjardin.fr"
+      },
+      {
+        "texte": " : il vous rappelle sous 48 h pour parler de vos besoins (volumes, jour de livraison, produits) et de ses prix pour les professionnels."
       }
     ],
     "pages": [
@@ -57,7 +64,7 @@
     "question": "Peut-on réserver ses légumes ?",
     "reponse": [
       {
-        "texte": "Oui, par SMS : inscrivez-vous à la liste de la semaine, puis répondez au SMS avec votre panier. Il est mis de côté pour le jour de la vente.\nLes pommes de terre et les oignons se commandent en ligne, sur la page Pommes de terre."
+        "texte": "Non, il n’y a pas de réservation : les légumes sont en vente à la ferme, le jour de la vente.\nSeules les pommes de terre et les oignons se commandent à l’avance, en ligne, sur la page Pommes de terre."
       }
     ],
     "pages": [
@@ -71,7 +78,7 @@
     "question": "Comment recevoir la liste de la semaine ?",
     "reponse": [
       {
-        "texte": "Inscrivez-vous à la liste par SMS avec le formulaire du site : un seul SMS par semaine, du 15 avril au 15 novembre. La liste est aussi publiée sur ce site et sur la page Facebook de la ferme."
+        "texte": "Inscrivez-vous avec le formulaire du site : Pierre envoie la liste une fois par semaine, de début avril à fin décembre, sur WhatsApp, ou par SMS si vous n’avez pas WhatsApp. La liste est aussi publiée sur ce site et sur la page Facebook de la ferme."
       }
     ],
     "pages": [
@@ -85,7 +92,7 @@
     "question": "Tous les produits sont-ils bio ?",
     "reponse": [
       {
-        "texte": "Les légumes de la ferme sont bio. La vente propose aussi des produits de partenaires de la région : dans la liste, chaque produit indique s’il est bio ou non certifié bio."
+        "texte": "Les légumes de la ferme sont bio : la ferme est certifiée par Ecocert depuis 2023. Dans la liste, chaque produit indique s’il est bio ou non certifié bio."
       }
     ],
     "pages": [
@@ -99,7 +106,7 @@
     "question": "La ferme est-elle ouverte toute l’année ?",
     "reponse": [
       {
-        "texte": "La vente suit les saisons. Quand la ferme fait une pause, la date de reprise est affichée en haut du site. Pour ne pas la manquer, inscrivez-vous à la liste par SMS ou suivez la ferme sur Facebook."
+        "texte": "La vente suit les saisons, de début avril à fin décembre. Quand la ferme fait une pause, la date de reprise est affichée en haut du site. Pour ne pas la manquer, inscrivez-vous à la liste de la semaine ou suivez la ferme sur Facebook."
       }
     ],
     "pages": [
