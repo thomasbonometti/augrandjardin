@@ -110,3 +110,23 @@ test('historique : une ligne par produit, triée, avec prix et étiquettes ; tex
   assert.deepEqual(morceaux.map((m) => m.text.content.length), [1900, 1900, 200]);
   assert.deepEqual(morceauxTexte(''), []);
 });
+
+// Revue de Pierre du 26/10/2026 : plus de marchés ni de fêtes, espace pro en veille jusqu'au printemps.
+test('marchés masqués : seules les ventes à la ferme, sauf si « Afficher les marchés » est coché', async () => {
+  const { creneauxAffiches, afficherMarches } = await import('../src/lib/reglages.js');
+  const creneaux = [{ nom: 'Vente du samedi', aLaFerme: true }, { nom: 'Marché de Bénestroff', aLaFerme: false }];
+  assert.deepEqual(creneauxAffiches(creneaux, { afficherMarches: false }).map((c) => c.nom), ['Vente du samedi']);
+  assert.deepEqual(creneauxAffiches(creneaux, {}).map((c) => c.nom), ['Vente du samedi'], 'case absente : marchés masqués');
+  assert.equal(creneauxAffiches(creneaux, { afficherMarches: true }).length, 2);
+  assert.equal(afficherMarches(null), false);
+});
+
+test('espace pro : la case « Espace pro ouvert », que la variable ESPACE_PRO peut forcer', async () => {
+  const { lireEspacePro } = await import('../src/lib/reglages.js');
+  assert.equal(lireEspacePro({ espaceProOuvert: false }), false);
+  assert.equal(lireEspacePro({}), false, 'case absente : en veille');
+  assert.equal(lireEspacePro({ espaceProOuvert: true }), true);
+  assert.equal(lireEspacePro({ espaceProOuvert: false }, 'ouvert'), true, 'aperçu Cloudflare : ouvert');
+  assert.equal(lireEspacePro({ espaceProOuvert: true }, 'ferme'), false);
+  assert.equal(lireEspacePro({ espaceProOuvert: true }, ''), true, 'variable vide : la case décide');
+});

@@ -16,7 +16,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 import { lireCreneaux, prochaineVente } from '../src/lib/vente.js';
-import { lireFermeture } from '../src/lib/reglages.js';
+import { lireFermeture, creneauxAffiches } from '../src/lib/reglages.js';
 import { contenuListe, morceauxTexte } from '../src/lib/historique.js';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
@@ -154,6 +154,8 @@ function mapReglages(page) {
     messageFermeture: text(p(page, 'Message de fermeture')),
     afficherMessage: chk(p(page, 'Afficher le message')),
     message: text(p(page, 'Message de la semaine')),
+    afficherMarches: chk(p(page, 'Afficher les marchés')),
+    espaceProOuvert: chk(p(page, 'Espace pro ouvert')),
   };
 }
 
@@ -184,7 +186,7 @@ async function enregistrerHistorique(produits, planning, reglages) {
     return;
   }
   const maintenant = new Date();
-  const vente = prochaineVente(lireCreneaux(planning), maintenant);
+  const vente = prochaineVente(creneauxAffiches(lireCreneaux(planning), reglages), maintenant);
   if (lireFermeture(reglages, maintenant, { venteIso: vente?.iso })) return console.log('→ Historique des listes : site fermé, rien à garder');
   if (!produits.length) return console.log('→ Historique des listes : aucun produit en vente');
   const ligne = contenuListe(produits, { prochaineVente: vente, maintenant });
@@ -228,7 +230,7 @@ async function syncLive() {
   ).map(mapLigneLegume);
   const planning = (await notionQuery('Planning semaine', PLANNING_DS, {})).map(mapPlanning);
   const lignesReglages = await notionQuery('Réglages du site', REGLAGES_DS, { sorts: [{ timestamp: 'created_time', direction: 'ascending' }] });
-  const reglages = lignesReglages.length ? mapReglages(lignesReglages[0]) : { ferme: false, repriseLe: null, messageFermeture: '', afficherMessage: false, message: '' };
+  const reglages = lignesReglages.length ? mapReglages(lignesReglages[0]) : { ferme: false, repriseLe: null, messageFermeture: '', afficherMessage: false, message: '', afficherMarches: false, espaceProOuvert: false };
   let faq = null;
   try {
     faq = (

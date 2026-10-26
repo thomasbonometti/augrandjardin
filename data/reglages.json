@@ -1,7 +1,9 @@
 {
   "ferme": false,
   "repriseLe": null,
-  "messageFermeture": "La ferme fait une pause. Pour ne rien manquer de la reprise, inscrivez-vous à la liste par SMS ou suivez la ferme sur Facebook.",
+  "messageFermeture": "La ferme fait une pause. Pour ne rien manquer de la reprise, inscrivez-vous à la liste de la semaine (WhatsApp ou SMS) ou suivez la ferme sur Facebook.",
   "afficherMessage": false,
-  "message": ""
+  "message": "",
+  "afficherMarches": false,
+  "espaceProOuvert": false
 }

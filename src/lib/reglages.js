@@ -34,6 +34,23 @@ export function lireFermeture(reglages, maintenant = new Date(), { venteIso = nu
 export const texteReprise = (f, court = false) =>
   f?.reprise ? `Reprise le ${court ? f.repriseCourt : f.repriseLong}` : 'Reprise bientôt';
 
+// Marchés et fêtes (revue de Pierre du 26/10/2026 : il n'en fait plus) : les créneaux du Planning
+// hors de la ferme ne sont affichés que si « Afficher les marchés » est coché. Le Planning, lu aussi
+// par les publications Facebook, ne change pas.
+export const afficherMarches = (reglages) => !!reglages?.afficherMarches;
+export const creneauxAffiches = (creneaux = [], reglages) =>
+  afficherMarches(reglages) ? creneaux : creneaux.filter((c) => c.aLaFerme);
+
+// Espace pro (en veille jusqu'au printemps 2027) : case « Espace pro ouvert ».
+// La variable de construction ESPACE_PRO (« ouvert » ou « ferme ») passe avant la case : elle sert
+// aux déploiements d'aperçu de Cloudflare, pour tester l'espace pro sans l'ouvrir sur le site.
+export function lireEspacePro(reglages, forcer) {
+  const f = String(forcer ?? '').trim().toLowerCase();
+  if (['ouvert', 'oui', '1'].includes(f)) return true;
+  if (['ferme', 'fermé', 'non', '0'].includes(f)) return false;
+  return !!reglages?.espaceProOuvert;
+}
+
 // Message de la semaine, sous la barre verte : seulement si « Afficher le message » est coché.
 export function lireAnnonce(reglages) {
   const texte = (reglages?.message || '').replace(/\s+/g, ' ').trim();

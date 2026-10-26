@@ -7,7 +7,7 @@ import FormulaireSms from '../components/FormulaireSms.astro';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
 import tampon from '../assets/svg/tampon.svg?raw';
 import { ferme, adresseComplete } from '../data/ferme.js';
-import { produits, rayons, vedettes, prochaineVente as v, creneaux, misAJour, agjCatalogue, fermeture } from '../lib/donnees.js';
+import { produits, rayons, vedettes, prochaineVente as v, creneaux, misAJour, agjCatalogue, fermeture, marchesAffiches } from '../lib/donnees.js';
 import { euros, fmtHeure, plage } from '../lib/vente.js';
 import { resumePdt } from '../lib/pdt.js';
 import { schemaFerme } from '../lib/seo.js';
@@ -198,7 +198,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
             : <p class="venir__quand">Pas de vente cette semaine</p>}
         <div class="venir__adresse">
           <p class="lg fonce">{adresseComplete}</p>
-          <p class="muted"><span class="seulement-ordi">Les horaires changent selon les saisons et les marchés. Ils sont mis à jour ici chaque semaine, en même temps que la liste des produits.</span><span class="seulement-mobile sm">Horaires mis à jour ici chaque semaine, avec la liste des produits.</span></p>
+          <p class="muted"><span class="seulement-ordi">Les horaires changent selon les saisons{marchesAffiches && ' et les marchés'}. Ils sont mis à jour ici chaque semaine, en même temps que la liste des produits.</span><span class="seulement-mobile sm">Horaires mis à jour ici chaque semaine, avec la liste des produits.</span></p>
         </div>
         <div class="btns">
           <a class="btn btn-primaire btn-bloc" href={ferme.itineraire} rel="noopener"><Icone nom="repere" taille={18} />Itinéraire</a>

@@ -13,7 +13,7 @@ import {
   nettoyerNom, prixProduit, estNouveau, grouperRayons, vedettes as choisirVedettes,
   lireCreneaux, prochaineVente as calculerProchaineVente, dateHeure, partiesParis,
 } from './vente.js';
-import { lireFermeture, lireAnnonce, questionsPour } from './reglages.js';
+import { lireFermeture, lireAnnonce, questionsPour, creneauxAffiches, lireEspacePro, afficherMarches } from './reglages.js';
 import { fichesLegumes, calendrier as grouperCalendrier, ancresProduits } from './saisons.js';
 
 export { meta, agjCatalogue, agjConfig, reglages };
@@ -24,7 +24,11 @@ export const construitLe = new Date();
 // Mois de la construction à Paris (0 = janvier) : mois en cours du calendrier de saison et des panneaux
 export const moisCourant = partiesParis(construitLe).mois - 1;
 
-const creneauxPlanning = lireCreneaux(planningBrut);
+// Seulement les ventes à la ferme, sauf si « Afficher les marchés » est coché (Réglages du site).
+export const marchesAffiches = afficherMarches(reglages);
+const creneauxPlanning = creneauxAffiches(lireCreneaux(planningBrut), reglages);
+// Espace pro ouvert (case de Réglages du site, ou variable de construction ESPACE_PRO pour un aperçu)
+export const espaceProOuvert = lireEspacePro(reglages, import.meta.env.ESPACE_PRO);
 // Mode fermé (« Réglages du site » dans Notion) : null quand le site est ouvert.
 // Fermé : pas de prochaine vente, aucun lieu « cette semaine », commandes en ligne fermées.
 // La semaine de la reprise (prochaine vente du Planning le jour de la reprise ou après), le site rouvre.

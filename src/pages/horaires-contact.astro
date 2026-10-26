@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import { ferme, adresseComplete } from '../data/ferme.js';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
-import { creneaux, prochaineVente as v, fermeture } from '../lib/donnees.js';
+import { creneaux, prochaineVente as v, fermeture, marchesAffiches } from '../lib/donnees.js';
 import { lireLieux } from '../lib/vente.js';
 import { schemaFerme, fileAriane } from '../lib/seo.js';
 const lieux = lireLieux(creneaux);
@@ -19,7 +19,7 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
   <section class="wrap tete" data-anim-groupe="monte">
     <p class="eyebrow">Horaires &amp; contact</p>
     <h1 data-anim="mots">Venir à la ferme</h1>
-    <p class="lg muted tete__intro">Les ventes ont lieu à la ferme, au 43 rue Principale à Lostroff. Les créneaux changent selon la saison et les marchés : ils sont mis à jour ici chaque semaine.</p>
+    <p class="lg muted tete__intro">Les ventes ont lieu à la ferme, au 43 rue Principale à Lostroff. Les créneaux changent selon la saison{marchesAffiches && ' et les marchés'} : ils sont mis à jour ici chaque semaine.</p>
   </section>
 
   <section class="wrap creneaux" aria-label="Horaires de vente">
@@ -40,7 +40,7 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
     </div>
     <div class="rdv encart-blanc" data-anim>
       <h2 class="eyebrow rdv__titre">Où nous retrouver</h2>
-      <p class="muted rdv__intro">À la ferme chaque semaine, et sur les marchés et fêtes de la région selon la saison. La prochaine date est toujours indiquée en haut du site.</p>
+      <p class="muted rdv__intro">{marchesAffiches ? 'À la ferme chaque semaine, et sur les marchés et fêtes de la région selon la saison.' : 'À la ferme, chaque semaine de la saison.'} La prochaine date est toujours indiquée en haut du site.</p>
       <ul class="lieux" role="list">
         {lieux.map((l) => (
           <li class="lieu">
