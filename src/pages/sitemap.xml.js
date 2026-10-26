@@ -7,6 +7,7 @@ const PAGES = [
   { url: '/pommes-de-terre/', freq: 'weekly', priorite: '0.9' },
   { url: '/horaires-contact/', freq: 'weekly', priorite: '0.8' },
   { url: '/la-ferme/', freq: 'monthly', priorite: '0.7' },
+  { url: '/calendrier-de-saison/', freq: 'monthly', priorite: '0.6' },
   { url: '/professionnels/', freq: 'monthly', priorite: '0.6' },
   { url: '/mentions-legales/', freq: 'yearly', priorite: '0.2' },
 ];

@@ -7,6 +7,7 @@ const PAGES = [
   ['/pommes-de-terre/', /Pommes de terre de garde/],
   ['/professionnels/', /Des légumes bio de Lostroff, livrés chaque semaine/],
   ['/horaires-contact/', /Venir à la ferme/],
+  ['/calendrier-de-saison/', /Légumes de saison en Moselle/],
   ['/mentions-legales/', /Mentions légales/],
 ];
 

@@ -5,8 +5,8 @@ import Icone from './Icone.astro';
 import { ferme } from '../data/ferme.js';
 import { fermeture } from '../lib/donnees.js';
 
-interface Props { titre?: string; texte?: string; lienSms?: string | null; niveau?: 'h2' | 'h3' }
-const { titre, texte, lienSms = null, niveau = 'h2' } = Astro.props;
+interface Props { titre?: string; texte?: string; lienSms?: string | null; niveau?: 'h2' | 'h3'; lienSaison?: boolean }
+const { titre, texte, lienSms = null, niveau = 'h2', lienSaison = true } = Astro.props;
 const Titre = niveau;
 const reprise = fermeture?.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Reprise bientôt';
 ---
@@ -18,6 +18,7 @@ const reprise = fermeture?.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Re
     <div class="btns">
       {lienSms && <a class="btn btn-primaire btn-bloc" href={lienSms}>Recevoir la liste par SMS</a>}
       <a class="btn btn-secondaire btn-bloc" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={18} />Suivre la ferme sur Facebook</a>
+      {lienSaison && <a class="btn btn-secondaire btn-bloc" href="/calendrier-de-saison/"><Icone nom="saison" taille={18} />Légumes de saison</a>}
     </div>
   </div>
 )}

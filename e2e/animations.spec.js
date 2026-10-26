@@ -1,7 +1,7 @@
 // Apparitions au défilement (GSAP) : rien ne reste masqué, et rien ne bouge pour qui refuse les animations.
 import { test, expect } from '@playwright/test';
 
-const PAGES = ['/', '/produits/', '/la-ferme/', '/pommes-de-terre/', '/professionnels/', '/horaires-contact/'];
+const PAGES = ['/', '/produits/', '/la-ferme/', '/pommes-de-terre/', '/professionnels/', '/horaires-contact/', '/calendrier-de-saison/'];
 const masques = () => [...document.querySelectorAll('[data-anim], [data-anim-groupe] > *')]
   .filter((e) => e.getClientRects().length && parseFloat(getComputedStyle(e).opacity) < 0.85)
   .map((e) => `${e.tagName.toLowerCase()} ${(e.textContent || '').trim().slice(0, 40)}`);

@@ -1,0 +1,268 @@
+---
+// Calendrier de saison (lot 3) — frames Figma 90:323 (ordinateur) et 91:1205 (téléphone).
+// Une frise par légume de la ferme : ses mois sont ceux de « Mois de récolte » (Notion, toutes les lignes du même « Légume »).
+// Les légumes en vente cette semaine ouvrent leur panneau sur la page Produits. Hors du menu principal :
+// liens depuis le pied de page, la page Produits, le panneau produit et l'encart « Ventes en pause ».
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import FormulaireSms from '../components/FormulaireSms.astro';
+import { calendrier, moisCourant, fermeture, prochaineVente as v } from '../lib/donnees.js';
+import { MOIS, MOIS_COURT, resumeMois, listeNoms, plageMois } from '../lib/saisons.js';
+import { fileAriane } from '../lib/seo.js';
+
+const tous = calendrier.flatMap((g) => g.legumes);
+const nbEnVente = tous.filter((f) => f.lien).length;
+const r = resumeMois(tous, moisCourant);
+const phrase = (noms: string[], vide: string) => (noms.length ? `${listeNoms(noms)}.` : vide);
+const cartes = [
+  { titre: `De saison en ${r.mois}`, noms: r.deSaison, vide: 'Rien en ce moment.', classe: 'carte-sable' },
+  { titre: `Arrive en ${r.moisSuivant}`, noms: r.arrive, vide: 'Pas de nouveauté le mois prochain.', classe: 'carte-peche' },
+  { titre: 'Dernières semaines', noms: r.termine, vide: 'Rien ne se termine ce mois-ci.', classe: 'carte-sable' },
+];
+const unite = (titre: string, n: number) => (n > 1 ? titre.toLowerCase() : titre.toLowerCase().replace(/s$/, ''));
+const jour = v ? v.jour.toLowerCase() : 'samedi';
+const reprise = fermeture?.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt';
+const description = `Les légumes de saison en Moselle, mois par mois : ce que la ferme Au Grand Jardin récolte à Lostroff. En ${r.mois} : ${listeNoms(r.deSaison, 6).toLowerCase() || 'la ferme prépare la saison'}.`;
+---
+<Base
+  titre="Légumes de saison en Moselle — calendrier de la ferme | Au Grand Jardin"
+  description={description}
+  page="calendrier"
+  schema={fileAriane([{ nom: 'Calendrier de saison', url: '/calendrier-de-saison/' }])}
+>
+  <section class="wrap tete">
+    <div class="surtitre" data-anim><span class="point" aria-hidden="true"></span><p class="eyebrow">Calendrier de saison</p></div>
+    <h1 data-anim="mots">Légumes de saison en Moselle</h1>
+    {fermeture
+      ? <p class="lg muted tete__intro" data-anim>Ce que Pierre récolte à Lostroff, mois par mois. Les ventes sont en pause ({reprise}) : le calendrier reste là pour préparer la suite.</p>
+      : <p class="lg muted tete__intro" data-anim>Ce que Pierre récolte à Lostroff, mois par mois. <span class="seulement-ordi">Les légumes marqués « En vente » sont dans la liste de cette semaine : cliquez dessus pour leurs conseils de cuisson et de conservation.</span><span class="seulement-mobile">Touchez un légume marqué « En vente » pour ses conseils.</span></p>}
+  </section>
+
+  <section class="wrap resume" aria-label={`En ${r.mois}`}>
+    <ul class="resume__cartes" role="list" data-anim-groupe="pop">
+      {cartes.map((c) => (
+        <li class:list={['resume__carte', c.classe]}>
+          <h2 class="resume__titre">{c.titre} <span class="resume__nombre">{c.noms.length}</span></h2>
+          <p class="resume__noms">{phrase(c.noms, c.vide)}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <div class="wrap outils">
+    <nav class="cal-filtres" aria-label="Filtrer le calendrier">
+      <div class="cal-filtres__liste defile">
+        <a class="chip cal-filtre" href="#calendrier" data-filtre="" aria-current="true">Tout <span class="compte">{tous.length}</span></a>
+        {calendrier.map((g) => (
+          <a class="chip cal-filtre" href={`#${g.ancre}`} data-filtre={g.ancre}>{g.titre} <span class="compte">{g.legumes.length}</span></a>
+        ))}
+        {nbEnVente > 0 && <>
+          <span class="cal-filtres__sep" aria-hidden="true" hidden data-sep></span>
+          <button type="button" class="chip cal-filtre" data-en-vente-filtre aria-pressed="false" hidden>En vente cette semaine <span class="compte">{nbEnVente}</span></button>
+        </>}
+      </div>
+    </nav>
+    <ul class="legende" role="list" aria-label="Légende">
+      <li><span class="legende__case cal-case--recolte" aria-hidden="true"></span>Récolte</li>
+      <li><span class="legende__case" aria-hidden="true"></span>Hors saison</li>
+      <li><span class="legende__case cal-case--courant" aria-hidden="true"></span>Ce mois-ci</li>
+    </ul>
+  </div>
+
+  <div class="wrap calendrier" id="calendrier">
+    {calendrier.map((g) => (
+      <section class="groupe" id={g.ancre} data-groupe={g.ancre} aria-labelledby={`t-${g.ancre}`}>
+        <div class="groupe__tete" data-anim>
+          <h2 class="groupe__titre" id={`t-${g.ancre}`}>{g.titre}</h2>
+          <p class="muted groupe__compte">{g.legumes.length} {unite(g.titre, g.legumes.length)}</p>
+        </div>
+        <div class="cal-tableau" style={`--m: ${moisCourant}`}>
+          <span class="cal-bande" aria-hidden="true"></span>
+          <div class="cal-entete" aria-hidden="true">
+            <span></span>
+            <div class="cal-mois">
+              {MOIS.map((m, i) => (
+                <span class:list={['cal-entete__mois', { 'cal-entete__mois--courant': i === moisCourant }]}>
+                  <span class="seulement-ordi">{MOIS_COURT[i]}</span><span class="seulement-mobile">{m.charAt(0)}</span>
+                </span>
+              ))}
+            </div>
+            <span></span>
+          </div>
+          <ul class="cal-liste" role="list">
+            {g.legumes.map((f) => (
+              <li class="cal-ligne" id={f.ancre} data-en-vente={f.lien ? '' : undefined}>
+                <p class="cal-ligne__nom">
+                  {f.lien
+                    ? <a class="cal-ligne__lien" href={f.lien}>{f.nom}{' '}<span class="chip chip-vif cal-pastille">En vente</span></a>
+                    : <span>{f.nom}</span>}
+                  <span class="visually-hidden"> : récolte {plageMois(f.mois)}.</span>
+                </p>
+                <div class="cal-mois" aria-hidden="true">
+                  {MOIS.map((_, i) => <span class:list={['cal-case', { 'cal-case--recolte': f.mois.includes(i), 'cal-case--courant': i === moisCourant }]}></span>)}
+                </div>
+                <span class="cal-ligne__action" aria-hidden="true">{f.lien && <Icone nom="chevron" taille={20} />}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <section class="wrap sms" id="sms" aria-labelledby="sms-titre">
+    <div class="carte-sable sms__carte" data-anim>
+      <div class="sms__textes">
+        <h2 class="sms__titre" id="sms-titre">Recevez la liste chaque semaine par SMS</h2>
+        <p class="muted sms__texte">Ce qui est récolté, au fil des semaines : vous répondez au SMS avec votre panier et on le met de côté pour {jour}. Du 15 avril au 15 novembre.</p>
+      </div>
+      <FormulaireSms source="produits" variante="clair" />
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Filtres : par groupe (sans JavaScript, ce sont des liens vers chaque groupe) et « En vente cette semaine ».
+  const filtres = [...document.querySelectorAll<HTMLAnchorElement>('a.cal-filtre')];
+  const enVente = document.querySelector<HTMLButtonElement>('[data-en-vente-filtre]');
+  const groupes = [...document.querySelectorAll<HTMLElement>('[data-groupe]')];
+  let groupe = '';
+  let seulementEnVente = false;
+  const appliquer = () => {
+    filtres.forEach((f) => f.setAttribute('aria-current', String((f.dataset.filtre || '') === groupe)));
+    enVente?.setAttribute('aria-pressed', String(seulementEnVente));
+    for (const g of groupes) {
+      let visibles = 0;
+      g.querySelectorAll<HTMLElement>('.cal-ligne').forEach((l) => {
+        l.hidden = seulementEnVente && !l.hasAttribute('data-en-vente');
+        if (!l.hidden) visibles += 1;
+      });
+      g.hidden = (!!groupe && g.dataset.groupe !== groupe) || !visibles;
+    }
+  };
+  filtres.forEach((f) => f.addEventListener('click', (e) => {
+    e.preventDefault();
+    groupe = f.dataset.filtre || '';
+    appliquer();
+    history.replaceState(null, '', groupe ? `#${groupe}` : location.pathname);
+    document.getElementById('calendrier')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+  if (enVente) {
+    enVente.hidden = false;
+    document.querySelector<HTMLElement>('[data-sep]')?.removeAttribute('hidden');
+    enVente.addEventListener('click', () => { seulementEnVente = !seulementEnVente; appliquer(); });
+  }
+  const depart = location.hash.slice(1);
+  if (depart && groupes.some((g) => g.dataset.groupe === depart)) { groupe = depart; appliquer(); }
+</script>
+
+<style>
+  .tete { padding-top: 32px; padding-bottom: 24px; display: flex; flex-direction: column; gap: 18px; }
+  .tete .surtitre { gap: 8px; }
+  .tete__intro { font-size: 16px; line-height: 24px; max-width: 760px; }
+  @media (min-width: 1100px) {
+    .tete { padding-top: 72px; padding-bottom: 40px; gap: 24px; }
+    .tete .surtitre { gap: 10px; }
+    .tete__intro { font-size: 20px; line-height: 30px; }
+  }
+
+  .resume { padding-bottom: 32px; }
+  .resume__cartes { display: grid; gap: 12px; }
+  .resume__carte { padding: 18px; display: flex; flex-direction: column; gap: 10px; border-radius: 16px; }
+  .carte-peche { background: var(--peche); }
+  .resume__titre { font-size: 20px; line-height: 28px; letter-spacing: -0.02em; }
+  .resume__nombre { font-size: 14px; line-height: 20px; color: var(--secondaire); margin-left: 4px; letter-spacing: 0; }
+  .resume__noms { font-size: 15px; line-height: 24px; color: var(--gris-fonce); }
+  @media (min-width: 900px) { .resume__cartes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+  @media (min-width: 1100px) {
+    .resume { padding-bottom: 56px; }
+    .resume__carte { padding: 28px; gap: 12px; min-height: 176px; }
+    .resume__titre { font-size: 24px; line-height: 30px; }
+    .resume__noms { font-size: 16px; line-height: 26px; }
+  }
+
+  .outils { display: flex; flex-direction: column; gap: 16px; padding-inline: 0; }
+  .cal-filtres__liste { gap: 8px; align-items: center; }
+  .cal-filtre { height: 40px; padding: 0 16px; font-size: 14px; background: transparent; border: 1px solid var(--bordure-soutenue); }
+  .cal-filtre .compte { color: var(--discret-lisible); margin-left: 2px; }
+  .cal-filtre[aria-current='true'], .cal-filtre[aria-pressed='true'] { background: var(--vert-foret); border-color: var(--vert-foret); color: var(--blanc); }
+  .cal-filtre[aria-current='true'] .compte, .cal-filtre[aria-pressed='true'] .compte { color: var(--blanc); opacity: 0.85; }
+  .cal-filtre:hover { border-color: var(--texte); }
+  .cal-filtres__sep { width: 1px; height: 24px; background: var(--bordure-soutenue); }
+  .legende { display: flex; flex-wrap: wrap; gap: 8px 20px; padding-inline: var(--gouttiere); font-size: 13px; line-height: 18px; color: var(--secondaire); }
+  .legende li { display: flex; align-items: center; gap: 8px; }
+  .legende__case { width: 24px; height: 10px; border-radius: 3px; background: var(--ligne); }
+  @media (min-width: 1100px) {
+    .outils { flex-direction: row; justify-content: space-between; align-items: center; padding-inline: var(--gouttiere); }
+    .cal-filtres__liste { padding-inline: 0; flex-wrap: wrap; overflow: visible; }
+    .legende { padding-inline: 0; }
+  }
+
+  .calendrier { padding-bottom: 64px; }
+  .groupe { padding-top: 32px; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 12px; }
+  .groupe__tete { display: flex; gap: 10px; align-items: baseline; }
+  .groupe__titre { font-size: 28px; line-height: 34px; letter-spacing: -0.03em; }
+  .groupe__compte { font-size: 14px; line-height: 20px; }
+  @media (min-width: 1100px) {
+    .calendrier { padding-bottom: 112px; }
+    .groupe { padding-top: 56px; gap: 20px; }
+    .groupe__titre { font-size: 32px; line-height: 40px; }
+    .groupe__compte { font-size: 16px; line-height: 24px; }
+  }
+
+  /* Tableau : une bande pêche marque le mois en cours, sous les lignes */
+  .cal-tableau { position: relative; --pas: 3px; --gauche: 0px; --droite: 0px; --deborde: 3px; }
+  .cal-bande {
+    position: absolute; top: 0; bottom: 0; z-index: 0; border-radius: 8px; background: var(--peche);
+    --colonne: calc((100% - var(--gauche) - var(--droite) - 11 * var(--pas)) / 12);
+    left: calc(var(--gauche) + (var(--colonne) + var(--pas)) * var(--m) - var(--deborde));
+    width: calc(var(--colonne) + 2 * var(--deborde));
+  }
+  .cal-entete, .cal-ligne { position: relative; z-index: 1; display: grid; border-bottom: 1px solid var(--bordure-claire); }
+  .cal-mois { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--pas); align-items: center; }
+
+  .cal-entete { grid-template-columns: minmax(0, 1fr); padding: 6px 0; }
+  .cal-entete > span { display: none; }
+  .cal-entete__mois { text-align: center; font-size: 12px; line-height: 18px; color: var(--discret-lisible); }
+  .cal-entete__mois--courant { color: var(--texte); font-weight: 600; }
+
+  .cal-ligne { grid-template-columns: minmax(0, 1fr) 20px; grid-template-areas: 'nom action' 'mois mois'; gap: 10px 12px; padding: 14px 0; scroll-margin-top: calc(var(--h-entete, 64px) + 16px); }
+  .cal-ligne__nom { grid-area: nom; display: flex; align-items: center; gap: 10px; min-width: 0; font-size: 16px; line-height: 24px; color: var(--texte); }
+  .cal-ligne .cal-mois { grid-area: mois; }
+  .cal-ligne__action { grid-area: action; display: grid; place-items: center; color: var(--texte); }
+  .cal-ligne__lien { display: inline-flex; align-items: center; gap: 10px; }
+  .cal-ligne__lien::after { content: ''; position: absolute; inset: 0; }
+  .cal-ligne__lien:focus-visible { outline: none; }
+  .cal-ligne__lien:focus-visible::after { outline: 2px solid var(--vert-vif); outline-offset: -2px; border-radius: 6px; }
+  .cal-ligne:has(.cal-ligne__lien:hover) { background: rgb(17 17 17 / 0.035); }
+  .cal-ligne:has(.cal-ligne__lien:hover) .cal-ligne__lien { text-decoration: underline; text-underline-offset: 3px; }
+  .cal-ligne:target { background: rgb(0 132 58 / 0.08); }
+  .cal-pastille { height: 24px; padding: 0 8px; font-size: 13px; }
+
+  .cal-case { height: 10px; border-radius: 3px; background: var(--ligne); }
+  .cal-case--recolte { background: var(--vert-vif-fond); }
+  .cal-case--courant { box-shadow: inset 0 0 0 1.5px var(--nuit); }
+
+  @media (min-width: 1100px) {
+    .cal-tableau { --pas: 4px; --gauche: 296px; --droite: 36px; --deborde: 6px; }
+    .cal-entete, .cal-ligne { grid-template-columns: 280px minmax(0, 1fr) 20px; grid-template-areas: none; column-gap: 16px; }
+    .cal-entete > span { display: block; }
+    .cal-ligne { padding: 0; min-height: 53px; align-items: center; }
+    .cal-ligne__nom, .cal-ligne .cal-mois, .cal-ligne__action { grid-area: auto; }
+    .cal-ligne__nom { padding: 14px 0; }
+    .cal-case { height: 12px; }
+  }
+
+  .sms { padding-bottom: 64px; }
+  .sms__carte { display: flex; flex-direction: column; gap: 14px; padding: 24px; }
+  .sms__textes { display: flex; flex-direction: column; gap: 14px; }
+  .sms__titre { font-size: 24px; line-height: 30px; letter-spacing: -0.02em; }
+  .sms__texte { font-size: 14px; line-height: 20px; }
+  @media (min-width: 1100px) {
+    .sms { padding-bottom: 112px; }
+    .sms__carte { flex-direction: row; justify-content: space-between; align-items: center; padding: 48px; }
+    .sms__textes { width: 560px; }
+    .sms__titre { font-size: 32px; line-height: 40px; letter-spacing: -0.03em; }
+    .sms__texte { font-size: 16px; line-height: 24px; }
+  }
+</style>
