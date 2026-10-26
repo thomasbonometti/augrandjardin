@@ -16,7 +16,7 @@ const reprise = fermeture?.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Re
     <Titre class="fermeture__titre">{titre ?? reprise}</Titre>
     <p class="lg muted fermeture__texte">{texte ?? fermeture.message}</p>
     <div class="btns">
-      {lienSms && <a class="btn btn-primaire btn-bloc" href={lienSms}>Recevoir la liste par SMS</a>}
+      {lienSms && <a class="btn btn-primaire btn-bloc" href={lienSms}>Recevoir la liste de la semaine</a>}
       <a class="btn btn-secondaire btn-bloc" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={18} />Suivre la ferme sur Facebook</a>
       {lienSaison && <a class="btn btn-secondaire btn-bloc" href="/calendrier-de-saison/"><Icone nom="saison" taille={18} />Légumes de saison</a>}
     </div>

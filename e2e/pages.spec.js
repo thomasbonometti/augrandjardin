@@ -102,6 +102,29 @@ test('inscription SMS : numéro incomplet refusé', async ({ page }) => {
   await expect(form.locator('input[type="tel"]')).toHaveAttribute('aria-invalid', 'true');
 });
 
+test('inscription : WhatsApp par défaut, SMS au choix, canal envoyé (sans écrire dans Notion)', async ({ page }) => {
+  await page.goto('/produits/');
+  const form = page.locator('#sms form');
+  const whatsapp = form.getByRole('radio', { name: 'WhatsApp' });
+  const sms = form.getByRole('radio', { name: 'SMS' });
+  await expect(form.getByRole('group', { name: 'Recevoir la liste sur' })).toBeVisible();
+  await expect(whatsapp).toBeChecked();
+  await expect(sms).not.toBeChecked();
+  let corps = null;
+  await page.route('**/api/inscription-sms', async (route) => {
+    corps = route.request().postDataJSON();
+    await route.fulfill({ json: { ok: true, message: 'C’est noté : la liste arrivera par SMS au 06 00 00 00 02.' } });
+  });
+  await form.locator('label.canal', { hasText: 'SMS' }).click();
+  await expect(sms).toBeChecked();
+  await form.locator('input[type="tel"]').fill('06 00 00 00 02');
+  await form.getByRole('button', { name: 'M’inscrire' }).click();
+  await expect(form.locator('.message-form')).toContainText('par SMS');
+  expect(corps).toMatchObject({ canal: 'SMS', telephone: '06 00 00 00 02', source: 'produits' });
+  // Après l'envoi, le formulaire revient à WhatsApp.
+  await expect(whatsapp).toBeChecked();
+});
+
 test('inscription SMS : envoi (écrit dans Notion, seulement avec E2E_ECRIRE=1)', async ({ page }, info) => {
   test.skip(!process.env.E2E_ECRIRE, 'écriture désactivée');
   test.skip(info.project.name !== 'telephone', 'une seule inscription suffit');

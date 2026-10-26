@@ -10,7 +10,7 @@ export const isoAujourdhui = (maintenant = new Date()) => {
 const jour = (iso, options) => new Intl.DateTimeFormat('fr-FR', { timeZone: 'UTC', ...options }).format(new Date(`${iso}T12:00:00Z`));
 
 export const MESSAGE_FERMETURE =
-  'Les ventes reprennent bientôt. Pour être prévenu de la reprise, inscrivez-vous à la liste par SMS ou suivez la ferme sur Facebook.';
+  'Les ventes reprennent bientôt. Pour être prévenu de la reprise, inscrivez-vous à la liste de la semaine (WhatsApp ou SMS) ou suivez la ferme sur Facebook.';
 
 // Mode fermé : null si le site est ouvert.
 // « Fermé » coché, avec ou sans date de reprise. Avec une date, le site rouvre tout seul à la

@@ -1,5 +1,7 @@
 ---
-// Inscription à la liste SMS hebdomadaire → fonction /api/inscription-sms → base Notion « Inscriptions SMS ».
+// Inscription à la liste de la semaine → fonction /api/inscription-sms → base Notion « Inscriptions SMS ».
+// Revue de Pierre du 26/10/2026 : la liste part de préférence sur WhatsApp, par SMS pour qui n'a pas WhatsApp.
+// Le choix est rangé dans la colonne « Canal » (WhatsApp par défaut).
 interface Props { source: string; variante?: 'sombre' | 'clair'; class?: string }
 const { source, variante = 'sombre', class: classe = '' } = Astro.props;
 const id = `sms-${source}`;
@@ -7,12 +9,19 @@ const id = `sms-${source}`;
 <form class={`form-sms form-sms--${variante} ${classe}`} action="/api/inscription-sms" method="post" data-form-api novalidate>
   <input type="hidden" name="source" value={source} />
   <div class="piege" aria-hidden="true"><label>Site web <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  <fieldset class="form-sms__canal">
+    <legend class="form-sms__legende sm">Recevoir la liste sur</legend>
+    <div class="form-sms__choix">
+      <label class="canal"><input type="radio" name="canal" value="WhatsApp" checked /><span>WhatsApp</span></label>
+      <label class="canal"><input type="radio" name="canal" value="SMS" /><span>SMS</span></label>
+    </div>
+  </fieldset>
   <div class="form-sms__ligne">
     <label class="visually-hidden" for={id}>Votre numéro de portable</label>
     <input class="saisie" id={id} name="telephone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Votre numéro de portable" required pattern="[0-9 +().\-]{10,20}" aria-describedby={`${id}-msg ${id}-rgpd`} />
     <button class={`btn ${variante === 'sombre' ? 'btn-blanc' : 'btn-primaire'}`} type="submit">M’inscrire</button>
   </div>
-  <p class="form-sms__rgpd xs" id={`${id}-rgpd`}>Un SMS par semaine au plus, de la ferme uniquement. Pour vous désinscrire, répondez STOP.</p>
+  <p class="form-sms__rgpd xs" id={`${id}-rgpd`}>Un message par semaine au plus, de la ferme uniquement. Pour vous désinscrire, répondez STOP.</p>
   <p class="message-form" id={`${id}-msg`} role="status" aria-live="polite"></p>
 </form>
 <style>
@@ -20,6 +29,20 @@ const id = `sms-${source}`;
   .form-sms__ligne { display: flex; flex-direction: column; gap: 10px; }
   .form-sms__rgpd { color: var(--secondaire); }
   .form-sms--sombre .form-sms__rgpd { color: rgba(255, 255, 255, 0.72); }
+
+  /* Choix du canal : deux pastilles, de vrais boutons radio (clavier, lecteurs d'écran) */
+  .form-sms__canal { border: 0; padding: 0; margin: 0; min-width: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; }
+  .form-sms__legende { float: left; padding: 0; color: var(--secondaire); }
+  .form-sms--sombre .form-sms__legende { color: rgba(255, 255, 255, 0.82); }
+  .form-sms__choix { display: flex; gap: 8px; }
+  .canal { position: relative; cursor: pointer; }
+  .canal input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+  .canal span { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--bordure-soutenue); color: var(--texte); background: var(--blanc); font-size: 15px; }
+  .canal input:checked + span { background: var(--vert-foret); border-color: var(--vert-foret); color: var(--blanc); }
+  .canal input:focus-visible + span { outline: 2px solid var(--vert-vif); outline-offset: 2px; }
+  .form-sms--sombre .canal span { background: transparent; border-color: rgba(255, 255, 255, 0.6); color: var(--blanc); }
+  .form-sms--sombre .canal input:checked + span { background: var(--blanc); border-color: var(--blanc); color: var(--vert-foret); }
+
   @media (min-width: 720px) {
     .form-sms__ligne { flex-direction: row; align-items: center; }
     .form-sms__ligne .saisie { width: 300px; }

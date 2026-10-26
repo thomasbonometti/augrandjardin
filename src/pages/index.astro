@@ -18,7 +18,7 @@ const pdt = resumePdt(agjCatalogue);
 const pdtOuvert = pdt.ouvert && !fermeture;
 const reprise = fermeture?.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Reprise bientôt';
 const description = fermeture
-  ? `Légumes bio cueillis à Lostroff, 43 rue Principale. Ventes en pause : ${reprise.toLowerCase()}. Inscrivez-vous à la liste par SMS pour être prévenu.`
+  ? `Légumes bio cueillis à Lostroff, 43 rue Principale. Ventes en pause : ${reprise.toLowerCase()}. Inscrivez-vous à la liste de la semaine pour être prévenu.`
   : `Légumes bio cueillis à Lostroff : ${nb} produits cette semaine, vente à la ferme${v ? ` ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale. Pommes de terre en ligne, offre pour les professionnels.`;
 const samediFerme = creneaux.find((c) => c.aLaFerme && c.jour === 'Samedi');
 const jourVente = v ? v.jour.toLowerCase() : 'samedi';
@@ -94,7 +94,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
       <div class="wrap semaine__bas" data-anim>
         <p class="muted">{fermeture.message}</p>
         <div class="btns">
-          <a class="btn btn-blanc btn-bloc" href="#sms">Recevoir la liste par SMS</a>
+          <a class="btn btn-blanc btn-bloc" href="#sms">Recevoir la liste de la semaine</a>
           <a class="btn btn-contour-clair btn-bloc" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={18} />Suivre la ferme sur Facebook</a>
         </div>
       </div>
@@ -135,7 +135,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
     <div class="facons__tete" data-anim>
       <p class="eyebrow">À la ferme et au-delà</p>
       <h2 id="facons-titre">Quatre façons de manger nos légumes</h2>
-      <p class="muted seulement-ordi">Venez le samedi, commandez vos pommes de terre, commandez par SMS ou faites-vous livrer si vous êtes un professionnel.</p>
+      <p class="muted seulement-ordi">Venez le samedi, commandez vos pommes de terre, recevez la liste de la semaine sur WhatsApp, ou faites-vous livrer si vous êtes un professionnel.</p>
     </div>
     <ul class="facons__grille" role="list" data-anim-groupe="monte">
       <li>
@@ -164,10 +164,10 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
         <a class="facon" href="#sms">
           <div class="photo facon__photo"><Photo nom="tunnels-champ" alt="Les tunnels de la ferme au milieu des champs" sizes="(min-width: 1100px) 400px, 88px" largeurs={[176, 400, 800]} /></div>
           <div class="facon__texte">
-            <div class="facon__titre"><h3>Commande par SMS</h3><Icone nom="droite" taille={22} class="facon__fleche" /></div>
-            <p class="muted facon__desc"><span class="seulement-ordi">La liste de la semaine arrive par SMS. Vous répondez avec votre panier, on le met de côté.</span><span class="seulement-mobile">La liste chaque semaine, du 15 avril au 15 novembre.</span></p>
+            <div class="facon__titre"><h3>La liste sur WhatsApp</h3><Icone nom="droite" taille={22} class="facon__fleche" /></div>
+            <p class="muted facon__desc"><span class="seulement-ordi">Chaque semaine, Pierre envoie la liste de ce qui est prêt sur WhatsApp, ou par SMS si vous n’avez pas WhatsApp.</span><span class="seulement-mobile">La liste chaque semaine, de début avril à fin décembre.</span></p>
           </div>
-          <span class="chip facon__chip">15 avril – 15 novembre</span>
+          <span class="chip facon__chip">Avril – décembre</span>
           <Icone nom="chevron" taille={20} class="facon__chevron" />
         </a>
       </li>
@@ -214,9 +214,9 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
     <div class="sms__voile" aria-hidden="true"></div>
     <div class="wrap sms__wrap">
       <div class="sms__contenu" data-anim-groupe="monte">
-        <p class="eyebrow">Chaque semaine, un seul SMS</p>
+        <p class="eyebrow">Chaque semaine, un seul message</p>
         <h2 id="sms-titre">La liste des légumes, directement sur votre téléphone</h2>
-        <p class="muted">Du 15 avril au 15 novembre, recevez la liste<span class="seulement-ordi"> de la semaine</span> et réservez votre panier en répondant au message.</p>
+        <p class="muted">De début avril à fin décembre, recevez la liste<span class="seulement-ordi"> de la semaine</span> sur WhatsApp, ou par SMS si vous n’avez pas WhatsApp.</p>
         <FormulaireSms source="accueil" variante="sombre" />
       </div>
     </div>

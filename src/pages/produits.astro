@@ -15,7 +15,7 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
 const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heures}` : null;
 const reprise = fermeture?.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt';
 const description = fermeture
-  ? `Les ventes de la ferme Au Grand Jardin sont en pause, ${reprise}. Inscrivez-vous à la liste par SMS pour la recevoir dès la reprise. 43 rue Principale à Lostroff.`
+  ? `Les ventes de la ferme Au Grand Jardin sont en pause, ${reprise}. Inscrivez-vous à la liste de la semaine pour la recevoir dès la reprise. 43 rue Principale à Lostroff.`
   : `Les ${nb} produits en vente à la ferme Au Grand Jardin cette semaine, avec leurs prix TTC${v ? `. Vente ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale à Lostroff.`;
 ---
 <Base
@@ -79,8 +79,8 @@ const description = fermeture
   <section class="wrap sms" id="sms" aria-labelledby="sms-titre">
     <div class="carte-sable sms__carte" data-anim>
       <div class="sms__textes">
-        <h2 class="sms__titre" id="sms-titre">Recevez la liste chaque semaine par SMS</h2>
-        <p class="muted sms__texte"><span class="seulement-ordi">Pas de commande en ligne : vous</span><span class="seulement-mobile">Vous</span> répondez au SMS avec votre panier et on le met de côté pour {jour}. Du 15 avril au 15 novembre.</p>
+        <h2 class="sms__titre" id="sms-titre">Recevez la liste chaque semaine</h2>
+        <p class="muted sms__texte">Sur WhatsApp, ou par SMS si vous n’avez pas WhatsApp, de début avril à fin décembre. Pas de réservation : la récolte est en vente à la ferme le {jour}.</p>
       </div>
       <FormulaireSms source="produits" variante="clair" />
     </div>
