@@ -3,7 +3,7 @@
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import Photo from '../components/Photo.astro';
-import { restaurants } from '../data/ferme.js';
+import { restaurants, ferme } from '../data/ferme.js';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
 import { produits, fermeture } from '../lib/donnees.js';
 import { fileAriane } from '../lib/seo.js';
@@ -48,9 +48,9 @@ import { fileAriane } from '../lib/seo.js';
         <h2 id="etapes-titre">Trois étapes pour travailler ensemble</h2>
       </div>
       <ol class="etapes__liste" data-anim-groupe="pop">
-        <li><p class="etapes__num" aria-hidden="true">01</p><h3>On fait connaissance</h3><p class="muted">Vos volumes, vos jours de livraison, les produits qui comptent pour votre carte.</p></li>
-        <li><p class="etapes__num" aria-hidden="true">02</p><h3>Vous recevez votre accès</h3><p class="muted">La grille tarifaire pro, mise à jour chaque semaine avec ce qui est prêt à la récolte.</p></li>
-        <li><p class="etapes__num" aria-hidden="true">03</p><h3>Vous commandez</h3><p class="muted">Par téléphone ou message, avant le jour de récolte convenu. On livre.</p></li>
+        <li><p class="etapes__num" aria-hidden="true">01</p><h3>On fait connaissance</h3><p class="muted">Vos volumes, votre adresse de livraison, les produits qui comptent pour votre carte.</p></li>
+        <li><p class="etapes__num" aria-hidden="true">02</p><h3>Vous recevez votre accès</h3><p class="muted">Votre espace pro, avec vos prix. Chaque jeudi, la grille de la semaine arrive aussi par mail.</p></li>
+        <li><p class="etapes__num" aria-hidden="true">03</p><h3>Vous commandez</h3><p class="muted">En ligne, jusqu’au samedi 18&nbsp;h, ou par téléphone. Pierre livre le lundi.</p></li>
       </ol>
     </div>
   </section>
@@ -71,14 +71,15 @@ import { fileAriane } from '../lib/seo.js';
       <p class="message-form" role="status" aria-live="polite"></p>
     </form>
 
-    <form class="acces carte-sable" data-anim id="acces" action="/api/pro-login" method="post" data-form-api novalidate aria-labelledby="acces-titre">
+    <form class="acces carte-sable" data-anim id="acces" action="/api/agj/pro/login" method="post" data-form-api data-redirection="/pro/tarifs/" novalidate aria-labelledby="acces-titre">
       <span class="acces__icone"><Icone nom="cadenas" taille={28} /></span>
       <h2 class="formulaires__titre" id="acces-titre">Déjà client ?</h2>
-      <p class="muted acces__intro">Entrez le mot de passe reçu pour consulter la grille tarifaire de la semaine.</p>
-      <div class="champ"><label for="motdepasse">Mot de passe</label><input class="saisie" id="motdepasse" name="motdepasse" type="password" autocomplete="current-password" placeholder="••••••••" required /></div>
-      <button class="btn btn-noir btn-bloc" type="submit">Voir la grille tarifaire</button>
+      <p class="muted acces__intro">Connectez-vous pour voir vos prix de la semaine et passer votre commande.</p>
+      <div class="champ"><label for="acces-email">E-mail</label><input class="saisie" id="acces-email" name="email" type="email" inputmode="email" autocomplete="username" placeholder="contact@etablissement.fr" required maxlength="160" /></div>
+      <div class="champ"><label for="acces-mdp">Mot de passe</label><input class="saisie" id="acces-mdp" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required /></div>
+      <button class="btn btn-noir btn-bloc" type="submit">Voir mes prix</button>
       <p class="message-form" role="status" aria-live="polite"></p>
-      <p class="sm muted seulement-ordi">Le mot de passe figure dans le dernier message de la ferme.</p>
+      <p class="sm muted">Votre e-mail et votre mot de passe vous ont été envoyés par la ferme. Oublié ? Appelez Pierre au {ferme.telephone}.</p>
     </form>
   </section>
 

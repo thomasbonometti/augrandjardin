@@ -57,16 +57,7 @@ test('horaires : pas de prochaine vente ni de lieu « cette semaine », pas d’
   expect(ferme.openingHoursSpecification).toBeUndefined();
 });
 
-test('espace pro : pas de grille, la date de reprise à la place', async ({ page }) => {
-  test.skip(!process.env.E2E_PRO_PASSWORD, 'mot de passe pro non fourni (E2E_PRO_PASSWORD)');
-  await page.goto('/professionnels/');
-  await page.getByLabel('Mot de passe').fill(process.env.E2E_PRO_PASSWORD);
-  await page.getByRole('button', { name: 'Voir la grille tarifaire' }).click();
-  await expect(page).toHaveURL(/\/pro\/tarifs\/$/);
-  await expect(page.locator('table.grille')).toHaveCount(0);
-  await expect(page.locator('[data-fermeture]')).toContainText(/Pas de grille en ce moment, reprise le/);
-  await expect(page.locator('.tete__actions').getByRole('link', { name: /Appeler/ })).toBeVisible();
-});
+// Espace pro en mode fermé : l'outil lit la pause en direct (e2e/espace-pro.spec.js, avec l'outil simulé).
 
 test.describe('accessibilité en mode fermé', () => {
   test.use({ contextOptions: { reducedMotion: 'reduce' } });

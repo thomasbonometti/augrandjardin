@@ -3,7 +3,18 @@
 
 export const OUTIL = 'https://formulaires.hey-d8b.workers.dev';
 
-export async function relayer(request, env, chemin, { methodes = ['GET', 'HEAD'], cache = 'no-store' } = {}) {
+// Le premier cookie de ce nom (le navigateur envoie d'abord celui du chemin le plus précis).
+export function lireCookie(request, nom) {
+  for (const part of (request.headers.get('cookie') || '').split(';')) {
+    const i = part.indexOf('=');
+    if (i > 0 && part.slice(0, i).trim() === nom) return part.slice(i + 1).trim();
+  }
+  return null;
+}
+
+// `cookie` : nom du seul cookie transmis à l'outil (session de l'espace pro) ; sa réponse
+// Set-Cookie revient au navigateur. Aucun autre cookie du site ne part vers l'outil.
+export async function relayer(request, env, chemin, { methodes = ['GET', 'HEAD'], cache = 'no-store', cookie = null } = {}) {
   if (!methodes.includes(request.method)) {
     return Response.json({ error: 'Méthode non autorisée' }, { status: 405, headers: { allow: methodes.join(', ') } });
   }
@@ -14,6 +25,8 @@ export async function relayer(request, env, chemin, { methodes = ['GET', 'HEAD']
   // L'adresse IP du client, utile aux protections de l'outil
   const ip = request.headers.get('cf-connecting-ip');
   if (ip) entetes.set('x-forwarded-for', ip);
+  const valeur = cookie && lireCookie(request, cookie);
+  if (valeur) entetes.set('cookie', `${cookie}=${valeur}`);
   let corps;
   if (request.method === 'POST') {
     corps = await request.text();
@@ -29,6 +42,10 @@ export async function relayer(request, env, chemin, { methodes = ['GET', 'HEAD']
   for (const nom of ['content-type', 'etag', 'last-modified']) {
     const v = reponse.headers.get(nom);
     if (v) sortie.set(nom, v);
+  }
+  if (cookie) {
+    const pose = reponse.headers.get('set-cookie');
+    if (pose && pose.startsWith(`${cookie}=`)) sortie.append('set-cookie', pose);
   }
   sortie.set('cache-control', cache);
   sortie.set('x-robots-tag', 'noindex');

@@ -111,32 +111,7 @@ test('inscription SMS : envoi (écrit dans Notion, seulement avec E2E_ECRIRE=1)'
   await expect(form.locator('.message-form')).toContainText(/06 00 00 00 01/);
 });
 
-test('espace pro : protégé, mauvais mot de passe refusé', async ({ page, request }) => {
-  const direct = await request.get('/pro/tarifs/', { maxRedirects: 0 });
-  expect(direct.status()).toBe(302);
-  expect(direct.headers().location).toContain('/professionnels/');
-  await page.goto('/professionnels/');
-  await page.getByRole('link', { name: /J’ai déjà un accès/ }).click();
-  await page.getByLabel('Mot de passe').fill('pas-le-bon');
-  await page.getByRole('button', { name: 'Voir la grille tarifaire' }).click();
-  await expect(page.locator('#acces .message-form')).toContainText('Mot de passe incorrect');
-  await expect(page).toHaveURL(/\/professionnels\//);
-});
-
-test('espace pro : connexion et grille tarifaire', async ({ page }) => {
-  test.skip(!process.env.E2E_PRO_PASSWORD, 'mot de passe pro non fourni (E2E_PRO_PASSWORD)');
-  await page.goto('/professionnels/');
-  await page.getByLabel('Mot de passe').fill(process.env.E2E_PRO_PASSWORD);
-  await page.getByRole('button', { name: 'Voir la grille tarifaire' }).click();
-  await expect(page).toHaveURL(/\/pro\/tarifs\/$/);
-  await expect(page.locator('h1')).toHaveText('Grille tarifaire de la semaine');
-  expect(await page.locator('tr.rangee').count()).toBeGreaterThan(5);
-  await expect(page.locator('tr.rangee .ht').first()).toContainText('€');
-  await page.goto('/pro/deconnexion/');
-  await expect(page).toHaveURL(/\/professionnels\/$/);
-  await page.goto('/pro/tarifs/');
-  await expect(page).toHaveURL(/\/professionnels\//);
-});
+// Espace pro (connexion, grille, commande) : e2e/espace-pro.spec.js.
 
 test('demande d’accès pro : champs obligatoires', async ({ page }) => {
   await page.goto('/professionnels/');

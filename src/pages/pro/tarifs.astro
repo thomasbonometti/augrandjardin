@@ -1,19 +1,16 @@
 ---
-// Espace pro — grille tarifaire. Frames Figma 18:2 (desktop) et 43:2 (mobile).
-// Servie seulement aux pros connectés (functions/pro/_middleware.js). Prix HT = prix TTC ÷ 1,055.
+// Espace pro (lot 2) — maquettes Figma 65:50 (bureau), 68:286 et 68:1046 (téléphone).
+// Page statique, sans aucun prix : la grille, les prix (remise et paliers du pro) et la commande
+// viennent de l'outil de commande, relayé par /api/agj/pro/* (functions/api/agj/pro/[action].js),
+// pour le pro connecté par e-mail et mot de passe. Script : src/scripts/espace-pro.ts ;
+// calculs et rendu : src/lib/pro-grille.js.
 import Base from '../../layouts/Base.astro';
 import Icone from '../../components/Icone.astro';
-import EncartFermeture from '../../components/EncartFermeture.astro';
 import { ferme } from '../../data/ferme.js';
-import { rayons, misAJour, fermeture } from '../../lib/donnees.js';
-import { euros, prixHT } from '../../lib/vente.js';
-const dispo = (p: any) => (p.quantiteLimitee ? 'limite' : p.estNouveau ? 'nouveau' : 'dispo');
-// Mode fermé (Notion « Réglages du site ») : pas de grille, la date de reprise à la place.
-const reprise = fermeture?.reprise ? `le ${fermeture.repriseLong}` : 'bientôt';
 ---
 <Base
-  titre="Grille tarifaire professionnels | Au Grand Jardin"
-  description="Grille tarifaire de la semaine, réservée aux clients professionnels de la ferme Au Grand Jardin."
+  titre="Espace professionnels | Au Grand Jardin"
+  description="Espace réservé aux clients professionnels de la ferme Au Grand Jardin : vos prix de la semaine et votre commande, livrée le lundi."
   page="pros"
   indexer={false}
 >
@@ -21,132 +18,285 @@ const reprise = fermeture?.reprise ? `le ${fermeture.repriseLong}` : 'bientôt';
     <div class="tete__textes">
       <div class="tete__badge">
         <span class="chip chip-vert"><Icone nom="cadenas" taille={14} />Espace professionnels</span>
-        <p class="sm muted seulement-ordi">Mis à jour {misAJour.texte}</p>
+        <p class="sm muted" data-date></p>
       </div>
-      <h1 class="tete__titre">Grille tarifaire de la semaine</h1>
-      {fermeture
-        ? <p class="lg muted tete__intro">Les ventes sont en pause : la grille revient {reprise}.</p>
-        : <p class="lg muted tete__intro">Prix hors taxes, TVA 5,5&nbsp;%.<span class="seulement-mobile"> Mis à jour {misAJour.texte}.</span> Commandez par téléphone ou par message avant le jour de récolte convenu.</p>}
+      <h1 class="tete__titre" data-titre>Votre grille de la semaine</h1>
+      <p class="lg muted tete__intro" data-intro>Chargement de vos prix…</p>
     </div>
-    <div class="btns tete__actions">
-      <a class="btn btn-primaire btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />{fermeture ? 'Appeler' : 'Commander'} : {ferme.telephone}</a>
-      {!fermeture && <button class="btn btn-secondaire btn-bloc" type="button" data-imprimer><Icone nom="telecharger" taille={18} />Télécharger en PDF</button>}
+    <div class="btns tete__actions" data-actions hidden>
+      <button class="btn btn-secondaire btn-bloc" type="button" data-semaine-derniere hidden><Icone nom="historique" taille={18} />Comme la semaine dernière</button>
+      <button class="btn btn-secondaire btn-bloc" type="button" data-imprimer><Icone nom="telecharger" taille={18} />Télécharger en PDF</button>
+    </div>
+  </section>
+  <div class="wrap"><p class="message-tete" data-message role="status" aria-live="polite"></p></div>
+
+  <noscript><div class="wrap"><p class="lg">Cette page a besoin de JavaScript pour afficher vos prix. Vous pouvez aussi commander par téléphone au {ferme.telephone}.</p></div></noscript>
+
+  <!-- Pas connecté : le formulaire de connexion (le même que sur la page Professionnels) -->
+  <section class="wrap connexion-zone" data-connexion hidden aria-labelledby="connexion-titre">
+    <form class="connexion encart-blanc" action="/api/agj/pro/login" method="post" data-form-api data-redirection="/pro/tarifs/" novalidate>
+      <h2 class="connexion__titre" id="connexion-titre">Connectez-vous</h2>
+      <p class="muted">Avec votre e-mail et le mot de passe reçus de la ferme.</p>
+      <div class="champ"><label for="c-email">E-mail</label><input class="saisie" id="c-email" name="email" type="email" inputmode="email" autocomplete="username" required maxlength="160" /></div>
+      <div class="champ"><label for="c-mdp">Mot de passe</label><input class="saisie" id="c-mdp" name="password" type="password" autocomplete="current-password" required /></div>
+      <button class="btn btn-noir btn-bloc" type="submit">Voir mes prix</button>
+      <p class="message-form" role="status" aria-live="polite"></p>
+      <p class="sm muted">Pas encore d’accès ? <a href="/professionnels/#demande">Demandez-le ici</a>. Mot de passe oublié ? Appelez Pierre au <a href={ferme.telephoneLien}>{ferme.telephone}</a>.</p>
+    </form>
+  </section>
+
+  <!-- Mode fermé (Réglages du site, lu en direct par l'outil) -->
+  <section class="wrap pause-zone" data-pause hidden aria-labelledby="pause-titre">
+    <div class="pause carte-sable">
+      <span class="chip chip-vert"><span class="point point-clair" aria-hidden="true"></span>Ventes en pause</span>
+      <h2 class="pause__titre" id="pause-titre" data-pause-titre>Les commandes reprendront bientôt</h2>
+      <p class="lg muted pause__texte" data-pause-texte></p>
+      <div class="btns">
+        <a class="btn btn-primaire btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />Appeler Pierre : {ferme.telephone}</a>
+        <a class="btn btn-secondaire btn-bloc" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={18} />Suivre la ferme sur Facebook</a>
+      </div>
     </div>
   </section>
 
-  {fermeture && (
-    <section class="wrap grille-zone" aria-label="Ventes en pause">
-      <EncartFermeture titre={`Pas de grille en ce moment, reprise ${reprise}`} texte={`Pour une demande en attendant, appelez Pierre au ${ferme.telephone}.`} />
-      <p class="sm muted pied-grille"><a href="/pro/deconnexion/">Se déconnecter</a></p>
-    </section>
-  )}
+  <!-- Remise, paliers, livraison -->
+  <section class="wrap resume" data-resume hidden aria-label="Vos conditions">
+    <div class="resume__carte encart-blanc"><p class="eyebrow">Votre remise</p><p class="resume__valeur" data-remise></p><p class="sm muted" data-remise-texte></p></div>
+    <div class="resume__carte encart-blanc"><p class="eyebrow">Paliers de quantité</p><p class="resume__valeur" data-paliers></p><p class="sm muted" data-paliers-texte></p></div>
+    <div class="resume__carte encart-blanc"><p class="eyebrow">Prochaine livraison</p><p class="resume__valeur" data-livraison-resume></p><p class="sm muted" data-livraison-texte></p></div>
+  </section>
 
-  {!fermeture && <section class="wrap grille-zone" aria-label="Grille tarifaire">
-    <table class="grille">
-      <caption class="visually-hidden">Prix professionnels de la semaine, par rayon</caption>
-      <thead>
-        <tr><th scope="col">Produit</th><th scope="col">Conditionnement</th><th scope="col">Disponibilité</th><th scope="col" class="num">Prix HT</th><th scope="col" class="num">Prix TTC</th></tr>
-      </thead>
-      {rayons.map((r) => (
-        <tbody>
-          <tr class="rayon"><th scope="rowgroup" colspan="5"><span>{r.titre}</span><span class="sm muted rayon__ht">Prix HT</span></th></tr>
-          {r.produits.map((p) => (
-            <tr class="rangee">
-              <th scope="row" class="produit">
-                <span class="produit__nom">{p.nom}</span>
-                <span class="sm muted produit__cond">{p.prix?.unite || '—'}</span>
-                {dispo(p) === 'limite' && <span class="chip chip-peche chip-petit produit__etat">Quantité limitée</span>}
-                {dispo(p) === 'nouveau' && <span class="chip chip-vif chip-petit produit__etat">Nouveau</span>}
-              </th>
-              <td class="cond muted">{p.prix?.unite || '—'}</td>
-              <td class="etat">
-                {dispo(p) === 'limite' ? <span class="chip chip-peche">Quantité limitée</span>
-                  : dispo(p) === 'nouveau' ? <span class="chip chip-vif">Nouveau</span>
-                  : <span class="sm muted">Disponible</span>}
-              </td>
-              <td class="num ht">{p.prix ? euros(prixHT(p.prix.montant)) : '—'}</td>
-              <td class="num ttc muted">{p.prix ? <>{euros(p.prix.montant)}<span class="seulement-mobile"> TTC</span></> : '—'}</td>
-            </tr>
-          ))}
-        </tbody>
-      ))}
-    </table>
-    <p class="sm muted pied-grille">Grille du {misAJour.jour}. <a href="/pro/deconnexion/">Se déconnecter</a></p>
-  </section>}
+  <section class="wrap commande-pro" data-commande hidden>
+    <div class="commande-pro__grille" data-grille></div>
+    <aside class="panneau encart-blanc" data-panneau aria-labelledby="panneau-titre">
+      <div class="panneau__tete">
+        <h2 class="panneau__titre" id="panneau-titre">Votre commande</h2>
+        <button class="panneau__fermer" type="button" data-fermer>Fermer</button>
+      </div>
+      <div class="panneau__livraison"><p class="medium" data-livraison></p><p class="sm" data-limite></p></div>
+      <p class="panneau__etat sm" data-etat hidden></p>
+      <div class="panneau__contenu" data-lignes></div>
+      <p class="xs muted" data-note></p>
+      <div class="champ" data-mot-zone>
+        <label for="pro-mot">Un mot pour Pierre (facultatif)</label>
+        <textarea class="saisie panneau__mot" id="pro-mot" maxlength="1000" placeholder="Par exemple : poireaux pas trop gros" data-mot></textarea>
+      </div>
+      <p class="message-form" data-erreur role="alert"></p>
+      <button class="btn btn-primaire btn-bloc panneau__envoyer" type="button" data-envoyer>Envoyer la commande</button>
+      <p class="xs muted" data-apres>Vous recevez un mail de confirmation, Pierre aussi.</p>
+      <button class="panneau__vider sm" type="button" data-vider>Vider la commande</button>
+    </aside>
+  </section>
+  <div class="wrap pied-grille" data-pied hidden>
+    <p class="sm muted">Les produits peuvent manquer selon la récolte : Pierre vous prévient. <button type="button" class="lien-bouton" data-deconnexion>Se déconnecter</button></p>
+  </div>
+
+  <section class="wrap previsions" data-previsions hidden aria-labelledby="previsions-titre">
+    <h2 class="previsions__titre" id="previsions-titre">Dans les 4 prochaines semaines</h2>
+    <p class="muted previsions__intro">Prévisions indicatives, selon la récolte et la météo. Elles sont mises à jour chaque jeudi avec la grille.</p>
+    <div class="encart-blanc previsions__table" data-previsions-table></div>
+  </section>
+
+  <!-- Téléphone : barre du bas et fenêtre de la commande -->
+  <div class="barre-pro" data-barre hidden>
+    <p class="barre-pro__texte"><span class="medium" data-barre-resume></span><span class="xs muted" data-barre-livraison></span></p>
+    <button class="btn btn-primaire" type="button" data-ouvrir>Voir et envoyer</button>
+  </div>
+  <dialog class="feuille" data-feuille aria-labelledby="panneau-titre"></dialog>
 </Base>
 
-<script>
-  document.querySelector('[data-imprimer]')?.addEventListener('click', () => window.print());
-</script>
+<script src="../../scripts/espace-pro.ts"></script>
 
 <style>
-  .tete { padding-top: 28px; padding-bottom: 28px; display: flex; flex-direction: column; gap: 18px; }
+  .tete { padding-top: 28px; padding-bottom: 20px; display: flex; flex-direction: column; gap: 18px; }
   .tete__textes { display: flex; flex-direction: column; gap: 18px; }
-  .tete__badge { display: flex; gap: 10px; align-items: center; }
+  .tete__badge { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .tete__titre { font-size: 32px; line-height: 38px; letter-spacing: -0.03em; }
   .tete__intro { font-size: 16px; line-height: 24px; }
+  .message-tete { font-size: 14px; line-height: 20px; color: var(--vert-foret); }
+  .message-tete:empty { display: none; }
+  .message-tete { margin-bottom: 16px; padding: 10px 14px; border-radius: 8px; background: var(--sable); color: var(--texte); }
   @media (min-width: 1100px) {
-    .tete { padding-top: 56px; padding-bottom: 48px; flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 0; }
+    .tete { padding-top: 56px; padding-bottom: 40px; flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 24px; }
     .tete__textes { flex: 1 1 auto; min-width: 0; max-width: 820px; gap: 20px; }
-    .tete__actions { flex: none; }
     .tete__titre { font-size: 64px; line-height: 72px; }
     .tete__intro { font-size: 20px; line-height: 30px; }
-    .tete__actions { flex-direction: row-reverse; flex-wrap: nowrap; }
+    .tete__actions { flex: none; flex-direction: row; flex-wrap: nowrap; }
     .tete__actions .btn { width: auto; }
   }
 
-  .grille-zone { padding-bottom: 64px; }
-  .grille { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--ligne); border-radius: 16px; overflow: hidden; background: var(--blanc); }
-  .grille, .grille tbody { display: block; }
-  .grille thead { display: none; }
-  .grille th, .grille td { text-align: left; font-weight: 400; }
-  .rayon th { padding: 10px 16px; background: var(--sable); border-top: 1px solid var(--ligne); color: var(--texte); }
-  tbody:first-of-type .rayon th { border-top: 0; }
-  .rayon th { display: flex; justify-content: space-between; align-items: center; }
-  .rangee { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 14px 16px; border-top: 1px solid var(--bordure-claire); }
-  .produit { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-  .produit__nom { color: var(--texte); }
-  .cond, .etat { display: none; }
-  .num { text-align: right; }
-  .ht { font-size: 18px; line-height: 26px; color: var(--texte); white-space: nowrap; }
-  .ttc { grid-column: 2; font-size: 14px; line-height: 20px; white-space: nowrap; }
-  .rangee .ht { grid-column: 2; grid-row: 1; align-self: start; }
-  .rangee .ttc { grid-row: 1; align-self: start; margin-top: 28px; }
-  .pied-grille { padding-top: 16px; }
-  .pied-grille a { text-decoration: underline; text-underline-offset: 3px; }
-  @media (min-width: 1100px) {
-    .grille-zone { padding-bottom: 112px; }
-    .grille { display: table; }
-    .grille tbody { display: table-row-group; }
-    .grille thead { display: table-header-group; }
-    .grille thead th { padding: 16px 24px; background: var(--creme); font-size: 14px; line-height: 20px; color: var(--secondaire); }
-    .grille thead th:first-child { width: 420px; }
-    .rayon th { display: table-cell; padding: 12px 24px; font-size: 18px; line-height: 26px; }
-    .rayon__ht { display: none; }
-    .rangee { display: table-row; }
-    .rangee > * { padding: 14px 24px; border-top: 1px solid var(--bordure-claire); vertical-align: middle; }
-    .produit { display: table-cell; color: var(--texte); }
-    .produit__cond, .produit__etat { display: none !important; }
-    .cond, .etat { display: table-cell; }
-    .ht { font-size: 18px; width: 160px; }
-    .ttc { font-size: 16px; width: 160px; }
-    .rangee .ttc { margin-top: 0; }
+  .connexion-zone { padding-bottom: 64px; }
+  .connexion { display: flex; flex-direction: column; gap: 16px; padding: 24px; max-width: 560px; }
+  .connexion__titre { font-size: 24px; line-height: 30px; letter-spacing: -0.02em; }
+  .connexion .message-form:empty { display: none; }
+  .connexion a { text-decoration: underline; text-underline-offset: 3px; }
+  @media (min-width: 1100px) { .connexion { padding: 40px; gap: 20px; } .connexion__titre { font-size: 32px; line-height: 40px; } }
+
+  .pause-zone { padding-bottom: 64px; }
+  .pause { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+  .pause .chip { gap: 8px; }
+  .pause__titre { font-size: 26px; line-height: 32px; letter-spacing: -0.03em; text-wrap: balance; }
+  .pause__texte { font-size: 16px; line-height: 24px; max-width: 640px; }
+  .pause__texte:empty { display: none; }
+  .pause .btns { width: 100%; }
+  @media (min-width: 720px) { .pause .btns { flex-direction: row; } .pause .btns .btn { width: auto; } }
+  @media (min-width: 1100px) { .pause { padding: 48px; gap: 20px; } .pause__titre { font-size: 40px; line-height: 48px; } .pause__texte { font-size: 20px; line-height: 30px; } }
+
+  .resume { display: flex; flex-direction: column; padding-bottom: 24px; }
+  .resume__carte { padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 4px; border-radius: 0; }
+  .resume__carte:first-child { border-radius: 16px 16px 0 0; }
+  .resume__carte:last-child { border-radius: 0 0 16px 16px; }
+  .resume__carte + .resume__carte { border-top: 0; }
+  .resume .eyebrow { font-size: 13px; line-height: 20px; letter-spacing: 0.16em; }
+  .resume__valeur { font-size: 20px; line-height: 28px; letter-spacing: -0.02em; color: var(--texte); }
+  @media (min-width: 900px) {
+    .resume { flex-direction: row; gap: 16px; padding-bottom: 32px; }
+    .resume__carte { flex: 1; padding: 20px 24px; border-radius: 12px !important; border-top: 1px solid var(--ligne) !important; }
+    .resume__valeur { font-size: 24px; line-height: 32px; }
   }
+
+  .commande-pro { display: flex; flex-direction: column; gap: 24px; }
+  .commande-pro__grille { min-width: 0; }
+  @media (min-width: 1100px) {
+    .commande-pro { flex-direction: row; align-items: flex-start; gap: 24px; }
+    .commande-pro__grille { flex: 1 1 auto; }
+  }
+
+  /* Grille (HTML produit par src/lib/pro-grille.js) */
+  .commande-pro :global(.grille-pro) { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--blanc); border: 1px solid var(--ligne); border-radius: 16px; overflow: hidden; display: block; }
+  .commande-pro :global(.grille-pro thead) { display: none; }
+  .commande-pro :global(.grille-pro tbody) { display: block; }
+  .commande-pro :global(.grille-pro th), .commande-pro :global(.grille-pro td) { text-align: left; font-weight: 400; }
+  .commande-pro :global(.rayon-pro) { display: block; }
+  .commande-pro :global(.rayon-pro th) { display: block; padding: 10px 16px; background: var(--sable); color: var(--texte); font-size: 16px; line-height: 24px; }
+  .commande-pro :global(.ligne-pro) { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'produit qte' 'ht qte' 'mobile mobile'; gap: 4px 12px; padding: 16px; border-top: 1px solid var(--bordure-claire); }
+  .commande-pro :global(.lp__produit) { grid-area: produit; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .commande-pro :global(.lp__nom) { color: var(--texte); font-size: 17px; line-height: 24px; }
+  .commande-pro :global(.lp__etiquettes) { display: flex; flex-wrap: wrap; gap: 4px; }
+  .commande-pro :global(.lp__ht) { grid-area: ht; font-size: 22px; line-height: 30px; letter-spacing: -0.02em; color: var(--texte); text-align: left; padding-top: 4px; }
+  .commande-pro :global(.lp__mobile) { grid-area: mobile; }
+  .commande-pro :global(.lp__public), .commande-pro :global(.lp__ttc), .commande-pro :global(.lp__paliers) { display: none; }
+  .commande-pro :global(.lp__qte) { grid-area: qte; align-self: center; }
+  .commande-pro :global(.palier--atteint) { color: var(--vert-foret); }
+  .commande-pro :global(.qte) { display: flex; align-items: center; height: 44px; width: 132px; border: 1px solid var(--bordure-soutenue); border-radius: 8px; background: var(--blanc); }
+  .commande-pro :global(.qte--choisie) { border-color: var(--vert-foret); box-shadow: inset 0 0 0 1px var(--vert-foret); }
+  .commande-pro :global(.qte button) { width: 40px; height: 42px; flex: none; display: grid; place-items: center; color: var(--texte); border-radius: 8px; }
+  .commande-pro :global(.qte button:hover:not(:disabled)) { background: var(--sable); }
+  .commande-pro :global(.qte button:disabled) { opacity: 0.3; cursor: not-allowed; }
+  .commande-pro :global(.qte__champ) { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 3px; color: var(--texte); font-variant-numeric: tabular-nums; }
+  .commande-pro :global(.qte input) { width: 3.2ch; min-width: 0; border: 0; padding: 0; background: transparent; text-align: right; font: inherit; color: inherit; }
+  .commande-pro :global(.qte input:focus) { outline: 2px solid var(--vert-vif); outline-offset: 2px; border-radius: 2px; }
+  .commande-pro :global(.qte:not(.qte--choisie) .qte__champ) { color: var(--discret-lisible); }
+  .commande-pro :global(.qte:not(.qte--choisie) input) { text-align: center; width: 100%; }
+  .commande-pro :global(.qte:not(.qte--choisie) .qte__champ span[aria-hidden]) { display: none; }
+  @media (min-width: 1100px) {
+    .commande-pro :global(.grille-pro) { display: table; }
+    .commande-pro :global(.grille-pro thead) { display: table-header-group; }
+    .commande-pro :global(.grille-pro tbody) { display: table-row-group; }
+    .commande-pro :global(.grille-pro thead th) { padding: 14px 16px; font-size: 13px; line-height: 20px; color: var(--secondaire); background: var(--creme); }
+    .commande-pro :global(.grille-pro thead th:first-child) { padding-left: 20px; }
+    .commande-pro :global(.grille-pro .num) { text-align: right; }
+    .commande-pro :global(.rayon-pro) { display: table-row; }
+    .commande-pro :global(.rayon-pro th) { display: table-cell; padding: 12px 20px; font-size: 18px; line-height: 26px; }
+    .commande-pro :global(.ligne-pro) { display: table-row; }
+    .commande-pro :global(.ligne-pro > *) { display: table-cell; padding: 14px 16px; border-top: 1px solid var(--bordure-claire); vertical-align: middle; }
+    .commande-pro :global(.lp__produit) { padding-left: 20px !important; }
+    .commande-pro :global(.lp__produit > *) { display: block; }
+    .commande-pro :global(.lp__produit .lp__etiquettes) { display: flex; margin-top: 4px; }
+    .commande-pro :global(.lp__public), .commande-pro :global(.lp__ttc) { display: table-cell; white-space: nowrap; }
+    .commande-pro :global(.lp__paliers) { display: table-cell; white-space: nowrap; }
+    .commande-pro :global(.lp__paliers .palier) { display: block; }
+    .commande-pro :global(.lp__ht) { font-size: 20px; line-height: 28px; white-space: nowrap; padding-top: 14px; }
+    .commande-pro :global(.lp__suffixe) { display: none; }
+    .commande-pro :global(.lp__mobile) { display: none !important; }
+    .commande-pro :global(.lp__qte) { padding-right: 20px !important; }
+    .commande-pro :global(.grille-pro thead th:last-child) { padding-right: 20px; }
+  }
+
+  /* Panneau « Votre commande » (dans la fenêtre du bas sur téléphone) */
+  .panneau { display: none; flex-direction: column; gap: 16px; padding: 24px; }
+  .panneau__tete { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .panneau__titre { font-size: 22px; line-height: 30px; letter-spacing: -0.02em; }
+  .panneau__fermer { font-size: 15px; color: var(--secondaire); padding: 8px 0; }
+  .panneau__livraison { padding: 12px 14px; border-radius: 8px; background: var(--sable); color: var(--texte); }
+  .panneau__livraison .sm { color: var(--gris-fonce); }
+  .panneau__etat { padding: 10px 12px; border-radius: 8px; background: var(--creme); border: 1px solid var(--bordure-claire); color: var(--texte); }
+  .panneau__etat.ok { background: #e8f3ec; border-color: #b9dcc6; }
+  .panneau :global(.panneau__lignes) { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .panneau :global(.panneau__ligne) { display: flex; justify-content: space-between; gap: 12px; color: var(--texte); }
+  .panneau :global(.panneau__totaux) { display: flex; flex-direction: column; gap: 6px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--ligne); }
+  .panneau :global(.panneau__ttc) { font-size: 26px; line-height: 34px; letter-spacing: -0.03em; margin-top: 4px; }
+  .panneau > * { flex-shrink: 0; }
+  .panneau__mot { min-height: 72px; }
+  .panneau .message-form:empty { display: none; }
+  .panneau__envoyer { height: 52px; }
+  .panneau__vider { align-self: flex-start; color: var(--secondaire); text-decoration: underline; text-underline-offset: 3px; padding: 6px 0; }
+  .panneau [hidden] { display: none !important; }
+  @media (min-width: 1100px) {
+    .panneau { display: flex; width: 340px; flex: none; position: sticky; top: calc(var(--h-barre) + var(--h-entete) + 24px); transition: top 0.3s ease; max-height: calc(100vh - var(--h-barre) - var(--h-entete) - 48px); overflow-y: auto; }
+    :global(html.entete-cache) .panneau { top: calc(var(--h-barre) + 24px); }
+    .panneau__fermer { display: none; }
+  }
+  .feuille { width: 100%; max-width: 560px; max-height: 92vh; margin: auto auto 0; padding: 0; border: 0; border-radius: 20px 20px 0 0; background: var(--blanc); }
+  .feuille::backdrop { background: rgba(17, 17, 17, 0.55); }
+  .feuille :global(.panneau) { display: flex; border: 0; border-radius: 0; }
+
+  .barre-pro { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px var(--gouttiere) calc(12px + env(safe-area-inset-bottom)); background: var(--blanc); border-top: 1px solid var(--ligne); box-shadow: 0 -6px 18px rgba(17, 17, 17, 0.06); }
+  .barre-pro__texte { display: flex; flex-direction: column; min-width: 0; color: var(--texte); }
+  .barre-pro .btn { flex: none; height: 44px; padding: 0 18px; }
+  @media (min-width: 1100px) { .barre-pro { display: none !important; } }
+
+  .pied-grille { padding-top: 16px; padding-bottom: 8px; }
+  .lien-bouton { text-decoration: underline; text-underline-offset: 3px; color: inherit; font: inherit; }
+
+  .previsions { padding-top: 48px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 12px; }
+  .previsions__titre { font-size: 26px; line-height: 32px; letter-spacing: -0.03em; }
+  .previsions__intro { font-size: 15px; line-height: 22px; margin-bottom: 8px; }
+  .previsions__table { overflow: hidden; }
+  .previsions :global(.prev-table) { width: 100%; border-collapse: collapse; }
+  .previsions :global(.prev-table thead) { display: none; }
+  .previsions :global(.prev-table th), .previsions :global(.prev-table td) { text-align: left; font-weight: 400; }
+  .previsions :global(.prev-table tbody tr) { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--bordure-claire); }
+  .previsions :global(.prev-table tbody tr:first-child) { border-top: 0; }
+  .previsions :global(.prev-table tbody th) { color: var(--texte); }
+  .previsions :global(.prev-table tbody td:not(.prev-resume)) { display: none; }
+  .previsions :global(.prev) { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; line-height: 18px; color: var(--texte); }
+  .previsions :global(.prev .point) { background: var(--vert-vif-fond); }
+  @media (min-width: 1100px) {
+    .previsions { padding-top: 80px; padding-bottom: 112px; gap: 14px; }
+    .previsions__titre { font-size: 36px; line-height: 44px; }
+    .previsions__intro { font-size: 16px; line-height: 24px; }
+    .previsions :global(.prev-table thead) { display: table-header-group; }
+    .previsions :global(.prev-table thead th) { padding: 14px 20px; font-size: 13px; line-height: 20px; color: var(--secondaire); background: var(--creme); }
+    .previsions :global(.prev-table tbody tr) { display: table-row; }
+    .previsions :global(.prev-table tbody th), .previsions :global(.prev-table tbody td) { display: table-cell !important; padding: 14px 20px; border-top: 1px solid var(--bordure-claire); }
+    .previsions :global(.prev-table .prev-resume) { display: none !important; }
+  }
+  /* Le bas de page reste au-dessus de la barre du téléphone */
+  @media (max-width: 1099px) { :global(body:has(.barre-pro:not([hidden])) .pied) { padding-bottom: 76px; } }
+
   @media print {
-    .tete__actions, .pied-grille, .seulement-mobile { display: none !important; }
-    .seulement-ordi { display: revert !important; }
-    .tete { padding: 0 0 16px; flex-direction: column; align-items: flex-start; }
-    .tete__titre { font-size: 28px; line-height: 34px; }
-    .grille { display: table; }
-    .grille tbody { display: table-row-group; }
-    .grille thead { display: table-header-group; }
-    .rayon th { display: table-cell; }
-    .rangee { display: table-row; break-inside: avoid; }
-    .rangee > * { padding: 6px 10px; border-top: 1px solid #ddd; }
-    .produit { display: table-cell; }
-    .produit__cond, .produit__etat, .rayon__ht { display: none !important; }
-    .cond, .etat { display: table-cell; }
-    .grille { border-radius: 0; font-size: 12px; }
-    .grille .chip { height: auto; padding: 0; background: none; color: inherit; font-size: 12px; }
+    .tete__actions, .pied-grille, .barre-pro, .panneau, .message-tete, .connexion-zone, .lp__qte { display: none !important; }
+    .tete { padding: 0 0 12px; flex-direction: column; align-items: flex-start; }
+    .tete__titre { font-size: 26px; line-height: 32px; }
+    .resume { flex-direction: row; gap: 8px; }
+    .resume__carte { padding: 8px 10px; border: 1px solid #ccc !important; border-radius: 6px !important; }
+    .commande-pro :global(.grille-pro) { display: table; border-radius: 0; font-size: 11px; }
+    .commande-pro :global(.grille-pro thead) { display: table-header-group; }
+    .commande-pro :global(.grille-pro tbody) { display: table-row-group; }
+    .commande-pro :global(.rayon-pro) { display: table-row; }
+    .commande-pro :global(.rayon-pro th) { display: table-cell; padding: 4px 8px; }
+    .commande-pro :global(.ligne-pro) { display: table-row; break-inside: avoid; }
+    .commande-pro :global(.ligne-pro > *) { display: table-cell; padding: 4px 8px; border-top: 1px solid #ddd; }
+    .commande-pro :global(.lp__public), .commande-pro :global(.lp__ttc), .commande-pro :global(.lp__paliers) { display: table-cell; }
+    .commande-pro :global(.lp__paliers .palier) { display: block; }
+    .commande-pro :global(.lp__mobile), .commande-pro :global(.lp__suffixe) { display: none !important; }
+    .commande-pro :global(.lp__ht) { font-size: 12px; }
+    .commande-pro :global(.grille-pro .num) { text-align: right; }
+    .commande-pro :global(.chip) { height: auto; padding: 0; background: none; color: inherit; font-size: 10px; }
+    .previsions { padding: 16px 0 0; break-before: page; }
+    .previsions :global(.prev-table thead) { display: table-header-group; }
+    .previsions :global(.prev-table tbody tr) { display: table-row; }
+    .previsions :global(.prev-table tbody th), .previsions :global(.prev-table tbody td) { display: table-cell !important; padding: 4px 8px; font-size: 11px; }
+    .previsions :global(.prev-table .prev-resume) { display: none !important; }
   }
 </style>
