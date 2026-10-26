@@ -8,17 +8,21 @@ import agjCatalogue from '../../data/agj-catalogue.json';
 import agjConfig from '../../data/agj-config.json';
 import reglages from '../../data/reglages.json';
 import faqBrute from '../../data/faq.json';
+import lignesLegumes from '../../data/legumes.json';
 import {
   nettoyerNom, prixProduit, estNouveau, grouperRayons, vedettes as choisirVedettes,
-  lireCreneaux, prochaineVente as calculerProchaineVente, dateHeure,
+  lireCreneaux, prochaineVente as calculerProchaineVente, dateHeure, partiesParis,
 } from './vente.js';
 import { lireFermeture, lireAnnonce, questionsPour } from './reglages.js';
+import { fichesLegumes, calendrier as grouperCalendrier, ancresProduits } from './saisons.js';
 
 export { meta, agjCatalogue, agjConfig, reglages };
 
 const syncDate = new Date(meta.syncedAt);
 // Date de construction : sert à calculer la prochaine vente
 export const construitLe = new Date();
+// Mois de la construction à Paris (0 = janvier) : mois en cours du calendrier de saison et des panneaux
+export const moisCourant = partiesParis(construitLe).mois - 1;
 
 const creneauxPlanning = lireCreneaux(planningBrut);
 // Mode fermé (« Réglages du site » dans Notion) : null quand le site est ouvert.
@@ -41,6 +45,23 @@ export const produits = produitsBruts
     return { ...p, nom, prix: prixProduit(p), estNouveau: estNouveau(p, syncDate), image: image(p.id), initiale: nom.charAt(0).toUpperCase() };
   })
   .filter((p) => p.nom);
+
+// Lot 3 : fiche du légume (mois, conseils) et ancre du panneau produit (#carotte-vrac)
+export const fiches = fichesLegumes(lignesLegumes);
+const ancres = ancresProduits(produits, grouperRayons(produits).map((r) => r.slug));
+for (const p of produits) {
+  p.ancre = ancres.get(p.id);
+  p.fiche = (p.legume && fiches.get(p.legume)) || null;
+}
+// Calendrier de saison : les légumes de la ferme qui ont des mois de récolte, par groupe.
+// Le lien « En vente » mène au panneau du premier produit en vente du légume.
+export const calendrier = grouperCalendrier(fiches).map((g) => ({
+  ...g,
+  legumes: g.legumes.map((f) => {
+    const p = fermeture ? null : produits.find((x) => x.legume === f.nom);
+    return { ...f, lien: p ? `/produits/#${p.ancre}` : null };
+  }),
+}));
 
 export const rayons = grouperRayons(produits);
 export const vedettes = choisirVedettes(produits);

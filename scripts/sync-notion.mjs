@@ -1,8 +1,10 @@
 // Lit Notion au moment de la construction et prépare les données du site.
 //
 // Sur Cloudflare (NOTION_TOKEN défini) : interroge les bases « Produits de la ferme », « Planning »,
-// « Réglages du site » et « Questions fréquentes », réécrit data/produits.json, data/planning.json,
-// data/reglages.json, data/faq.json, data/meta.json et télécharge les photos. Sur le site en ligne,
+// « Réglages du site » et « Questions fréquentes », réécrit data/produits.json, data/legumes.json,
+// data/planning.json, data/reglages.json, data/faq.json, data/meta.json et télécharge les photos.
+// data/legumes.json : toutes les lignes qui ont un « Légume » (en vente ou non), pour les conseils
+// et le calendrier de saison (src/lib/saisons.js). Sur le site en ligne,
 // garde aussi une copie de la liste dans « Historique des listes » quand elle a changé.
 // En local, sans jeton : garde l'instantané de data/ tel quel.
 // Dans les deux cas, les photos de data/img-src/ sont converties en WebP (400 et 800 px) dans public/produits-img/.
@@ -83,6 +85,7 @@ const num = (prop) => (typeof prop?.number === 'number' ? prop.number : null);
 const sel = (prop) => prop?.select?.name ?? null;
 const chk = (prop) => prop?.checkbox === true;
 const date = (prop) => prop?.date?.start ?? null;
+const multi = (prop) => (prop?.multi_select ?? []).map((o) => o.name);
 const fileUrl = (prop) => {
   const f = prop?.files?.[0];
   return f ? (f.type === 'file' ? f.file.url : f.external?.url) ?? null : null;
@@ -110,7 +113,24 @@ function mapProduit(page) {
     aLaUne: chk(p(page, 'À mettre en avant')),
     pasBio: chk(p(page, 'Pas bio')),
     description: text(p(page, 'Description')),
+    legume: sel(p(page, 'Légume')),
     imageUrl: fileUrl(p(page, 'Image principale')),
+  };
+}
+
+// Ligne vue par le calendrier et les conseils (lot 3) : une par format, regroupées par « Légume »
+function mapLigneLegume(page) {
+  return {
+    id: page.id.replaceAll('-', ''),
+    nom: text(p(page, 'Nom')),
+    legume: sel(p(page, 'Légume')),
+    categorie: sel(p(page, 'Catégorie')),
+    producteur: sel(p(page, 'Producteur')),
+    enVente: chk(p(page, 'En vente')),
+    mois: multi(p(page, 'Mois de récolte')),
+    cuisson: text(p(page, 'Cuisson')),
+    conservation: text(p(page, 'Conservation')),
+    avisPierre: text(p(page, 'Avis de Pierre')),
   };
 }
 
@@ -200,6 +220,12 @@ async function syncLive() {
       sorts: [{ property: 'Nom', direction: 'ascending' }],
     })
   ).map(mapProduit);
+  const legumes = (
+    await notionQuery('Produits de la ferme', PRODUITS_DS, {
+      filter: { property: 'Légume', select: { is_not_empty: true } },
+      sorts: [{ property: 'Nom', direction: 'ascending' }],
+    })
+  ).map(mapLigneLegume);
   const planning = (await notionQuery('Planning semaine', PLANNING_DS, {})).map(mapPlanning);
   const lignesReglages = await notionQuery('Réglages du site', REGLAGES_DS, { sorts: [{ timestamp: 'created_time', direction: 'ascending' }] });
   const reglages = lignesReglages.length ? mapReglages(lignesReglages[0]) : { ferme: false, repriseLe: null, messageFermeture: '', afficherMessage: false, message: '' };
@@ -231,12 +257,16 @@ async function syncLive() {
   }
 
   await fs.writeFile(path.join(DATA, 'produits.json'), JSON.stringify(produits, null, 2));
+  await fs.writeFile(path.join(DATA, 'legumes.json'), JSON.stringify(legumes, null, 2));
   await fs.writeFile(path.join(DATA, 'planning.json'), JSON.stringify(planning, null, 2));
   await fs.writeFile(path.join(DATA, 'reglages.json'), JSON.stringify(reglages, null, 2));
   if (faq) await fs.writeFile(path.join(DATA, 'faq.json'), JSON.stringify(faq, null, 2));
   await fs.writeFile(path.join(DATA, 'meta.json'), JSON.stringify({ syncedAt: new Date().toISOString(), source: 'Notion' }, null, 2));
   const fermeture = lireFermeture(reglages, new Date(), { venteIso: prochaineVente(lireCreneaux(planning))?.iso });
   console.log(`✓ ${produits.length} produits en vente (${photos} photos), ${planning.length} créneaux, ${faq ? faq.length : 'copie des'} questions fréquentes`);
+  const nbLegumes = new Set(legumes.filter((l) => l.mois.length).map((l) => l.legume)).size;
+  const nbConseils = new Set(legumes.filter((l) => l.cuisson || l.conservation || l.avisPierre).map((l) => l.legume)).size;
+  console.log(`✓ Calendrier de saison : ${nbLegumes} légumes avec des mois de récolte, ${nbConseils} avec des conseils (${legumes.length} lignes)`);
   console.log(fermeture ? `✓ Site en mode fermé (${fermeture.reprise ? `reprise le ${fermeture.reprise}` : 'sans date de reprise'})` : '✓ Site ouvert');
   if (reglages.afficherMessage && reglages.message) console.log(`✓ Message de la semaine : « ${reglages.message} »`);
 

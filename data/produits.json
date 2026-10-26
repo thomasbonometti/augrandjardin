@@ -20,6 +20,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Ail",
     "imageUrl": null
   },
   {
@@ -43,6 +44,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Aubergine",
     "imageUrl": null
   },
   {
@@ -66,6 +68,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Basilic",
     "imageUrl": null
   },
   {
@@ -89,6 +92,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Betterave",
     "imageUrl": null
   },
   {
@@ -112,6 +116,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Betterave",
     "imageUrl": null
   },
   {
@@ -135,6 +140,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Carotte",
     "imageUrl": null
   },
   {
@@ -158,6 +164,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Céleri-rave",
     "imageUrl": null
   },
   {
@@ -181,6 +188,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Chou kale",
     "imageUrl": null
   },
   {
@@ -204,6 +212,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Concombre",
     "imageUrl": null
   },
   {
@@ -227,6 +236,7 @@
     "aLaUne": false,
     "pasBio": true,
     "description": "",
+    "legume": null,
     "imageUrl": null
   },
   {
@@ -250,6 +260,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Courgette",
     "imageUrl": null
   },
   {
@@ -273,6 +284,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Courgette",
     "imageUrl": null
   },
   {
@@ -296,6 +308,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Échalion",
     "imageUrl": null
   },
   {
@@ -319,6 +332,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Échalote",
     "imageUrl": null
   },
   {
@@ -342,6 +356,7 @@
     "aLaUne": true,
     "pasBio": false,
     "description": "",
+    "legume": "Haricot vert",
     "imageUrl": null
   },
   {
@@ -365,6 +380,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": null,
     "imageUrl": null
   },
   {
@@ -388,6 +404,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": null,
     "imageUrl": null
   },
   {
@@ -411,6 +428,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Navet",
     "imageUrl": null
   },
   {
@@ -434,6 +452,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Oignon",
     "imageUrl": null
   },
   {
@@ -457,6 +476,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Oignon",
     "imageUrl": null
   },
   {
@@ -480,6 +500,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Persil",
     "imageUrl": null
   },
   {
@@ -503,6 +524,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": null,
     "imageUrl": null
   },
   {
@@ -526,6 +548,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Poireau",
     "imageUrl": null
   },
   {
@@ -549,6 +572,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Poivron",
     "imageUrl": null
   },
   {
@@ -572,6 +596,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Pomme de terre",
     "imageUrl": null
   },
   {
@@ -595,6 +620,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Pomme de terre",
     "imageUrl": null
   },
   {
@@ -618,6 +644,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Radis noir",
     "imageUrl": null
   },
   {
@@ -641,6 +668,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Radis noir",
     "imageUrl": null
   },
   {
@@ -664,6 +692,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": "Radis",
     "imageUrl": null
   },
   {
@@ -687,6 +716,7 @@
     "aLaUne": false,
     "pasBio": false,
     "description": "",
+    "legume": null,
     "imageUrl": null
   },
   {
@@ -710,6 +740,7 @@
     "aLaUne": true,
     "pasBio": false,
     "description": "",
+    "legume": "Tomate",
     "imageUrl": null
   },
   {
@@ -733,6 +764,7 @@
     "aLaUne": true,
     "pasBio": false,
     "description": "",
+    "legume": "Tomate cerise",
     "imageUrl": null
   }
 ]
