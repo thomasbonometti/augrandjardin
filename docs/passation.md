@@ -109,7 +109,7 @@ Autres documents :
   - Pastille « Commandes ouvertes » au lieu de « Réservations ouvertes jusqu'au 15 novembre », et bouton « Commander ».
   - Pas de « jour de retrait préféré » : le jour se choisit par le mail « prête ».
   - Bandeau « Mode test » tant que l'outil est en test : il disparaît tout seul en réel.
-  - « Cultivées à Lostroff » au lieu de « Cultivées sans traitement chimique à Lostroff », en attendant la validation de Pierre.
+  - « Cultivées à Lostroff » au lieu de « Cultivées sans traitement chimique à Lostroff » : Pierre ne veut plus de « sans traitement chimique » (revue du 26/10).
 - **Produits mis en avant (accueil, menu).** Choisis automatiquement : « À mettre en avant », puis « Nouveau », puis « Produit d'appel », puis « Promo », toujours avec photo. La maquette en montrait 4 fixes.
 - **Contraste.**
   - Le vert vif `#00A544` reste sur fond sombre, mais devient `#00843A` sous un texte blanc (pastilles, boutons).
@@ -186,7 +186,6 @@ Autres documents :
 - **Bouton Notion « Publier »** : essayé par Thomas le 21/10 ; la construction de 20 h 27, lancée sans push, est passée. Un clic fait apparaître une nouvelle construction dans Cloudflare environ une minute plus tard.
 - **Revue Figma / site** (artifact « Revue site AGJ 2026 ») : les captures datent du 17/10 au matin, avant le pied de page sans arrondis, les animations, l'en-tête collant, la carte Google et la liste des lieux. Elle est à refaire si Thomas veut une revue à jour.
 - **Idées d'évolution** : trier les idées 31 à 60 avec Thomas (`docs/idees.md`), puis les ajouter à la note Notion.
-- **« Sans traitement chimique »** sur la page Pommes de terre : à valider avec Pierre.
 - **Horaires** : le Planning ne coche que le samedi 10h – 12h30 ; l'ancien site affichait aussi le mercredi.
 - **Photos** : quelques produits sans photo dans Notion affichent une initiale.
 - **Bascule** (voir README) :
