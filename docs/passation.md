@@ -36,7 +36,7 @@ Autres documents :
   - Vrai catalogue : filets de 7 et 15 kg, oignons, échalions, et non trié quand Pierre le met en vente.
   - Prix au kilo, avertissements du panier, stock relu en direct.
   - Le client choisit son jour plus tard, par le lien du mail « prête ». La page l'explique en 3 étapes.
-- **Espace pro.** Un mot de passe partagé (`PRO_PASSWORD`) et un cookie signé de 60 jours (`PRO_SECRET`). Les prix HT sont calculés depuis le TTC (TVA 5,5 %). « Imprimer / PDF » et « Se déconnecter » sont sur la page.
+- **Espace pro (lot 2, 26/10).** Un accès par pro, géré par l'outil de commande (base « Accès pros ») : connexion par e-mail et mot de passe, cookie de session de 60 jours posé par l'outil (`agj_pro`, chemin `/api/agj/pro`). La page `/pro/tarifs/` ne contient aucun prix : la grille du pro (prix public TTC, son prix HT avec sa remise, son prix TTC, les paliers), sa commande pour le lundi, « Comme la semaine dernière », les prévisions et le mode fermé viennent de l'outil par le relais `/api/agj/pro/*`. L'ancien mot de passe partagé (`PRO_PASSWORD`, `PRO_SECRET`, middleware `/pro/*`) est supprimé (décision 5 de Thomas, sans transition).
 - **Bio.** Validé par Thomas le 16/10 : « il est bien en bio ». Les produits cochés « Pas bio » dans Notion portent leur mention.
 - **Apparitions au défilement (GSAP, demandé par Thomas le 17/10).** Le script est dans `src/scripts/animer.ts`, et chaque page porte des attributs `data-anim`, `data-anim-groupe`, `data-compteur` ou `data-parallaxe` (le mode d'emploi est en tête du script).
   - GSAP n'est téléchargé que si le visiteur accepte les animations (`prefers-reduced-motion`). Le contenu reste visible sans JavaScript, et tout réapparaît si GSAP ne se charge pas en 3 secondes.
@@ -66,8 +66,19 @@ Autres documents :
   - **Choix de Thomas du 22/10 (pull request n° 5, fusionnée le 22/10)** : alerte sous 30 kg par variété (au lieu de 10 kg), pour les pommes de terre triées ou non et pour les oignons et échalotes ; merci à chaque retrait, habitués compris.
   - **Stock de test (22/10, à la demande de Thomas)** : colonne « Stock » de Produits AGJ remplie sur les 16 formats en vente, avec des valeurs de test. Chérie (37 kg) et oignons jaunes (35 kg) sont juste au-dessus du seuil pour essayer l'alerte ; les autres variétés ont 110 à 190 kg. Les formats pas en vente restent vides.
   - **Affichette A5 (idée 27)** : deux QR codes, la liste de la semaine (`https://produits.augrandjardin.fr/?src=qr`) et l'avis Google (`https://g.page/r/CVcpGhGHIj7rEAE/review`).
+- **Lot 2 du plan d'évolutions (22-26/10, demandé par Thomas : « Lance le lot 2 »).** Espace pro et espace de Pierre ; décisions de Thomas du 22/10 dans `docs/passation.md` du dépôt `brief`. Maquettes Figma validées le 26/10 (grille pro : 65:50 bureau, 68:286 et 68:1046 téléphone ; espace de Pierre refait dans la DA du site à sa demande).
+  - **Site** : `/pro/tarifs/` relié à l'outil (`src/scripts/espace-pro.ts`, `src/lib/pro-grille.js`, `functions/api/agj/pro/[action].js`), connexion par e-mail sur la page Professionnels et sur `/pro/tarifs/`, étapes « Vous recevez votre accès » et « Vous commandez » mises à jour.
+  - **Outil** (pull requests n° 6, fusionnée le 26/10, et n° 7) : accès pros, grille et commande, mails planifiés (grille du jeudi 18 h, relance du samedi 9 h, « À récolter » du samedi 18 h), prévisions, page de Pierre en quatre rubriques.
 
 ## 3. Écarts avec la maquette (volontaires)
+
+- **Espace pro (lot 2).**
+  - En-tête : « Prix du lundi 26 octobre » (jour d'affichage) au lieu de « Grille du jeudi … » : les prix sont calculés en direct par l'outil, il n'y a pas de grille figée.
+  - Quantités : les boutons + et − avancent d'un kilo ou d'une unité, et le chiffre se tape aussi (demi-kilos acceptés, arrondis au demi-kilo le plus proche). Avec des pas de 0,5 kg aux boutons, 12 kg demandaient 24 appuis.
+  - « Comme la semaine dernière » n'apparaît que s'il y a une commande précédente encore commandable.
+  - Après l'envoi, le panneau dit « Commande envoyée (PRO-n) » et le bouton devient « Mettre à jour la commande » (modifiable jusqu'au samedi 18 h, tant que Pierre ne l'a pas préparée) ; une fois préparée, la grille passe en lecture seule.
+  - Prévisions au téléphone : une seule mention par produit (le premier changement), comme la maquette ; à l'ordinateur, les 4 semaines.
+  - Les quantités pas encore envoyées sont gardées dans le navigateur (rechargement, retour sur la page).
 
 - **Pommes de terre.**
   - Vrai catalogue de l'outil au lieu des sacs de 15 et 25 kg de la maquette.
@@ -98,7 +109,7 @@ Autres documents :
 - Formulaires depuis l'adresse de test, le 17/10 :
   - l'inscription SMS (06 00 00 00 01) et la demande pro « Test (à supprimer) » ont créé leurs lignes « Test » dans Notion ;
   - ces deux lignes ont ensuite été mises à la corbeille.
-- Espace pro : un mauvais mot de passe est refusé (401), et `/pro/tarifs/` renvoie vers la connexion. La connexion avec le vrai mot de passe est à tester par Thomas.
+- Espace pro (avant le lot 2, mot de passe partagé) : un mauvais mot de passe était refusé (401). Remplacé au lot 2 par les accès de l'outil.
 - Publication du 17/10 à 8 h 51, avec les données Notion : 32 produits (30 photos), 9 créneaux, 16 produits de l'outil.
 - Revue Figma / site, page par page, au téléphone et à l'ordinateur : artifact « Revue site AGJ 2026 », https://claude.ai/artifact/QCPcPS8N1G7SwUF6TDYSWw
 - **Lot 1, le 21/10 :**
@@ -110,10 +121,14 @@ Autres documents :
   - Outil (pull request n° 4) : 82 tests unitaires et d'API, parcours Playwright au téléphone et à l'ordinateur, tous verts.
   - Alerte de stock en ligne, le 22/10 à 8 h 53 (à la demande de Thomas) : commande test AGJ-5, 1 filet de 15 kg de Chérie (37 → 22 kg). Trois mails reçus sur hey@ : confirmation, nouvelle commande et « Stock bas : Chérie, il reste 22 kg ». Commande et client de test archivés ensuite, stock rendu ; Commandes AGJ et Clients AGJ sont vides.
 
+- **Lot 2, le 26/10 :**
+  - Site : 25 tests unitaires (dont `tests/pro-grille.test.js`) ; Playwright au téléphone et à l'ordinateur contre l'outil simulé (`E2E_COMMANDE=1`) : 90 verts, dont `e2e/espace-pro.spec.js` (connexion refusée, grille, paliers, demi-kilos, envoi, modification, « Comme la semaine dernière », prévisions, déconnexion, mode fermé, axe) ; mode fermé (`E2E_FERME=1`) : 18 verts.
+  - Outil : 108 tests unitaires et d'API, 28 tests Playwright, audit axe de la page de Pierre : tous verts.
+
 ## 5. Règles
 
 - Outil de commande en **mode test** (`AGJ_LIVE` = "0") : commandes « Test », mails seulement vers hey@thomasbonometti.fr. Ne jamais toucher aux vraies commandes, à « Commandes 2025 » ni aux scénarios Make.
-- Secrets uniquement dans Cloudflare (`NOTION_TOKEN`, `PRO_PASSWORD`, `PRO_SECRET`), et `.dev.vars` en local (ignoré par git).
+- Secrets uniquement dans Cloudflare (`NOTION_TOKEN`), et `.dev.vars` en local (ignoré par git). Les mots de passe des pros sont gérés par l'outil (empreintes seulement, dans « Accès pros »).
 - Modifications du dépôt `brief` par pull request, que Thomas fusionne.
 - « Réglages du site » est lue par le site et par l'outil de commande ; ni l'un ni l'autre n'y écrit.
 - Questions fréquentes : « Publiée » seulement après l'accord de Pierre.
@@ -124,9 +139,9 @@ Autres documents :
 - **Lot 1, côté Pierre** : relire les 6 questions en brouillon et les publier.
 - **Avant le passage en réel de l'outil** : remplacer le stock de test de Produits AGJ par le vrai stock de Pierre, ou vider la colonne (vide = pas de limite, pas d'alerte).
 - **Accès Notion du site** : l'intégration « Site Au Grand Jardin » est connectée à toute la page « Au Grand Jardin » (vu le 22/10), donc elle voit aussi les commandes et les clients de l'outil, dont le site n'a pas besoin. À restreindre plus tard aux pages que le site lit et écrit, en vérifiant ensuite qu'une publication passe.
-- **Lot 2** à lancer quand Thomas le demande (voir le plan d'évolutions).
+- **Lot 2, côté Thomas** : fusionner la pull request n° 7 de `brief` ; supprimer les secrets `PRO_PASSWORD` et `PRO_SECRET` dans Cloudflare (ils ne servent plus) ; à la bascule, `AGJ_SITE_URL` = https://augrandjardin.fr dans `wrangler.jsonc` de `brief`.
+- **Lot 2, côté Pierre** : corriger « Mois de récolte » dans « Produits de la ferme », remplir « Récolte prévue le » quand il la connaît, régler le minimum de commande dans « Réglages pros » s'il en veut un, puis créer les accès de ses pros (en réel seulement, après le passage de l'outil en réel).
 
-- **Espace pro** : Thomas teste la connexion avec le mot de passe pro, et remplace `PRO_SECRET` dans Cloudflare (il a circulé dans une conversation).
 - **Bouton Notion « Publier »** : essayé par Thomas le 21/10 ; la construction de 20 h 27, lancée sans push, est passée. Un clic fait apparaître une nouvelle construction dans Cloudflare environ une minute plus tard.
 - **Revue Figma / site** (artifact « Revue site AGJ 2026 ») : les captures datent du 17/10 au matin, avant le pied de page sans arrondis, les animations, l'en-tête collant, la carte Google et la liste des lieux. Elle est à refaire si Thomas veut une revue à jour.
 - **Idées d'évolution** : trier les idées 31 à 60 avec Thomas (`docs/idees.md`), puis les ajouter à la note Notion.

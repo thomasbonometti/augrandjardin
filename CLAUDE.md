@@ -47,16 +47,16 @@ Avant de modifier quoi que ce soit, lire :
 |---|---|
 | Hébergement | Cloudflare Pages, projet `agj-site-2026`, branche de production `site-2026`. Un push sur la branche lance une construction d'environ 1 min 30. Tableau de bord : https://dash.cloudflare.com/d8b8981d6131714bee280d9a814f9230/pages/view/agj-site-2026 |
 | Construction | `npm run build` (synchro Notion + outil de commande, puis Astro), sortie `dist/`, Node 22 (`.node-version`) |
-| Secrets Cloudflare | `NOTION_TOKEN` (intégration Notion « Site Au Grand Jardin »), `PRO_PASSWORD`, `PRO_SECRET`. Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne réelle), `AGJ_URL` |
+| Secrets Cloudflare | `NOTION_TOKEN` (intégration Notion « Site Au Grand Jardin »). `PRO_PASSWORD` et `PRO_SECRET` ne servent plus depuis le lot 2 (accès pros gérés par l'outil). Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne réelle), `AGJ_URL` |
 | Bouton « Publier » | Dans la page Notion « Site augrandjardin.fr » : il appelle l'adresse de reconstruction (deploy hook) de Cloudflare. Essayé par Thomas le 21/10 : la construction de 20 h 27, lancée sans push, est passée |
 | Intégration Notion | « Site Au Grand Jardin » (lecture et insertion). Elle doit rester connectée à la base Produits de la ferme, à la base 📅 Planning semaine et à la page « Site augrandjardin.fr ». Sans l'une d'elles, la construction échoue avec un message qui nomme la base |
 | Notion lu | Produits de la ferme `collection://5fb0d75e-67d6-4840-a703-2c6e0b3eaa11` (lignes « En vente ») ; Planning `collection://152a41f4-8718-45e1-9025-40f3da0572e3` (base https://www.notion.so/thomasbonometti/e03d71b964dd43a4be5595d72c401383). Sous la page « Site augrandjardin.fr » : Réglages du site `collection://cc35fc8e-c976-44f0-b213-31eed14e3bee` (une seule ligne : mode fermé, message de la semaine ; l'outil de commande la lit aussi) et Questions fréquentes `collection://a8d7a11c-2204-4c8b-ab4e-23c749bd4452` (lignes « Publiée ») |
 | Notion écrit par le site | Page « Site augrandjardin.fr » `3fb70bd669cd81a5a2a0cfc84d7016a2` : bases Inscriptions SMS `collection://1f9db94f-6b9f-4ba2-aae7-d67ea66cae6f` et Demandes d'accès pro `collection://95af73b3-86bc-4013-adb6-ccbe215a44d0`. Ce qui vient de l'adresse de test est coché « Test ». Historique des listes `collection://5fced6cb-eabb-46cd-beb2-00ee278afd91` : écrit par la construction (voir Tâches courantes) |
 | Statistiques de visite | Cloudflare Web Analytics, activé par Thomas le 21/10 : Cloudflare ajoute lui-même son script (`static.cloudflareinsights.com`), rien dans le code. `public/_headers` n'a pas de Content-Security-Policy ; si on en ajoute une, autoriser ce script et `cloudflareinsights.com`. Une ligne des mentions légales en parle |
-| Plan d'évolutions | Document du projet Claude « Au Grand Jardin » : `site-web/plan-evolutions.md`. Il fait foi, un lot à la fois. Lot 1 livré le 21/10 |
+| Plan d'évolutions | Document du projet Claude « Au Grand Jardin » : `site-web/plan-evolutions.md`. Il fait foi, un lot à la fois. Lot 1 livré le 21/10, lot 2 (espace pro, espace de Pierre) le 26/10 |
 | Affichette QR codes | Artifact « Affichette QR codes Au Grand Jardin » (A5 à imprimer) : https://claude.ai/artifact/VeEkgWUy3TQc5uHP3j2pR2. Codes vers `https://produits.augrandjardin.fr/?src=qr` et l'avis Google `https://g.page/r/CVcpGhGHIj7rEAE/review` |
-| Outil de commande | Dépôt `thomasbonometti/brief`, Worker `formulaires` : https://formulaires.hey-d8b.workers.dev. Page de Pierre `/agj/pierre`, vérification et archivage des données de test `/agj/pierre/diagnostic`. Son intégration Notion s'appelle « Formulaire brief » (connectée à « Commandes en ligne », et à « Réglages du site » pour le mode fermé). Dans Notion, les connexions d'une page sont sous ••• → Plus → Connexions |
-| Maquettes | Figma « Au Grand Jardin \| Site 2026 », fileKey `zrlhOtAHZaw02nvLTnaswz`. Bureau : 13:2 Accueil, 14:2 Produits, 15:2 La ferme, 16:2 Pommes de terre, 17:2 Professionnels, 18:2 Espace pro, 19:2 Horaires & contact. Téléphone : 38:2, menu 37:2, 39:2 à 44:2 dans le même ordre |
+| Outil de commande | Dépôt `thomasbonometti/brief`, Worker `formulaires` : https://formulaires.hey-d8b.workers.dev. Page de Pierre `/agj/pierre` (rubriques À préparer, Pros, Pommes de terre, Chiffres), vérification et archivage des données de test `/agj/pierre/diagnostic`. Espace pro : accès, grille, commandes pros et mails planifiés sont dans l'outil (bases « Accès pros », « Commandes pros », « Réglages pros »). Son intégration Notion s'appelle « Formulaire brief » (connectée à « Commandes en ligne », à « Réglages du site » pour le mode fermé, et depuis le 22/10 à « Produits de la ferme » en lecture et à « Demandes d'accès pro » pour leur statut). Dans Notion, les connexions d'une page sont sous ••• → Plus → Connexions |
+| Maquettes | Figma « Au Grand Jardin \| Site 2026 », fileKey `zrlhOtAHZaw02nvLTnaswz`. Bureau : 13:2 Accueil, 14:2 Produits, 15:2 La ferme, 16:2 Pommes de terre, 17:2 Professionnels, 18:2 Espace pro (avant le lot 2), 19:2 Horaires & contact. Téléphone : 38:2, menu 37:2, 39:2 à 44:2 dans le même ordre. Lot 2 : grille pro 65:50 (bureau), 68:286 et 68:1046 (téléphone) ; espace de Pierre sur la page « 🛠 Espace de Pierre (lot 2) » |
 | Revue Figma / site | Artifact « Revue site AGJ 2026 » : https://claude.ai/artifact/QCPcPS8N1G7SwUF6TDYSWw (captures du 17/10) |
 | Idées d'évolution | `docs/idees.md` ; les idées 1 à 30 sont aussi dans la note Notion « Au Grand Jardin — 30 idées de services pour le nouveau site » (base Notes Studio) : https://app.notion.com/p/3fd70bd669cd81cf8fccdc15dc3d6834 |
 
@@ -73,6 +73,7 @@ Avant de modifier quoi que ce soit, lire :
   - `donnees.js` : charge les données ;
   - `pdt.js` : résumé du catalogue des pommes de terre ;
   - `commande-rendu.js` : rendu HTML de la liste de commande, partagé entre construction et navigateur ;
+  - `pro-grille.js` : espace pro, aperçu du panier (paliers, TVA) et rendu de la grille et des prévisions (l'outil recalcule tout à l'envoi) ;
   - `typo.js` : espaces insécables ;
   - `reglages.js` : mode fermé (`lireFermeture`), message de la semaine (`lireAnnonce`), questions fréquentes (réponse Notion en HTML sûr, données structurées FAQPage) ;
   - `historique.js` : texte et JSON de la liste copiée dans Historique des listes ;
@@ -81,14 +82,15 @@ Avant de modifier quoi que ce soit, lire :
 - `src/layouts/Base.astro` : `<head>`, menu mobile, en-tête collant (caché en descendant, de retour en remontant), chargement des animations.
 - `src/components/` : barre verte (avec le message de la semaine), en-tête, pied de page, photo, carte produit, formulaire SMS, icônes, logo, `EncartFermeture.astro` (encart « Ventes en pause » à la place d'une liste, de la commande ou de la grille pro), `QuestionsFrequentes.astro` (accordéon `<details>` et données structurées).
 - `src/scripts/` :
-  - `formulaires.ts` : formulaires SMS, demande pro, connexion pro ;
+  - `formulaires.ts` : formulaires SMS, demande pro, connexion pro (`data-redirection` : l'adresse ouverte après un envoi réussi) ;
+  - `espace-pro.ts` : espace pro (`/pro/tarifs/`) : grille du pro, quantités, panneau « Votre commande » (fenêtre du bas sur téléphone), envoi, « Comme la semaine dernière », prévisions, mode fermé ;
   - `commande.ts` : commande de pommes de terre ;
   - `animer.ts` : GSAP, chargé seulement si le visiteur accepte les animations.
-- `src/pages/` : les 7 pages, mentions légales, 404, `sitemap.xml`, `robots.txt`. `pro/tarifs.astro` est protégée par `functions/pro/_middleware.js`.
+- `src/pages/` : les 7 pages, mentions légales, 404, `sitemap.xml`, `robots.txt`. `pro/tarifs.astro` est une page sans prix : tout vient de l'outil pour le pro connecté.
 - `functions/` (Cloudflare Pages Functions) :
   - relais vers l'outil (`/api/agj/catalog`, `/api/agj/order`, `/agj/config.json`, `/agj/lib/cart.js`) ;
-  - `api/inscription-sms.js`, `api/demande-pro.js` (écriture dans Notion) ;
-  - `api/pro-login.js` et `_lib/auth.js` (cookie signé de 60 jours).
+  - relais de l'espace pro `api/agj/pro/[action].js` (`login`, `logout`, `grille`, `commande`) : seul le cookie `agj_pro` part vers l'outil, et sa réponse `Set-Cookie` revient ; la connexion efface l'ancien cookie du mot de passe partagé ;
+  - `api/inscription-sms.js`, `api/demande-pro.js` (écriture dans Notion).
 - `astro.config.mjs` : l'intégration « typographie-francaise » pose les espaces insécables sur chaque page construite.
 - `public/_headers` : en-têtes de sécurité et de cache.
 - `tests/` : tests unitaires (`npm test`). `e2e/` : tests navigateur Playwright, sur téléphone (Pixel 7) et ordinateur (1440 × 900).
@@ -127,10 +129,15 @@ Avant de modifier quoi que ce soit, lire :
   - Seules les lignes « Publiée » partent sur le site, à la publication suivante. Si la base est illisible, la construction garde `data/faq.json`.
   - Premier jet de Claude, validation de Pierre : ne cocher « Publiée » qu'après son accord (6 brouillons attendent au 21/10).
   - Nouvelle page : ajouter l'option dans `Pages`, puis `<QuestionsFrequentes page="…" />` dans la page.
+- **Espace pro :**
+  - Les accès se créent dans la page de Pierre (`/agj/pierre`, rubrique « Pros » → « + Nouvel accès », ou « Créer l'accès » sur une demande du site). Le mot de passe s'affiche une seule fois ; « Envoyer par mail » l'envoie au pro (en mode test, à hey@thomasbonometti.fr).
+  - Le site ne fait que relayer : prix, remise, paliers, livraison, mode fermé et prévisions sont calculés par l'outil, en direct (cache d'une minute). Un changement dans « Produits de la ferme » ou « Réglages pros » apparaît sans publier le site.
+  - Le lien des mails aux pros est `AGJ_SITE_URL` (`wrangler.jsonc` de `brief`) + `/pro/tarifs/` : à changer à la bascule.
+  - En local : l'outil simulé crée les pros (`POST /api/agj/admin/pros/creer` connecté comme Pierre, mot de passe `pierre`), voir `e2e/espace-pro.spec.js`.
 - **Historique des listes :** rien à faire. Chaque construction sur Cloudflare (branches `site-2026` et `main`) ajoute une ligne quand la liste a changé depuis la dernière (texte lisible et JSON), sauf en mode fermé. Il servira au bilan de saison (B2).
 - **Données de test :**
   - Une commande de test depuis l'adresse de test est permise (outil en mode test).
-  - Ensuite, archiver par `/agj/pierre/diagnostic`, « Archiver les données de test ». Le bouton ouvre un `confirm()` qui bloque l'outil Chrome : remplacer d'abord `window.confirm = () => true` dans la page, ou demander à Thomas.
+  - Ensuite, archiver par `/agj/pierre/diagnostic`, « Archiver les données de test », puis « Oui, archiver » (confirmation dans la page depuis la pull request n° 7 de `brief` ; avant sa fusion, le bouton ouvre un `confirm()` qui bloque l'outil Chrome : remplacer d'abord `window.confirm = () => true` dans la page, ou demander à Thomas). Les accès pros et commandes pros « Test » sont archivés aussi.
   - Mettre à la corbeille les lignes « Test » des deux bases du site.
   - Lister à Thomas ce qui a été archivé.
 
@@ -145,7 +152,7 @@ Avant de modifier quoi que ce soit, lire :
 3. Commande de bout en bout sans toucher à l'outil en ligne :
    - Dans le dépôt `brief`, lancer `AGJ_FAKE=1 npm run dev` (outil simulé sur le port 8787).
    - Ici, servir sans `--binding` : `.dev.vars` pointe vers `localhost:8787`.
-   - Lancer `E2E_COMMANDE=1 AGJ_DEV_URL=http://localhost:8787 E2E_PRO_PASSWORD=<valeur de .dev.vars> npx playwright test`.
+   - Lancer `E2E_COMMANDE=1 AGJ_DEV_URL=http://localhost:8787 npx playwright test` (commande de pommes de terre et espace pro : `e2e/espace-pro.spec.js` crée un pro dans l'outil simulé).
 4. Mode fermé : `node scripts/construire-ferme.mjs` (version fermée dans `dist-ferme/`, reprise dans 90 jours, `data/reglages.json` remis tel quel), la servir sur le port 8790 comme au point 2, puis `E2E_FERME=1 BASE_URL=http://localhost:8790 npx playwright test e2e/fermeture.spec.js`.
 5. Push sur `site-2026`, puis vérifier dans Cloudflare (Deployments) que la construction a réussi. Le journal de construction indique « Site ouvert » ou « mode fermé », le nombre de questions fréquentes et ce qui est arrivé à l'historique des listes.
 6. Le conteneur de travail n'atteint pas `*.pages.dev` : vérifier l'adresse de test avec Claude in Chrome, dans le Chrome de Thomas. Ouvrir son propre onglet, et ne laisser aucune trace (pas de choix mémorisé, pas de mot de passe).
@@ -161,6 +168,7 @@ Avant de modifier quoi que ce soit, lire :
 - L'audit d'accessibilité (axe) tourne sur l'état final, avec les animations coupées (`reducedMotion: 'reduce'`). Sinon, il signale des contrastes en pleine animation.
 - `commande.ts` ne réécrit le titre et les prix de la page Pommes de terre que s'ils ont changé, pour ne pas couper l'animation d'arrivée.
 - Un `confirm()` ou un `alert()` déclenché dans le Chrome de Thomas bloque l'outil Chrome.
+- Le cookie de l'espace pro (`agj_pro`) a pour chemin `/api/agj/pro` : il n'est envoyé qu'au relais, jamais aux pages. L'ancien cookie du mot de passe partagé portait le même nom au chemin `/` ; le relais lit le premier (le plus précis) et la connexion efface l'ancien.
 - Les heures de vente sont calculées à la construction. Après la vente du samedi, la barre annonce le samedi suivant dès la prochaine publication ; entre-temps, un script retire la date passée.
 - Le mode fermé aussi est calculé à la construction : la date de reprise ne rouvre le site qu'à une publication (voir Tâches courantes).
 - Notion change parfois les espaces insécables d'un texte : l'historique compare les listes sans tenir compte des espaces.

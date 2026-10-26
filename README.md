@@ -46,13 +46,12 @@ Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare ga
 |---|---|
 | `/api/agj/catalog`, `/api/agj/order`, `/agj/config.json`, `/agj/lib/cart.js` | relais vers le Worker `formulaires` (même adresse pour le navigateur, rien à changer côté outil) |
 | `/api/inscription-sms`, `/api/demande-pro` | écriture dans les deux bases Notion du site ; lignes du site de test cochées « Test » |
-| `/api/pro-login`, `/pro/*` | espace pro : mot de passe partagé, cookie de 60 jours, `/pro/deconnexion/` |
+| `/api/agj/pro/login`, `logout`, `grille`, `commande` | espace pro : relais vers l'outil, avec le seul cookie de session `agj_pro` (posé par l'outil, 60 jours). `/pro/tarifs/` est une page sans prix |
 
 ## Secrets (Cloudflare → projet → Settings → Variables and Secrets, type Secret)
 
 - `NOTION_TOKEN` : intégration Notion « Site Au Grand Jardin » (lecture + insertion), connectée aux pages « Au Grand Jardin 2025 » et « Site augrandjardin.fr » (Réglages du site, Questions fréquentes et Historique des listes compris). Dans Notion, elle est en fait connectée à toute la page « Au Grand Jardin » (vu le 22/10) : elle voit donc aussi les bases de l'outil de commande, mais le code du site ne les lit ni ne les écrit (il passe par l'API de l'outil).
-- `PRO_PASSWORD` : mot de passe donné aux pros. Le changer déconnecte tout le monde.
-- `PRO_SECRET` : longue chaîne au hasard (signature du cookie pro).
+- Les accès des pros (e-mail et mot de passe) sont gérés par l'outil de commande depuis le lot 2 : `PRO_PASSWORD` et `PRO_SECRET` ne servent plus et peuvent être supprimés.
 
 Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne sur augrandjardin.fr : autorise l'indexation), `AGJ_URL` (adresse de l'outil, par défaut `https://formulaires.hey-d8b.workers.dev`).
 Jamais de secret dans le dépôt : en local, `.dev.vars` (ignoré par git).
@@ -69,7 +68,7 @@ npm run e2e              # tests navigateur, téléphone et ordinateur
 ```
 
 Pour tester la commande sans toucher à l'outil en ligne : dans le dépôt `brief`, `AGJ_FAKE=1 npm run dev` (outil simulé sur le port 8787), puis ici un `.dev.vars` avec `AGJ_URL=http://localhost:8787`, et
-`E2E_COMMANDE=1 AGJ_DEV_URL=http://localhost:8787 E2E_PRO_PASSWORD=… npm run e2e`.
+`E2E_COMMANDE=1 AGJ_DEV_URL=http://localhost:8787 npm run e2e` (commande de pommes de terre et espace pro, avec un pro créé dans l'outil simulé).
 Sur l'adresse de test : `BASE_URL=https://agj-site-2026.pages.dev npm run e2e` (lecture seule ; `E2E_COMMANDE=1` passe une vraie commande « Test »).
 
 ## Bascule (plus tard)
