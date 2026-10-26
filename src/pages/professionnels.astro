@@ -1,11 +1,13 @@
 ---
 // Professionnels — frames Figma 17:2 (desktop) et 42:2 (mobile)
+// Espace pro en veille jusqu'au printemps 2027 (revue de Pierre du 26/10/2026) : case « Espace pro ouvert »
+// de Réglages du site décochée → pas d'étapes ni de formulaires, un encart pour contacter Pierre en haut.
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import Photo from '../components/Photo.astro';
 import { restaurants, ferme } from '../data/ferme.js';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
-import { produits, fermeture } from '../lib/donnees.js';
+import { produits, fermeture, espaceProOuvert } from '../lib/donnees.js';
 import { fileAriane } from '../lib/seo.js';
 ---
 <Base
@@ -19,10 +21,21 @@ import { fileAriane } from '../lib/seo.js';
       <p class="eyebrow" data-anim>Restaurants · épiceries · collectivités</p>
       <h1 class="h1-page" data-anim="mots">Des légumes bio de Lostroff, livrés chaque semaine</h1>
       <p class="lg muted" data-anim>Vous cuisinez local et de saison ? On vous propose une offre selon nos récoltes et vos besoins, avec une livraison hebdomadaire.</p>
-      <div class="btns" data-anim>
-        <a class="btn btn-primaire btn-bloc" href="#demande">Demander un accès</a>
-        <a class="btn btn-secondaire btn-bloc" href="#acces"><Icone nom="cadenas" taille={18} />J’ai déjà un accès</a>
-      </div>
+      {espaceProOuvert ? (
+        <div class="btns" data-anim>
+          <a class="btn btn-primaire btn-bloc" href="#demande">Demander un accès</a>
+          <a class="btn btn-secondaire btn-bloc" href="#acces"><Icone nom="cadenas" taille={18} />J’ai déjà un accès</a>
+        </div>
+      ) : (
+        <div class="contact-pro carte-sable" data-anim data-contact-pro>
+          <p class="contact-pro__titre">Pour travailler avec la ferme, contactez Pierre</p>
+          <p class="muted contact-pro__texte">Vos volumes, vos jours de livraison, les produits qui comptent pour votre carte : Pierre vous répond sous 48&nbsp;h.</p>
+          <div class="btns">
+            <a class="btn btn-primaire btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />{ferme.telephone}</a>
+            <a class="btn btn-secondaire btn-bloc" href={`mailto:${ferme.email}?subject=${encodeURIComponent('Livraison de légumes pour un professionnel')}`}>Écrire à Pierre</a>
+          </div>
+        </div>
+      )}
       <dl class="stats" data-anim-groupe="monte">
         <div><dt class="sm muted">pour vous répondre</dt><dd class="chiffre" data-compteur>48&nbsp;h</dd></div>
         {fermeture
@@ -41,6 +54,7 @@ import { fileAriane } from '../lib/seo.js';
     </div>
   </section>
 
+  {espaceProOuvert && <>
   <section class="section-sombre sur-sombre etapes" aria-labelledby="etapes-titre">
     <div class="wrap etapes__wrap">
       <div class="etapes__tete" data-anim>
@@ -82,6 +96,7 @@ import { fileAriane } from '../lib/seo.js';
       <p class="sm muted">Votre e-mail et votre mot de passe vous ont été envoyés par la ferme. Oublié ? Appelez Pierre au {ferme.telephone}.</p>
     </form>
   </section>
+  </>}
 
   <QuestionsFrequentes page="Professionnels" titre="Travailler avec la ferme" />
 </Base>
@@ -102,6 +117,17 @@ import { fileAriane } from '../lib/seo.js';
     .stats > div { width: 160px; gap: 8px; }
     .hero__photo { width: 580px; height: 680px; flex: none; }
     .hero__photo :global(img) { object-position: 62% 50%; }
+  }
+
+  .contact-pro { display: flex; flex-direction: column; gap: 12px; padding: 20px; }
+  .contact-pro__titre { font-size: 20px; line-height: 28px; letter-spacing: -0.02em; color: var(--texte); }
+  .contact-pro__texte { font-size: 15px; line-height: 22px; }
+  .contact-pro .btns { padding-top: 4px; }
+  @media (min-width: 1100px) {
+    .contact-pro { padding: 28px; gap: 14px; }
+    .contact-pro__titre { font-size: 24px; line-height: 32px; }
+    .contact-pro__texte { font-size: 16px; line-height: 24px; }
+    .contact-pro .btns .btn { width: auto; }
   }
 
   .clients { padding-bottom: 48px; }

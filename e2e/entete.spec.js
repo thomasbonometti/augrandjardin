@@ -27,10 +27,10 @@ test('barre verte toujours visible, menu caché en descendant, de retour en remo
 });
 
 test('un saut vers une ancre de la page ne fait pas réapparaître le menu par-dessus la cible', async ({ page }) => {
-  await page.goto('/professionnels/');
-  await page.getByRole('link', { name: 'Demander un accès' }).click();
+  await page.goto('/');
+  await page.locator('a.facon[href="#sms"]').click();
   await page.waitForTimeout(900);
-  const titre = await page.locator('#demande-titre').boundingBox();
+  const titre = await page.locator('#sms-titre').boundingBox();
   const barre = await page.locator('.barre-info').boundingBox();
   expect(titre.y).toBeGreaterThan(barre.height);
 });

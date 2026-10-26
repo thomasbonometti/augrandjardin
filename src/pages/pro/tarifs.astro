@@ -7,6 +7,10 @@
 import Base from '../../layouts/Base.astro';
 import Icone from '../../components/Icone.astro';
 import { ferme } from '../../data/ferme.js';
+import { espaceProOuvert } from '../../lib/donnees.js';
+// Espace pro en veille (case « Espace pro ouvert » décochée) : la page renvoie vers /professionnels/.
+// Sur Cloudflare, dist/_redirects le fait déjà (astro.config.mjs) ; ceci est le repli (redirection HTML).
+if (!espaceProOuvert) return Astro.redirect('/professionnels/');
 ---
 <Base
   titre="Espace professionnels | Au Grand Jardin"

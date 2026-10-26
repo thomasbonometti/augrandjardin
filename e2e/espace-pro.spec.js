@@ -6,6 +6,13 @@
 import { test, expect, request as pwRequest } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+// Espace pro en veille jusqu'au printemps 2027 : ces tests demandent un site construit avec l'espace ouvert.
+//   ESPACE_PRO=ouvert npx astro build --outDir dist-pro
+//   npx wrangler pages dev dist-pro --port 8791 --compatibility-date=2026-09-15   (sans --binding : .dev.vars → outil simulé)
+//   E2E_PRO=1 E2E_COMMANDE=1 AGJ_DEV_URL=http://localhost:8787 BASE_URL=http://localhost:8791 npx playwright test e2e/espace-pro.spec.js
+// En veille, voir e2e/pro-veille.spec.js.
+test.skip(!process.env.E2E_PRO, 'espace pro en veille : lancer contre une construction ESPACE_PRO=ouvert avec E2E_PRO=1');
+
 const OUTIL = process.env.AGJ_DEV_URL;
 const LOCAL = !!(process.env.E2E_COMMANDE && OUTIL);
 

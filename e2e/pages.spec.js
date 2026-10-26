@@ -138,6 +138,7 @@ test('inscription SMS : envoi (écrit dans Notion, seulement avec E2E_ECRIRE=1)'
 // Espace pro (connexion, grille, commande) : e2e/espace-pro.spec.js.
 
 test('demande d’accès pro : champs obligatoires', async ({ page }) => {
+  test.skip(!process.env.E2E_PRO, 'espace pro en veille : formulaire absent (voir e2e/pro-veille.spec.js)');
   await page.goto('/professionnels/');
   await page.getByRole('button', { name: 'Envoyer la demande' }).click();
   await expect(page.locator('#demande .message-form')).toContainText(/Vérifiez/);
