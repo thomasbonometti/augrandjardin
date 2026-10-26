@@ -53,7 +53,7 @@ Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare ga
 - `NOTION_TOKEN` : intégration Notion « Site Au Grand Jardin » (lecture + insertion), connectée aux pages « Au Grand Jardin 2025 » et « Site augrandjardin.fr » (Réglages du site, Questions fréquentes et Historique des listes compris). Dans Notion, elle est en fait connectée à toute la page « Au Grand Jardin » (vu le 22/10) : elle voit donc aussi les bases de l'outil de commande, mais le code du site ne les lit ni ne les écrit (il passe par l'API de l'outil).
 - Les accès des pros (e-mail et mot de passe) sont gérés par l'outil de commande depuis le lot 2 : `PRO_PASSWORD` et `PRO_SECRET` ne servent plus et peuvent être supprimés.
 
-Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne sur augrandjardin.fr : autorise l'indexation), `AGJ_URL` (adresse de l'outil, par défaut `https://formulaires.hey-d8b.workers.dev`).
+Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne sur augrandjardin.fr : autorise l'indexation), `AGJ_URL` (adresse de l'outil, par défaut `https://formulaires.hey-d8b.workers.dev`), `ESPACE_PRO` (`ouvert` ou `ferme` : passe avant la case « Espace pro ouvert » de Réglages du site ; à mettre seulement dans l'environnement « Preview » pour tester l'espace pro sur un aperçu pendant qu'il est en veille).
 Jamais de secret dans le dépôt : en local, `.dev.vars` (ignoré par git).
 
 ## Travailler en local

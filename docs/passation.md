@@ -1,6 +1,6 @@
 # Site Au Grand Jardin 2026 — passation
 
-À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 26 octobre 2026 : lots 1 et 2 du plan d'évolutions livrés ; lot 3 en ligne sur l'adresse de test (panneau produit, calendrier de saison), bilan B2 en cours.
+À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 26 octobre 2026 au soir : lots 1 et 2 du plan d'évolutions livrés ; lot 3 en ligne sur l'adresse de test (panneau produit, calendrier de saison), bilan B2 en cours ; **retours de Pierre de la revue du 26/10 appliqués et en ligne** (textes, lieux, liste de la semaine, marchés masqués, espace pro en veille). Le lien de test part chez Pierre le 27 ou le 28/10 pour relecture.
 
 Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. Il suit les maquettes Figma (bureau et téléphone) et lit Notion. On peut y commander des pommes de terre, et les pros commandent depuis leur espace (lot 2), en mode test. Le site actuel (branche `main`, GitHub Pages) n'a pas bougé.
 
@@ -82,6 +82,16 @@ Autres documents :
   - **Notion, le 26/10 (accord de Thomas : « Vas-y je te fais confiance »)** : « Cuisson » et « Conservation » des 34 légumes vendus en 2026, sur une ligne par légume (la ligne en vente quand il y en a une) ; « Mois de récolte » de 23 lignes pas en vente, d'après les ventes 2026 (pas sur « Pomme de terre - chair fondante », remise en vente entre-temps : ses mois piloteraient les prévisions pro) ; « Légume » = Carotte sur « Carottes multicolores en Botte (petite) ». Les 32 lignes préremplies au lot 2 n'ont pas été touchées.
   - **Bilan B2** : document « Bilan de la saison 2026 — Au Grand Jardin » (https://claude.ai/artifact/KbKZhnHAqTwnXv9sqkrt6A), tiré des 26 publications « Jour J » du Calendrier éditorial. La partie pommes de terre attend la réponse de Thomas sur « Commandes 2025 ».
 
+- **Retours de Pierre, revue du 26/10/2026** (réunion « Thomas x Pierre » dans Notion, document du projet `site-web/retours-pierre-26-10.md`). Réponses de Thomas aux 5 questions, le 26/10 : « Ok pour tes recommandations ».
+  1. **Liste de la semaine** : le site dit ce qui se passe aujourd'hui (Pierre envoie la liste lui-même, WhatsApp d'abord, SMS pour qui n'a pas WhatsApp, de début avril à fin décembre, sans réservation). Le formulaire propose WhatsApp (par défaut) ou SMS, rangé dans la nouvelle colonne « Canal » de « Inscriptions SMS ». La décision 1 du lot 4 (SMS court + mail, clients WhatsApp au mail) est **rouverte** avant d'en coder l'envoi.
+  2. **Espace pro en veille** : case « Espace pro ouvert » de Réglages du site, décochée ; page Professionnels gardée au menu, avec l'encart « contactez Pierre » en haut ; `/pro/*` → `/professionnels/` (`dist/_redirects` écrit à la construction). Variable `ESPACE_PRO=ouvert` pour un aperçu Cloudflare.
+  3. **Marchés et fêtes** : seuls les créneaux « à la ferme » s'affichent ; case « Afficher les marchés » pour les rouvrir. Planning inchangé.
+  4. **Notion** : questions fréquentes du site corrigées (6 réponses publiées), « Canal » ajouté à « Inscriptions SMS », les deux cases à « Réglages du site », message de fermeture repris. Rien dans les bases de l'outil ni dans Planning.
+  5. **Relecture** : textes en ligne sur l'adresse de test, tableau avant/après pour Thomas (document « Site Au Grand Jardin — textes avant / après (revue de Pierre du 26/10) », https://claude.ai/artifact/CfC1odVPJY9iaJ3kjg226J), puis lien envoyé à Pierre.
+  - **Textes** (commits `680a1d1` à `cc90fdf`) : bio Ecocert (conversion 2020, certification 2023), goût, sol, protection biologique intégrée, « maraîcher bio à Lostroff depuis 2020 », production 100 % de la ferme ; retirés : hybrides F1, « aucun produit chimique », permaculture, label Maraîchage Sol Vivant, partenaires, pain, réservation par SMS, 15 avril – 15 novembre, marchés.
+  - **Lieux** (`src/data/ferme.js`, propriété `actif`) : restaurants Hôtel Notre-Dame de Bonne Fontaine, Le Greffin, Le Bistrot des Oiseaux ; points de vente Inventerre du Pré Vert, Ma Petite Cuillère ; partenaires et anciens lieux désactivés, pas effacés. Villes inconnues laissées vides. Photo de La Toque Blanche remplacée sur l'accueil par celle de Pierre.
+  - **Outil** (dépôt `brief`) : pull request n° 9 « Page de Pierre installable sur son téléphone » (manifeste, icône feuille), à fusionner par Thomas.
+
 ## 3. Écarts avec la maquette (volontaires)
 
 - **Espace pro (lot 2).**
@@ -92,6 +102,8 @@ Autres documents :
   - Prévisions au téléphone : une seule mention par produit (le premier changement), comme la maquette ; à l'ordinateur, les 4 semaines.
   - Les quantités pas encore envoyées sont gardées dans le navigateur (rechargement, retour sur la page).
 
+- **Professionnels (espace pro en veille depuis le 26/10).** Encart « Pour travailler avec la ferme, contactez Pierre » à la place des boutons ; pas de « Comment ça marche » ni de formulaires ; « restaurants clients » au lieu de « restaurants partenaires ». La maquette reste la cible au printemps.
+- **Accueil et La ferme (revue du 26/10).** Chiffres et cartes d'engagement réécrits (Ecocert, 100 % de la ferme, goût, PBI) ; section « Maraîchage Sol Vivant » renommée « Prendre soin du sol » ; section partenaires remplacée par « Où retrouver nos légumes » (les deux listes) ; formulaire de la liste avec le choix WhatsApp ou SMS.
 - **Pommes de terre.**
   - Vrai catalogue de l'outil au lieu des sacs de 15 et 25 kg de la maquette.
   - Pastille « Commandes ouvertes » au lieu de « Réservations ouvertes jusqu'au 15 novembre », et bouton « Commander ».
@@ -111,6 +123,10 @@ Autres documents :
   - Date « Liste mise à jour le… » sur la page Produits.
 
 ## 4. Vérifications faites
+
+- **Retours de Pierre, le 26/10 au soir :** 39 tests unitaires (dont `tests/ferme.test.js` : lieux actifs, canal ; marchés et espace pro dans `tests/reglages.test.js`). Playwright sur la construction normale (espace en veille) contre le catalogue réel : 100 verts, 2 échecs connus de `commande.spec.js` (stock de test : 1 seul filet de 7 kg de Chérie) ; mode fermé + veille pro (`E2E_FERME=1`, `e2e/pro-veille.spec.js`) : 22 verts ; construction `ESPACE_PRO=ouvert` contre l'outil simulé (`E2E_PRO=1 E2E_COMMANDE=1`, espace pro, commande, pages, en-tête) : 52 verts. Captures téléphone et ordinateur des sections changées vérifiées.
+  - En ligne (construction Cloudflare de `cc90fdf`, 21 h 41) : Notion lu (34 produits, 9 créneaux, 8 questions fréquentes), « Site ouvert », règle `/pro/* /professionnels/ 302` dans l'onglet Redirects. Dans Chrome : `/pro/tarifs/` arrive sur Professionnels avec l'encart, aucune ancienne formule sur les 8 pages (F1, chimique, permaculture, Sol Vivant, partenaires, pain, 15 avril, réservation, anciens lieux, marchés), Horaires & contact ne montre que la ferme.
+  - Outil, pull request n° 9 : 111 tests unitaires et 30 Playwright verts ; sur Cloudflare, les tests passent mais le déploiement d'aperçu de la branche échoue (« previews » absent de `wrangler.jsonc`), comme pour la n° 8 : la fusion sur `main` déploie normalement.
 
 - **Lot 3, le 26/10 :** 33 tests unitaires (dont `tests/saisons.test.js`) ; Playwright au téléphone et à l'ordinateur sur l'instantané `data/` : 99 verts, dont `e2e/saison.spec.js` (panneau : clic, adresse, Échap et focus, « Retour », croix, lien partagé, lien vers le calendrier ; calendrier : liens « En vente », filtres, texte des mois), axe sur `/calendrier-de-saison/`. Un échec intermittent au téléphone sur `commande.spec.js` (« panier : quantités ») existe aussi sans le lot 3 : le catalogue réel de l'outil recharge la liste pendant le test.
   - En ligne (construction Cloudflare de `fe0de24`, vérifiée dans Chrome) : calendrier avec 34 légumes (30 légumes, 2 aromates, 2 fruits), 21 « En vente » ; 34 panneaux sur la page Produits, dont 27 avec saison et conseils (les 7 autres : potiron et potimarron sans mois ni conseils, confitures, jus et produits transformés) ; `/produits/#carotte-vrac` ouvre le panneau, Échap le ferme, l'adresse revient à `/produits/` et le focus sur la carte.
@@ -150,6 +166,12 @@ Autres documents :
 - Questions fréquentes : « Publiée » seulement après l'accord de Pierre.
 
 ## 6. Points ouverts
+
+- **Retours de Pierre (26/10), côté Thomas** : envoyer le lien à Pierre (brouillon « Le nouveau site, à relire » dans Spark) ; fusionner la pull request n° 9 de `brief` ; dans « Produits AGJ » et « Dates de retrait AGJ » (Thomas, pas Claude) : retirer les échalions, mettre le vrai stock et les prix de la saison, ouvrir les dates de retrait.
+- **Retours de Pierre, côté Pierre** (questions dans le mail) : surfaces (parcelle, légumes) ; noms et villes du Greffin, du Bistrot des Oiseaux, de Ma Petite Cuillère ; pommes de terre bio ou non (toutes cochées « Pas bio » dans Notion depuis 2023, le site affiche donc « Non certifié bio » sur elles à côté de « 100 % légumes bio ») ; variétés et prix des pommes de terre (1,60 € ou 1,50 € le kilo) ; le boulanger vient-il encore (les publications Facebook le citent) ; vue aérienne IGN provisoire.
+- **Lot 4** : décision 1 rouverte (WhatsApp d'abord) ; souhaits de Pierre pour « Ma semaine » (voir `site-web/lot-4-demarrage.md`).
+- **Printemps 2027** : rouvrir l'espace pro (case, « Publier », question fréquente des restaurateurs), après des tests sur un aperçu (`ESPACE_PRO=ouvert`) ; choix des produits proposés aux pros (nouveau champ et onglet, à ajouter au plan).
+- **Photo aérienne** (`aerien`, La ferme) : pas à jour ; vue IGN provisoire si Pierre est d'accord, drone de son frère au printemps ou en été.
 
 - **Lot 1, côté Thomas** : imprimer l'affichette A5 (artifact ci-dessus, export PDF). Le reste est fait le 22/10 : pull requests n° 4 et 5 fusionnées et en ligne (configuration `2026-10-22.1`), « Formulaire brief » connectée à « Réglages du site » par Claude à la demande de Thomas (la page de vérification de l'outil ne signale plus rien).
 - **Lot 1, côté Pierre** : relire les 6 questions en brouillon et les publier.
