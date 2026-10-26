@@ -1,0 +1,189 @@
+---
+// Panneau d'un produit (lot 3) — frames Figma 89:294 (ordinateur, 520 px à droite) et 91:1112 (téléphone, plein écran).
+// Un <dialog> par produit en vente, ouvert depuis sa carte (lien #ancre) ou depuis le calendrier de saison
+// (/produits/#carotte-vrac). Le contenu est dans le HTML ; le script de la page Produits l'ouvre et le ferme.
+// Chaque partie n'apparaît que si elle est remplie dans Notion (saison, cuisson, conservation, avis de Pierre).
+import Icone from './Icone.astro';
+import { euros } from '../lib/vente.js';
+import { MOIS, plageMois, etatSaison } from '../lib/saisons.js';
+
+interface Props {
+  p: any;
+  /** Titre du rayon (« Légumes ») */
+  rayon: string;
+  /** Prochaine vente (null en mode fermé) */
+  vente: any;
+  /** Mois en cours, de 0 (janvier) à 11 */
+  mois: number;
+}
+const { p, rayon, vente, mois } = Astro.props;
+const id = p.ancre;
+const f = p.fiche;
+const deLaFerme = !p.producteur || p.producteur === 'Au Grand Jardin';
+const origine = deLaFerme ? 'Au Grand Jardin, Lostroff' : p.producteur;
+const etat = f?.mois?.length ? etatSaison(f, mois) : null;
+const saison = f?.mois?.length ? { plage: plageMois(f.mois), etat: etat ? etat.charAt(0).toLowerCase() + etat.slice(1) : null } : null;
+const paragraphes = (t: string) => (t ?? '').split(/\n+/).map((s) => s.trim()).filter(Boolean);
+const description = paragraphes(p.description);
+const lieu = vente ? (vente.aLaFerme ? 'à la ferme' : vente.lieu) : '';
+const conseils = f ? [
+  { cle: 'cuisson', titre: 'Cuisson', icone: 'cuisson', textes: paragraphes(f.cuisson) },
+  { cle: 'conservation', titre: 'Conservation', icone: 'conservation', textes: paragraphes(f.conservation) },
+].filter((c) => c.textes.length) : [];
+const avis = f ? paragraphes(f.avisPierre) : [];
+---
+<dialog class="panneau" id={id} aria-labelledby={`${id}-titre`} data-panneau>
+  <div class="panneau__corps">
+    <div class="panneau__barre">
+      <p class="eyebrow panneau__rayon">{rayon}</p>
+      <button type="button" class="panneau__fermer" data-fermer aria-label="Fermer">
+        <Icone nom="fermer" taille={20} />
+      </button>
+    </div>
+
+    <div class="panneau__visuel">
+      {p.image
+        ? <img src={p.image.grand} srcset={`${p.image.petit} 400w, ${p.image.grand} 800w`} sizes="(min-width: 720px) 472px, 100vw" alt="" loading="lazy" decoding="async" width="800" height="800" />
+        : <span class="panneau__initiale" aria-hidden="true">{p.initiale}</span>}
+      {(p.estNouveau || p.quantiteLimitee) && (
+        <div class="panneau__badges">
+          {p.estNouveau && <span class="chip chip-vif">Nouveau</span>}
+          {p.quantiteLimitee && <span class="chip chip-blanc">Quantité limitée</span>}
+        </div>
+      )}
+    </div>
+
+    <div class="panneau__tete">
+      <h2 class="panneau__nom" id={`${id}-titre`}>{p.nom}</h2>
+      {p.prix && (
+        <p class="panneau__prix">
+          <strong>{euros(p.prix.montant)}</strong>
+          {p.prix.ancien && <s aria-label={`au lieu de ${euros(p.prix.ancien)}`}>{euros(p.prix.ancien)}</s>}
+          <span class="sm muted">{p.prix.unite}</span>
+        </p>
+      )}
+      <p class="sm muted">{p.pasBio ? 'Non certifié bio' : 'Bio'} · {origine}</p>
+    </div>
+
+    {description.length > 0 && <div class="panneau__texte">{description.map((t) => <p>{t}</p>)}</div>}
+
+    {vente && (
+      <p class="panneau__vente">
+        <Icone nom="horloge" taille={18} />
+        <span>À la vente {vente.jourDate}, {vente.heures}, {lieu}</span>
+      </p>
+    )}
+
+    {saison && (
+      <section class="panneau__bloc" aria-labelledby={`${id}-saison`}>
+        <h3 class="panneau__titre" id={`${id}-saison`}><Icone nom="saison" taille={20} />Saison</h3>
+        <div class="frise" aria-hidden="true">
+          {MOIS.map((m, i) => (
+            <span class:list={['frise__mois', { 'frise__mois--recolte': f.mois.includes(i), 'frise__mois--courant': i === mois }]}>
+              <span class="frise__case"></span>
+              <span class="frise__lettre">{m.charAt(0)}</span>
+            </span>
+          ))}
+        </div>
+        <p class="panneau__texte">Récolte {saison.plage}.{saison.etat && ` En ce moment : ${saison.etat}.`}</p>
+        <a class="panneau__lien" href={`/calendrier-de-saison/#${f.ancre}`}>Voir le calendrier de saison<Icone nom="droite" taille={16} /></a>
+      </section>
+    )}
+
+    {conseils.map((c) => (
+      <section class="panneau__bloc" aria-labelledby={`${id}-${c.cle}`}>
+        <h3 class="panneau__titre" id={`${id}-${c.cle}`}><Icone nom={c.icone} taille={20} />{c.titre}</h3>
+        <div class="panneau__texte">{c.textes.map((t) => <p>{t}</p>)}</div>
+      </section>
+    ))}
+
+    {avis.length > 0 && (
+      <figure class="panneau__avis">
+        <h3 class="panneau__titre"><Icone nom="pousse" taille={20} />L’avis de Pierre</h3>
+        <blockquote>{avis.map((t, i) => <p>{i === 0 ? '« ' : ''}{t}{i === avis.length - 1 ? ' »' : ''}</p>)}</blockquote>
+        <figcaption class="sm muted">Pierre Fouquet, maraîcher à Lostroff</figcaption>
+      </figure>
+    )}
+  </div>
+</dialog>
+
+<style>
+  .panneau {
+    position: fixed; inset: 0 0 0 auto; margin: 0; padding: 0; border: 0;
+    width: 100%; max-width: 100%; height: 100%; max-height: 100%;
+    background: var(--creme); color: var(--texte);
+    overflow-y: auto; overscroll-behavior: contain;
+  }
+  .panneau::backdrop { background: rgb(17 17 17 / 0.45); }
+  .panneau[open] { animation: panneau-entre 0.28s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .panneau[open]::backdrop { animation: voile-entre 0.28s ease-out; }
+  @keyframes panneau-entre { from { transform: translateX(32px); opacity: 0; } }
+  @keyframes voile-entre { from { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .panneau[open], .panneau[open]::backdrop { animation: none; }
+  }
+
+  .panneau__corps { min-height: 100%; padding: 0 16px 40px; display: flex; flex-direction: column; gap: 24px; }
+  .panneau__barre {
+    position: sticky; top: 0; z-index: 1; margin-inline: -16px; padding: 12px 16px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    background: var(--creme);
+  }
+  .panneau__rayon { color: var(--secondaire); }
+  .panneau__fermer {
+    flex: none; width: 44px; height: 44px; border-radius: 22px; display: grid; place-items: center;
+    background: var(--blanc); border: 1px solid var(--bordure-bouton); color: var(--texte);
+    transition: border-color .15s;
+  }
+  .panneau__fermer:hover { border-color: var(--texte); }
+
+  .panneau__visuel { position: relative; aspect-ratio: 4 / 3; border-radius: var(--rayon); overflow: hidden; background: var(--sable); margin-top: -12px; }
+  .panneau__visuel img { width: 100%; height: 100%; object-fit: cover; }
+  .panneau__initiale { width: 100%; height: 100%; display: grid; place-items: center; font-size: 96px; line-height: 1; color: var(--initiale); }
+  .panneau__badges { position: absolute; left: 12px; top: 12px; display: flex; gap: 6px; }
+
+  .panneau__tete { display: flex; flex-direction: column; gap: 6px; }
+  .panneau__nom { font-size: 28px; line-height: 36px; letter-spacing: -0.03em; }
+  .panneau__prix { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+  .panneau__prix strong { font-weight: 400; font-size: 22px; line-height: 28px; letter-spacing: -0.02em; }
+  .panneau__prix s { font-size: 14px; color: var(--secondaire); }
+
+  .panneau__vente {
+    display: flex; gap: 10px; align-items: flex-start; padding: 12px 16px; border-radius: 8px;
+    background: var(--sable); font-size: 14px; line-height: 20px;
+  }
+  .panneau__vente :global(svg) { flex: none; margin-top: 1px; }
+
+  .panneau__bloc { display: flex; flex-direction: column; gap: 12px; }
+  .panneau__titre { display: flex; align-items: center; gap: 10px; font-size: 18px; line-height: 26px; letter-spacing: -0.01em; }
+  .panneau__titre :global(svg) { flex: none; color: var(--vert-foret); }
+  .panneau__texte { display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 24px; color: var(--secondaire); }
+  .panneau__lien {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; line-height: 20px; color: var(--vert-foret); text-decoration: underline; text-underline-offset: 3px;
+  }
+  .panneau__lien:hover { text-decoration-thickness: 2px; }
+
+  .frise { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; }
+  .frise__mois { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .frise__case { width: 100%; height: 12px; border-radius: 3px; background: var(--ligne); }
+  .frise__mois--recolte .frise__case { background: var(--vert-vif-fond); }
+  .frise__mois--courant .frise__case { box-shadow: inset 0 0 0 1.5px var(--nuit); }
+  .frise__lettre { font-size: 12px; line-height: 18px; color: var(--discret-lisible); }
+  .frise__mois--courant .frise__lettre { color: var(--texte); font-weight: 600; }
+
+  .panneau__avis { margin: 0; padding: 18px; border-radius: 16px; background: var(--sable); display: flex; flex-direction: column; gap: 12px; }
+  .panneau__avis blockquote { margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 27px; letter-spacing: -0.01em; color: var(--texte); }
+
+  @media (min-width: 720px) {
+    .panneau { width: 520px; }
+    .panneau__corps { padding: 0 24px 48px; gap: 28px; }
+    .panneau__barre { margin-inline: -24px; padding: 20px 24px 8px; }
+    .panneau__visuel { margin-top: -8px; }
+    .panneau__nom { font-size: 36px; line-height: 44px; }
+    .panneau__prix strong { font-size: 24px; line-height: 30px; }
+    .panneau__texte { font-size: 16px; }
+    .panneau__avis { padding: 22px; }
+    .panneau__avis blockquote { font-size: 20px; line-height: 30px; }
+  }
+</style>

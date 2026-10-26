@@ -339,7 +339,17 @@ body.menu-ouvert { overflow: hidden; }
 .defile > * { scroll-snap-align: start; flex: none; }
 
 /* ---------- Cartes produit ---------- */
-.carte-produit { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+/* Panneau produit ouvert : la page dessous ne défile plus */
+:root:has(dialog[data-panneau][open]) { overflow: hidden; }
+.carte-produit { position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+/* Le lien du nom couvre toute la carte (panneau du produit, lot 3) */
+.carte-produit__lien::after { content: ''; position: absolute; inset: 0; border-radius: var(--rayon); }
+.carte-produit__lien:hover { text-decoration: underline; text-underline-offset: 3px; }
+.carte-produit__lien:focus-visible { outline: none; }
+.carte-produit__lien:focus-visible::after { outline: 2px solid var(--vert-vif); outline-offset: 4px; }
+.carte-produit:has(.carte-produit__lien:hover) .carte-produit__visuel img { transform: scale(1.03); }
+.carte-produit__visuel img { transition: transform .3s ease; }
+@media (prefers-reduced-motion: reduce) { .carte-produit__visuel img { transition: none; } }
 .carte-produit__visuel { position: relative; aspect-ratio: 1; border-radius: var(--rayon); overflow: hidden; background: var(--sable); }
 .carte-produit__visuel img { width: 100%; height: 100%; object-fit: cover; }
 .carte-produit__initiale { width: 100%; height: 100%; display: grid; place-items: center; font-size: 56px; line-height: 64px; color: var(--initiale); }

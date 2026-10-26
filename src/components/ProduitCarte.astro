@@ -1,5 +1,6 @@
 ---
-// Carte produit de la page « Produits de la semaine » (302 px en desktop, 167 px en mobile)
+// Carte produit de la page « Produits de la semaine » (302 px en desktop, 167 px en mobile).
+// Le nom est un lien vers le panneau du produit (#ancre, voir PanneauProduit.astro) qui couvre toute la carte.
 import { euros } from '../lib/vente.js';
 interface Props { p: any }
 const { p } = Astro.props;
@@ -18,7 +19,7 @@ const producteur = p.producteur && p.producteur !== 'Au Grand Jardin' ? ` · ${p
     )}
   </div>
   <div class="carte-produit__infos">
-    <h3 class="carte-produit__nom">{p.nom}</h3>
+    <h3 class="carte-produit__nom"><a class="carte-produit__lien" href={`#${p.ancre}`} aria-haspopup="dialog">{p.nom}</a></h3>
     {p.prix && (
       <p class="carte-produit__prix">
         <strong>{euros(p.prix.montant)}</strong>
