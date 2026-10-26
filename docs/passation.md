@@ -1,8 +1,8 @@
 # Site Au Grand Jardin 2026 — passation
 
-À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 22 octobre 2026, lot 1 du plan d'évolutions compris.
+À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 26 octobre 2026, lots 1 et 2 du plan d'évolutions compris.
 
-Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. Il suit les maquettes Figma (bureau et téléphone) et lit Notion. On peut y commander des pommes de terre, en mode test. Le site actuel (branche `main`, GitHub Pages) n'a pas bougé.
+Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. Il suit les maquettes Figma (bureau et téléphone) et lit Notion. On peut y commander des pommes de terre, et les pros commandent depuis leur espace (lot 2), en mode test. Le site actuel (branche `main`, GitHub Pages) n'a pas bougé.
 
 Autres documents :
 - `CLAUDE.md` à la racine : règles, emplacements, plan du code, tâches courantes et méthode de vérification. C'est le mode d'emploi pour toute session qui modifie le site.
@@ -18,8 +18,8 @@ Autres documents :
 | Code | Dépôt `thomasbonometti/augrandjardin`, **branche `site-2026`**. Ne pas toucher à `main` avant la bascule. |
 | Hébergement | Cloudflare Pages, projet `agj-site-2026`. Il est relié à la branche `site-2026` : un push reconstruit le site. |
 | Adresse de test | https://agj-site-2026.pages.dev (`noindex`, et `robots.txt` interdit tout tant que `SITE_INDEXABLE` ne vaut pas `oui`) |
-| Maquettes | Figma « Au Grand Jardin \| Site 2026 » (`zrlhOtAHZaw02nvLTnaswz`). Bureau : `13:2` Accueil, `14:2` Produits, `15:2` La ferme (Sol Vivant `15:116`), `16:2` Pommes de terre, `17:2` Professionnels, `18:2` Espace pro, `19:2` Horaires & contact. Téléphone : `38:2`, menu `37:2`, `39:2` à `44:2`, dans le même ordre. |
-| Outil de commande | Dépôt `thomasbonometti/brief`, Worker `formulaires` (https://formulaires.hey-d8b.workers.dev). Le site relaie son API, sans lire ni écrire ses bases Notion. |
+| Maquettes | Figma « Au Grand Jardin \| Site 2026 » (`zrlhOtAHZaw02nvLTnaswz`). Bureau : `13:2` Accueil, `14:2` Produits, `15:2` La ferme (Sol Vivant `15:116`), `16:2` Pommes de terre, `17:2` Professionnels, `18:2` Espace pro, `19:2` Horaires & contact. Téléphone : `38:2`, menu `37:2`, `39:2` à `44:2`, dans le même ordre. Lot 2 : grille pro `65:50` (bureau), `68:286` et `68:1046` (téléphone) ; espace de Pierre sur la page « 🛠 Espace de Pierre (lot 2) ». |
+| Outil de commande | Dépôt `thomasbonometti/brief`, Worker `formulaires` (https://formulaires.hey-d8b.workers.dev). Le site relaie son API (commande de pommes de terre, espace pro), sans lire ni écrire ses bases Notion. Ses décisions et points ouverts : `docs/passation.md` du dépôt `brief`. |
 | Notion lu par le site | « Produits de la ferme » (`collection://5fb0d75e-67d6-4840-a703-2c6e0b3eaa11`, lignes « En vente ») et « 📅 Planning semaine » (`collection://152a41f4-8718-45e1-9025-40f3da0572e3`). Sous la page « Site augrandjardin.fr » : « Réglages du site » (`collection://cc35fc8e-c976-44f0-b213-31eed14e3bee`) et « Questions fréquentes » (`collection://a8d7a11c-2204-4c8b-ab4e-23c749bd4452`). |
 | Notion écrit par le site | Page « Site augrandjardin.fr » (`3fb70bd669cd81a5a2a0cfc84d7016a2`) : bases « Inscriptions SMS » (`collection://1f9db94f-6b9f-4ba2-aae7-d67ea66cae6f`) et « Demandes d'accès pro » (`collection://95af73b3-86bc-4013-adb6-ccbe215a44d0`). Ce qui vient de l'adresse de test est coché « Test ». « Historique des listes » (`collection://5fced6cb-eabb-46cd-beb2-00ee278afd91`), écrit par chaque construction Cloudflare. |
 | Plan d'évolutions | Document du projet Claude « Au Grand Jardin » : `site-web/plan-evolutions.md` (fait foi, un lot à la fois). |
