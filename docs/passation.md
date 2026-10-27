@@ -92,6 +92,9 @@ Autres documents :
   - **Lieux** (`src/data/ferme.js`, propriété `actif`) : restaurants Hôtel Notre-Dame de Bonne Fontaine, Le Greffin, Le Bistrot des Oiseaux ; points de vente Inventerre du Pré Vert, Ma Petite Cuillère ; partenaires et anciens lieux désactivés, pas effacés. Villes inconnues laissées vides. Photo de La Toque Blanche remplacée sur l'accueil par celle de Pierre.
   - **Outil** (dépôt `brief`) : pull request n° 9 « Page de Pierre installable sur son téléphone » (manifeste, icône feuille), à fusionner par Thomas.
 
+- **Noms des bases de la commande de pommes de terre (27/10, demande de Thomas)** : pour ne plus confondre « Produits AGJ » et « Produits de la ferme », les quatre bases de l'outil sous « Commandes en ligne » s'appellent « Pommes de terre — catalogue » (avant « Produits AGJ »), « Pommes de terre — dates de retrait », « Pommes de terre — commandes », « Pommes de terre — clients ». Titres seulement (renommés par Claude avec l'accord de Thomas) : l'outil et Make les trouvent par leur identifiant. Les textes de l'outil qui les citent : pull request n° 12 de `brief`. Les sections plus haut et plus bas gardent parfois les anciens noms (historique).
+- **« Ma semaine » en réel (27/10)** : pull requests n° 10 et 11 de `brief`, configuration Cloudflare vérifiée par Claude ; premier vrai « Publier » fait par Thomas le 27/10 (aubergines retirées) : Notion et site à jour.
+
 ## 3. Écarts avec la maquette (volontaires)
 
 - **Espace pro (lot 2).**
@@ -167,17 +170,17 @@ Autres documents :
 
 ## 6. Points ouverts
 
-- **Retours de Pierre (26/10), côté Thomas** : envoyer le lien à Pierre (brouillon « Le nouveau site, à relire » dans Spark) ; fusionner la pull request n° 9 de `brief` ; dans « Produits AGJ » et « Dates de retrait AGJ » (Thomas, pas Claude) : retirer les échalions, mettre le vrai stock et les prix de la saison, ouvrir les dates de retrait.
+- **Retours de Pierre (26/10), côté Thomas** : envoyer le lien à Pierre (brouillon « Le nouveau site, à relire » dans Spark) ; dans « Pommes de terre — catalogue » et « Pommes de terre — dates de retrait » (Thomas, pas Claude) : mettre le vrai stock et les prix de la saison, ouvrir les dates de retrait (pull request n° 9 fusionnée le 26/10 ; échalions retirés par Thomas le 27/10) ; fusionner la pull request n° 12 de `brief` (noms des bases).
 - **Retours de Pierre, côté Pierre** (questions dans le mail) : surfaces (parcelle, légumes) ; noms et villes du Greffin, du Bistrot des Oiseaux, de Ma Petite Cuillère ; pommes de terre bio ou non (toutes cochées « Pas bio » dans Notion depuis 2023, le site affiche donc « Non certifié bio » sur elles à côté de « 100 % légumes bio ») ; variétés et prix des pommes de terre (1,60 € ou 1,50 € le kilo) ; le boulanger vient-il encore (les publications Facebook le citent) ; vue aérienne IGN provisoire.
-- **Lot 4** : décision 1 rouverte (WhatsApp d'abord) ; souhaits de Pierre pour « Ma semaine » (voir `site-web/lot-4-demarrage.md`).
+- **Lot 4** : décision 4 du plan rouverte (WhatsApp d'abord). Options A, B, C chiffrées le 27/10 ; Thomas penche pour B (SMS et WhatsApp automatiques par Brevo), que Pierre préfère pour ne plus s'en occuper, sous réserve de ses réponses (deuxième numéro, réponses des clients dans l'appli Brevo). Souhaits de Pierre pour « Ma semaine » : voir `site-web/lot-4-demarrage.md`.
 - **Printemps 2027** : rouvrir l'espace pro (case, « Publier », question fréquente des restaurateurs), après des tests sur un aperçu (`ESPACE_PRO=ouvert`) ; choix des produits proposés aux pros (nouveau champ et onglet, à ajouter au plan).
 - **Photo aérienne** (`aerien`, La ferme) : pas à jour ; vue IGN provisoire si Pierre est d'accord, drone de son frère au printemps ou en été.
 
 - **Lot 1, côté Thomas** : imprimer l'affichette A5 (artifact ci-dessus, export PDF). Le reste est fait le 22/10 : pull requests n° 4 et 5 fusionnées et en ligne (configuration `2026-10-22.1`), « Formulaire brief » connectée à « Réglages du site » par Claude à la demande de Thomas (la page de vérification de l'outil ne signale plus rien).
 - **Lot 1, côté Pierre** : relire les 6 questions en brouillon et les publier.
-- **Avant le passage en réel de l'outil** : remplacer le stock de test de Produits AGJ par le vrai stock de Pierre, ou vider la colonne (vide = pas de limite, pas d'alerte).
+- **Avant le passage en réel de l'outil** : remplacer le stock de test de « Pommes de terre — catalogue » par le vrai stock de Pierre, ou vider la colonne (vide = pas de limite, pas d'alerte).
 - **Accès Notion du site** : l'intégration « Site Au Grand Jardin » est connectée à toute la page « Au Grand Jardin » (vu le 22/10), donc elle voit aussi les commandes et les clients de l'outil, dont le site n'a pas besoin. À restreindre plus tard aux pages que le site lit et écrit, en vérifiant ensuite qu'une publication passe.
-- **Lot 2, côté Thomas** : fusionner la pull request n° 7 de `brief` ; supprimer les secrets `PRO_PASSWORD` et `PRO_SECRET` dans Cloudflare (ils ne servent plus) ; à la bascule, `AGJ_SITE_URL` = https://augrandjardin.fr dans `wrangler.jsonc` de `brief`.
+- **Lot 2, côté Thomas** : (pull request n° 7 fusionnée le 26/10 ; `PRO_PASSWORD` et `PRO_SECRET` supprimés le 27/10) à la bascule, `AGJ_SITE_URL` = https://augrandjardin.fr dans `wrangler.jsonc` de `brief`.
 - **Lot 3, côté Thomas** : autoriser la lecture des commandes de pommes de terre 2026 pour le bilan. Elles ne sont pas dans « Commandes 2025 » : le scénario Make actif « AGJ | 1 - PDT création de commandes » les écrit dans la base « Commandes clients » (Au Grand Jardin 2025 › Commandes de sacs), que Claude n'a pas ouverte. Dire à quelle période Pierre commande ses semences (date limite du bilan).
 - **Lot 3, nouveautés en vente le 26/10** : « Potiron Bleu de Hongrie » (légume « Courge ») et « Potimarron (orange) » n'ont ni mois ni conseils : ils n'entrent pas au calendrier et leur panneau n'a que photo, prix et vente.
 - **Lot 3, côté Pierre** : écrire « Avis de Pierre », corriger les conseils et les mois ; « Betterave cuite » porte le légume « Betterave » (conseils de la betterave crue) : vider son « Légume » si on préfère ne pas afficher ces conseils sur ce produit.
