@@ -61,15 +61,16 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
     </dl>
   </section>
 
-  <!-- Bande vidéo (Thomas, 28/10/2026) : vue aérienne, Pierre, puis les cultures, en boucle de 11 s, sans son.
+  <!-- Bande vidéo (Thomas, 28/10/2026) : vue aérienne, Pierre, puis les cultures, en boucle de 11 s, sans son,
+       tirée du montage de juin 2020 (Dropbox, 4K) plutôt que de la vidéo trop compressée de l'ancien site.
        L'image fixe (première image de la vidéo) est dessous : elle reste seule sans JavaScript, pour qui refuse
        les animations ou économise ses données. La vidéo se charge à l'approche (src/scripts/video-accueil.ts). -->
   <div class="photo-large" data-parallaxe data-video-accueil>
     <div class="photo-large__media" data-parallaxe-cible>
       <Photo nom="accueil-ferme" alt="Vue aérienne des tunnels de la ferme, au milieu des champs" sizes="100vw" largeurs={[480, 800, 1200, 1600, 2000]} prioritaire />
       <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback>
-        <source data-src="/videos/accueil-2026-10-ordi.mp4" type='video/mp4; codecs="avc1.640028"' media="(min-width: 720px)" />
-        <source data-src="/videos/accueil-2026-10-tel.mp4" type='video/mp4; codecs="avc1.64001E"' />
+        <source data-src="/videos/accueil-2026-10-28-ordi.mp4" type='video/mp4; codecs="avc1.640028"' media="(min-width: 720px)" />
+        <source data-src="/videos/accueil-2026-10-28-tel.mp4" type='video/mp4; codecs="avc1.64001F"' />
       </video>
     </div>
     <button type="button" class="photo-large__pause" data-video-pause data-etat="lecture" hidden aria-label="Mettre la vidéo en pause">

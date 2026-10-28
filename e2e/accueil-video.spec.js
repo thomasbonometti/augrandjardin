@@ -22,7 +22,7 @@ test('vidéo de l’accueil : se charge à l’approche, la bonne taille, en bou
   test.skip(!lisible, 'ce navigateur ne lit pas le H.264 : l’image fixe reste (comportement voulu)');
   await expect.poll(async () => (await etatVideo(page)).lue, { timeout: 15_000 }).toBe(true);
   const taille = info.project.name === 'telephone' ? 'tel' : 'ordi';
-  expect((await etatVideo(page)).src).toMatch(new RegExp(`/videos/accueil-\\d{4}-\\d{2}-${taille}\\.mp4$`));
+  expect((await etatVideo(page)).src).toMatch(new RegExp(`/videos/accueil-[\\d-]+-${taille}\\.mp4$`));
 
   const bouton = page.getByRole('button', { name: 'Mettre la vidéo en pause' });
   await expect(bouton).toBeVisible();
