@@ -49,8 +49,10 @@ export const tousLesPartenaires = [
 ];
 export const tousLesRestaurants = [
   { nom: 'Hôtel Notre-Dame de Bonne Fontaine', court: 'Hôtel Notre-Dame de Bonne Fontaine', ville: 'Danne-et-Quatre-Vents', actif: true },
-  // Ajoutés le 26/10/2026 : orthographe et ville à confirmer par Pierre.
-  { nom: 'Le Greffin', court: 'Le Greffin', ville: null, actif: true },
+  // Le 28/10/2026, Thomas : ce n'est pas « Le Greffin » mais ce restaurant (lien Google Maps :
+  // « Restaurant | LOUDREFING | A La Croix De Lorraine »).
+  { nom: 'À la Croix de Lorraine', court: 'À la Croix de Lorraine', ville: 'Loudrefing', actif: true },
+  // Ajouté le 26/10/2026 : orthographe et ville à confirmer par Pierre.
   { nom: 'Le Bistrot des Oiseaux', court: 'Le Bistrot des Oiseaux', ville: null, actif: true },
   { nom: 'La Licorne Bleue', court: 'La Licorne Bleue', ville: 'Fénétrange', actif: false },
   { nom: 'La Toque Blanche', court: 'La Toque Blanche', ville: 'Bénestroff', actif: false },

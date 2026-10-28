@@ -11,7 +11,7 @@ test('lieux : seuls les lieux actifs sont affichés', () => {
     assert.ok(liste.every((l) => l.actif === true));
   }
   assert.equal(partenaires.length, 0);
-  assert.deepEqual(restaurants.map((r) => r.nom), ['Hôtel Notre-Dame de Bonne Fontaine', 'Le Greffin', 'Le Bistrot des Oiseaux']);
+  assert.deepEqual(restaurants.map((r) => r.nom), ['Hôtel Notre-Dame de Bonne Fontaine', 'À la Croix de Lorraine', 'Le Bistrot des Oiseaux']);
   assert.deepEqual(pointsDeVente.map((r) => r.nom), ['Inventerre du Pré Vert', 'Ma Petite Cuillère']);
 });
 
@@ -24,7 +24,10 @@ test('lieux : rien n’est effacé, chaque lieu a un état', () => {
 });
 
 test('lieux : aucune ville devinée pour les nouveaux lieux', () => {
-  for (const nom of ['Le Greffin', 'Le Bistrot des Oiseaux']) assert.equal(restaurants.find((r) => r.nom === nom).ville, null);
+  assert.equal(restaurants.find((r) => r.nom === 'Le Bistrot des Oiseaux').ville, null);
+  // Ville lue sur la fiche Google Maps envoyée par Thomas le 28/10/2026.
+  assert.equal(restaurants.find((r) => r.nom === 'À la Croix de Lorraine').ville, 'Loudrefing');
+  assert.ok(!tousLesRestaurants.some((r) => r.nom === 'Le Greffin'), 'nom erroné, corrigé par Thomas');
   assert.equal(pointsDeVente.find((r) => r.nom === 'Ma Petite Cuillère').ville, null);
 });
 
