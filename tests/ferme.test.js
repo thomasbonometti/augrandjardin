@@ -24,8 +24,8 @@ test('lieux : rien n’est effacé, chaque lieu a un état', () => {
 });
 
 test('lieux : aucune ville devinée pour les nouveaux lieux', () => {
-  assert.equal(restaurants.find((r) => r.nom === 'Le Bistrot des Oiseaux').ville, null);
-  // Ville lue sur la fiche Google Maps envoyée par Thomas le 28/10/2026.
+  // Villes lues sur les fiches Google Maps envoyées par Thomas le 28/10/2026.
+  assert.equal(restaurants.find((r) => r.nom === 'Le Bistrot des Oiseaux').ville, 'Tarquimpol');
   assert.equal(restaurants.find((r) => r.nom === 'À la Croix de Lorraine').ville, 'Loudrefing');
   assert.ok(!tousLesRestaurants.some((r) => r.nom === 'Le Greffin'), 'nom erroné, corrigé par Thomas');
   assert.equal(pointsDeVente.find((r) => r.nom === 'Ma Petite Cuillère').ville, null);

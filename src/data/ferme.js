@@ -52,8 +52,9 @@ export const tousLesRestaurants = [
   // Le 28/10/2026, Thomas : ce n'est pas « Le Greffin » mais ce restaurant (lien Google Maps :
   // « Restaurant | LOUDREFING | A La Croix De Lorraine »).
   { nom: 'À la Croix de Lorraine', court: 'À la Croix de Lorraine', ville: 'Loudrefing', actif: true },
-  // Ajouté le 26/10/2026 : orthographe et ville à confirmer par Pierre.
-  { nom: 'Le Bistrot des Oiseaux', court: 'Le Bistrot des Oiseaux', ville: null, actif: true },
+  // Ajouté le 26/10/2026. Ville donnée par Thomas le 28/10/2026, avec la fiche Google Maps
+  // (« Bistrot des Oiseaux », 8 rue du Théâtre, 57260 Tarquimpol).
+  { nom: 'Le Bistrot des Oiseaux', court: 'Le Bistrot des Oiseaux', ville: 'Tarquimpol', actif: true },
   { nom: 'La Licorne Bleue', court: 'La Licorne Bleue', ville: 'Fénétrange', actif: false },
   { nom: 'La Toque Blanche', court: 'La Toque Blanche', ville: 'Bénestroff', actif: false },
   { nom: 'Ô Fredelices, pâtissier traiteur', court: 'Ô Fredelices', ville: 'Liocourt', actif: false },
