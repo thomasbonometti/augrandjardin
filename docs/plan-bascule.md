@@ -36,7 +36,7 @@ Le jour J, le site part tel qu'il est sur l'adresse de test, sauf ces trois fonc
 | Fonction | Ce que voit le visiteur | Pour la rouvrir plus tard |
 |---|---|---|
 | **Espace pro** (case « Espace pro ouvert », décochée, jusqu'au printemps 2027) | Page Professionnels : « contactez Pierre » (téléphone, mail) ; `/pro/` renvoie vers elle. La page de Pierre garde sa rubrique « Pros » (choix de Thomas). | Cocher, « Publier », remettre la question fréquente des restaurateurs sur la demande d'accès (voir `docs/passation.md`). |
-| **Commande de pommes de terre en ligne** (case « Commande de pommes de terre en ligne », décochée, jusqu'au passage de l'outil en réel) | Page Pommes de terre : « Commandes par téléphone pour le moment », numéro de Pierre, prix des filets ; pas de formulaire ni d'étapes du parcours en ligne. Accueil : « Par téléphone ». | Passer l'outil en réel (`AGJ_LIVE` = `"1"`, pull request de `brief`), avec les vrais prix, le vrai stock et des dates de retrait ouvertes ; cocher la case ; remettre la réponse en ligne de la question « Comment commander des pommes de terre ? » (texte dans `docs/passation.md`) ; « Publier ». |
+| **Commandes de pommes de terre** (case « Commandes de pommes de terre ouvertes », décochée : Pierre décide de la période) | Pas de page Pommes de terre : ni dans le menu, ni sur l'accueil, ni dans le plan du site ; `/pommes-de-terre/` renvoie vers l'accueil. L'outil refuse les commandes en ligne (pull request n° 14 de `brief`). | Passer l'outil en réel (`AGJ_LIVE` = `"1"`, pull request de `brief`), avec les vrais prix, le vrai stock et des dates de retrait ouvertes ; cocher la case ; « Publier ». À la fin de la période : décocher, « Publier ». |
 | **Inscription à la liste de la semaine** (case « Inscription à la liste ouverte », décochée, tant que l'envoi automatique n'existe pas) | À la place du formulaire (accueil, Produits, Calendrier) : « Pour la recevoir, demandez-la à Pierre à la vente, ou appelez-le », avec son numéro. | Cocher, remettre la réponse de la question « Comment recevoir la liste de la semaine ? » (texte dans `docs/passation.md`), « Publier ». |
 
 Pour essayer une fonction sans l'ouvrir sur le site : une branche poussée sur GitHub donne un aperçu Cloudflare ; y mettre la variable `ESPACE_PRO=ouvert`, `COMMANDE_PDT=ouverte` ou `INSCRIPTION_LISTE=ouverte` dans l'environnement « Preview » (Settings → Variables and Secrets), jamais en « Production ».
@@ -44,7 +44,7 @@ Pour essayer une fonction sans l'ouvrir sur le site : une branche poussée sur G
 ## Avant le jour J
 
 1. **Pierre a relu les textes** (mail « Le nouveau site, à relire ») et ses réponses sont dans le site.
-2. **Les pommes de terre.** La commande en ligne reste de côté (voir plus haut) : l'outil reste en mode test. Mais la page affiche les prix des filets lus dans « Pommes de terre — catalogue » : ils doivent être les vrais (Thomas, avec Pierre). Le scénario Make « AGJ | 1 - PDT création de commandes » sert l'ancien parcours : Thomas l'éteint quand il veut après le passage.
+2. **Les pommes de terre.** Les commandes restent fermées (voir plus haut) : pas de page, l'outil reste en mode test. Le scénario Make « AGJ | 1 - PDT création de commandes » sert l'ancien parcours : Thomas l'éteint quand il veut après le passage.
 3. **Accès à l'hébergement IONOS** (option A) : Thomas vérifie qu'il peut déposer un fichier à la racine de l'espace web de augrandjardin.fr (gestionnaire de fichiers ou FTP).
 4. **Thomas note les enregistrements www actuels** chez IONOS (type et valeur, par exemple A `217.160.0.25`) : ils servent au retour en arrière.
 
@@ -115,7 +115,7 @@ Page Facebook → **Modifier les infos** → site web : `https://www.augrandjard
 - https://www.augrandjardin.fr : les 8 pages, la liste, les questions fréquentes, la carte.
 - https://augrandjardin.fr/la-ferme.html → https://www.augrandjardin.fr/la-ferme/ ; https://augrandjardin.fr → www.
 - https://produits.augrandjardin.fr/?src=qr → https://www.augrandjardin.fr/produits/?src=qr (le QR code de l'affichette).
-- Pommes de terre : « Commandes par téléphone pour le moment » ; liste de la semaine : « demandez-la à Pierre » ; Professionnels : « contactez Pierre ».
+- Pommes de terre : pas de page (`/pommes-de-terre/` → accueil) ; liste de la semaine : « demandez-la à Pierre » ; Professionnels : « contactez Pierre ».
 - « Ma semaine » : un « Publier » met bien le site à jour.
 - agj-site-2026.pages.dev répond avec l'en-tête `X-Robots-Tag: noindex`.
 

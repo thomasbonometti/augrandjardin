@@ -53,7 +53,7 @@ Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare ga
 - `NOTION_TOKEN` : intégration Notion « Site Au Grand Jardin » (lecture + insertion), connectée aux pages « Au Grand Jardin 2025 » et « Site augrandjardin.fr » (Réglages du site, Questions fréquentes et Historique des listes compris). Dans Notion, elle est en fait connectée à toute la page « Au Grand Jardin » (vu le 22/10) : elle voit donc aussi les bases de l'outil de commande, mais le code du site ne les lit ni ne les écrit (il passe par l'API de l'outil).
 - Les accès des pros (e-mail et mot de passe) sont gérés par l'outil de commande depuis le lot 2 : `PRO_PASSWORD` et `PRO_SECRET` ne servent plus et peuvent être supprimés.
 
-Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne sur augrandjardin.fr : autorise l'indexation), `AGJ_URL` (adresse de l'outil, par défaut `https://formulaires.hey-d8b.workers.dev`), `ESPACE_PRO` (`ouvert` ou `ferme` : passe avant la case « Espace pro ouvert » de Réglages du site ; à mettre seulement dans l'environnement « Preview » pour tester l'espace pro sur un aperçu pendant qu'il est en veille), et de même `COMMANDE_PDT` et `INSCRIPTION_LISTE` (`ouverte` ou `fermee` : cases « Commande de pommes de terre en ligne » et « Inscription à la liste ouverte », gardées de côté depuis le 28/10).
+Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne sur augrandjardin.fr : autorise l'indexation), `AGJ_URL` (adresse de l'outil, par défaut `https://formulaires.hey-d8b.workers.dev`), `ESPACE_PRO` (`ouvert` ou `ferme` : passe avant la case « Espace pro ouvert » de Réglages du site ; à mettre seulement dans l'environnement « Preview » pour tester l'espace pro sur un aperçu pendant qu'il est en veille), et de même `COMMANDE_PDT` et `INSCRIPTION_LISTE` (`ouverte` ou `fermee` : cases « Commandes de pommes de terre ouvertes » et « Inscription à la liste ouverte », décochées depuis le 28/10).
 Jamais de secret dans le dépôt : en local, `.dev.vars` (ignoré par git).
 
 ## Travailler en local
@@ -69,14 +69,14 @@ npm run e2e              # tests navigateur, téléphone et ordinateur
 
 Pour tester la commande sans toucher à l'outil en ligne : dans le dépôt `brief`, `AGJ_FAKE=1 npm run dev` (outil simulé sur le port 8787), puis ici un `.dev.vars` avec `AGJ_URL=http://localhost:8787`, et
 `E2E_COMMANDE=1 AGJ_DEV_URL=http://localhost:8787 npm run e2e` (commande de pommes de terre et espace pro, avec un pro créé dans l'outil simulé).
-La commande en ligne et l'inscription à la liste sont de côté (cases décochées) : leurs tests tournent sur une construction ouverte, `COMMANDE_PDT=ouverte INSCRIPTION_LISTE=ouverte npx astro build --outDir dist-ouvert`, servie comme `dist/`, avec `E2E_OUVERT=1` ; sur la construction normale, `e2e/de-cote.spec.js` vérifie les versions « par téléphone » et « demandez-la à Pierre ».
+Les commandes de pommes de terre sont fermées (pas de page) et l'inscription à la liste est de côté (cases décochées) : leurs tests tournent sur une construction ouverte, `COMMANDE_PDT=ouverte INSCRIPTION_LISTE=ouverte npx astro build --outDir dist-ouvert`, servie comme `dist/`, avec `E2E_OUVERT=1` ; sur la construction normale, `e2e/de-cote.spec.js` vérifie l'absence de la page Pommes de terre et le bloc « demandez-la à Pierre ».
 Sur l'adresse de test : `BASE_URL=https://agj-site-2026.pages.dev npm run e2e` (lecture seule ; `E2E_COMMANDE=1` passe une vraie commande « Test »).
 
 ## Bascule (plus tard)
 
 Plan clic par clic : `docs/plan-bascule.md`. En résumé :
 
-1. Pierre a relu les textes. Option A retenue (Thomas, 28/10). Restent de côté : l'espace pro, la commande de pommes de terre en ligne (par téléphone) et l'inscription à la liste (« demandez-la à Pierre ») ; rien à faire le jour J.
+1. Pierre a relu les textes. Option A retenue (Thomas, 28/10). Restent de côté : l'espace pro, les commandes de pommes de terre (pas de page tant que la case est décochée) et l'inscription à la liste (« demandez-la à Pierre ») ; rien à faire le jour J.
 2. Adresse : **www.augrandjardin.fr** (déjà dans le code). Domaine `www.augrandjardin.fr` sur le projet Cloudflare Pages, puis CNAME `www` → `agj-site-2026.pages.dev` chez IONOS ; `SITE_INDEXABLE=oui` ; « Publier ».
 3. augrandjardin.fr (sans www) : `bascule/ionos/.htaccess` déposé sur l'hébergement IONOS (301 vers www, chemin gardé). Le DNS chez Cloudflare (option B du plan) reste possible plus tard.
 4. Les anciennes pages `.html` sont déjà redirigées par `_redirects` (`src/data/redirections.js`).
