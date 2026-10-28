@@ -1,7 +1,7 @@
 # Au Grand Jardin — site 2026
 
 Nouveau site d'augrandjardin.fr, construit d'après les maquettes Figma « Au Grand Jardin | Site 2026 » (frames desktop 1440 px et mobile 390 px).
-La branche `main` sert toujours le site actuel (GitHub Pages) : **ne pas y toucher avant la bascule**. Tout le travail se fait sur `site-2026`.
+La branche `main` sert produits.augrandjardin.fr (la liste de la semaine, GitHub Pages, mise à jour par Make) ; augrandjardin.fr et www sont l'ancien site, hébergé chez IONOS. **Ne toucher ni à `main` ni à IONOS avant le passage.** Tout le travail se fait sur `site-2026`.
 
 - Hébergement : Cloudflare Pages, projet `agj-site-2026` (branche de production `site-2026`), adresse de test `*.pages.dev`.
 - Données : Notion, lu au moment de la construction. Bouton « Publier le site » dans la page Notion **Site augrandjardin.fr** → adresse de reconstruction Cloudflare → site à jour environ une minute après.
@@ -73,8 +73,11 @@ Sur l'adresse de test : `BASE_URL=https://agj-site-2026.pages.dev npm run e2e` (
 
 ## Bascule (plus tard)
 
-1. Pierre valide les textes « bio » et les photos.
-2. Fusionner `site-2026` dans `main`, passer la branche de production Cloudflare sur `main`, ajouter `SITE_INDEXABLE=oui`.
-3. Domaine augrandjardin.fr sur le projet Cloudflare Pages (et retirer `CNAME` / GitHub Pages).
-4. Rediriger `produits.augrandjardin.fr` (lien des SMS et QR code de l'affichette) vers `/produits/` en gardant les paramètres de l'adresse (`?src=qr`).
-5. Éteindre le scénario Make « Au Grand Jardin | Notion -> Github (Optimisé) » (Thomas).
+Plan clic par clic : `docs/plan-bascule.md`. En résumé :
+
+1. Pierre a relu les textes ; la commande de pommes de terre passe en réel le même jour (ou reste fermée jusque-là).
+2. Adresse : **www.augrandjardin.fr** (déjà dans le code). Domaine `www.augrandjardin.fr` sur le projet Cloudflare Pages, puis CNAME `www` → `agj-site-2026.pages.dev` chez IONOS ; `SITE_INDEXABLE=oui` ; « Publier ».
+3. augrandjardin.fr (sans www) : `bascule/ionos/.htaccess` déposé sur l'hébergement IONOS (301 vers www, chemin gardé), ou DNS passé chez Cloudflare (option B du plan).
+4. Les anciennes pages `.html` sont déjà redirigées par `_redirects` (`src/data/redirections.js`).
+5. produits.augrandjardin.fr (lien des SMS, QR code de l'affichette) : la branche `main` reçoit `bascule/produits/` (renvoi vers `/produits/` avec `?src=qr`), après l'arrêt du scénario Make « Au Grand Jardin | Notion -> Github (Optimisé) » (Thomas). La production Cloudflare reste sur `site-2026`.
+6. `AGJ_SITE_URL` = https://www.augrandjardin.fr dans l'outil de commande ; Search Console, fiche Google et page Facebook vers www.

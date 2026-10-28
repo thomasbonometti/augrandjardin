@@ -2,7 +2,8 @@
 import { ferme } from '../data/ferme.js';
 import { heureIso } from './vente.js';
 
-const SITE = 'https://augrandjardin.fr';
+// Même adresse que `site` d'astro.config.mjs (www.augrandjardin.fr, ou la variable SITE_URL).
+const SITE = String(import.meta.env?.SITE || 'https://www.augrandjardin.fr').replace(/\/+$/, '');
 
 export function schemaFerme(creneaux = []) {
   const horaires = creneaux

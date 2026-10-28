@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { anciennesAdresses } from '../src/data/redirections.js';
 
 const PAGES = [
   ['/', /Des légumes bio cueillis à Lostroff/],
@@ -156,3 +157,12 @@ test('référencement : données structurées de la ferme et plan du site', asyn
   expect(await plan.text()).toContain('/pommes-de-terre/');
   expect(await plan.text()).not.toContain('/pro/');
 });
+
+// Anciennes adresses du site d'avant 2026 (pages .html) : redirection définitive vers la nouvelle page.
+for (const [ancienne, nouvelle] of anciennesAdresses) {
+  test(`ancienne adresse ${ancienne} → ${nouvelle}`, async ({ request }) => {
+    const rep = await request.get(`${ancienne}?src=qr`, { maxRedirects: 0 });
+    expect(rep.status()).toBe(301);
+    expect(new URL(rep.headers().location, 'http://x').pathname).toBe(nouvelle);
+  });
+}

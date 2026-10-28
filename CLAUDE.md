@@ -3,14 +3,14 @@
 Nouveau site d'Au Grand Jardin, la ferme maraîchère bio de Pierre Fouquet (43 rue Principale, 57670 Lostroff). Il est construit d'après les maquettes Figma et lit Notion. Il prend des commandes de pommes de terre grâce à l'outil de commande du dépôt `brief`.
 
 - **En ligne en test :** https://agj-site-2026.pages.dev (non indexé).
-- **Branche :** `site-2026`. La branche `main` sert encore l'ancien site augrandjardin.fr (GitHub Pages) et ne doit pas bouger avant la bascule.
+- **Branche :** `site-2026`. La branche `main` sert produits.augrandjardin.fr (la liste de la semaine, GitHub Pages, mise à jour par Make) ; augrandjardin.fr et www sont l'ancien site, hébergé chez IONOS (vérifié le 27/10). Ni `main` ni IONOS ne bougent avant le passage (plan : `docs/plan-bascule.md`).
 - **Interlocuteur :** Thomas Bonometti, designer freelance. Il gère la communication de la ferme et pilote le site. Pierre n'est pas technique : il ne touche qu'à Notion et à sa page de commandes.
 
 Avant de modifier quoi que ce soit, lire :
 - ce fichier ;
 - `docs/passation.md` (décisions, écarts avec la maquette, vérifications, points ouverts) ;
 - `docs/idees.md` (pistes d'évolution déjà proposées) ;
-- `README.md` (fonctionnement technique, secrets, bascule).
+- `README.md` (fonctionnement technique, secrets, bascule) et `docs/plan-bascule.md` (passage sur www.augrandjardin.fr, clic par clic).
 
 ---
 
@@ -94,8 +94,9 @@ Avant de modifier quoi que ce soit, lire :
   - relais vers l'outil (`/api/agj/catalog`, `/api/agj/order`, `/agj/config.json`, `/agj/lib/cart.js`) ;
   - relais de l'espace pro `api/agj/pro/[action].js` (`login`, `logout`, `grille`, `commande`) : seul le cookie `agj_pro` part vers l'outil, et sa réponse `Set-Cookie` revient ; la connexion efface l'ancien cookie du mot de passe partagé ;
   - `api/inscription-sms.js` (numéro et canal WhatsApp ou SMS, `_lib/canal.js`), `api/demande-pro.js` (écriture dans Notion).
-- `astro.config.mjs` : l'intégration « typographie-francaise » pose les espaces insécables sur chaque page construite ; « espace-pro-en-veille » écrit `dist/_redirects` (`/pro/*` → `/professionnels/`) quand l'espace pro est en veille.
-- `public/_headers` : en-têtes de sécurité et de cache.
+- `astro.config.mjs` : adresse du site (`site` : https://www.augrandjardin.fr, ou la variable `SITE_URL`) ; l'intégration « typographie-francaise » pose les espaces insécables sur chaque page construite ; « redirections » écrit `dist/_redirects` : les anciennes adresses `.html` du site d'avant 2026 vers les nouvelles pages (301, liste dans `src/data/redirections.js`), et `/pro/*` → `/professionnels/` quand l'espace pro est en veille.
+- `public/_headers` : en-têtes de sécurité et de cache ; `X-Robots-Tag: noindex` sur `*.pages.dev`, pour que l'adresse de test ne soit jamais indexée, même après le passage.
+- `bascule/` : fichiers prêts pour le jour du passage, hors du site construit : `ionos/.htaccess` (augrandjardin.fr sans www → www, à déposer chez IONOS) et `produits/` (`index.html`, `404.html` : produits.augrandjardin.fr → `/produits/`, pour la branche `main`). Voir `docs/plan-bascule.md`.
 - `tests/` : tests unitaires (`npm test`). `e2e/` : tests navigateur Playwright, sur téléphone (Pixel 7) et ordinateur (1440 × 900).
 
 ---

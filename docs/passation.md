@@ -15,7 +15,8 @@ Autres documents :
 
 | Quoi | Où |
 |---|---|
-| Code | Dépôt `thomasbonometti/augrandjardin`, **branche `site-2026`**. Ne pas toucher à `main` avant la bascule. |
+| Code | Dépôt `thomasbonometti/augrandjardin`, **branche `site-2026`**. Ne pas toucher à `main` avant la bascule : elle sert produits.augrandjardin.fr (liste de la semaine, GitHub Pages, Make). |
+| Ancien site | augrandjardin.fr et www, hébergement IONOS (`217.160.0.25`, vérifié le 27/10), DNS et mail chez IONOS. Passage : `docs/plan-bascule.md`. |
 | Hébergement | Cloudflare Pages, projet `agj-site-2026`. Il est relié à la branche `site-2026` : un push reconstruit le site. |
 | Adresse de test | https://agj-site-2026.pages.dev (`noindex`, et `robots.txt` interdit tout tant que `SITE_INDEXABLE` ne vaut pas `oui`) |
 | Maquettes | Figma « Au Grand Jardin \| Site 2026 » (`zrlhOtAHZaw02nvLTnaswz`). Bureau : `13:2` Accueil, `14:2` Produits, `15:2` La ferme (Sol Vivant `15:116`), `16:2` Pommes de terre, `17:2` Professionnels, `18:2` Espace pro, `19:2` Horaires & contact. Téléphone : `38:2`, menu `37:2`, `39:2` à `44:2`, dans le même ordre. Lot 2 : grille pro `65:50` (bureau), `68:286` et `68:1046` (téléphone) ; espace de Pierre sur la page « 🛠 Espace de Pierre (lot 2) ». |
@@ -94,6 +95,9 @@ Autres documents :
 
 - **Noms des bases de la commande de pommes de terre (27/10, demande de Thomas)** : pour ne plus confondre « Produits AGJ » et « Produits de la ferme », les quatre bases de l'outil sous « Commandes en ligne » s'appellent « Pommes de terre — catalogue » (avant « Produits AGJ »), « Pommes de terre — dates de retrait », « Pommes de terre — commandes », « Pommes de terre — clients ». Titres seulement (renommés par Claude avec l'accord de Thomas) : l'outil et Make les trouvent par leur identifiant. Les textes de l'outil qui les citent : pull request n° 12 de `brief`. Les sections plus haut et plus bas gardent parfois les anciens noms (historique).
 - **« Ma semaine » en réel (27/10)** : pull requests n° 10 et 11 de `brief`, configuration Cloudflare vérifiée par Claude ; premier vrai « Publier » fait par Thomas le 27/10 (aubergines retirées) : Notion et site à jour.
+
+- **Préparation du passage (28/10, demande de Thomas)** : adresse définitive **www.augrandjardin.fr** dans le code (`site` d'`astro.config.mjs`, `src/lib/seo.js`) ; les 7 anciennes pages `.html` redirigées en 301 (`src/data/redirections.js`, intégration « redirections », paramètres gardés, vérifié en local) ; `X-Robots-Tag: noindex` sur `*.pages.dev` (`public/_headers`) ; fichiers du jour J dans `bascule/` ; plan clic par clic `docs/plan-bascule.md`. La doc disait à tort que `main` servait augrandjardin.fr : elle sert produits.augrandjardin.fr, l'ancien site est chez IONOS.
+- **Potiron Bleu de Hongrie et potimarron (28/10)** : « Mois de récolte » (octobre à décembre), « Cuisson » et « Conservation » écrits par Claude dans « Produits de la ferme » à la demande de Thomas (premier jet, à corriger par Pierre). Le potiron porte les conseils du légume « Courge » (toutes les courges) ; « Avis de Pierre » reste vide.
 
 ## 3. Écarts avec la maquette (volontaires)
 
@@ -191,10 +195,5 @@ Autres documents :
 - **Idées d'évolution** : trier les idées 31 à 60 avec Thomas (`docs/idees.md`), puis les ajouter à la note Notion.
 - **Horaires** : le Planning ne coche que le samedi 10h – 12h30 ; l'ancien site affichait aussi le mercredi.
 - **Photos** : quelques produits sans photo dans Notion affichent une initiale.
-- **Bascule** (voir README) :
-  - fusionner `site-2026` dans `main` et passer la production Cloudflare sur `main` ;
-  - `SITE_INDEXABLE=oui` ;
-  - domaine augrandjardin.fr sur le projet Pages ;
-  - rediriger `produits.augrandjardin.fr` (lien des SMS et QR code de l'affichette) vers `/produits/`, en gardant les paramètres de l'adresse (`?src=qr`) ;
-  - éteindre le scénario Make « Notion -> Github » (Thomas).
+- **Bascule** : plan clic par clic dans `docs/plan-bascule.md` (28/10). Adresse www.augrandjardin.fr (déjà dans le code) ; anciennes pages `.html` redirigées (`_redirects`) ; augrandjardin.fr sans www renvoyé vers www par `bascule/ionos/.htaccess` (option A, recommandée) ou DNS chez Cloudflare (option B) : **choix de Thomas** ; produits.augrandjardin.fr renvoyé vers `/produits/` par `bascule/produits/` sur la branche `main` (après l'arrêt du scénario Make « Notion -> Github » par Thomas) ; la commande de pommes de terre passe en réel le même jour ou reste fermée ; `AGJ_SITE_URL` de l'outil vers www.
 - **Plus tard** : habiller les pages de l'outil (`/agj/retrait/`, bon de commande) à la charte du site, en CSS seul dans `brief`.

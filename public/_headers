@@ -16,3 +16,11 @@
 
 /produits-img/*
   Cache-Control: public, max-age=86400
+
+# Adresses de test (*.pages.dev, aperçus compris) : jamais indexées, même après la mise en ligne
+# sur www.augrandjardin.fr (sinon Google verrait deux fois le même site).
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

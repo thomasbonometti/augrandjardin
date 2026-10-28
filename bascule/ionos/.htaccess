@@ -1,0 +1,18 @@
+# augrandjardin.fr (sans www), hébergement IONOS → nouveau site sur www.augrandjardin.fr (Cloudflare Pages).
+# À déposer à la racine de l'espace web IONOS le jour du passage (plan : site-web/plan-bascule.md).
+# Redirections définitives (301) qui gardent les paramètres de l'adresse (?src=qr…).
+# Même correspondance que src/data/redirections.js.
+RewriteEngine On
+
+# Tant que www.augrandjardin.fr arrive encore ici (propagation DNS), ne pas le renvoyer vers lui-même.
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ - [L]
+
+RewriteRule ^produits\.html$ https://www.augrandjardin.fr/produits/ [R=301,L]
+RewriteRule ^(la-ferme|partenaires)\.html$ https://www.augrandjardin.fr/la-ferme/ [R=301,L]
+RewriteRule ^actualites\.html$ https://www.augrandjardin.fr/ [R=301,L]
+RewriteRule ^contact-horaires\.html$ https://www.augrandjardin.fr/horaires-contact/ [R=301,L]
+RewriteRule ^mentions-legales\.html$ https://www.augrandjardin.fr/mentions-legales/ [R=301,L]
+RewriteRule ^checkout\.html$ https://www.augrandjardin.fr/produits/ [R=301,L]
+RewriteRule ^index\.html$ https://www.augrandjardin.fr/ [R=301,L]
+RewriteRule ^(.*)$ https://www.augrandjardin.fr/$1 [R=301,L]
