@@ -78,7 +78,7 @@ Dans cet ordre : un CNAME créé avant cette étape donne une erreur 522.
 ### 3. IONOS : pointer www vers Cloudflare
 
 1. https://my.ionos.fr → **Domaines & SSL** → `augrandjardin.fr` → onglet **DNS**.
-2. Repérer les enregistrements dont le nom d'hôte est `www` (A, et AAAA s'il y en a un). Les noter, puis les supprimer.
+2. Repérer les enregistrements dont le nom d'hôte est `www` : A `217.160.0.25` **et** AAAA `2001:8d8:100f:f000::214` (relevés le 28/10). Vérifier qu'ils sont notés, puis les supprimer tous les deux.
 3. **Ajouter un enregistrement** → **CNAME** → nom d'hôte `www` → pointe vers `agj-site-2026.pages.dev` → TTL le plus court proposé → **Enregistrer**.
 4. Ne toucher à rien d'autre : ni `@` (augrandjardin.fr), ni `produits`, ni MX, TXT, `_dmarc`, `autodiscover`.
 
@@ -92,7 +92,7 @@ De quelques minutes à quelques heures. Le certificat HTTPS est automatique. On 
 
 1. Récupérer le fichier `bascule/ionos/.htaccess` (Claude l'envoie au besoin).
 2. IONOS → **Hébergement** → gestionnaire de fichiers (ou FTP) de l'espace web de augrandjardin.fr.
-3. Déposer `.htaccess` à la racine, à côté de l'`index.html` de l'ancien site. S'il existe déjà un `.htaccess`, le garder de côté et prévenir Claude.
+3. Déposer `.htaccess` dans le dossier vers lequel pointe augrandjardin.fr (noté avant le jour J, point 3), à côté de l'`index.html` de l'ancien site. S'il existe déjà un `.htaccess`, le garder de côté et prévenir Claude.
 4. Les fichiers de l'ancien site peuvent rester : ils ne sont plus servis.
 
 Le fichier contient une protection : tant que www arrive encore chez IONOS (propagation du DNS), il ne le renvoie pas vers lui-même.
@@ -140,7 +140,7 @@ Page Facebook → **Modifier les infos** → site web : `https://www.augrandjard
 
 ## Retour en arrière
 
-- www : chez IONOS, supprimer le CNAME `www` et remettre les enregistrements notés avant (A `217.160.0.25`…), retirer `.htaccess` de l'hébergement.
+- www : chez IONOS, supprimer le CNAME `www` et remettre les enregistrements notés avant (A `217.160.0.25` et AAAA `2001:8d8:100f:f000::214`), retirer `.htaccess` de l'hébergement.
 - produits : revenir au commit précédent de `main` et rallumer le scénario Make.
 - `SITE_INDEXABLE` : le supprimer dans Cloudflare, puis « Publier ».
 
