@@ -44,10 +44,20 @@ Pour essayer une fonction sans l'ouvrir sur le site : une branche poussée sur G
 
 ## Avant le jour J
 
-1. **Pierre a relu les textes** (mail « Le nouveau site, à relire ») et ses réponses sont dans le site.
+1. **Pierre donne son accord** (mail raccourci le 28/10 : « Le nouveau site : on le met en ligne ? »). Ses deux questions (ville de Ma Petite Cuillère, moyens de paiement à la vente) ne bloquent pas : le site tient sans.
 2. **Les pommes de terre.** Les commandes restent fermées (voir plus haut) : pas de page, l'outil reste en mode test. Le scénario Make « AGJ | 1 - PDT création de commandes » sert l'ancien parcours : Thomas l'éteint quand il veut après le passage.
-3. **Accès à l'hébergement IONOS** (option A) : Thomas vérifie qu'il peut déposer un fichier à la racine de l'espace web de augrandjardin.fr (gestionnaire de fichiers ou FTP).
-4. **Thomas note les enregistrements www actuels** chez IONOS (type et valeur, par exemple A `217.160.0.25`) : ils servent au retour en arrière.
+3. **Accès à l'hébergement IONOS** (option A), en regardant seulement :
+   - Thomas se connecte au compte IONOS de la ferme (https://my.ionos.fr). Si la double authentification arrive sur le téléphone de Pierre, prévoir le jour J avec lui.
+   - **Domaines & SSL** → `augrandjardin.fr` : noter le dossier de l'espace web vers lequel pointe le domaine (« Utilisation du domaine » ou « Destination »). C'est là, pas forcément à la racine de l'espace web, que `.htaccess` ira.
+   - **Hébergement** → gestionnaire de fichiers (ou SFTP) : ouvrir ce dossier, vérifier qu'on y voit l'`index.html` de l'ancien site, et s'il y a déjà un `.htaccess` (le signaler à Claude).
+   - Ne rien déposer avant le jour J : l'ancien site n'a pas les nouvelles adresses, la redirection donnerait des pages introuvables.
+4. **Enregistrements actuels, pour le retour en arrière** (relevés par Claude le 28/10 dans le DNS public, tous à 1 h de TTL : inutile de le baisser avant) :
+   - `@` et `www` : A `217.160.0.25` et AAAA `2001:8d8:100f:f000::214`. Le jour J, sur `www`, supprimer **les deux** : un AAAA oublié envoie les visiteurs en IPv6 vers l'ancien site.
+   - `produits` : CNAME `thomasbonometti.github.io`.
+   - Mail : MX `mx00.ionos.fr` et `mx01.ionos.fr` (priorité 10), TXT `v=spf1 include:_spf-eu.ionos.com ~all`, `_dmarc` : CNAME `dmarc.ionos.fr`, `autodiscover` : CNAME `adsredir.ionos.info`.
+   - Thomas fait en plus une capture de la zone DNS dans IONOS (**Domaines & SSL** → `augrandjardin.fr` → **DNS**) : elle peut contenir des enregistrements que le DNS public ne montre pas.
+5. **Certificat de augrandjardin.fr** : **Domaines & SSL** → **Certificats SSL** : un certificat actif doit couvrir `augrandjardin.fr` (sans www), sinon la redirection vers www affiche une alerte en https. Claude ne peut pas le vérifier de son côté (son accès au web passe par un relais).
+6. **Facultatif, dès maintenant** : Search Console (https://search.google.com/search-console), propriété « Domaine » `augrandjardin.fr`, vérifiée par un enregistrement TXT ajouté chez IONOS (sans effet sur le site ni sur le mail). S'il existe déjà une propriété pour l'ancien site, la garder. Le jour J, il ne restera que le plan du site à donner (étape 9).
 
 ## Jour J, option A (environ une heure, plus l'attente du DNS)
 
