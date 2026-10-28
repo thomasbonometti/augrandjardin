@@ -26,7 +26,8 @@ test('lieux : aucune ville devinée', () => {
   assert.equal(restaurants.find((r) => r.nom === 'Le Bistrot des Oiseaux').ville, 'Tarquimpol');
   assert.equal(restaurants.find((r) => r.nom === 'À la Croix de Lorraine').ville, 'Loudrefing');
   assert.ok(!tous.restaurants.some((r) => r.nom === 'Le Greffin'), 'nom erroné, corrigé par Thomas');
-  assert.equal(pointsDeVente.find((r) => r.nom === 'Ma Petite Cuillère').ville, null);
+  // Donnée par Thomas le 28/10/2026 (mise dans « Lieux » par lui).
+  assert.equal(pointsDeVente.find((r) => r.nom === 'Ma Petite Cuillère').ville, 'Dieuze');
 });
 
 test('lieux : tri, nom court, champs vides et lignes incomplètes', () => {

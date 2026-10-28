@@ -44,19 +44,20 @@ Pour essayer une fonction sans l'ouvrir sur le site : une branche poussée sur G
 
 ## Avant le jour J
 
-1. **Pierre donne son accord** (mail raccourci le 28/10 : « Le nouveau site : on le met en ligne ? »). Ses deux questions (ville de Ma Petite Cuillère, moyens de paiement à la vente) ne bloquent pas : le site tient sans.
+1. **Pierre donne son accord** (mail « Le nouveau site : on le met en ligne ? », envoyé par Thomas le 28/10 à 17 h 22 ; il propose aussi un appel le 29 ou le 30/10). Ville de Ma Petite Cuillère (Dieuze) et moyens de paiement (espèces, chèque, carte bancaire) : réglés par Thomas le 28/10.
 2. **Les pommes de terre.** Les commandes restent fermées (voir plus haut) : pas de page, l'outil reste en mode test. Le scénario Make « AGJ | 1 - PDT création de commandes » sert l'ancien parcours : Thomas l'éteint quand il veut après le passage.
-3. **Accès à l'hébergement IONOS** (option A), en regardant seulement :
-   - Thomas se connecte au compte IONOS de la ferme (https://my.ionos.fr). Si la double authentification arrive sur le téléphone de Pierre, prévoir le jour J avec lui.
-   - **Domaines & SSL** → `augrandjardin.fr` : noter le dossier de l'espace web vers lequel pointe le domaine (« Utilisation du domaine » ou « Destination »). C'est là, pas forcément à la racine de l'espace web, que `.htaccess` ira.
-   - **Hébergement** → gestionnaire de fichiers (ou SFTP) : ouvrir ce dossier, vérifier qu'on y voit l'`index.html` de l'ancien site, et s'il y a déjà un `.htaccess` (le signaler à Claude).
+3. **Hébergement IONOS (option A) : vérifié par Thomas le 28/10**, sans rien changer :
+   - **Domaines & SSL** → `augrandjardin.fr` → **Détails** : type d'utilisation « Espace Web », cible **`/pierre/2024`**. C'est dans ce dossier que `.htaccess` ira.
+   - Gestionnaire de fichiers : l'`index.html` de l'ancien site est bien dans ce dossier, **pas de `.htaccess`**.
+   - Le sous-domaine `2024.augrandjardin.fr` (ancien site aussi, même adresse) sert le même dossier : le jour J, le `.htaccess` le renverra lui aussi vers www. Rien à faire de plus.
    - Ne rien déposer avant le jour J : l'ancien site n'a pas les nouvelles adresses, la redirection donnerait des pages introuvables.
-4. **Enregistrements actuels, pour le retour en arrière** (relevés par Claude le 28/10 dans le DNS public, tous à 1 h de TTL : inutile de le baisser avant) :
-   - `@` et `www` : A `217.160.0.25` et AAAA `2001:8d8:100f:f000::214`. Le jour J, sur `www`, supprimer **les deux** : un AAAA oublié envoie les visiteurs en IPv6 vers l'ancien site.
+4. **Zone DNS au 28/10** (captures de Thomas, et DNS public : tout à 1 h de TTL, inutile de le baisser avant). Sert au retour en arrière, et à l'option B s'il faut un jour tout recopier chez Cloudflare :
+   - `@` : A `217.160.0.25` (relié à l'hébergement, pas de corbeille), AAAA `2001:8d8:100f:f000::214`, TXT `_dep_ws_mutex` (interne à IONOS : ne pas toucher).
+   - `www` : A `217.160.0.25` et AAAA `2001:8d8:100f:f000::214` (corbeille disponible sur les deux). Le jour J, supprimer **les deux** : un AAAA oublié envoie les visiteurs en IPv6 vers l'ancien site.
+   - Mail : MX `mx00.ionos.fr` et `mx01.ionos.fr`, TXT `v=spf1 include:_spf-eu.ionos.com ~all`, `_dmarc` : CNAME `dmarc.ionos.fr`, DKIM : CNAME `s1-ionos._domainkey` → `s1.dkim.ionos.com`, `s2-ionos._domainkey` → `s2.dkim.ionos.com`, `s42582890._domainkey` → `s42582890.dkim.ionos.com`, `autodiscover` : CNAME `adsredir.ionos.info`.
    - `produits` : CNAME `thomasbonometti.github.io`.
-   - Mail : MX `mx00.ionos.fr` et `mx01.ionos.fr` (priorité 10), TXT `v=spf1 include:_spf-eu.ionos.com ~all`, `_dmarc` : CNAME `dmarc.ionos.fr`, `autodiscover` : CNAME `adsredir.ionos.info`.
-   - Thomas fait en plus une capture de la zone DNS dans IONOS (**Domaines & SSL** → `augrandjardin.fr` → **DNS**) : elle peut contenir des enregistrements que le DNS public ne montre pas.
-5. **Certificat de augrandjardin.fr** : **Domaines & SSL** → **Certificats SSL** : un certificat actif doit couvrir `augrandjardin.fr` (sans www), sinon la redirection vers www affiche une alerte en https. Claude ne peut pas le vérifier de son côté (son accès au web passe par un relais).
+   - `2024` : le même jeu (A, AAAA, MX, SPF, DKIM, autodiscover, `www.2024`) : ne pas toucher.
+5. **Certificat de augrandjardin.fr : valide** (Thomas dans Certificats SSL, et Claude dans Chrome le 28/10 : https://augrandjardin.fr s'ouvre sans alerte). La ligne « Certificat SSL » des détails du domaine affiche « Attribuer » : ne rien y changer.
 6. **Facultatif, dès maintenant** : Search Console (https://search.google.com/search-console), propriété « Domaine » `augrandjardin.fr`, vérifiée par un enregistrement TXT ajouté chez IONOS (sans effet sur le site ni sur le mail). S'il existe déjà une propriété pour l'ancien site, la garder. Le jour J, il ne restera que le plan du site à donner (étape 9).
 
 ## Jour J, option A (environ une heure, plus l'attente du DNS)
@@ -92,7 +93,7 @@ De quelques minutes à quelques heures. Le certificat HTTPS est automatique. On 
 
 1. Récupérer le fichier `bascule/ionos/.htaccess` (Claude l'envoie au besoin).
 2. IONOS → **Hébergement** → gestionnaire de fichiers (ou FTP) de l'espace web de augrandjardin.fr.
-3. Déposer `.htaccess` dans le dossier vers lequel pointe augrandjardin.fr (noté avant le jour J, point 3), à côté de l'`index.html` de l'ancien site. S'il existe déjà un `.htaccess`, le garder de côté et prévenir Claude.
+3. Déposer `.htaccess` dans le dossier **`/pierre/2024`** (la cible de augrandjardin.fr, vue le 28/10), à côté de l'`index.html` de l'ancien site. Il n'y en avait pas le 28/10 ; s'il y en a un entre-temps, le garder de côté et prévenir Claude.
 4. Les fichiers de l'ancien site peuvent rester : ils ne sont plus servis.
 
 Le fichier contient une protection : tant que www arrive encore chez IONOS (propagation du DNS), il ne le renvoie pas vers lui-même.
@@ -132,7 +133,7 @@ Page Facebook → **Modifier les infos** → site web : `https://www.augrandjard
 
 ## Jour J, option B (DNS chez Cloudflare) : ce qui change
 
-1. Cloudflare → **Add a domain** → `augrandjardin.fr` → offre **Free**. Cloudflare importe les enregistrements existants : comparer avec la liste IONOS, en particulier les MX, le TXT SPF, `_dmarc`, `autodiscover`, et `produits` (CNAME vers `thomasbonometti.github.io`, en « DNS only »).
+1. Cloudflare → **Add a domain** → `augrandjardin.fr` → offre **Free**. Cloudflare importe les enregistrements existants : comparer avec la liste IONOS, en particulier les MX, le TXT SPF, `_dmarc`, les trois DKIM (`…._domainkey`), `autodiscover`, le sous-domaine `2024`, et `produits` (CNAME vers `thomasbonometti.github.io`, en « DNS only »).
 2. Chez IONOS : **Domaines & SSL** → `augrandjardin.fr` → **Serveurs de noms** → serveurs personnalisés → ceux donnés par Cloudflare. Attendre que Cloudflare affiche le domaine « Active ».
 3. Pages → **Custom domains** : `www.augrandjardin.fr` et `augrandjardin.fr`. Puis une règle de redirection (Rules → Redirect Rules) de augrandjardin.fr vers www, qui garde le chemin et les paramètres.
 4. Pas de `.htaccess`. Ensuite, étapes 2 et 6 à 11 comme pour A.
