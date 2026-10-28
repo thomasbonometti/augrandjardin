@@ -1,6 +1,6 @@
 # Passage du nouveau site sur www.augrandjardin.fr — plan clic par clic
 
-Préparé le 28/10/2026 par Claude, à la demande de Thomas. Copie dans le projet Claude « Au Grand Jardin » : `site-web/plan-bascule.md`. Fichiers prêts dans `bascule/` (dépôt `augrandjardin`, branche `site-2026`).
+Préparé le 28/10/2026 par Claude, à la demande de Thomas. **Option A retenue par Thomas le 28/10** (« on passe sur ta recommandation »). Copie dans le projet Claude « Au Grand Jardin » : `site-web/plan-bascule.md`. Fichiers prêts dans `bascule/` (dépôt `augrandjardin`, branche `site-2026`).
 
 ## Ce qui sert quoi aujourd'hui (vérifié le 27/10)
 
@@ -16,26 +16,36 @@ Préparé le 28/10/2026 par Claude, à la demande de Thomas. Copie dans le proje
 - Le code est déjà réglé sur `https://www.augrandjardin.fr` : adresses canoniques, plan du site, données structurées (fiche Google). La variable Cloudflare `SITE_URL` la remplace si besoin.
 - Les anciennes pages `.html` sont redirigées en 301 vers les nouvelles (`src/data/redirections.js`, fichier `_redirects` écrit à la construction). Les adresses de test `*.pages.dev` restent non indexées après le passage (en-tête `X-Robots-Tag: noindex` dans `public/_headers`).
 
-## Deux façons de faire pour augrandjardin.fr (sans www) : à choisir par Thomas
+## augrandjardin.fr (sans www) : option A retenue (Thomas, 28/10)
 
-**A. Recommandé : garder DNS, mail et hébergement chez IONOS.**
+**A. Retenue : garder DNS, mail et hébergement chez IONOS.**
 - www pointe vers Cloudflare (CNAME). augrandjardin.fr reste sur l'hébergement IONOS, qui renvoie vers www grâce au fichier `bascule/ionos/.htaccess` : redirection définitive (301), chemin et paramètres gardés, anciennes pages vers les nouvelles.
 - Le mail n'est pas touché.
 - Condition : l'ancien site est sur un hébergement IONOS où l'on peut déposer un fichier (gestionnaire de fichiers ou FTP). À vérifier par Thomas : IONOS → Hébergement. L'abonnement d'hébergement est à garder.
 - À éviter : la « redirection de domaine » proposée par IONOS. Des sources tierces la disent temporaire (302), sans garantie de garder le chemin, et sans certificat SSL inclus. Seulement s'il n'y a pas d'hébergement.
 
-**B. Passer le DNS chez Cloudflare (gratuit).**
+**B. Passer le DNS chez Cloudflare (gratuit) : pas pour le passage, éventuellement plus tard.**
 - Tout est au même endroit, augrandjardin.fr est servi directement, les redirections se font dans Cloudflare.
 - Mais il faut recopier à l'identique les enregistrements du mail (MX, SPF, DMARC, autodiscover), puis plus tard ceux de Brevo. Une erreur coupe pierre@augrandjardin.fr et les mails de l'outil de commande.
 - Faisable plus tard, à tête reposée, même si on part sur A.
 
+## Ce qui reste de côté au passage (décision de Thomas du 28/10)
+
+Le jour J, le site part tel qu'il est sur l'adresse de test, sauf ces trois fonctions, qui attendent. Chacune a sa case dans la base Notion « Réglages du site » (page « Site augrandjardin.fr ») ; rien n'est à faire le jour J.
+
+| Fonction | Ce que voit le visiteur | Pour la rouvrir plus tard |
+|---|---|---|
+| **Espace pro** (case « Espace pro ouvert », décochée, jusqu'au printemps 2027) | Page Professionnels : « contactez Pierre » (téléphone, mail) ; `/pro/` renvoie vers elle. La page de Pierre garde sa rubrique « Pros » (choix de Thomas). | Cocher, « Publier », remettre la question fréquente des restaurateurs sur la demande d'accès (voir `docs/passation.md`). |
+| **Commande de pommes de terre en ligne** (case « Commande de pommes de terre en ligne », décochée, jusqu'au passage de l'outil en réel) | Page Pommes de terre : « Commandes par téléphone pour le moment », numéro de Pierre, prix des filets ; pas de formulaire ni d'étapes du parcours en ligne. Accueil : « Par téléphone ». | Passer l'outil en réel (`AGJ_LIVE` = `"1"`, pull request de `brief`), avec les vrais prix, le vrai stock et des dates de retrait ouvertes ; cocher la case ; remettre la réponse en ligne de la question « Comment commander des pommes de terre ? » (texte dans `docs/passation.md`) ; « Publier ». |
+| **Inscription à la liste de la semaine** (case « Inscription à la liste ouverte », décochée, tant que l'envoi automatique n'existe pas) | À la place du formulaire (accueil, Produits, Calendrier) : « Pour la recevoir, demandez-la à Pierre à la vente, ou appelez-le », avec son numéro. | Cocher, remettre la réponse de la question « Comment recevoir la liste de la semaine ? » (texte dans `docs/passation.md`), « Publier ». |
+
+Pour essayer une fonction sans l'ouvrir sur le site : une branche poussée sur GitHub donne un aperçu Cloudflare ; y mettre la variable `ESPACE_PRO=ouvert`, `COMMANDE_PDT=ouverte` ou `INSCRIPTION_LISTE=ouverte` dans l'environnement « Preview » (Settings → Variables and Secrets), jamais en « Production ».
+
 ## Avant le jour J
 
 1. **Pierre a relu les textes** (mail « Le nouveau site, à relire ») et ses réponses sont dans le site.
-2. **La commande de pommes de terre.** Sur le nouveau site, elle passe par l'outil de commande, qui est en mode test : les commandes y sont cochées « Test » et les mails partent seulement à hey@thomasbonometti.fr. Le jour J, l'un ou l'autre :
-   - passer l'outil en réel (`AGJ_LIVE` = `"1"`, pull request de `brief`), avec les vrais prix, le vrai stock et des dates de retrait ouvertes dans « Pommes de terre — catalogue » et « Pommes de terre — dates de retrait », et après avoir éteint l'ancien parcours (scénario Make « AGJ | 1 - PDT création de commandes », par Thomas) ;
-   - ou fermer la commande en ligne (décocher « En vente » dans « Pommes de terre — catalogue ») jusqu'au passage en réel.
-3. **Thomas choisit A ou B.** Pour A, il vérifie qu'il a accès aux fichiers de l'hébergement IONOS.
+2. **Les pommes de terre.** La commande en ligne reste de côté (voir plus haut) : l'outil reste en mode test. Mais la page affiche les prix des filets lus dans « Pommes de terre — catalogue » : ils doivent être les vrais (Thomas, avec Pierre). Le scénario Make « AGJ | 1 - PDT création de commandes » sert l'ancien parcours : Thomas l'éteint quand il veut après le passage.
+3. **Accès à l'hébergement IONOS** (option A) : Thomas vérifie qu'il peut déposer un fichier à la racine de l'espace web de augrandjardin.fr (gestionnaire de fichiers ou FTP).
 4. **Thomas note les enregistrements www actuels** chez IONOS (type et valeur, par exemple A `217.160.0.25`) : ils servent au retour en arrière.
 
 ## Jour J, option A (environ une heure, plus l'attente du DNS)
@@ -105,7 +115,7 @@ Page Facebook → **Modifier les infos** → site web : `https://www.augrandjard
 - https://www.augrandjardin.fr : les 8 pages, la liste, les questions fréquentes, la carte.
 - https://augrandjardin.fr/la-ferme.html → https://www.augrandjardin.fr/la-ferme/ ; https://augrandjardin.fr → www.
 - https://produits.augrandjardin.fr/?src=qr → https://www.augrandjardin.fr/produits/?src=qr (le QR code de l'affichette).
-- Commande de pommes de terre (en réel ou fermée, selon le point 2 de « Avant le jour J »), inscription à la liste.
+- Pommes de terre : « Commandes par téléphone pour le moment » ; liste de la semaine : « demandez-la à Pierre » ; Professionnels : « contactez Pierre ».
 - « Ma semaine » : un « Publier » met bien le site à jour.
 - agj-site-2026.pages.dev répond avec l'en-tête `X-Robots-Tag: noindex`.
 
@@ -127,3 +137,4 @@ Page Facebook → **Modifier les infos** → site web : `https://www.augrandjard
 
 - Mettre à jour `CLAUDE.md`, `README.md`, `docs/passation.md` et les documents du projet : adresse en ligne, `main` = redirection de produits.augrandjardin.fr.
 - Plus tard, si Thomas le veut : passer le DNS chez Cloudflare (option B), restreindre l'accès Notion de l'intégration du site.
+- Rouvrir les fonctions de côté le moment venu (tableau plus haut).
