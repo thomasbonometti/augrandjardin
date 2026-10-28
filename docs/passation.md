@@ -1,8 +1,8 @@
 # Site Au Grand Jardin 2026 — passation
 
-À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 26 octobre 2026 au soir : lots 1 et 2 du plan d'évolutions livrés ; lot 3 en ligne sur l'adresse de test (panneau produit, calendrier de saison), bilan B2 en cours ; **retours de Pierre de la revue du 26/10 appliqués et en ligne** (textes, lieux, liste de la semaine, marchés masqués, espace pro en veille). Le lien de test part chez Pierre le 27 ou le 28/10 pour relecture.
+À lire en premier avant de reprendre le nouveau site augrandjardin.fr. État au 28 octobre 2026 (17 h 40) : lots 1 à 3 du plan d'évolutions en ligne sur l'adresse de test, lot 4 en cours (« Ma semaine » en réel) ; retours de Pierre de la revue du 26/10 appliqués ; **passage sur www.augrandjardin.fr préparé** (option A, hébergement IONOS vérifié par Thomas le 28/10, plan : `docs/plan-bascule.md`) ; **lien envoyé à Pierre par Thomas le 28/10 à 17 h 22 : le passage attend son accord**.
 
-Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. Il suit les maquettes Figma (bureau et téléphone) et lit Notion. On peut y commander des pommes de terre, et les pros commandent depuis leur espace (lot 2), en mode test. Le site actuel (branche `main`, GitHub Pages) n'a pas bougé.
+Le site est en ligne sur l'adresse de test **https://agj-site-2026.pages.dev**. Il suit les maquettes Figma (bureau et téléphone) et lit Notion. La commande de pommes de terre (période choisie par Pierre) et l'espace pro (en veille jusqu'au printemps 2027) sont de côté, chacun avec sa case dans « Réglages du site » ; l'outil de commande reste en mode test. L'ancien site (augrandjardin.fr et www, chez IONOS) et produits.augrandjardin.fr (branche `main`, GitHub Pages) n'ont pas bougé.
 
 Autres documents :
 - `CLAUDE.md` à la racine : règles, emplacements, plan du code, tâches courantes et méthode de vérification. C'est le mode d'emploi pour toute session qui modifie le site.
