@@ -4,6 +4,9 @@ import { readFileSync } from 'node:fs';
 
 const faq = JSON.parse(readFileSync(new URL('../data/faq.json', import.meta.url), 'utf8'));
 
+// Page Pommes de terre : seulement pendant la période de commande (case « Commandes de pommes de terre
+// ouvertes ») ; testée sur une construction ouverte (COMMANDE_PDT=ouverte, E2E_OUVERT=1).
+const PDT = !!process.env.E2E_OUVERT;
 const PAGES = [
   ['/', 'Accueil'],
   ['/produits/', 'Produits'],
@@ -11,7 +14,7 @@ const PAGES = [
   ['/professionnels/', 'Professionnels'],
   ['/horaires-contact/', 'Horaires & contact'],
   ['/la-ferme/', 'La ferme'],
-];
+].filter(([chemin]) => PDT || chemin !== '/pommes-de-terre/');
 
 for (const [chemin, nom] of PAGES) {
   const attendues = faq.filter((q) => q.pages.includes(nom));

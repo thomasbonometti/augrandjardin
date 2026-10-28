@@ -13,13 +13,15 @@ export const anciennesAdresses = [
   ['/checkout.html', '/produits/'],
 ];
 
-// Contenu du fichier _redirects : anciennes adresses, puis l'espace pro s'il est en veille.
-export function fichierRedirections({ espaceProOuvert }) {
+// Contenu du fichier _redirects : anciennes adresses, puis l'espace pro s'il est en veille, puis la page
+// Pommes de terre hors de la période de commande (elle n'est alors pas construite : voir astro.config.mjs).
+export function fichierRedirections({ espaceProOuvert, commandesPdtOuvertes = true }) {
   const lignes = [
     '# Écrit à la construction (astro.config.mjs, src/data/redirections.js) : ne pas modifier dans dist/',
     '# Anciennes adresses du site (pages .html, avant 2026)',
     ...anciennesAdresses.map(([de, vers]) => `${de} ${vers} 301`),
   ];
   if (!espaceProOuvert) lignes.push('# Espace pro en veille (Réglages du site)', '/pro/* /professionnels/ 302');
+  if (!commandesPdtOuvertes) lignes.push('# Commandes de pommes de terre fermées (Réglages du site) : pas de page Pommes de terre', '/pommes-de-terre / 302', '/pommes-de-terre/* / 302');
   return `${lignes.join('\n')}\n`;
 }

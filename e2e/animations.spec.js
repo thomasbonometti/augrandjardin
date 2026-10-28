@@ -1,7 +1,11 @@
 // Apparitions au défilement (GSAP) : rien ne reste masqué, et rien ne bouge pour qui refuse les animations.
 import { test, expect } from '@playwright/test';
 
-const PAGES = ['/', '/produits/', '/la-ferme/', '/pommes-de-terre/', '/professionnels/', '/horaires-contact/', '/calendrier-de-saison/'];
+// Page Pommes de terre : seulement pendant la période de commande (case « Commandes de pommes de terre
+// ouvertes ») ; testée sur une construction ouverte (COMMANDE_PDT=ouverte, E2E_OUVERT=1).
+const PDT = !!process.env.E2E_OUVERT;
+const PAGES = ['/', '/produits/', '/la-ferme/', '/pommes-de-terre/', '/professionnels/', '/horaires-contact/', '/calendrier-de-saison/']
+  .filter((chemin) => PDT || chemin !== '/pommes-de-terre/');
 const masques = () => [...document.querySelectorAll('[data-anim], [data-anim-groupe] > *')]
   .filter((e) => e.getClientRects().length && parseFloat(getComputedStyle(e).opacity) < 0.85)
   .map((e) => `${e.tagName.toLowerCase()} ${(e.textContent || '').trim().slice(0, 40)}`);

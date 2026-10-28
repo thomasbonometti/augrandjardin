@@ -4,7 +4,7 @@
     "question": "Comment commander des pommes de terre ?",
     "reponse": [
       {
-        "texte": "Pour le moment, les commandes se font par téléphone : appelez Pierre au 06 42 42 42 93.\nVous réglez sur place, au retrait, à la ferme."
+        "texte": "Choisissez vos filets sur cette page et validez : vous recevez un e-mail de confirmation. Quand Pierre a préparé votre commande, un second e-mail vous permet de choisir votre jour de retrait à la ferme.\nVous réglez sur place, au retrait."
       }
     ],
     "pages": [
@@ -60,11 +60,24 @@
     "ordre": 20
   },
   {
+    "id": "40070bd669cd812ba127e69862f6c8bd",
+    "question": "Où livrez-vous ?",
+    "reponse": [
+      {
+        "texte": "Pierre livre lui-même ses clients professionnels, le lundi."
+      }
+    ],
+    "pages": [
+      "Professionnels"
+    ],
+    "ordre": 20
+  },
+  {
     "id": "40070bd669cd8176b2ddceda37153b49",
     "question": "Peut-on réserver ses légumes ?",
     "reponse": [
       {
-        "texte": "Non, il n’y a pas de réservation : les légumes sont en vente à la ferme, le jour de la vente.\nSeules les pommes de terre et les oignons se commandent à l’avance : tout est expliqué sur la page Pommes de terre."
+        "texte": "Non, il n’y a pas de réservation : les légumes sont en vente à la ferme, le jour de la vente.\nSeules les pommes de terre et les oignons se commandent à l’avance, sur ce site, quand Pierre ouvre les commandes."
       }
     ],
     "pages": [
@@ -72,6 +85,19 @@
       "Accueil"
     ],
     "ordre": 20
+  },
+  {
+    "id": "40070bd669cd8158a0dbf0468a1b173c",
+    "question": "Comment conserver les pommes de terre ?",
+    "reponse": [
+      {
+        "texte": "Au frais, dans le noir et à l’abri du gel, dans un endroit sec et aéré : une cave ou un garage frais. Sortez-les du filet si elles sont humides et retirez de temps en temps celles qui s’abîment.\nLes pommes de terre non triées se gardent moins longtemps : à consommer dans les semaines qui viennent."
+      }
+    ],
+    "pages": [
+      "Pommes de terre"
+    ],
+    "ordre": 30
   },
   {
     "id": "40070bd669cd8125895bdb88c090e108",
@@ -100,6 +126,21 @@
       "La ferme"
     ],
     "ordre": 40
+  },
+  {
+    "id": "40070bd669cd8107b712dfba50b7e7b0",
+    "question": "Comment régler mes achats ?",
+    "reponse": [
+      {
+        "texte": "Sur place, au moment de la vente ou quand vous venez chercher votre commande."
+      }
+    ],
+    "pages": [
+      "Horaires & contact",
+      "Produits",
+      "Pommes de terre"
+    ],
+    "ordre": 50
   },
   {
     "id": "40070bd669cd81c1bb70e0c51e61c3b4",

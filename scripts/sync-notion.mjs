@@ -156,7 +156,7 @@ function mapReglages(page) {
     message: text(p(page, 'Message de la semaine')),
     afficherMarches: chk(p(page, 'Afficher les marchés')),
     espaceProOuvert: chk(p(page, 'Espace pro ouvert')),
-    commandePdtEnLigne: chk(p(page, 'Commande de pommes de terre en ligne')),
+    commandesPdtOuvertes: chk(p(page, 'Commandes de pommes de terre ouvertes')),
     inscriptionListeOuverte: chk(p(page, 'Inscription à la liste ouverte')),
   };
 }
@@ -232,7 +232,7 @@ async function syncLive() {
   ).map(mapLigneLegume);
   const planning = (await notionQuery('Planning semaine', PLANNING_DS, {})).map(mapPlanning);
   const lignesReglages = await notionQuery('Réglages du site', REGLAGES_DS, { sorts: [{ timestamp: 'created_time', direction: 'ascending' }] });
-  const reglages = lignesReglages.length ? mapReglages(lignesReglages[0]) : { ferme: false, repriseLe: null, messageFermeture: '', afficherMessage: false, message: '', afficherMarches: false, espaceProOuvert: false, commandePdtEnLigne: false, inscriptionListeOuverte: false };
+  const reglages = lignesReglages.length ? mapReglages(lignesReglages[0]) : { ferme: false, repriseLe: null, messageFermeture: '', afficherMessage: false, message: '', afficherMarches: false, espaceProOuvert: false, commandesPdtOuvertes: false, inscriptionListeOuverte: false };
   let faq = null;
   try {
     faq = (
@@ -273,7 +273,7 @@ async function syncLive() {
   console.log(`✓ Calendrier de saison : ${nbLegumes} légumes avec des mois de récolte, ${nbConseils} avec des conseils (${legumes.length} lignes)`);
   console.log(fermeture ? `✓ Site en mode fermé (${fermeture.reprise ? `reprise le ${fermeture.reprise}` : 'sans date de reprise'})` : '✓ Site ouvert');
   if (reglages.afficherMessage && reglages.message) console.log(`✓ Message de la semaine : « ${reglages.message} »`);
-  console.log(reglages.commandePdtEnLigne ? '✓ Commande de pommes de terre en ligne' : '✓ Pommes de terre : commandes par téléphone (commande en ligne de côté)');
+  console.log(reglages.commandesPdtOuvertes ? '✓ Commandes de pommes de terre ouvertes' : '✓ Commandes de pommes de terre fermées : pas de page Pommes de terre');
   console.log(reglages.inscriptionListeOuverte ? '✓ Inscription à la liste ouverte' : '✓ Liste de la semaine : « demandez-la à Pierre » (inscription de côté)');
 
   await enregistrerHistorique(produits, planning, reglages).catch((e) => console.warn(`⚠ Historique des listes non enregistré : ${e.message}`));

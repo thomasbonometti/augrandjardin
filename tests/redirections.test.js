@@ -22,6 +22,13 @@ test('fichier _redirects : 301 pour les anciennes adresses, /pro/* seulement en 
   assert.doesNotMatch(fichierRedirections({ espaceProOuvert: true }), /\/pro\//);
 });
 
+test('fichier _redirects : /pommes-de-terre/ vers l’accueil seulement quand les commandes sont fermées', () => {
+  const fermees = fichierRedirections({ espaceProOuvert: true, commandesPdtOuvertes: false });
+  assert.match(fermees, /^\/pommes-de-terre \/ 302$/m);
+  assert.match(fermees, /^\/pommes-de-terre\/\* \/ 302$/m);
+  assert.doesNotMatch(fichierRedirections({ espaceProOuvert: true, commandesPdtOuvertes: true }), /pommes-de-terre/);
+});
+
 test('.htaccess du passage : même correspondance que _redirects', () => {
   const htaccess = readFileSync(new URL('../bascule/ionos/.htaccess', import.meta.url), 'utf8');
   for (const [de, vers] of anciennesAdresses) {

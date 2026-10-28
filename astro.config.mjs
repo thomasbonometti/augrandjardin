@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
-import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { readdir, readFile, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { typographierHtml } from './src/lib/typo.js';
-import { lireEspacePro } from './src/lib/reglages.js';
+import { lireEspacePro, lireCommandesPdt } from './src/lib/reglages.js';
 import { anciennesAdresses, fichierRedirections } from './src/data/redirections.js';
 
 // Espaces insécables de la typographie française (« », : ; ! ?, unités, plages horaires) posés sur chaque page construite.
@@ -26,16 +26,21 @@ const typographie = {
 // Redirections Cloudflare (fichier _redirects, écrit à la construction) :
 // - les anciennes adresses du site (pages .html) vers les nouvelles pages (src/data/redirections.js) ;
 // - espace pro en veille (case « Espace pro ouvert » de Réglages du site, ou variable ESPACE_PRO) :
-//   /pro/* renvoie vers /professionnels/.
+//   /pro/* renvoie vers /professionnels/ ;
+// - commandes de pommes de terre fermées (case « Commandes de pommes de terre ouvertes », ou variable
+//   COMMANDE_PDT) : la page Pommes de terre est retirée de dist/ et son adresse renvoie vers l'accueil.
 const redirections = {
   name: 'redirections',
   hooks: {
     'astro:build:done': async ({ dir }) => {
       const reglages = JSON.parse(await readFile(new URL('./data/reglages.json', import.meta.url), 'utf8'));
       const espaceProOuvert = lireEspacePro(reglages, process.env.ESPACE_PRO);
-      await writeFile(path.join(fileURLToPath(dir), '_redirects'), fichierRedirections({ espaceProOuvert }));
+      const commandesPdtOuvertes = lireCommandesPdt(reglages, process.env.COMMANDE_PDT);
+      if (!commandesPdtOuvertes) await rm(path.join(fileURLToPath(dir), 'pommes-de-terre'), { recursive: true, force: true });
+      await writeFile(path.join(fileURLToPath(dir), '_redirects'), fichierRedirections({ espaceProOuvert, commandesPdtOuvertes }));
       console.log(`→ ${anciennesAdresses.length} anciennes adresses redirigées vers les nouvelles pages`);
       console.log(espaceProOuvert ? '→ Espace pro ouvert' : '→ Espace pro en veille : /pro/* renvoie vers /professionnels/');
+      console.log(commandesPdtOuvertes ? '→ Commandes de pommes de terre ouvertes' : '→ Commandes de pommes de terre fermées : pas de page Pommes de terre, /pommes-de-terre/ renvoie vers l’accueil');
     },
   },
 };

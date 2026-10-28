@@ -1,7 +1,8 @@
 ---
 import Icone from './Icone.astro';
 import Logo from './Logo.astro';
-import { ferme, navigation, lienProduits } from '../data/ferme.js';
+import { ferme, lienProduits } from '../data/ferme.js';
+import { navigationAffichee as navigation } from '../lib/donnees.js';
 import { creneaux, misAJour, fermeture } from '../lib/donnees.js';
 import { plage } from '../lib/vente.js';
 const aLaFerme = creneaux.filter((c) => c.cetteSemaine && c.aLaFerme);

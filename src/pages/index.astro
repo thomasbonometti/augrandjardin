@@ -7,21 +7,20 @@ import FormulaireSms from '../components/FormulaireSms.astro';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
 import tampon from '../assets/svg/tampon.svg?raw';
 import { ferme, adresseComplete } from '../data/ferme.js';
-import { produits, rayons, vedettes, prochaineVente as v, creneaux, misAJour, agjCatalogue, fermeture, marchesAffiches, commandePdtEnLigne } from '../lib/donnees.js';
+import { produits, rayons, vedettes, prochaineVente as v, creneaux, misAJour, agjCatalogue, fermeture, marchesAffiches, commandesPdtOuvertes } from '../lib/donnees.js';
 import { euros, fmtHeure, plage } from '../lib/vente.js';
 import { resumePdt } from '../lib/pdt.js';
 import { schemaFerme } from '../lib/seo.js';
 
 const nb = produits.length;
 const pdt = resumePdt(agjCatalogue);
-// Mode fermé : la commande en ligne est fermée elle aussi. Commande en ligne de côté (Réglages du site) :
-// les pommes de terre se commandent par téléphone.
-const pdtOuvert = pdt.ouvert && !fermeture && commandePdtEnLigne;
-const pdtTelephone = !fermeture && !commandePdtEnLigne;
+// Mode fermé : la commande en ligne est fermée elle aussi. Hors de la période de commande (case « Commandes
+// de pommes de terre ouvertes » décochée), la carte Pommes de terre disparaît.
+const pdtOuvert = pdt.ouvert && !fermeture;
 const reprise = fermeture?.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Reprise bientôt';
 const description = fermeture
   ? `Légumes bio cueillis à Lostroff, 43 rue Principale. Ventes en pause : ${reprise.toLowerCase()}. Recevez la liste de la semaine pour être prévenu.`
-  : `Légumes bio cueillis à Lostroff : ${nb} produits cette semaine, vente à la ferme${v ? ` ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale. Pommes de terre ${commandePdtEnLigne ? 'en ligne' : 'de garde'}, offre pour les professionnels.`;
+  : `Légumes bio cueillis à Lostroff : ${nb} produits cette semaine, vente à la ferme${v ? ` ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale. ${commandesPdtOuvertes ? 'Pommes de terre en ligne, offre' : 'Offre'} pour les professionnels.`;
 const samediFerme = creneaux.find((c) => c.aLaFerme && c.jour === 'Samedi');
 const jourVente = v ? v.jour.toLowerCase() : 'samedi';
 const autres = rayons.filter((r) => r.titre !== 'Divers').map((r) => r.titre.toLowerCase());
@@ -33,7 +32,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
   titre="Au Grand Jardin — maraîcher bio à Lostroff (Moselle), vente à la ferme le samedi"
   description={description}
   page="accueil"
-  schema={schemaFerme(creneaux)}
+  schema={schemaFerme(creneaux, { pommesDeTerre: commandesPdtOuvertes })}
 >
   <!-- HERO -->
   <section class="wrap hero">
@@ -136,8 +135,10 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
   <section class="wrap facons" aria-labelledby="facons-titre">
     <div class="facons__tete" data-anim>
       <p class="eyebrow">À la ferme et au-delà</p>
-      <h2 id="facons-titre">Quatre façons de manger nos légumes</h2>
-      <p class="muted seulement-ordi">Venez le samedi, commandez vos pommes de terre, recevez la liste de la semaine sur WhatsApp, ou faites-vous livrer si vous êtes un professionnel.</p>
+      <h2 id="facons-titre">{commandesPdtOuvertes ? 'Quatre' : 'Trois'} façons de manger nos légumes</h2>
+      <p class="muted seulement-ordi">{commandesPdtOuvertes
+        ? 'Venez le samedi, commandez vos pommes de terre, recevez la liste de la semaine sur WhatsApp, ou faites-vous livrer si vous êtes un professionnel.'
+        : 'Venez le samedi, recevez la liste de la semaine sur WhatsApp, ou faites-vous livrer si vous êtes un professionnel.'}</p>
     </div>
     <ul class="facons__grille" role="list" data-anim-groupe="monte">
       <li>
@@ -151,17 +152,17 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
           <Icone nom="chevron" taille={20} class="facon__chevron" />
         </a>
       </li>
-      <li>
+      {commandesPdtOuvertes && <li>
         <a class="facon" href="/pommes-de-terre/">
           <div class="photo facon__photo"><Photo nom="pdt" alt="Pommes de terre de la ferme" sizes="(min-width: 1100px) 400px, 88px" largeurs={[176, 400, 800]} /></div>
           <div class="facon__texte">
             <div class="facon__titre"><h3>Pommes de terre en sacs</h3><Icone nom="droite" taille={22} class="facon__fleche" /></div>
-            <p class="muted facon__desc"><span class="seulement-ordi">{pdt.varietes ? `${pdt.varietes} variétés ${pdt.formatsCarte}, ${commandePdtEnLigne ? 'commandées en ligne' : 'à commander par téléphone'} et retirées à la ferme.` : `${commandePdtEnLigne ? 'Commandées en ligne' : 'À commander par téléphone'}, retirées à la ferme.`}</span><span class="seulement-mobile">{pdtTelephone ? 'Commandes par téléphone, auprès de Pierre.' : pdtOuvert ? 'Commandes ouvertes en ligne.' : 'Commandes en ligne fermées pour le moment.'}</span></p>
+            <p class="muted facon__desc"><span class="seulement-ordi">{pdt.varietes ? `${pdt.varietes} variétés ${pdt.formatsCarte}, commandées en ligne et retirées à la ferme.` : 'Commandées en ligne, retirées à la ferme.'}</span><span class="seulement-mobile">{pdtOuvert ? 'Commandes ouvertes en ligne.' : 'Commandes en ligne fermées pour le moment.'}</span></p>
           </div>
-          <span class="chip facon__chip">{pdtTelephone ? 'Par téléphone' : pdtOuvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span>
+          <span class="chip facon__chip">{pdtOuvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span>
           <Icone nom="chevron" taille={20} class="facon__chevron" />
         </a>
-      </li>
+      </li>}
       <li>
         <a class="facon" href="#sms">
           <div class="photo facon__photo"><Photo nom="tunnels-champ" alt="Les tunnels de la ferme au milieu des champs" sizes="(min-width: 1100px) 400px, 88px" largeurs={[176, 400, 800]} /></div>

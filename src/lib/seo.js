@@ -5,7 +5,8 @@ import { heureIso } from './vente.js';
 // Même adresse que `site` d'astro.config.mjs (www.augrandjardin.fr, ou la variable SITE_URL).
 const SITE = String(import.meta.env?.SITE || 'https://www.augrandjardin.fr').replace(/\/+$/, '');
 
-export function schemaFerme(creneaux = []) {
+// pommesDeTerre : commandes de pommes de terre ouvertes (Réglages du site).
+export function schemaFerme(creneaux = [], { pommesDeTerre = false } = {}) {
   const horaires = creneaux
     .filter((c) => c.aLaFerme && c.cetteSemaine && c.debut != null && c.fin != null)
     .map((c) => ({
@@ -19,7 +20,7 @@ export function schemaFerme(creneaux = []) {
     '@type': 'LocalBusiness',
     '@id': `${SITE}/#ferme`,
     name: ferme.nom,
-    description: 'Ferme maraîchère bio à Lostroff (Moselle), certifiée par Ecocert : légumes de saison, vente à la ferme le samedi, pommes de terre de garde, livraison des professionnels.',
+    description: `Ferme maraîchère bio à Lostroff (Moselle), certifiée par Ecocert : légumes de saison, vente à la ferme le samedi, ${pommesDeTerre ? 'pommes de terre en ligne, ' : ''}livraison des professionnels.`,
     url: `${SITE}/`,
     image: `${SITE}/og.jpg`,
     telephone: ferme.telephoneIntl,

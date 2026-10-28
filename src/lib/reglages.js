@@ -54,10 +54,12 @@ export function interrupteur(coche, forcer) {
 // Espace pro (en veille jusqu'au printemps 2027) : case « Espace pro ouvert », variable ESPACE_PRO.
 export const lireEspacePro = (reglages, forcer) => interrupteur(reglages?.espaceProOuvert, forcer);
 
-// Commande de pommes de terre en ligne (gardée de côté jusqu'au passage de l'outil en réel, décision
-// de Thomas du 28/10/2026) : case « Commande de pommes de terre en ligne », variable COMMANDE_PDT.
-// Décochée : la page Pommes de terre renvoie vers le téléphone de Pierre.
-export const lireCommandePdt = (reglages, forcer) => interrupteur(reglages?.commandePdtEnLigne, forcer);
+// Commandes de pommes de terre (Thomas, 28/10/2026) : case « Commandes de pommes de terre ouvertes »,
+// variable COMMANDE_PDT. Cochée pendant la période que choisit Pierre : la page Pommes de terre est sur le
+// site et l'on commande en ligne (exceptionnellement par téléphone). Décochée : plus de commande du tout,
+// la page disparaît (menu, plan du site, accueil ; /pommes-de-terre/ renvoie vers l'accueil) et l'outil
+// de commande refuse les commandes en ligne (il lit la même case).
+export const lireCommandesPdt = (reglages, forcer) => interrupteur(reglages?.commandesPdtOuvertes, forcer);
 
 // Inscription à la liste de la semaine (gardée de côté tant que l'envoi automatique n'existe pas,
 // même décision) : case « Inscription à la liste ouverte », variable INSCRIPTION_LISTE.

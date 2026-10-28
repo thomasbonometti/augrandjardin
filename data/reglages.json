@@ -6,6 +6,6 @@
   "message": "",
   "afficherMarches": false,
   "espaceProOuvert": false,
-  "commandePdtEnLigne": false,
+  "commandesPdtOuvertes": false,
   "inscriptionListeOuverte": false
 }

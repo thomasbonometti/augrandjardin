@@ -7,7 +7,7 @@ import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import Photo from '../components/Photo.astro';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
-import { agjCatalogue, agjConfig, fermeture, commandePdtEnLigne } from '../lib/donnees.js';
+import { agjCatalogue, agjConfig, fermeture } from '../lib/donnees.js';
 import { resumePdt } from '../lib/pdt.js';
 import { rendreCategories } from '../lib/commande-rendu.js';
 import { ferme } from '../data/ferme.js';
@@ -15,37 +15,27 @@ import { fileAriane } from '../lib/seo.js';
 
 const pdt = resumePdt(agjCatalogue);
 // Mode fermé (Notion « Réglages du site ») : la commande est fermée, quoi qu'en dise le catalogue.
-// Commande en ligne de côté (case « Commande de pommes de terre en ligne » décochée, jusqu'au passage
-// de l'outil en réel) : commandes par téléphone, sans formulaire ni étapes du parcours en ligne.
-const telephone = !fermeture && !commandePdtEnLigne;
-const ouvert = !!agjCatalogue.open && !fermeture && commandePdtEnLigne;
+const ouvert = !!agjCatalogue.open && !fermeture;
 const textes = agjConfig.texts;
 const fermee = fermeture
   ? { titre: `Les commandes reprendront ${fermeture.reprise ? `le ${fermeture.repriseLong}` : 'bientôt'}`, texte: fermeture.message }
-  : telephone
-    ? { titre: 'Commandes par téléphone pour le moment', texte: `Appelez Pierre au ${ferme.telephone} pour commander vos filets. Vous réglez sur place, au retrait, à la ferme.` }
-    : { titre: textes.closed?.title, texte: textes.closed?.text };
-const statut = telephone ? 'Commandes par téléphone' : ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment';
+  : { titre: textes.closed?.title, texte: textes.closed?.text };
 const titre = `Pommes de terre de garde${pdt.formatsTitre ? `, ${pdt.formatsTitre}` : ''}`;
 const listeHtml = rendreCategories(agjCatalogue, agjConfig);
-const donnees = JSON.stringify({ catalogue: agjCatalogue, config: agjConfig, fermeSite: !!fermeture, horsLigne: telephone }).replace(/</g, '\\u003c');
+const donnees = JSON.stringify({ catalogue: agjCatalogue, config: agjConfig, fermeSite: !!fermeture }).replace(/</g, '\\u003c');
 const champ = (id: string) => agjConfig.fields?.find((f: any) => f.id === id) || {};
 ---
 <Base
-  titre={commandePdtEnLigne ? 'Pommes de terre en filets, à commander en ligne — Lostroff | Au Grand Jardin' : 'Pommes de terre de garde en filets — Lostroff | Au Grand Jardin'}
-  description={commandePdtEnLigne
-    ? `Commandez vos pommes de terre de garde (${pdt.varietes} variétés${pdt.formatsCarte ? `, ${pdt.formatsCarte}` : ''}) et vos oignons en ligne. Pierre prépare la commande, vous choisissez ensuite votre jour de retrait à la ferme de Lostroff. Paiement sur place.`
-    : `Pommes de terre de garde (${pdt.varietes} variétés${pdt.formatsCarte ? `, ${pdt.formatsCarte}` : ''}) et oignons de la ferme de Lostroff. Commandes par téléphone auprès de Pierre, retrait à la ferme, paiement sur place.`}
+  titre="Pommes de terre en filets, à commander en ligne — Lostroff | Au Grand Jardin"
+  description={`Commandez vos pommes de terre de garde (${pdt.varietes} variétés${pdt.formatsCarte ? `, ${pdt.formatsCarte}` : ''}) et vos oignons en ligne. Pierre prépare la commande, vous choisissez ensuite votre jour de retrait à la ferme de Lostroff. Paiement sur place.`}
   page="pdt"
   schema={fileAriane([{ nom: 'Pommes de terre', url: '/pommes-de-terre/' }])}
 >
   <section class="wrap hero">
     <div class="hero__texte">
-      <div data-anim="pop"><span class="chip chip-vif" data-statut>{statut}</span></div>
+      <div data-anim="pop"><span class="chip chip-vif" data-statut>{ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span></div>
       <h1 class="h1-page" data-titre data-anim="mots">{titre}</h1>
-      {telephone
-        ? <p class="lg muted" data-anim>Cultivées à Lostroff. Pour le moment, commandez vos filets par téléphone auprès de Pierre, puis passez les chercher à la ferme.</p>
-        : <p class="lg muted" data-anim><span class="seulement-ordi">Cultivées à Lostroff. Choisissez vos variétés, Pierre prépare votre commande, puis vous choisissez le jour où vous passez la chercher à la ferme.</span><span class="seulement-mobile">Cultivées à Lostroff. Choisissez vos variétés, on vous prévient quand votre commande est prête.</span></p>}
+      <p class="lg muted" data-anim><span class="seulement-ordi">Cultivées à Lostroff. Choisissez vos variétés, Pierre prépare votre commande, puis vous choisissez le jour où vous passez la chercher à la ferme.</span><span class="seulement-mobile">Cultivées à Lostroff. Choisissez vos variétés, on vous prévient quand votre commande est prête.</span></p>
       <div class="prix" data-prix data-anim-groupe="pop">
         {pdt.cartes.map((c) => (
           <div class="prix__carte"><p class="prix__kg">{c.parKg}</p><p class="sm muted">{c.detail}</p></div>
@@ -55,16 +45,16 @@ const champ = (id: string) => agjConfig.fields?.find((f: any) => f.id === id) ||
     <div class="photo hero__photo" data-anim="photo"><Photo nom="pdt" alt="Pommes de terre de la ferme" sizes="(min-width: 1100px) 560px, calc(100vw - 40px)" largeurs={[400, 700, 1080]} prioritaire /></div>
   </section>
 
-  {!telephone && <section class="wrap etapes" aria-label="Comment ça marche">
+  <section class="wrap etapes" aria-label="Comment ça marche">
     <ol class="etapes__liste" data-anim-groupe="pop">
       <li><span class="etapes__num" aria-hidden="true">1</span><div><h2 class="etapes__titre">Vous commandez</h2><p class="muted">Choisissez vos variétés et le nombre de filets.<span class="seulement-ordi"> Le paiement se fait sur place, au retrait.</span><span class="seulement-mobile"> Paiement sur place, au retrait.</span></p></div></li>
       <li><span class="etapes__num" aria-hidden="true">2</span><div><h2 class="etapes__titre">Pierre prépare votre commande</h2><p class="muted">Vous recevez un e-mail de confirmation, puis un e-mail, et un SMS si vous le souhaitez, quand la commande est prête.</p></div></li>
       <li><span class="etapes__num" aria-hidden="true">3</span><div><h2 class="etapes__titre">Vous choisissez votre jour</h2><p class="muted">Ce dernier e-mail contient un lien pour choisir votre créneau de retrait à la ferme, au 43 rue Principale à Lostroff.</p></div></li>
     </ol>
-  </section>}
+  </section>
 
   <div class="wrap commande-zone" id="commande-zone">
-    <p class="bandeau-test" data-bandeau-test hidden={agjCatalogue.live || telephone}>Mode test : les commandes sont marquées « Test » et les e-mails ne partent qu’à l’adresse de test.</p>
+    <p class="bandeau-test" data-bandeau-test hidden={agjCatalogue.live}>Mode test : les commandes sont marquées « Test » et les e-mails ne partent qu’à l’adresse de test.</p>
 
     <div class="ferme-fermee" data-fermee hidden={ouvert}>
       <h2 data-fermee-titre>{fermee.titre}</h2>

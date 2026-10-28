@@ -22,6 +22,8 @@ await writeFile(chemin, JSON.stringify({
   messageFermeture: 'Message de fermeture de test : la ferme fait une pause.',
   afficherMessage: true,
   message: 'Message de la semaine de test : rendez-vous au marché de Noël.',
+  // Pour vérifier la page Pommes de terre en pause (« Les commandes reprendront le … »).
+  commandesPdtOuvertes: true,
 }, null, 2));
 try {
   execSync('npx astro build --outDir dist-ferme', { stdio: 'inherit' });

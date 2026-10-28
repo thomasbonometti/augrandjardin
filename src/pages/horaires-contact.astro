@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import { ferme, adresseComplete } from '../data/ferme.js';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
-import { creneaux, prochaineVente as v, fermeture, marchesAffiches } from '../lib/donnees.js';
+import { creneaux, prochaineVente as v, fermeture, marchesAffiches, commandesPdtOuvertes } from '../lib/donnees.js';
 import { lireLieux } from '../lib/vente.js';
 import { schemaFerme, fileAriane } from '../lib/seo.js';
 const lieux = lireLieux(creneaux);
@@ -14,7 +14,7 @@ const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
   titre="Horaires et contact — vente à la ferme à Lostroff | Au Grand Jardin"
   description={`Horaires de vente de la ferme Au Grand Jardin${fermeture ? ` : ventes en pause, ${fermeture.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt'}` : v ? ` : ${v.jourDate}, ${v.heures}` : ''}. ${adresseComplete}. Téléphone ${ferme.telephone}, ${ferme.email}.`}
   page="contact"
-  schema={[schemaFerme(creneaux), fileAriane([{ nom: 'Horaires & contact', url: '/horaires-contact/' }])]}
+  schema={[schemaFerme(creneaux, { pommesDeTerre: commandesPdtOuvertes }), fileAriane([{ nom: 'Horaires & contact', url: '/horaires-contact/' }])]}
 >
   <section class="wrap tete" data-anim-groupe="monte">
     <p class="eyebrow">Horaires &amp; contact</p>

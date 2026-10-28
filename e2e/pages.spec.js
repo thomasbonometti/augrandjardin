@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { anciennesAdresses } from '../src/data/redirections.js';
 
+// Page Pommes de terre : seulement pendant la période de commande (case « Commandes de pommes de terre
+// ouvertes ») ; testée sur une construction ouverte (COMMANDE_PDT=ouverte, E2E_OUVERT=1).
+const PDT = !!process.env.E2E_OUVERT;
 const PAGES = [
   ['/', /Des légumes bio cueillis à Lostroff/],
   ['/produits/', /Produits de la semaine/],
@@ -10,7 +13,7 @@ const PAGES = [
   ['/horaires-contact/', /Venir à la ferme/],
   ['/calendrier-de-saison/', /Légumes de saison en Moselle/],
   ['/mentions-legales/', /Mentions légales/],
-];
+].filter(([chemin]) => PDT || chemin !== '/pommes-de-terre/');
 
 for (const [chemin, titre] of PAGES) {
   test(`page ${chemin} : s’affiche sans erreur ni débordement`, async ({ page }) => {
@@ -74,9 +77,10 @@ test('navigation : menu mobile ou barre de navigation', async ({ page, isMobile 
     await expect(page.locator('#menu-mobile')).toBeHidden();
   } else {
     await expect(page.locator('.burger')).toBeHidden();
-    await page.locator('.entete__nav').getByRole('link', { name: 'Pommes de terre' }).click();
-    await expect(page).toHaveURL(/\/pommes-de-terre\/$/);
-    await expect(page.locator('.entete__nav a[aria-current="page"]')).toHaveText('Pommes de terre');
+    const [nom, adresse] = PDT ? ['Pommes de terre', /\/pommes-de-terre\/$/] : ['Professionnels', /\/professionnels\/$/];
+    await page.locator('.entete__nav').getByRole('link', { name: nom }).click();
+    await expect(page).toHaveURL(adresse);
+    await expect(page.locator('.entete__nav a[aria-current="page"]')).toHaveText(nom);
   }
 });
 
@@ -157,7 +161,9 @@ test('référencement : données structurées de la ferme et plan du site', asyn
   expect(ferme.telephone).toBe('+33642424293');
   const plan = await request.get('/sitemap.xml');
   expect(plan.status()).toBe(200);
-  expect(await plan.text()).toContain('/pommes-de-terre/');
+  expect(await plan.text()).toContain('/produits/');
+  if (PDT) expect(await plan.text()).toContain('/pommes-de-terre/');
+  else expect(await plan.text()).not.toContain('/pommes-de-terre/');
   expect(await plan.text()).not.toContain('/pro/');
 });
 

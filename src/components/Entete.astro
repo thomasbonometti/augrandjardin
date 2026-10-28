@@ -1,8 +1,8 @@
 ---
 import Icone from './Icone.astro';
 import Logo from './Logo.astro';
-import { ferme, adresseComplete, navigation, lienProduits } from '../data/ferme.js';
-import { prochaineVente as v, produits, fermeture } from '../lib/donnees.js';
+import { ferme, adresseComplete, lienProduits } from '../data/ferme.js';
+import { prochaineVente as v, produits, fermeture, navigationAffichee as navigation } from '../lib/donnees.js';
 interface Props { page?: string }
 const { page = '' } = Astro.props;
 const courant = (id: string) => (id === page ? 'page' : undefined);

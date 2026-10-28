@@ -131,12 +131,12 @@ test('espace pro : la case « Espace pro ouvert », que la variable ESPACE_PRO p
   assert.equal(lireEspacePro({ espaceProOuvert: true }, ''), true, 'variable vide : la case décide');
 });
 
-test('fonctions de côté : commande de pommes de terre en ligne et inscription à la liste (cases et variables)', async () => {
-  const { lireCommandePdt, lireInscriptionListe } = await import('../src/lib/reglages.js');
-  assert.equal(lireCommandePdt({}), false, 'case absente : par téléphone');
-  assert.equal(lireCommandePdt({ commandePdtEnLigne: true }), true);
-  assert.equal(lireCommandePdt({ commandePdtEnLigne: false }, 'ouverte'), true, 'aperçu Cloudflare : COMMANDE_PDT=ouverte');
-  assert.equal(lireCommandePdt({ commandePdtEnLigne: true }, 'fermée'), false);
+test('commandes de pommes de terre et inscription à la liste : cases de Réglages du site et variables', async () => {
+  const { lireCommandesPdt, lireInscriptionListe } = await import('../src/lib/reglages.js');
+  assert.equal(lireCommandesPdt({}), false, 'case absente : commandes fermées, pas de page');
+  assert.equal(lireCommandesPdt({ commandesPdtOuvertes: true }), true);
+  assert.equal(lireCommandesPdt({ commandesPdtOuvertes: false }, 'ouverte'), true, 'aperçu Cloudflare : COMMANDE_PDT=ouverte');
+  assert.equal(lireCommandesPdt({ commandesPdtOuvertes: true }, 'fermée'), false);
   assert.equal(lireInscriptionListe({}), false, 'case absente : « demandez-la à Pierre »');
   assert.equal(lireInscriptionListe({ inscriptionListeOuverte: true }), true);
   assert.equal(lireInscriptionListe({ inscriptionListeOuverte: false }, 'oui'), true);
