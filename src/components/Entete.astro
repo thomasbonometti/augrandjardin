@@ -50,3 +50,18 @@ const sansDate = v ? v.jour : '';
     <a class="menu-mobile__fb" href={ferme.facebook} rel="noopener"><Icone nom="facebook" taille={18} />Suivez la ferme sur Facebook</a>
   </div>
 </nav>
+<script>
+  // Feuille du logo : un balancement complet au survol (souris) ou au focus clavier, jamais coupé ni relancé
+  // en cours, pour éviter qu'elle saute en arrière quand la souris ne fait que passer. CSS : global.css.
+  const logo = document.querySelector<HTMLAnchorElement>('.entete__logo');
+  const calme = matchMedia('(prefers-reduced-motion: reduce)');
+  const balancer = () => {
+    if (!logo || calme.matches || logo.classList.contains('feuille-au-vent')) return;
+    logo.classList.add('feuille-au-vent');
+  };
+  const poser = () => logo?.classList.remove('feuille-au-vent');
+  logo?.addEventListener('pointerenter', (e) => { if (e.pointerType !== 'touch') balancer(); });
+  logo?.addEventListener('focus', () => { if (logo.matches(':focus-visible')) balancer(); });
+  logo?.addEventListener('animationend', poser);
+  logo?.addEventListener('animationcancel', poser);
+</script>

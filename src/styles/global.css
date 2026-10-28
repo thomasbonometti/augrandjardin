@@ -252,6 +252,19 @@ html.entete-cache .entete { transform: translateY(-100%); }
 @media (prefers-reduced-motion: reduce) { .entete { transition: none; } }
 .entete .wrap { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .entete__logo svg { width: 140px; height: auto; }
+/* Feuille du logo : un balancement autour de sa tige au survol ou au focus clavier
+   (classe posée par le script d'Entete.astro, retirée à la fin) ; rien pour qui refuse les animations. */
+.logo__feuille { transform-box: fill-box; transform-origin: 16% 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  .entete__logo.feuille-au-vent .logo__feuille { animation: feuille-au-vent 1.2s cubic-bezier(0.37, 0, 0.63, 1); }
+}
+@keyframes feuille-au-vent {
+  0%, 100% { transform: rotate(0); }
+  16% { transform: rotate(22deg); }
+  38% { transform: rotate(-12deg); }
+  58% { transform: rotate(6deg); }
+  78% { transform: rotate(-2deg); }
+}
 .entete__nav { display: none; }
 .entete__actions { display: flex; align-items: center; gap: 8px; }
 .entete__cta-mobile { height: 36px; padding: 0 12px; font-size: 14px; border-radius: 6px; display: inline-flex; align-items: center; background: var(--vert-foret); color: var(--blanc); }

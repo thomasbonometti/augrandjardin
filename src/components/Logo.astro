@@ -6,7 +6,9 @@ const { blanc = false, class: classe = '' } = Astro.props;
 let svg = brut
   .replace(/<\?xml[^>]*>/, '')
   .replace(/\s(id|data-name)="[^"]*"/g, '')
-  .replace('<svg', `<svg class="${classe}" role="img" aria-label="Au Grand Jardin"`);
+  .replace('<svg', `<svg class="${classe}" role="img" aria-label="Au Grand Jardin"`)
+  // La feuille (vert vif) dans son propre groupe, pour l'animer sans toucher au translate du tracé.
+  .replace(/<path[^>]*fill="#00a544"[^>]*\/>/, (feuille) => `<g class="logo__feuille">${feuille}</g>`);
 if (blanc) svg = svg.replaceAll('#0c4b31', '#ffffff');
 ---
 <Fragment set:html={svg} />
