@@ -14,8 +14,9 @@
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Vignettes des produits : même adresse quand la photo change (« Ma semaine ») : courte durée, puis revalidation.
 /produits-img/*
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=300, stale-while-revalidate=86400
 
 # Adresses de test (*.pages.dev, aperçus compris) : jamais indexées, même après la mise en ligne
 # sur www.augrandjardin.fr (sinon Google verrait deux fois le même site).
