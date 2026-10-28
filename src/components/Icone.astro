@@ -23,6 +23,16 @@ const chemins: Record<string, string> = {
   cuisson: '<path d="M2 12h20"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="m4 8 16-4"/><path d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8"/>',
   conservation: '<path d="M5 6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6Z"/><path d="M5 10h14"/><path d="M15 7v6"/>',
   saison: '<path d="M8 2v4"/><path d="M16 2v4"/><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M3 10h18"/>',
+  // Vidéo de l'accueil (Lucide « pause », « play »)
+  pause: '<rect x="14" y="3" width="5" height="18" rx="1"/><rect x="5" y="3" width="5" height="18" rx="1"/>',
+  lecture: '<path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/>',
+  // Cartes des engagements de l'accueil (28/10/2026, validées par Thomas). Les traits « t » se dessinent
+  // dans l'ordre à l'apparition de la carte (animer.ts, classe « trace ») ; pathLength="1" sert à ce tracé.
+  // Feuille et jeune pousse : Lucide « leaf » et « sprout » ; tomate et coccinelle : dessinées dans le même style.
+  feuille: '<path class="t" pathLength="1" d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20"/><path class="t" pathLength="1" d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13"/>',
+  'jeune-pousse': '<path class="t" pathLength="1" d="M5 21h14"/><path class="t" pathLength="1" d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"/><path class="t" pathLength="1" d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"/>',
+  tomate: '<path class="t" pathLength="1" d="M12 8.2c-4.6 0-8 2.7-8 6.4S7.4 21 12 21s8-2.7 8-6.4-3.4-6.4-8-6.4Z"/><path class="t" pathLength="1" d="M12 8.2c-.9-1.6-2.6-2.3-4.4-2"/><path class="t" pathLength="1" d="M12 8.2c.9-1.6 2.6-2.3 4.4-2"/><path class="t" pathLength="1" d="M12 8.2V5.6c0-1.2.8-2.2 2-2.6"/><path class="t" pathLength="1" d="M7.6 12.8c.5-.8 1.2-1.3 2-1.6"/>',
+  coccinelle: '<g class="bete"><path class="t" pathLength="1" d="M12 7.5a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 1 0 0-13.5Z"/><path class="t" pathLength="1" d="M8.9 8.3a3.2 3.2 0 0 1 6.2 0"/><path class="t" pathLength="1" d="M12 7.5V21"/><path class="t" pathLength="1" d="M10.6 5.5c-.2-1.1-.9-2-2-2.4"/><path class="t" pathLength="1" d="M13.4 5.5c.2-1.1.9-2 2-2.4"/><circle class="point" cx="8.6" cy="12.6" r="1"/><circle class="point" cx="15.4" cy="12.6" r="1"/><circle class="point" cx="9.2" cy="17" r="1"/><circle class="point" cx="14.8" cy="17" r="1"/></g>',
 };
 const contenu = chemins[nom];
 if (!contenu) throw new Error(`Icône inconnue : ${nom}`);

@@ -14,6 +14,10 @@
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Vidéos : le nom porte la date (accueil-2026-10-…) ; une nouvelle vidéo = un nouveau nom.
+/videos/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # Vignettes des produits : même adresse quand la photo change (« Ma semaine ») : courte durée, puis revalidation.
 /produits-img/*
   Cache-Control: public, max-age=300, stale-while-revalidate=86400

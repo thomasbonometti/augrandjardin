@@ -6,6 +6,8 @@
 //   data-anim-groupe="monte|pop|cartes|photo"               ses enfants apparaissent l'un après l'autre
 //   data-compteur                                           le nombre compte de 0 à sa valeur en apparaissant
 //   data-parallaxe (photo dans un cadre) ou ="flotte" (l'élément lui-même) : léger décalage au défilement
+//     (dans le cadre, data-parallaxe-cible désigne ce qui glisse, sinon c'est la photo)
+//   class="trace" sur une icône (Icone.astro, traits « t ») : le trait se dessine quand son élément apparaît
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -49,6 +51,22 @@ function compter(el: HTMLElement, delai: number) {
   gsap.to(o, { v: +nombre, duration: 1.4, delay: delai + 0.1, ease: 'power2.out', onUpdate: () => { el.textContent = `${Math.round(o.v)}${apres}`; } });
 }
 
+// Icônes au trait (classe « trace », traits « t » avec pathLength="1") : le trait se dessine pendant que
+// l'élément apparaît, dans l'ordre du dessin, puis les points (coccinelle) éclosent. Sans animation, rien
+// n'est touché : l'icône est entière.
+function tracer(el: HTMLElement, delai: number) {
+  const traits = [...el.querySelectorAll<SVGElement>('.trace .t')];
+  if (!traits.length) return;
+  const nettoyer = () => traits.forEach((t) => { t.removeAttribute('stroke-dasharray'); t.removeAttribute('stroke-dashoffset'); });
+  gsap.fromTo(traits, { attr: { 'stroke-dasharray': 1, 'stroke-dashoffset': 1 } },
+    { attr: { 'stroke-dashoffset': 0 }, duration: 0.8, ease: 'power2.inOut', stagger: 0.16, delay: delai + 0.25, onComplete: nettoyer });
+  const points = el.querySelectorAll('.trace .point');
+  if (points.length) {
+    gsap.fromTo(points, { scale: 0, transformOrigin: '50% 50%' },
+      { scale: 1, duration: 0.4, ease: 'back.out(3)', stagger: 0.08, delay: delai + 0.25 + traits.length * 0.16 + 0.5, clearProps: 'transform' });
+  }
+}
+
 function jouer(el: HTMLElement, rang: number) {
   if (joues.has(el)) return;
   joues.add(el);
@@ -62,6 +80,7 @@ function jouer(el: HTMLElement, rang: number) {
   };
   const compteurs = el.matches('[data-compteur]') ? [el] : [...el.querySelectorAll<HTMLElement>('[data-compteur]')];
   compteurs.forEach((c) => compter(c, delai));
+  tracer(el, delai);
 
   switch (type) {
     case 'pop':
@@ -140,7 +159,8 @@ export function animer() {
   // Photos qui glissent doucement au défilement.
   document.querySelectorAll<HTMLElement>('[data-parallaxe]').forEach((el) => {
     const flotte = el.dataset.parallaxe === 'flotte';
-    const cible = flotte ? el : el.querySelector('img');
+    // Le cadre peut désigner ce qui glisse (data-parallaxe-cible : image fixe et vidéo de l'accueil ensemble).
+    const cible = flotte ? el : (el.querySelector<HTMLElement>('[data-parallaxe-cible]') ?? el.querySelector('img'));
     if (!cible) return;
     if (!flotte) gsap.set(cible, { scale: 1.15 });
     gsap.fromTo(cible, { yPercent: flotte ? 5 : -5 }, {
