@@ -7,7 +7,8 @@ import Icone from '../components/Icone.astro';
 import Photo from '../components/Photo.astro';
 import { Picture } from 'astro:assets';
 import solVivant from '../assets/illustrations/sol-vivant.png';
-import { ferme, partenaires, restaurants, pointsDeVente } from '../data/ferme.js';
+import { ferme } from '../data/ferme.js';
+import { partenaires, restaurants, pointsDeVente } from '../lib/donnees.js';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
 import { prochaineVente as v } from '../lib/donnees.js';
 import { fileAriane } from '../lib/seo.js';
@@ -84,7 +85,11 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
       <ul class="partenaires__cartes defile" data-anim-groupe="cartes" role="list" tabindex="0" aria-label="Nos partenaires">
         {partenaires.map((p) => (
           <li class="partenaire">
-            <div class="photo partenaire__photo"><Photo nom={p.photo} alt="" sizes="(min-width: 1100px) 416px, 280px" largeurs={[280, 416, 560, 832]} /></div>
+            {p.image ? (
+              <div class="photo partenaire__photo"><img src={p.image.grand} srcset={`${p.image.petit} 400w, ${p.image.grand} 800w`} sizes="(min-width: 1100px) 416px, 280px" alt="" loading="lazy" decoding="async" /></div>
+            ) : p.photo && (
+              <div class="photo partenaire__photo"><Photo nom={p.photo} alt="" sizes="(min-width: 1100px) 416px, 280px" largeurs={[280, 416, 560, 832]} /></div>
+            )}
             <div class="partenaire__texte"><h3>{p.nom}</h3><p class="muted">{p.activite}</p></div>
             {p.ville && <span class="chip"><Icone nom="repere" taille={14} />{p.ville}</span>}
           </li>

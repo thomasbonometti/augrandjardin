@@ -1,8 +1,8 @@
 // Lit Notion au moment de la construction et prépare les données du site.
 //
 // Sur Cloudflare (NOTION_TOKEN défini) : interroge les bases « Produits de la ferme », « Planning »,
-// « Réglages du site » et « Questions fréquentes », réécrit data/produits.json, data/legumes.json,
-// data/planning.json, data/reglages.json, data/faq.json, data/meta.json et télécharge les photos.
+// « Réglages du site », « Questions fréquentes » et « Lieux », réécrit data/produits.json, data/legumes.json,
+// data/planning.json, data/reglages.json, data/faq.json, data/lieux.json, data/meta.json et télécharge les photos.
 // data/legumes.json : toutes les lignes qui ont un « Légume » (en vente ou non), pour les conseils
 // et le calendrier de saison (src/lib/saisons.js). Sur le site en ligne,
 // garde aussi une copie de la liste dans « Historique des listes » quand elle a changé.
@@ -30,6 +30,8 @@ const PLANNING_DS = process.env.NOTION_PLANNING_DS || '152a41f4-8718-45e1-9025-4
 // Bases de la page « Site augrandjardin.fr » (l'intégration y a accès par la page)
 const REGLAGES_DS = process.env.NOTION_REGLAGES_DS || 'cc35fc8e-c976-44f0-b213-31eed14e3bee';
 const FAQ_DS = process.env.NOTION_FAQ_DS || 'a8d7a11c-2204-4c8b-ab4e-23c749bd4452';
+// « Lieux » (28/10/2026) : restaurants, points de vente, partenaires (page « Site augrandjardin.fr »).
+const LIEUX_DS = process.env.NOTION_LIEUX_DS || 'aa72e9bf-82ef-455e-bdc5-149aceecea6d';
 const HISTORIQUE_DS = process.env.NOTION_HISTORIQUE_DS || '5fced6cb-eabb-46cd-beb2-00ee278afd91';
 // Branches publiées sur le vrai site (l'historique ne garde que leurs listes)
 const BRANCHES_EN_LIGNE = ['site-2026', 'main'];
@@ -180,6 +182,21 @@ function mapQuestion(page) {
   };
 }
 
+// Lieux : toutes les lignes, cochées « Actif » ou non (le site trie et filtre, src/lib/lieux.js).
+function mapLieu(page) {
+  return {
+    id: page.id.replaceAll('-', ''),
+    nom: text(p(page, 'Nom')),
+    court: text(p(page, 'Nom court')) || null,
+    type: sel(p(page, 'Type')),
+    ville: text(p(page, 'Ville')) || null,
+    activite: text(p(page, 'Activité')) || null,
+    actif: chk(p(page, 'Actif')),
+    ordre: num(p(page, 'Ordre')),
+    imageUrl: fileUrl(p(page, 'Photo')),
+  };
+}
+
 // Historique des listes : une ligne par liste publiée, seulement si elle a changé depuis la dernière.
 async function enregistrerHistorique(produits, planning, reglages) {
   const branche = process.env.CF_PAGES_BRANCH;
@@ -244,6 +261,12 @@ async function syncLive() {
   } catch (e) {
     console.warn(`⚠ Questions fréquentes illisibles, on garde la copie précédente de data/faq.json : ${e.message}`);
   }
+  let lieux = null;
+  try {
+    lieux = (await notionQuery('Lieux', LIEUX_DS, {})).map(mapLieu).filter((l) => l.nom && l.type);
+  } catch (e) {
+    console.warn(`⚠ Lieux illisibles, on garde la copie précédente de data/lieux.json : ${e.message}`);
+  }
 
   // Les liens de fichiers Notion expirent au bout d'une heure : on télécharge maintenant.
   await fs.rm(IMG_SRC, { recursive: true, force: true });
@@ -259,15 +282,30 @@ async function syncLive() {
     }
     delete prod.imageUrl; // le lien serait mort de toute façon
   }
+  // Photos des lieux (partenaires) : même traitement, nommées « lieu-<id> ».
+  for (const lieu of lieux ?? []) {
+    if (lieu.imageUrl) {
+      const res = await fetch(lieu.imageUrl);
+      if (res.ok) await fs.writeFile(path.join(IMG_SRC, `lieu-${lieu.id}.img`), Buffer.from(await res.arrayBuffer()));
+      else console.warn(`  photo du lieu « ${lieu.nom} » illisible (${res.status})`);
+    }
+    delete lieu.imageUrl;
+  }
 
   await fs.writeFile(path.join(DATA, 'produits.json'), JSON.stringify(produits, null, 2));
   await fs.writeFile(path.join(DATA, 'legumes.json'), JSON.stringify(legumes, null, 2));
   await fs.writeFile(path.join(DATA, 'planning.json'), JSON.stringify(planning, null, 2));
   await fs.writeFile(path.join(DATA, 'reglages.json'), JSON.stringify(reglages, null, 2));
   if (faq) await fs.writeFile(path.join(DATA, 'faq.json'), JSON.stringify(faq, null, 2));
+  if (lieux) await fs.writeFile(path.join(DATA, 'lieux.json'), JSON.stringify(lieux, null, 2));
   await fs.writeFile(path.join(DATA, 'meta.json'), JSON.stringify({ syncedAt: new Date().toISOString(), source: 'Notion' }, null, 2));
   const fermeture = lireFermeture(reglages, new Date(), { venteIso: prochaineVente(lireCreneaux(planning))?.iso });
   console.log(`✓ ${produits.length} produits en vente (${photos} photos), ${planning.length} créneaux, ${faq ? faq.length : 'copie des'} questions fréquentes`);
+  if (lieux) {
+    const affiches = lieux.filter((l) => l.actif);
+    const compte = (t) => affiches.filter((l) => l.type === t).length;
+    console.log(`✓ Lieux : ${affiches.length} affichés (${compte('Restaurant')} restaurants, ${compte('Point de vente')} points de vente, ${compte('Partenaire')} partenaires), ${lieux.length - affiches.length} cachés`);
+  }
   const nbLegumes = new Set(legumes.filter((l) => l.mois.length).map((l) => l.legume)).size;
   const nbConseils = new Set(legumes.filter((l) => l.cuisson || l.conservation || l.avisPierre).map((l) => l.legume)).size;
   console.log(`✓ Calendrier de saison : ${nbLegumes} légumes avec des mois de récolte, ${nbConseils} avec des conseils (${legumes.length} lignes)`);
@@ -296,7 +334,7 @@ async function buildImages() {
       console.warn(`  photo ${f} ignorée : ${e.message}`);
     }
   }
-  console.log(`✓ ${ok} photos produits optimisées`);
+  console.log(`✓ ${ok} photos (produits et lieux) optimisées`);
 }
 
 if (process.env.NOTION_TOKEN) await syncLive();

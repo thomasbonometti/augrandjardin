@@ -9,6 +9,7 @@ import agjConfig from '../../data/agj-config.json';
 import reglages from '../../data/reglages.json';
 import faqBrute from '../../data/faq.json';
 import lignesLegumes from '../../data/legumes.json';
+import lieuxBruts from '../../data/lieux.json';
 import {
   nettoyerNom, prixProduit, estNouveau, grouperRayons, vedettes as choisirVedettes,
   lireCreneaux, prochaineVente as calculerProchaineVente, dateHeure, partiesParis,
@@ -16,6 +17,7 @@ import {
 import { lireFermeture, lireAnnonce, questionsPour, creneauxAffiches, lireEspacePro, lireCommandesPdt, lireInscriptionListe, afficherMarches } from './reglages.js';
 import { navigation } from '../data/ferme.js';
 import { fichesLegumes, calendrier as grouperCalendrier, ancresProduits } from './saisons.js';
+import { listesLieux, PHOTOS_ANCIENS_PARTENAIRES } from './lieux.js';
 
 export { meta, agjCatalogue, agjConfig, reglages };
 
@@ -50,6 +52,16 @@ const dossierImages = path.resolve('public/produits-img');
 const image = (id) => (fs.existsSync(path.join(dossierImages, `${id}-800.webp`))
   ? { petit: `/produits-img/${id}-400.webp`, grand: `/produits-img/${id}-800.webp` }
   : null);
+
+// Lieux (base Notion « Lieux ») : restaurants, points de vente, partenaires, triés, seulement les actifs.
+// Photo d'un partenaire : celle de Notion (public/produits-img/lieu-<id>-…), sinon celle de l'ancien site.
+const listes = listesLieux(lieuxBruts.map((l) => ({
+  ...l,
+  image: image(`lieu-${l.id}`),
+  photo: PHOTOS_ANCIENS_PARTENAIRES[l.nom] ?? null,
+})));
+export const { restaurants, pointsDeVente, partenaires } = listes;
+export const tousLesLieux = listes.tous;
 
 export const produits = produitsBruts
   .map((p) => {

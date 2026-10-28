@@ -34,11 +34,12 @@ La branche `main` sert produits.augrandjardin.fr (la liste de la semaine, GitHub
 | Grille pro (HT = TTC ÷ 1,055) | Notion « Produits de la ferme » | à la construction |
 | Mode fermé (« Fermé », « Reprise le », « Message de fermeture ») et message de la semaine | Notion « Réglages du site » (page Site augrandjardin.fr, une seule ligne), lue aussi par l'outil de commande | à la construction |
 | Questions fréquentes (accordéon en bas des pages) | Notion « Questions fréquentes » (lignes « Publiée ») | à la construction |
+| Restaurants, points de vente, partenaires (La ferme, Professionnels) | Notion « Lieux » (lignes « Actif », depuis le 28/10) | à la construction |
 | Inscriptions SMS, demandes d'accès pro | écrit par le site dans Notion « Inscriptions SMS », « Demandes d'accès pro » (page Site augrandjardin.fr) | à l'envoi du formulaire |
 | Historique des listes (une ligne par liste publiée qui a changé) | écrit par la construction dans Notion « Historique des listes » (page Site augrandjardin.fr), sur Cloudflare seulement | à la construction |
 | Adresse, téléphone, partenaires, restaurants, mentions légales | `src/data/ferme.js` | dans le code |
 
-Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare garde la version en ligne précédente (les questions fréquentes font exception : la copie précédente de `data/faq.json` est gardée). Si l'outil de commande ne répond pas, la construction continue avec la copie précédente du catalogue (`data/agj-*.json`).
+Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare garde la version en ligne précédente (les questions fréquentes et les lieux font exception : la copie précédente de `data/faq.json` ou `data/lieux.json` est gardée). Si l'outil de commande ne répond pas, la construction continue avec la copie précédente du catalogue (`data/agj-*.json`).
 
 ## Fonctions Cloudflare (`functions/`)
 

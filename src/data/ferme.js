@@ -35,43 +35,8 @@ export const legal = {
   conception: 'Thomas Bonometti — thomasbonometti.fr',
 };
 
-// Partenaires, restaurants et points de vente (page La ferme, page Professionnels).
-// Pierre ne veut rien effacer (revue du 26/10/2026) : un lieu qui ne travaille plus avec la ferme
-// passe à `actif: false` et disparaît du site ; on le remet à `true` s'il revient.
-// Ville inconnue : `ville: null` (rien n'est affiché), jamais une ville devinée.
-const actifs = (liste) => liste.filter((l) => l.actif);
-
-// Pierre n'achète plus rien à revendre depuis 2026 : plus de partenaire affiché.
-export const tousLesPartenaires = [
-  { nom: 'Ferme de la Briquerie', activite: 'Œufs', ville: 'Azoudange', photo: 'oeufs', actif: false },
-  { nom: 'Frui’Thierry', activite: 'Champignons, fraises, framboises, pommes et poires', ville: 'Niederstinzel', photo: 'champignons', actif: false },
-  { nom: 'Joël Corre', activite: 'Miel', ville: 'Francaltroff', photo: 'ruches', actif: false },
-];
-export const tousLesRestaurants = [
-  { nom: 'Hôtel Notre-Dame de Bonne Fontaine', court: 'Hôtel Notre-Dame de Bonne Fontaine', ville: 'Danne-et-Quatre-Vents', actif: true },
-  // Le 28/10/2026, Thomas : ce n'est pas « Le Greffin » mais ce restaurant (lien Google Maps :
-  // « Restaurant | LOUDREFING | A La Croix De Lorraine »).
-  { nom: 'À la Croix de Lorraine', court: 'À la Croix de Lorraine', ville: 'Loudrefing', actif: true },
-  // Ajouté le 26/10/2026. Ville donnée par Thomas le 28/10/2026, avec la fiche Google Maps
-  // (« Bistrot des Oiseaux », 8 rue du Théâtre, 57260 Tarquimpol).
-  { nom: 'Le Bistrot des Oiseaux', court: 'Le Bistrot des Oiseaux', ville: 'Tarquimpol', actif: true },
-  { nom: 'La Licorne Bleue', court: 'La Licorne Bleue', ville: 'Fénétrange', actif: false },
-  { nom: 'La Toque Blanche', court: 'La Toque Blanche', ville: 'Bénestroff', actif: false },
-  { nom: 'Ô Fredelices, pâtissier traiteur', court: 'Ô Fredelices', ville: 'Liocourt', actif: false },
-];
-export const tousLesPointsDeVente = [
-  { nom: 'Inventerre du Pré Vert', ville: 'Dieuze', actif: true },
-  // Ajouté le 26/10/2026 : orthographe et ville à confirmer par Pierre.
-  { nom: 'Ma Petite Cuillère', ville: null, actif: true },
-  { nom: 'La Ruche qui dit Oui', ville: 'Dieuze', actif: false },
-  { nom: 'Marché de Bénestroff', ville: 'Bénestroff', actif: false },
-  { nom: 'Marché des producteurs', ville: 'Château-Salins', actif: false },
-  { nom: 'Supermarché Match', ville: 'Dieuze', actif: false },
-  { nom: 'Supérette Proxi', ville: 'Fénétrange', actif: false },
-];
-export const partenaires = actifs(tousLesPartenaires);
-export const restaurants = actifs(tousLesRestaurants);
-export const pointsDeVente = actifs(tousLesPointsDeVente);
+// Restaurants, points de vente et partenaires : base Notion « Lieux » (page « Site augrandjardin.fr »),
+// copiée dans data/lieux.json ; listes triées dans src/lib/lieux.js, chargées par src/lib/donnees.js.
 
 export const navigation = [
   { id: 'ferme', label: 'La ferme', href: '/la-ferme/' },
