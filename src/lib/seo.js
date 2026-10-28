@@ -34,8 +34,24 @@ export function schemaFerme(creneaux = [], { pommesDeTerre = false } = {}) {
       addressRegion: 'Grand Est',
       addressCountry: 'FR',
     },
+    hasMap: ferme.itineraire,
     sameAs: [ferme.facebook],
     ...(horaires.length ? { openingHoursSpecification: horaires } : {}),
+  };
+}
+
+// Nom du site affiché par Google au-dessus des résultats (« Au Grand Jardin » plutôt que l'adresse),
+// seulement sur l'accueil, comme Google le demande.
+export function schemaSite() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE}/#site`,
+    name: ferme.nom,
+    alternateName: 'augrandjardin.fr',
+    url: `${SITE}/`,
+    inLanguage: 'fr-FR',
+    publisher: { '@id': `${SITE}/#ferme` },
   };
 }
 

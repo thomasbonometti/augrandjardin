@@ -12,12 +12,15 @@ interface Props {
   indexer?: boolean;
   schema?: object | object[];
   image?: string;
+  imageAlt?: string;
 }
-const { titre, description, page = '', indexer = true, schema, image = '/og.jpg' } = Astro.props;
+const { titre, description, page = '', indexer = true, schema, image = '/og.jpg', imageAlt = 'Jeunes pousses de blettes sous un tunnel de la ferme Au Grand Jardin' } = Astro.props;
 // Tant que le site est en test (adresse *.pages.dev), rien n'est indexé : SITE_INDEXABLE=oui à la mise en ligne.
 const indexable = indexer && import.meta.env.SITE_INDEXABLE === 'oui';
 const canonique = new URL(Astro.url.pathname, Astro.site).href;
 const imageAbsolue = new URL(image, Astro.site).href;
+// Partages (Facebook, WhatsApp, LinkedIn…) : le titre sans « | Au Grand Jardin », déjà donné par og:site_name.
+const titrePartage = titre.replace(/\s*\|\s*Au Grand Jardin\s*$/, '');
 const schemas = schema ? [].concat(schema) : [];
 ---
 <!doctype html>
@@ -37,11 +40,19 @@ const schemas = schema ? [].concat(schema) : [];
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content={ferme.nom} />
-  <meta property="og:title" content={titre} />
+  <meta property="og:title" content={titrePartage} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonique} />
   <meta property="og:image" content={imageAbsolue} />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={imageAlt} />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={titrePartage} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageAbsolue} />
+  <meta name="twitter:image:alt" content={imageAlt} />
   {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   <script is:inline>
     // Apparitions au défilement : seulement si le visiteur accepte les animations.

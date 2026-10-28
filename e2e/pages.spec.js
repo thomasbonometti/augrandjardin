@@ -177,6 +177,22 @@ test('référencement : données structurées de la ferme et plan du site', asyn
   expect(await plan.text()).not.toContain('/pro/');
 });
 
+// Partages et nom du site dans Google (28/10/2026).
+test('référencement : nom du site, balises de partage complètes', async ({ page }) => {
+  await page.goto('/');
+  const ld = await page.$$eval('script[type="application/ld+json"]', (s) => s.map((x) => JSON.parse(x.textContent)));
+  expect(ld.find((x) => x['@type'] === 'WebSite')?.name).toBe('Au Grand Jardin');
+  for (const chemin of ['/', '/produits/', '/la-ferme/']) {
+    await page.goto(chemin);
+    const meta = await page.evaluate(() => Object.fromEntries([...document.querySelectorAll('meta[property^="og:"], meta[name^="twitter:"]')]
+      .map((m) => [m.getAttribute('property') || m.getAttribute('name'), m.getAttribute('content')])));
+    for (const cle of ['og:title', 'og:description', 'og:image', 'og:image:alt', 'og:image:width', 'og:image:height', 'twitter:card', 'twitter:image'])
+      expect(meta[cle], `${chemin} ${cle}`).toBeTruthy();
+    expect(meta['og:title']).not.toMatch(/\| Au Grand Jardin$/);
+    expect(meta['og:image']).toMatch(/^https:\/\/www\.augrandjardin\.fr\/.+\.jpg$/);
+  }
+});
+
 // Anciennes adresses du site d'avant 2026 (pages .html) : redirection définitive vers la nouvelle page.
 for (const [ancienne, nouvelle] of anciennesAdresses) {
   test(`ancienne adresse ${ancienne} → ${nouvelle}`, async ({ request }) => {

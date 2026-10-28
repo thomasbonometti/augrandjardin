@@ -10,7 +10,7 @@ import { ferme, adresseComplete } from '../data/ferme.js';
 import { produits, rayons, vedettes, prochaineVente as v, creneaux, misAJour, agjCatalogue, fermeture, marchesAffiches, commandesPdtOuvertes } from '../lib/donnees.js';
 import { euros, fmtHeure, plage } from '../lib/vente.js';
 import { resumePdt } from '../lib/pdt.js';
-import { schemaFerme } from '../lib/seo.js';
+import { schemaFerme, schemaSite } from '../lib/seo.js';
 
 const nb = produits.length;
 const pdt = resumePdt(agjCatalogue);
@@ -32,7 +32,7 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
   titre="Au Grand Jardin — maraîcher bio à Lostroff (Moselle), vente à la ferme le samedi"
   description={description}
   page="accueil"
-  schema={schemaFerme(creneaux, { pommesDeTerre: commandesPdtOuvertes })}
+  schema={[schemaSite(), schemaFerme(creneaux, { pommesDeTerre: commandesPdtOuvertes })]}
 >
   <!-- HERO -->
   <section class="wrap hero">
