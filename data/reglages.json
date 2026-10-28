@@ -7,5 +7,5 @@
   "afficherMarches": false,
   "espaceProOuvert": false,
   "commandesPdtOuvertes": false,
-  "inscriptionListeOuverte": false
+  "inscriptionListeOuverte": true
 }

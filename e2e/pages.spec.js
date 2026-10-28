@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { anciennesAdresses } from '../src/data/redirections.js';
+import { PDT, INSCRIPTION } from './etat.js';
 
 // Page Pommes de terre : seulement pendant la période de commande (case « Commandes de pommes de terre
-// ouvertes ») ; testée sur une construction ouverte (COMMANDE_PDT=ouverte, E2E_OUVERT=1).
-const PDT = !!process.env.E2E_OUVERT;
+// ouvertes ») ; voir e2e/etat.js.
 const PAGES = [
   ['/', /Des légumes bio cueillis à Lostroff/],
   ['/produits/', /Produits de la semaine/],
@@ -99,7 +99,7 @@ test('produits : les filtres par rayon masquent les autres rayons', async ({ pag
 });
 
 test('inscription SMS : numéro incomplet refusé', async ({ page }) => {
-  test.skip(!process.env.E2E_OUVERT, 'inscription de côté : formulaire absent (voir e2e/de-cote.spec.js)');
+  test.skip(!INSCRIPTION, 'inscription de côté : formulaire absent (voir e2e/de-cote.spec.js)');
   await page.goto('/');
   const form = page.locator('#sms form');
   await form.locator('input[type="tel"]').fill('06 12');
@@ -109,7 +109,7 @@ test('inscription SMS : numéro incomplet refusé', async ({ page }) => {
 });
 
 test('inscription : WhatsApp par défaut, SMS au choix, canal envoyé (sans écrire dans Notion)', async ({ page }) => {
-  test.skip(!process.env.E2E_OUVERT, 'inscription de côté : formulaire absent (voir e2e/de-cote.spec.js)');
+  test.skip(!INSCRIPTION, 'inscription de côté : formulaire absent (voir e2e/de-cote.spec.js)');
   await page.goto('/produits/');
   const form = page.locator('#sms form');
   const whatsapp = form.getByRole('radio', { name: 'WhatsApp' });
@@ -133,7 +133,7 @@ test('inscription : WhatsApp par défaut, SMS au choix, canal envoyé (sans écr
 });
 
 test('inscription SMS : envoi (écrit dans Notion, seulement avec E2E_ECRIRE=1)', async ({ page }, info) => {
-  test.skip(!process.env.E2E_OUVERT, 'inscription de côté : formulaire absent (voir e2e/de-cote.spec.js)');
+  test.skip(!INSCRIPTION, 'inscription de côté : formulaire absent (voir e2e/de-cote.spec.js)');
   test.skip(!process.env.E2E_ECRIRE, 'écriture désactivée');
   test.skip(info.project.name !== 'telephone', 'une seule inscription suffit');
   await page.goto('/produits/');

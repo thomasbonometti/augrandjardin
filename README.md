@@ -69,14 +69,14 @@ npm run e2e              # tests navigateur, téléphone et ordinateur
 
 Pour tester la commande sans toucher à l'outil en ligne : dans le dépôt `brief`, `AGJ_FAKE=1 npm run dev` (outil simulé sur le port 8787), puis ici un `.dev.vars` avec `AGJ_URL=http://localhost:8787`, et
 `E2E_COMMANDE=1 AGJ_DEV_URL=http://localhost:8787 npm run e2e` (commande de pommes de terre et espace pro, avec un pro créé dans l'outil simulé).
-Les commandes de pommes de terre sont fermées (pas de page) et l'inscription à la liste est de côté (cases décochées) : leurs tests tournent sur une construction ouverte, `COMMANDE_PDT=ouverte INSCRIPTION_LISTE=ouverte npx astro build --outDir dist-ouvert`, servie comme `dist/`, avec `E2E_OUVERT=1` ; sur la construction normale, `e2e/de-cote.spec.js` vérifie l'absence de la page Pommes de terre et le bloc « demandez-la à Pierre ».
+Les tests des fonctions qu'une case de « Réglages du site » ouvre ou ferme (commandes de pommes de terre, inscription à la liste) suivent `data/reglages.json` (`e2e/etat.js`). Les commandes de pommes de terre sont fermées aujourd'hui (pas de page) : leurs tests tournent sur une construction ouverte, `COMMANDE_PDT=ouverte INSCRIPTION_LISTE=ouverte npx astro build --outDir dist-ouvert`, servie comme `dist/`, avec `E2E_OUVERT=1`. Case décochée, `e2e/de-cote.spec.js` vérifie l'absence de la page Pommes de terre, ou le bloc « demandez-la à Pierre » à la place du formulaire d'inscription.
 Sur l'adresse de test : `BASE_URL=https://agj-site-2026.pages.dev npm run e2e` (lecture seule ; `E2E_COMMANDE=1` passe une vraie commande « Test »).
 
 ## Bascule (plus tard)
 
 Plan clic par clic : `docs/plan-bascule.md`. En résumé :
 
-1. Pierre a relu les textes. Option A retenue (Thomas, 28/10). Restent de côté : l'espace pro, les commandes de pommes de terre (pas de page tant que la case est décochée) et l'inscription à la liste (« demandez-la à Pierre ») ; rien à faire le jour J.
+1. Pierre a relu les textes. Option A retenue (Thomas, 28/10). Restent de côté : l'espace pro et les commandes de pommes de terre (pas de page tant que la case est décochée) ; l'inscription à la liste, rouverte par Thomas le 28/10, part avec le site ; rien à faire le jour J.
 2. Adresse : **www.augrandjardin.fr** (déjà dans le code). Domaine `www.augrandjardin.fr` sur le projet Cloudflare Pages, puis CNAME `www` → `agj-site-2026.pages.dev` chez IONOS ; `SITE_INDEXABLE=oui` ; « Publier ».
 3. augrandjardin.fr (sans www) : `bascule/ionos/.htaccess` déposé sur l'hébergement IONOS (301 vers www, chemin gardé). Le DNS chez Cloudflare (option B du plan) reste possible plus tard.
 4. Les anciennes pages `.html` sont déjà redirigées par `_redirects` (`src/data/redirections.js`).

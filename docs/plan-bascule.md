@@ -31,13 +31,14 @@ Préparé le 28/10/2026 par Claude, à la demande de Thomas. **Option A retenue 
 
 ## Ce qui reste de côté au passage (décision de Thomas du 28/10)
 
-Le jour J, le site part tel qu'il est sur l'adresse de test, sauf ces trois fonctions, qui attendent. Chacune a sa case dans la base Notion « Réglages du site » (page « Site augrandjardin.fr ») ; rien n'est à faire le jour J.
+Le jour J, le site part tel qu'il est sur l'adresse de test, sauf ces deux fonctions, qui attendent. Chacune a sa case dans la base Notion « Réglages du site » (page « Site augrandjardin.fr ») ; rien n'est à faire le jour J.
 
 | Fonction | Ce que voit le visiteur | Pour la rouvrir plus tard |
 |---|---|---|
 | **Espace pro** (case « Espace pro ouvert », décochée, jusqu'au printemps 2027) | Page Professionnels : « contactez Pierre » (téléphone, mail) ; `/pro/` renvoie vers elle. La page de Pierre garde sa rubrique « Pros » (choix de Thomas). | Cocher, « Publier », remettre la question fréquente des restaurateurs sur la demande d'accès (voir `docs/passation.md`). |
 | **Commandes de pommes de terre** (case « Commandes de pommes de terre ouvertes », décochée : Pierre décide de la période) | Pas de page Pommes de terre : ni dans le menu, ni sur l'accueil, ni dans le plan du site ; `/pommes-de-terre/` renvoie vers l'accueil. L'outil refuse les commandes en ligne (pull request n° 14 de `brief`). | Passer l'outil en réel (`AGJ_LIVE` = `"1"`, pull request de `brief`), avec les vrais prix, le vrai stock et des dates de retrait ouvertes ; cocher la case ; « Publier ». À la fin de la période : décocher, « Publier ». |
-| **Inscription à la liste de la semaine** (case « Inscription à la liste ouverte », décochée, tant que l'envoi automatique n'existe pas) | À la place du formulaire (accueil, Produits, Calendrier) : « Pour la recevoir, demandez-la à Pierre à la vente, ou appelez-le », avec son numéro. | Cocher, remettre la réponse de la question « Comment recevoir la liste de la semaine ? » (texte dans `docs/passation.md`), « Publier ». |
+
+L'inscription à la liste de la semaine, d'abord de côté, a été rouverte par Thomas le 28/10 (case « Inscription à la liste ouverte » cochée) : le formulaire (WhatsApp ou SMS) part avec le site, et les inscrits arrivent dans la base « Inscriptions SMS » (vue « À ajouter à la liste »). Pour la remettre de côté : décocher, remettre la réponse « demandez-la-lui » de la question fréquente (texte dans `docs/passation.md`), « Publier ».
 
 Pour essayer une fonction sans l'ouvrir sur le site : une branche poussée sur GitHub donne un aperçu Cloudflare ; y mettre la variable `ESPACE_PRO=ouvert`, `COMMANDE_PDT=ouverte` ou `INSCRIPTION_LISTE=ouverte` dans l'environnement « Preview » (Settings → Variables and Secrets), jamais en « Production ».
 
@@ -115,7 +116,7 @@ Page Facebook → **Modifier les infos** → site web : `https://www.augrandjard
 - https://www.augrandjardin.fr : les 8 pages, la liste, les questions fréquentes, la carte.
 - https://augrandjardin.fr/la-ferme.html → https://www.augrandjardin.fr/la-ferme/ ; https://augrandjardin.fr → www.
 - https://produits.augrandjardin.fr/?src=qr → https://www.augrandjardin.fr/produits/?src=qr (le QR code de l'affichette).
-- Pommes de terre : pas de page (`/pommes-de-terre/` → accueil) ; liste de la semaine : « demandez-la à Pierre » ; Professionnels : « contactez Pierre ».
+- Pommes de terre : pas de page (`/pommes-de-terre/` → accueil) ; liste de la semaine : le formulaire (WhatsApp ou SMS) ; Professionnels : « contactez Pierre ».
 - « Ma semaine » : un « Publier » met bien le site à jour.
 - agj-site-2026.pages.dev répond avec l'en-tête `X-Robots-Tag: noindex`.
 

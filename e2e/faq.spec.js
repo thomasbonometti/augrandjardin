@@ -1,12 +1,12 @@
 // Questions fréquentes en bas des pages (base Notion « Questions fréquentes », instantané data/faq.json)
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
+import { PDT } from './etat.js';
 
 const faq = JSON.parse(readFileSync(new URL('../data/faq.json', import.meta.url), 'utf8'));
 
 // Page Pommes de terre : seulement pendant la période de commande (case « Commandes de pommes de terre
-// ouvertes ») ; testée sur une construction ouverte (COMMANDE_PDT=ouverte, E2E_OUVERT=1).
-const PDT = !!process.env.E2E_OUVERT;
+// ouvertes ») ; voir e2e/etat.js.
 const PAGES = [
   ['/', 'Accueil'],
   ['/produits/', 'Produits'],
