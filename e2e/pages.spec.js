@@ -108,6 +108,16 @@ test('inscription SMS : numéro incomplet refusé', async ({ page }) => {
   await expect(form.locator('input[type="tel"]')).toHaveAttribute('aria-invalid', 'true');
 });
 
+test('inscription SMS : numéro de fixe refusé par la fonction (rien n’est écrit dans Notion)', async ({ page }) => {
+  test.skip(!INSCRIPTION, 'inscription de côté : formulaire absent (voir e2e/de-cote.spec.js)');
+  await page.goto('/');
+  const form = page.locator('#sms form');
+  await form.locator('input[type="tel"]').fill('03 87 00 00 00');
+  await form.getByRole('button', { name: 'M’inscrire' }).click();
+  await expect(form.locator('.message-form')).toContainText('portable');
+  await expect(form.locator('input[type="tel"]')).toHaveAttribute('aria-invalid', 'true');
+});
+
 test('inscription : WhatsApp par défaut, SMS au choix, canal envoyé (sans écrire dans Notion)', async ({ page }) => {
   test.skip(!INSCRIPTION, 'inscription de côté : formulaire absent (voir e2e/de-cote.spec.js)');
   await page.goto('/produits/');
