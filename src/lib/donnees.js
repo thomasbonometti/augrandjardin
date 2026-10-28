@@ -13,7 +13,7 @@ import {
   nettoyerNom, prixProduit, estNouveau, grouperRayons, vedettes as choisirVedettes,
   lireCreneaux, prochaineVente as calculerProchaineVente, dateHeure, partiesParis,
 } from './vente.js';
-import { lireFermeture, lireAnnonce, questionsPour, creneauxAffiches, lireEspacePro, afficherMarches } from './reglages.js';
+import { lireFermeture, lireAnnonce, questionsPour, creneauxAffiches, lireEspacePro, lireCommandePdt, lireInscriptionListe, afficherMarches } from './reglages.js';
 import { fichesLegumes, calendrier as grouperCalendrier, ancresProduits } from './saisons.js';
 
 export { meta, agjCatalogue, agjConfig, reglages };
@@ -29,6 +29,10 @@ export const marchesAffiches = afficherMarches(reglages);
 const creneauxPlanning = creneauxAffiches(lireCreneaux(planningBrut), reglages);
 // Espace pro ouvert (case de Réglages du site, ou variable de construction ESPACE_PRO pour un aperçu)
 export const espaceProOuvert = lireEspacePro(reglages, import.meta.env.ESPACE_PRO);
+// Fonctions gardées de côté jusqu'à nouvel ordre (décision de Thomas du 28/10/2026), même principe :
+// commande de pommes de terre en ligne (sinon : par téléphone) et inscription à la liste de la semaine.
+export const commandePdtEnLigne = lireCommandePdt(reglages, import.meta.env.COMMANDE_PDT);
+export const inscriptionOuverte = lireInscriptionListe(reglages, import.meta.env.INSCRIPTION_LISTE);
 // Mode fermé (« Réglages du site » dans Notion) : null quand le site est ouvert.
 // Fermé : pas de prochaine vente, aucun lieu « cette semaine », commandes en ligne fermées.
 // La semaine de la reprise (prochaine vente du Planning le jour de la reprise ou après), le site rouvre.

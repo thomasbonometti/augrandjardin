@@ -4,7 +4,7 @@
     "question": "Comment commander des pommes de terre ?",
     "reponse": [
       {
-        "texte": "Choisissez vos filets sur cette page et validez : vous recevez un e-mail de confirmation. Quand Pierre a préparé votre commande, un second e-mail vous permet de choisir votre jour de retrait à la ferme.\nVous réglez sur place, au retrait."
+        "texte": "Pour le moment, les commandes se font par téléphone : appelez Pierre au 06 42 42 42 93.\nVous réglez sur place, au retrait, à la ferme."
       }
     ],
     "pages": [
@@ -64,7 +64,7 @@
     "question": "Peut-on réserver ses légumes ?",
     "reponse": [
       {
-        "texte": "Non, il n’y a pas de réservation : les légumes sont en vente à la ferme, le jour de la vente.\nSeules les pommes de terre et les oignons se commandent à l’avance, en ligne, sur la page Pommes de terre."
+        "texte": "Non, il n’y a pas de réservation : les légumes sont en vente à la ferme, le jour de la vente.\nSeules les pommes de terre et les oignons se commandent à l’avance : tout est expliqué sur la page Pommes de terre."
       }
     ],
     "pages": [
@@ -78,7 +78,7 @@
     "question": "Comment recevoir la liste de la semaine ?",
     "reponse": [
       {
-        "texte": "Inscrivez-vous avec le formulaire du site : Pierre envoie la liste une fois par semaine, de début avril à fin décembre, sur WhatsApp, ou par SMS si vous n’avez pas WhatsApp. La liste est aussi publiée sur ce site et sur la page Facebook de la ferme."
+        "texte": "Pierre envoie la liste une fois par semaine, de début avril à fin décembre, sur WhatsApp, ou par SMS si vous n’avez pas WhatsApp. Pour la recevoir, demandez-la-lui à la vente ou par téléphone, au 06 42 42 42 93. La liste est aussi publiée sur ce site et sur la page Facebook de la ferme."
       }
     ],
     "pages": [
@@ -106,7 +106,7 @@
     "question": "La ferme est-elle ouverte toute l’année ?",
     "reponse": [
       {
-        "texte": "La vente suit les saisons, de début avril à fin décembre. Quand la ferme fait une pause, la date de reprise est affichée en haut du site. Pour ne pas la manquer, inscrivez-vous à la liste de la semaine ou suivez la ferme sur Facebook."
+        "texte": "La vente suit les saisons, de début avril à fin décembre. Quand la ferme fait une pause, la date de reprise est affichée en haut du site. Pour ne pas la manquer, recevez la liste de la semaine ou suivez la ferme sur Facebook."
       }
     ],
     "pages": [

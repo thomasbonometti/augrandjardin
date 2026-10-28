@@ -21,3 +21,6 @@ dist-ferme/
 
 # Construction de test avec l'espace pro ouvert (ESPACE_PRO=ouvert, voir e2e/espace-pro.spec.js)
 dist-pro/
+
+# Construction de test avec les fonctions de côté ouvertes (COMMANDE_PDT=ouverte INSCRIPTION_LISTE=ouverte)
+dist-ouvert/

@@ -19,7 +19,7 @@ export function schemaFerme(creneaux = []) {
     '@type': 'LocalBusiness',
     '@id': `${SITE}/#ferme`,
     name: ferme.nom,
-    description: 'Ferme maraîchère bio à Lostroff (Moselle), certifiée par Ecocert : légumes de saison, vente à la ferme le samedi, pommes de terre en ligne, livraison des professionnels.',
+    description: 'Ferme maraîchère bio à Lostroff (Moselle), certifiée par Ecocert : légumes de saison, vente à la ferme le samedi, pommes de terre de garde, livraison des professionnels.',
     url: `${SITE}/`,
     image: `${SITE}/og.jpg`,
     telephone: ferme.telephoneIntl,

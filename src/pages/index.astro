@@ -7,19 +7,21 @@ import FormulaireSms from '../components/FormulaireSms.astro';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
 import tampon from '../assets/svg/tampon.svg?raw';
 import { ferme, adresseComplete } from '../data/ferme.js';
-import { produits, rayons, vedettes, prochaineVente as v, creneaux, misAJour, agjCatalogue, fermeture, marchesAffiches } from '../lib/donnees.js';
+import { produits, rayons, vedettes, prochaineVente as v, creneaux, misAJour, agjCatalogue, fermeture, marchesAffiches, commandePdtEnLigne } from '../lib/donnees.js';
 import { euros, fmtHeure, plage } from '../lib/vente.js';
 import { resumePdt } from '../lib/pdt.js';
 import { schemaFerme } from '../lib/seo.js';
 
 const nb = produits.length;
 const pdt = resumePdt(agjCatalogue);
-// Mode fermé : la commande en ligne est fermée elle aussi.
-const pdtOuvert = pdt.ouvert && !fermeture;
+// Mode fermé : la commande en ligne est fermée elle aussi. Commande en ligne de côté (Réglages du site) :
+// les pommes de terre se commandent par téléphone.
+const pdtOuvert = pdt.ouvert && !fermeture && commandePdtEnLigne;
+const pdtTelephone = !fermeture && !commandePdtEnLigne;
 const reprise = fermeture?.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Reprise bientôt';
 const description = fermeture
-  ? `Légumes bio cueillis à Lostroff, 43 rue Principale. Ventes en pause : ${reprise.toLowerCase()}. Inscrivez-vous à la liste de la semaine pour être prévenu.`
-  : `Légumes bio cueillis à Lostroff : ${nb} produits cette semaine, vente à la ferme${v ? ` ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale. Pommes de terre en ligne, offre pour les professionnels.`;
+  ? `Légumes bio cueillis à Lostroff, 43 rue Principale. Ventes en pause : ${reprise.toLowerCase()}. Recevez la liste de la semaine pour être prévenu.`
+  : `Légumes bio cueillis à Lostroff : ${nb} produits cette semaine, vente à la ferme${v ? ` ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale. Pommes de terre ${commandePdtEnLigne ? 'en ligne' : 'de garde'}, offre pour les professionnels.`;
 const samediFerme = creneaux.find((c) => c.aLaFerme && c.jour === 'Samedi');
 const jourVente = v ? v.jour.toLowerCase() : 'samedi';
 const autres = rayons.filter((r) => r.titre !== 'Divers').map((r) => r.titre.toLowerCase());
@@ -154,9 +156,9 @@ const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-
           <div class="photo facon__photo"><Photo nom="pdt" alt="Pommes de terre de la ferme" sizes="(min-width: 1100px) 400px, 88px" largeurs={[176, 400, 800]} /></div>
           <div class="facon__texte">
             <div class="facon__titre"><h3>Pommes de terre en sacs</h3><Icone nom="droite" taille={22} class="facon__fleche" /></div>
-            <p class="muted facon__desc"><span class="seulement-ordi">{pdt.varietes ? `${pdt.varietes} variétés ${pdt.formatsCarte}, commandées en ligne et retirées à la ferme.` : 'Commandées en ligne, retirées à la ferme.'}</span><span class="seulement-mobile">{pdtOuvert ? 'Commandes ouvertes en ligne.' : 'Commandes en ligne fermées pour le moment.'}</span></p>
+            <p class="muted facon__desc"><span class="seulement-ordi">{pdt.varietes ? `${pdt.varietes} variétés ${pdt.formatsCarte}, ${commandePdtEnLigne ? 'commandées en ligne' : 'à commander par téléphone'} et retirées à la ferme.` : `${commandePdtEnLigne ? 'Commandées en ligne' : 'À commander par téléphone'}, retirées à la ferme.`}</span><span class="seulement-mobile">{pdtTelephone ? 'Commandes par téléphone, auprès de Pierre.' : pdtOuvert ? 'Commandes ouvertes en ligne.' : 'Commandes en ligne fermées pour le moment.'}</span></p>
           </div>
-          <span class="chip facon__chip">{pdtOuvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span>
+          <span class="chip facon__chip">{pdtTelephone ? 'Par téléphone' : pdtOuvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment'}</span>
           <Icone nom="chevron" taille={20} class="facon__chevron" />
         </a>
       </li>

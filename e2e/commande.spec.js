@@ -2,6 +2,10 @@
 // mails seulement vers hey@thomasbonometti.fr).
 import { test, expect } from '@playwright/test';
 
+// Commande en ligne gardée de côté (case « Commande de pommes de terre en ligne » décochée) : ces tests
+// tournent sur une construction ouverte (COMMANDE_PDT=ouverte, E2E_OUVERT=1). Sinon : e2e/de-cote.spec.js.
+test.skip(!process.env.E2E_OUVERT, 'commande en ligne de côté : construire avec COMMANDE_PDT=ouverte et lancer avec E2E_OUVERT=1');
+
 const ECRIRE = !!process.env.E2E_COMMANDE;
 const OUTIL_LOCAL = process.env.AGJ_DEV_URL; // outil simulé du dépôt brief (http://localhost:8787)
 

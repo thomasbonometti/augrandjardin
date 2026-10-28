@@ -15,7 +15,7 @@ const jour = v ? v.jour.toLowerCase() : 'samedi';
 const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heures}` : null;
 const reprise = fermeture?.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt';
 const description = fermeture
-  ? `Les ventes de la ferme Au Grand Jardin sont en pause, ${reprise}. Inscrivez-vous à la liste de la semaine pour la recevoir dès la reprise. 43 rue Principale à Lostroff.`
+  ? `Les ventes de la ferme Au Grand Jardin sont en pause, ${reprise}. Recevez la liste de la semaine dès la reprise. 43 rue Principale à Lostroff.`
   : `Les ${nb} produits en vente à la ferme Au Grand Jardin cette semaine, avec leurs prix TTC${v ? `. Vente ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale à Lostroff.`;
 ---
 <Base

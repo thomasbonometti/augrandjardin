@@ -10,7 +10,7 @@ export const isoAujourdhui = (maintenant = new Date()) => {
 const jour = (iso, options) => new Intl.DateTimeFormat('fr-FR', { timeZone: 'UTC', ...options }).format(new Date(`${iso}T12:00:00Z`));
 
 export const MESSAGE_FERMETURE =
-  'Les ventes reprennent bientôt. Pour être prévenu de la reprise, inscrivez-vous à la liste de la semaine (WhatsApp ou SMS) ou suivez la ferme sur Facebook.';
+  'Les ventes reprennent bientôt. Pour être prévenu de la reprise, recevez la liste de la semaine (WhatsApp ou SMS) ou suivez la ferme sur Facebook.';
 
 // Mode fermé : null si le site est ouvert.
 // « Fermé » coché, avec ou sans date de reprise. Avec une date, le site rouvre tout seul à la
@@ -41,15 +41,28 @@ export const afficherMarches = (reglages) => !!reglages?.afficherMarches;
 export const creneauxAffiches = (creneaux = [], reglages) =>
   afficherMarches(reglages) ? creneaux : creneaux.filter((c) => c.aLaFerme);
 
-// Espace pro (en veille jusqu'au printemps 2027) : case « Espace pro ouvert ».
-// La variable de construction ESPACE_PRO (« ouvert » ou « ferme ») passe avant la case : elle sert
-// aux déploiements d'aperçu de Cloudflare, pour tester l'espace pro sans l'ouvrir sur le site.
-export function lireEspacePro(reglages, forcer) {
+// Une case de « Réglages du site », qu'une variable de construction peut forcer (« ouvert(e) » ou
+// « ferme(e) ») : elle sert aux déploiements d'aperçu de Cloudflare, pour essayer une fonction
+// sans l'ouvrir sur le site. Case absente (ancienne copie de data/) : fermé.
+export function interrupteur(coche, forcer) {
   const f = String(forcer ?? '').trim().toLowerCase();
-  if (['ouvert', 'oui', '1'].includes(f)) return true;
-  if (['ferme', 'fermé', 'non', '0'].includes(f)) return false;
-  return !!reglages?.espaceProOuvert;
+  if (['ouvert', 'ouverte', 'oui', '1'].includes(f)) return true;
+  if (['ferme', 'fermé', 'fermee', 'fermée', 'non', '0'].includes(f)) return false;
+  return !!coche;
 }
+
+// Espace pro (en veille jusqu'au printemps 2027) : case « Espace pro ouvert », variable ESPACE_PRO.
+export const lireEspacePro = (reglages, forcer) => interrupteur(reglages?.espaceProOuvert, forcer);
+
+// Commande de pommes de terre en ligne (gardée de côté jusqu'au passage de l'outil en réel, décision
+// de Thomas du 28/10/2026) : case « Commande de pommes de terre en ligne », variable COMMANDE_PDT.
+// Décochée : la page Pommes de terre renvoie vers le téléphone de Pierre.
+export const lireCommandePdt = (reglages, forcer) => interrupteur(reglages?.commandePdtEnLigne, forcer);
+
+// Inscription à la liste de la semaine (gardée de côté tant que l'envoi automatique n'existe pas,
+// même décision) : case « Inscription à la liste ouverte », variable INSCRIPTION_LISTE.
+// Décochée : « demandez-la à Pierre » à la place du formulaire.
+export const lireInscriptionListe = (reglages, forcer) => interrupteur(reglages?.inscriptionListeOuverte, forcer);
 
 // Message de la semaine, sous la barre verte : seulement si « Afficher le message » est coché.
 export function lireAnnonce(reglages) {

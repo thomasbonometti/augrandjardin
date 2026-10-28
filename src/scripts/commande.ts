@@ -18,6 +18,8 @@ let catalogue: Catalogue = donnees.catalogue;
 let config = donnees.config;
 // Site publié en mode fermé (Notion « Réglages du site ») : la commande reste fermée, même si l'outil répond « ouvert ».
 const fermeSite = !!donnees.fermeSite;
+// Commande en ligne gardée de côté (Réglages du site) : commandes par téléphone, le formulaire reste caché.
+const horsLigne = !!donnees.horsLigne;
 let panier: any = panierSecours;
 
 const form = $<HTMLFormElement>('#commande');
@@ -113,8 +115,8 @@ function majRecap() {
 function majEntete() {
   const r = resumePdt(catalogue);
   const statut = $('[data-statut]');
-  const ouvert = r.ouvert && !fermeSite;
-  if (statut) statut.textContent = ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment';
+  const ouvert = r.ouvert && !fermeSite && !horsLigne;
+  if (statut) statut.textContent = horsLigne && !fermeSite ? 'Commandes par téléphone' : ouvert ? 'Commandes ouvertes' : 'Commandes fermées pour le moment';
   // On ne réécrit l'en-tête que s'il a changé depuis la construction (sinon l'animation d'arrivée serait coupée).
   const memeTexte = (a: string, b: string) => a.replace(/\s+/g, ' ').trim() === b.replace(/\s+/g, ' ').trim();
   if (r.cartes.length) {
@@ -129,12 +131,12 @@ function majEntete() {
     const texte = `Pommes de terre de garde, ${r.formatsTitre}`;
     if (!memeTexte(texte, titre.textContent || '')) titre.textContent = texte;
   }
-  $('[data-bandeau-test]').hidden = !!catalogue.live;
+  $('[data-bandeau-test]').hidden = !!catalogue.live || horsLigne;
   form.hidden = !ouvert || !$('[data-fin]').hidden;
   $('[data-fermee]').hidden = ouvert;
   // Fermé dans Notion depuis la dernière publication du site : l'outil donne la date de reprise et le message.
   const pause = catalogue.pause;
-  if (!ouvert && pause && !fermeSite) {
+  if (!ouvert && pause && !fermeSite && !horsLigne) {
     $('[data-fermee-titre]').textContent = typo(`Les commandes reprendront ${pause.untilLabel ? `le ${pause.untilLabel}` : 'bientôt'}`);
     if (pause.message) $('[data-fermee-texte]').textContent = typo(pause.message);
   }

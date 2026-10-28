@@ -2,10 +2,22 @@
 // Inscription à la liste de la semaine → fonction /api/inscription-sms → base Notion « Inscriptions SMS ».
 // Revue de Pierre du 26/10/2026 : la liste part de préférence sur WhatsApp, par SMS pour qui n'a pas WhatsApp.
 // Le choix est rangé dans la colonne « Canal » (WhatsApp par défaut).
+// Inscription gardée de côté (case « Inscription à la liste ouverte » décochée, tant que l'envoi
+// automatique n'existe pas) : pas de formulaire, on renvoie vers Pierre, à la vente ou au téléphone.
+import Icone from './Icone.astro';
+import { ferme } from '../data/ferme.js';
+import { inscriptionOuverte } from '../lib/donnees.js';
+
 interface Props { source: string; variante?: 'sombre' | 'clair'; class?: string }
 const { source, variante = 'sombre', class: classe = '' } = Astro.props;
 const id = `sms-${source}`;
 ---
+{!inscriptionOuverte ? (
+  <div class={`form-sms form-sms--${variante} form-sms--pierre ${classe}`} data-liste-pierre>
+    <p class="form-sms__pierre">Pour la recevoir, demandez-la à Pierre à la vente, ou appelez-le.</p>
+    <div class="btns"><a class={`btn ${variante === 'sombre' ? 'btn-blanc' : 'btn-primaire'} btn-bloc`} href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />{ferme.telephone}</a></div>
+  </div>
+) : (
 <form class={`form-sms form-sms--${variante} ${classe}`} action="/api/inscription-sms" method="post" data-form-api novalidate>
   <input type="hidden" name="source" value={source} />
   <div class="piege" aria-hidden="true"><label>Site web <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
@@ -24,7 +36,11 @@ const id = `sms-${source}`;
   <p class="form-sms__rgpd xs" id={`${id}-rgpd`}>Un message par semaine au plus, de la ferme uniquement. Pour vous désinscrire, répondez STOP.</p>
   <p class="message-form" id={`${id}-msg`} role="status" aria-live="polite"></p>
 </form>
+)}
 <style>
+  .form-sms__pierre { color: var(--texte); }
+  .form-sms--sombre .form-sms__pierre { color: var(--blanc); }
+  @media (min-width: 720px) { .form-sms--pierre .btn { width: auto; } }
   .form-sms { display: flex; flex-direction: column; gap: 10px; }
   .form-sms__ligne { display: flex; flex-direction: column; gap: 10px; }
   .form-sms__rgpd { color: var(--secondaire); }
