@@ -16,11 +16,13 @@ const quand = v ? `${v.jourDate.replace(/^./, (c) => c.toUpperCase())}, ${v.heur
 const reprise = fermeture?.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt';
 const description = fermeture
   ? `Les ventes de la ferme Au Grand Jardin sont en pause, ${reprise}. Recevez la liste de la semaine dès la reprise. 43 rue Principale à Lostroff.`
-  : `Les ${nb} produits en vente à la ferme Au Grand Jardin cette semaine, avec leurs prix TTC${v ? `. Vente ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale à Lostroff.`;
+  : `Les ${nb} produits en vente cette semaine à la ferme Au Grand Jardin, avec leurs prix${v ? `. Vente ${v.jourDate}, ${v.heures}` : ''}, 43 rue Principale à Lostroff.`;
 ---
 <Base
-  titre={`Produits de la semaine — légumes bio à Lostroff | Au Grand Jardin`}
+  titre="Légumes bio de la semaine à Lostroff | Au Grand Jardin"
   description={description}
+  image="/og-produits.jpg"
+  imageAlt="Jeunes pousses de blettes sous un tunnel de la ferme Au Grand Jardin"
   page="produits"
   schema={fileAriane([{ nom: 'Produits de la semaine', url: '/produits/' }])}
 >

@@ -189,8 +189,20 @@ test('référencement : nom du site, balises de partage complètes', async ({ pa
     for (const cle of ['og:title', 'og:description', 'og:image', 'og:image:alt', 'og:image:width', 'og:image:height', 'twitter:card', 'twitter:image'])
       expect(meta[cle], `${chemin} ${cle}`).toBeTruthy();
     expect(meta['og:title']).not.toMatch(/\| Au Grand Jardin$/);
-    expect(meta['og:image']).toMatch(/^https:\/\/www\.augrandjardin\.fr\/.+\.jpg$/);
+    expect(meta['og:image']).toMatch(/^https:\/\/www\.augrandjardin\.fr\/og-.+\.jpg$/);
+    // L'image existe bien sur le site, et reste assez légère pour WhatsApp.
+    const img = await page.request.get(new URL(meta['og:image']).pathname);
+    expect(img.status(), meta['og:image']).toBe(200);
+    expect((await img.body()).length).toBeLessThan(300_000);
   }
+});
+
+test('référencement : icônes et manifeste servis', async ({ request }) => {
+  for (const chemin of ['/favicon.ico', '/favicon.svg', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/icon-maskable-512.png'])
+    expect((await request.get(chemin)).status(), chemin).toBe(200);
+  const manifeste = await (await request.get('/site.webmanifest')).json();
+  expect(manifeste.short_name).toBe('Au Grand Jardin');
+  expect(manifeste.icons.some((i) => i.purpose === 'maskable')).toBe(true);
 });
 
 // Anciennes adresses du site d'avant 2026 (pages .html) : redirection définitive vers la nouvelle page.

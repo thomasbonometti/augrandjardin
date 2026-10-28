@@ -22,11 +22,13 @@ const cartes = [
 const unite = (titre: string, n: number) => (n > 1 ? titre.toLowerCase() : titre.toLowerCase().replace(/s$/, ''));
 const jour = v ? v.jour.toLowerCase() : 'samedi';
 const reprise = fermeture?.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt';
-const description = `Les légumes de saison en Moselle, mois par mois : ce que la ferme Au Grand Jardin récolte à Lostroff. En ${r.mois} : ${listeNoms(r.deSaison, 6).toLowerCase() || 'la ferme prépare la saison'}.`;
+const description = `Les légumes de saison en Moselle, mois par mois, d’après les récoltes de la ferme Au Grand Jardin. En ${r.mois} : ${listeNoms(r.deSaison, 3).toLowerCase() || 'la ferme prépare la saison'}.`;
 ---
 <Base
-  titre="Légumes de saison en Moselle — calendrier de la ferme | Au Grand Jardin"
+  titre="Légumes de saison en Moselle, mois par mois | Au Grand Jardin"
   description={description}
+  image="/og-calendrier.jpg"
+  imageAlt="Un tunnel de culture ouvert sur les rangs de légumes de la ferme Au Grand Jardin"
   page="calendrier"
   schema={fileAriane([{ nom: 'Calendrier de saison', url: '/calendrier-de-saison/' }])}
 >

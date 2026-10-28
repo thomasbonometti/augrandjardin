@@ -11,8 +11,10 @@ const lieux = lireLieux(creneaux);
 const jourVente = v ? v.jourDate.replace(/^./, (c) => c.toUpperCase()) : null;
 ---
 <Base
-  titre="Horaires et contact — vente à la ferme à Lostroff | Au Grand Jardin"
-  description={`Horaires de vente de la ferme Au Grand Jardin${fermeture ? ` : ventes en pause, ${fermeture.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt'}` : v ? ` : ${v.jourDate}, ${v.heures}` : ''}. ${adresseComplete}. Téléphone ${ferme.telephone}, ${ferme.email}.`}
+  titre="Horaires de vente à la ferme, Lostroff | Au Grand Jardin"
+  description={`Vente à la ferme Au Grand Jardin${fermeture ? ` : ventes en pause, ${fermeture.reprise ? `reprise le ${fermeture.repriseLong}` : 'reprise bientôt'}` : v ? ` : ${v.jourDate}, ${v.heures}` : ''}. ${adresseComplete}. Téléphone : ${ferme.telephone}.`}
+  image="/og-horaires-contact.jpg"
+  imageAlt="Les tunnels de la ferme Au Grand Jardin au bord d’un champ, à Lostroff"
   page="contact"
   schema={[schemaFerme(creneaux, { pommesDeTerre: commandesPdtOuvertes }), fileAriane([{ nom: 'Horaires & contact', url: '/horaires-contact/' }])]}
 >

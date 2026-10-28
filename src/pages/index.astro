@@ -20,7 +20,7 @@ const pdtOuvert = pdt.ouvert && !fermeture;
 const reprise = fermeture?.reprise ? `Reprise le ${fermeture.repriseLong}` : 'Reprise bientôt';
 const description = fermeture
   ? `Légumes bio cueillis à Lostroff, 43 rue Principale. Ventes en pause : ${reprise.toLowerCase()}. Recevez la liste de la semaine pour être prévenu.`
-  : `Légumes bio cueillis à Lostroff : ${nb} produits cette semaine, vente à la ferme${v ? ` ${v.jourDate} de ${v.heures}` : ''}, 43 rue Principale. ${commandesPdtOuvertes ? 'Pommes de terre en ligne, offre' : 'Offre'} pour les professionnels.`;
+  : `Pierre Fouquet cultive des légumes bio de saison à Lostroff (Moselle), ferme certifiée par Ecocert.${v ? ` Vente à la ferme ${v.jourDate}, ${v.heures}.` : ''}`;
 const samediFerme = creneaux.find((c) => c.aLaFerme && c.jour === 'Samedi');
 const jourVente = v ? v.jour.toLowerCase() : 'samedi';
 const autres = rayons.filter((r) => r.titre !== 'Divers').map((r) => r.titre.toLowerCase());
@@ -29,7 +29,7 @@ const quand = v ? { jour: v.jourDate.replace(/^./, (c) => c.toUpperCase()), heur
 const tamponSvg = tampon.replace(/<\?xml[^>]*>/, '').replace('<svg', '<svg aria-hidden="true" focusable="false"');
 ---
 <Base
-  titre="Au Grand Jardin — maraîcher bio à Lostroff (Moselle), vente à la ferme le samedi"
+  titre="Au Grand Jardin — maraîcher bio à Lostroff (Moselle)"
   description={description}
   page="accueil"
   schema={[schemaSite(), schemaFerme(creneaux, { pommesDeTerre: commandesPdtOuvertes })]}

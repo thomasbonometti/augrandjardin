@@ -26,8 +26,10 @@ const donnees = JSON.stringify({ catalogue: agjCatalogue, config: agjConfig, fer
 const champ = (id: string) => agjConfig.fields?.find((f: any) => f.id === id) || {};
 ---
 <Base
-  titre="Pommes de terre en filets, à commander en ligne — Lostroff | Au Grand Jardin"
-  description={`Commandez vos pommes de terre de garde (${pdt.varietes} variétés${pdt.formatsCarte ? `, ${pdt.formatsCarte}` : ''}) et vos oignons en ligne. Pierre prépare la commande, vous choisissez ensuite votre jour de retrait à la ferme de Lostroff. Paiement sur place.`}
+  titre="Pommes de terre à commander, Lostroff | Au Grand Jardin"
+  description={`Commandez en ligne vos pommes de terre de garde (${pdt.varietes} variétés${pdt.formatsCarte ? `, ${pdt.formatsCarte}` : ''}) et vos oignons, à retirer à la ferme Au Grand Jardin, à Lostroff.`}
+  image="/og-pommes-de-terre.jpg"
+  imageAlt="Pommes de terre de garde de la ferme Au Grand Jardin"
   page="pdt"
   schema={fileAriane([{ nom: 'Pommes de terre', url: '/pommes-de-terre/' }])}
 >
