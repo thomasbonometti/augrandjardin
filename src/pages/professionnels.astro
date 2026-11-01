@@ -9,11 +9,14 @@ import { ferme } from '../data/ferme.js';
 import { restaurants } from '../lib/donnees.js';
 import QuestionsFrequentes from '../components/QuestionsFrequentes.astro';
 import { produits, fermeture, espaceProOuvert } from '../lib/donnees.js';
+import { produitsPros } from '../lib/vente.js';
+// Le nombre de produits annoncé = la sélection proposée aux pros, comme dans leur grille (Pierre, 01/11/2026).
+const nbProduitsPros = produitsPros(produits).length;
 import { fileAriane } from '../lib/seo.js';
 ---
 <Base
   titre="Légumes bio pour les professionnels | Au Grand Jardin"
-  description="Restaurants et commerces autour de Lostroff : Pierre Fouquet livre ses légumes bio de saison le lundi. Contactez-le pour travailler avec la ferme."
+  description="Restaurants et commerces autour de Lostroff : Pierre Fouquet livre ses légumes bio de saison le mercredi. Contactez-le pour travailler avec la ferme."
   image="/og-professionnels.jpg"
   imageAlt="Échange entre caisses de légumes sous un tunnel de la ferme Au Grand Jardin"
   page="pros"
@@ -32,7 +35,7 @@ import { fileAriane } from '../lib/seo.js';
       ) : (
         <div class="contact-pro carte-sable" data-anim data-contact-pro>
           <p class="contact-pro__titre">Pour travailler avec la ferme, contactez Pierre</p>
-          <p class="muted contact-pro__texte">Vos volumes, vos jours de livraison, les produits qui comptent pour votre carte : Pierre vous répond sous 48&nbsp;h.</p>
+          <p class="muted contact-pro__texte">Pierre assure lui-même les livraisons le mercredi, dans un rayon d’environ 30&nbsp;km autour de la ferme. Contactez-le pour savoir si votre établissement peut être livré : il vous répond sous 48&nbsp;h.</p>
           <div class="btns">
             <a class="btn btn-primaire btn-bloc" href={ferme.telephoneLien}><Icone nom="telephone" taille={18} />{ferme.telephone}</a>
             <a class="btn btn-secondaire btn-bloc" href={`mailto:${ferme.email}?subject=${encodeURIComponent('Livraison de légumes pour un professionnel')}`}>Écrire à Pierre</a>
@@ -43,7 +46,7 @@ import { fileAriane } from '../lib/seo.js';
         <div><dt class="sm muted">pour vous répondre</dt><dd class="chiffre" data-compteur>48&nbsp;h</dd></div>
         {fermeture
           ? <div><dt class="sm muted">reprise des ventes</dt><dd class="chiffre">{fermeture.reprise ? fermeture.repriseChiffre : 'Bientôt'}</dd></div>
-          : <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre" data-compteur>{produits.length}</dd></div>}
+          : <div><dt class="sm muted">produits cette semaine</dt><dd class="chiffre" data-compteur>{nbProduitsPros}</dd></div>}
         <div><dt class="sm muted">restaurants clients</dt><dd class="chiffre" data-compteur>{restaurants.length}</dd></div>
       </dl>
     </div>
@@ -67,7 +70,7 @@ import { fileAriane } from '../lib/seo.js';
       <ol class="etapes__liste" data-anim-groupe="pop">
         <li><p class="etapes__num" aria-hidden="true">01</p><h3>On fait connaissance</h3><p class="muted">Vos volumes, votre adresse de livraison, les produits qui comptent pour votre carte.</p></li>
         <li><p class="etapes__num" aria-hidden="true">02</p><h3>Vous recevez votre accès</h3><p class="muted">Votre espace pro, avec vos prix. Chaque jeudi, la grille de la semaine arrive aussi par mail.</p></li>
-        <li><p class="etapes__num" aria-hidden="true">03</p><h3>Vous commandez</h3><p class="muted">En ligne, jusqu’au samedi 18&nbsp;h, ou par téléphone. Pierre livre le lundi.</p></li>
+        <li><p class="etapes__num" aria-hidden="true">03</p><h3>Vous commandez</h3><p class="muted">En ligne ou par téléphone. Pierre livre le mercredi.</p></li>
       </ol>
     </div>
   </section>

@@ -29,6 +29,19 @@ export function prixProduit(p) {
   return { montant: promo ? p.prixPromo : montant, ancien: promo ? montant : null, unite: unite(p.venduA) };
 }
 
+// Produits proposés aux pros : la même règle que l'outil de commande (dépôt `brief`,
+// lib/agj/pros.js, `proProducts`) : en vente, de la ferme (pas les partenaires), avec un prix.
+// Le nombre « produits cette semaine » de la page Professionnels correspond ainsi à la grille
+// que les pros retrouvent une fois connectés (retour de Pierre du 01/11/2026). Si un jour Pierre
+// choisit lui-même les produits des pros (nouveau champ), changer la règle ici et dans l'outil.
+export const PRODUCTEUR_FERME = 'Au Grand Jardin';
+export function produitsPros(produits, producteur = PRODUCTEUR_FERME) {
+  return produits.filter((p) => {
+    const prix = prixProduit(p);
+    return p.nom && p.producteur === producteur && prix && (prix.ancien ?? prix.montant) > 0;
+  });
+}
+
 // Rayons dans l'ordre de la vente (celui du menu « categorie spéciale » dans Notion)
 const ORDRE = ['🥕', '🥬', '🧑‍🌾', '🧅', '🍅', '🍃', '🍎', '🍓', '🧺', '🌱', '🍯'];
 export function titreRayon(r) {

@@ -1,7 +1,7 @@
 // Tests des fonctions pures du site : node --test tests/
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { prixProduit, titreRayon, grouperRayons, parseHoraire, lireCreneaux, prochaineVente, prixHT, estNouveau, vedettes } from '../src/lib/vente.js';
+import { prixProduit, titreRayon, grouperRayons, parseHoraire, lireCreneaux, prochaineVente, prixHT, estNouveau, vedettes, produitsPros } from '../src/lib/vente.js';
 import { resumePdt, grouperCatalogue } from '../src/lib/pdt.js';
 import { rendreCategories, textePoids, maximum, echapper } from '../src/lib/commande-rendu.js';
 
@@ -100,4 +100,16 @@ test('panier : maximum par ligne, poids, échappement', () => {
   assert.equal(maximum({}, { maxQtyPerLine: 20 }), 20);
   assert.equal(textePoids([{ category: 'Pommes de terre', weightKg: 14 }, { category: 'Oignons et échalotes', weightKg: 5 }]), '14 kg de pommes de terre et 5 kg d’oignons et d’échalotes');
   assert.equal(echapper('<b>"&'), '&lt;b&gt;&quot;&amp;');
+});
+
+test('produits des pros : de la ferme et avec un prix, comme la grille de l’outil', () => {
+  const produits = [
+    { nom: 'Carotte vrac', producteur: 'Au Grand Jardin', venduA: '/kg', prixKg: 3.1 },
+    { nom: 'Basilic', producteur: 'Au Grand Jardin', venduA: 'le bouquet', prixUnitaire: 1.5 },
+    { nom: 'Pain de campagne', producteur: 'Boulanger', venduA: '/pièce', prixUnitaire: 4 },
+    { nom: 'Courge sans prix', producteur: 'Au Grand Jardin', venduA: '/kg' },
+    { nom: 'Prix à zéro', producteur: 'Au Grand Jardin', venduA: '/pièce', prixUnitaire: 0 },
+    { nom: 'Tomate en promo', producteur: 'Au Grand Jardin', venduA: '/kg', prixKg: 5, promo: true, prixPromo: 4 },
+  ];
+  assert.deepEqual(produitsPros(produits).map((p) => p.nom), ['Carotte vrac', 'Basilic', 'Tomate en promo']);
 });
