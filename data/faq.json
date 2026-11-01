@@ -64,7 +64,7 @@
     "question": "Où livrez-vous ?",
     "reponse": [
       {
-        "texte": "Pierre livre lui-même ses clients professionnels, le lundi."
+        "texte": "Pierre assure lui-même les livraisons le mercredi, dans un rayon d’environ 30 km autour de la ferme. Contactez-nous pour savoir si votre établissement peut être livré."
       }
     ],
     "pages": [
@@ -91,7 +91,7 @@
     "question": "Comment conserver les pommes de terre ?",
     "reponse": [
       {
-        "texte": "Au frais, dans le noir et à l’abri du gel, dans un endroit sec et aéré : une cave ou un garage frais. Sortez-les du filet si elles sont humides et retirez de temps en temps celles qui s’abîment.\nLes pommes de terre non triées se gardent moins longtemps : à consommer dans les semaines qui viennent."
+        "texte": "Au frais, dans le noir et à l’abri du gel, dans un endroit aéré : une cave ou un garage frais. Sortez-les du filet si elles sont humides et retirez de temps en temps celles qui s’abîment.\nDurées de conservation indicatives, selon les conditions de stockage : de 3 à 6 mois en bâtiment isolé et ventilé, entre 6 et 7 °C et de 85 à 90 % d’humidité ; de 6 à 9 mois en chambre froide, entre 4,5 et 6 °C et à 90 % d’humidité.\nLes pommes de terre non triées se gardent moins longtemps : à consommer dans les semaines qui viennent."
       }
     ],
     "pages": [

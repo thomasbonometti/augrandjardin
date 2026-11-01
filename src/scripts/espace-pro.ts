@@ -61,7 +61,7 @@ function erreurChargement(message: string) {
 
 function connexion() {
   texte('[data-titre]', 'Espace professionnels');
-  texte('[data-intro]', 'Vos prix de la semaine, avec votre remise, et votre commande pour le lundi.');
+  texte('[data-intro]', 'Vos prix de la semaine, avec votre remise, et votre commande pour le mercredi.');
   montrer('[data-connexion]');
   if (location.hash === '#connexion') $<HTMLInputElement>('#c-email').focus();
 }
@@ -70,8 +70,8 @@ function afficher() {
   const v = vue;
   const jour = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Paris' }).format(new Date());
   texte('[data-date]', `Prix du ${jour}`);
-  const lundi = v.delivery ? v.delivery.label.split(' ')[0] : 'lundi';
-  texte('[data-intro]', `Bonjour ${v.pro.etablissement}. Vos prix comprennent votre remise et les paliers de quantité. Commandez ici, Pierre livre le ${lundi}.`);
+  const jourLivraison = v.delivery ? v.delivery.label.split(' ')[0] : 'mercredi';
+  texte('[data-intro]', `Bonjour ${v.pro.etablissement}. Vos prix comprennent votre remise et les paliers de quantité. Commandez ici, Pierre livre le ${jourLivraison}.`);
   montrer('[data-pied]');
 
   if (v.pause) {
@@ -96,7 +96,7 @@ function afficher() {
   }
   montrer('[data-resume]');
 
-  // Quantités de départ : la commande déjà passée pour ce lundi, sinon le brouillon.
+  // Quantités de départ : la commande déjà passée pour cette livraison, sinon le brouillon.
   const b = brouillon.lire();
   if (v.current) {
     items = { ...v.current.items };
