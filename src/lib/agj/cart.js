@@ -1,4 +1,5 @@
-// Copie de lib/agj/cart.js du dépôt thomasbonometti/brief (outil de commande), au 2026-10-16.
+// Copie de lib/agj/cart.js du dépôt thomasbonometti/brief (outil de commande), au 2026-11-01
+// (pull request n° 15 : stock par variété en kilos, 60 kg au plus par commande).
 // Sert de secours si /agj/lib/cart.js (relayé en direct depuis l'outil) ne répond pas.
 // Le serveur recalcule toujours prix, totaux et avertissements : il fait foi.
 
@@ -13,10 +14,17 @@ export const euros = c => EUR.format((Number(c) || 0) / 100).replace(/ /g, ' 
 export const kg = n => `${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(n)} kg`;
 
 // A product can be ordered when it is "En vente", has a price, and is not
-// out of stock (an empty stock means "no limit").
+// out of stock (an empty stock means "no limit"). When its variety keeps its
+// stock in kilos (base « Pommes de terre — stocks », `varietyKg`, Pierre's way
+// of counting: bags are filled on demand), there must be enough for one bag.
 export function isAvailable(p) {
-  return !!(p && p.enVente && p.name && p.priceCents > 0 && (p.stock == null || p.stock > 0));
+  return !!(p && p.enVente && p.name && p.priceCents > 0 && (p.stock == null || p.stock > 0)
+    && (p.varietyKg == null || !(p.weightKg > 0) || p.varietyKg + 1e-9 >= p.weightKg));
 }
+
+// A variety = a category + a product (« Goldmarie » in bags and « Goldmarie »
+// unsorted are two varieties), as for the low stock alert.
+export const varietyKey = p => `${p?.category || 'Autres'}|${p?.product || p?.name || ''}`;
 
 // Price per kilo, in cents (for "soit 1,20 €/kg"), or null without a weight.
 export const perKgCents = p => (p?.weightKg > 0 && p.priceCents > 0 ? Math.round(p.priceCents / p.weightKg) : null);
@@ -55,11 +63,27 @@ export function noticesFor(rules, lines) {
   }).map(n => n.text);
 }
 
-function maxFor(p, rules) {
+// Bags of this format that the variety's stock in kilos can still fill.
+export const bagsLeft = p => (p?.varietyKg != null && p.weightKg > 0 ? Math.floor((p.varietyKg + 1e-9) / p.weightKg) : null);
+
+export function maxFor(p, rules = {}) {
   const caps = [rules.maxQtyPerLine || 99];
   if (p.maximum > 0) caps.push(p.maximum);
   if (p.stock != null) caps.push(p.stock);
+  if (bagsLeft(p) != null) caps.push(bagsLeft(p));
   return Math.max(0, Math.min(...caps));
+}
+
+function maxMessage(p, max) {
+  if (p.stock != null && max === p.stock) return `${p.name} : plus que ${p.stock} disponible${p.stock > 1 ? 's' : ''}.`;
+  if (bagsLeft(p) != null && max === bagsLeft(p)) return `${p.product || p.name} : plus que ${kg(p.varietyKg)} disponibles.`;
+  return `${p.name} : ${max} maximum par commande.`;
+}
+
+// Weight counted by the limit per order (rules.maxWeight: { kg, categories, text }).
+export function limitedWeight(rules, weightByCategory, weightKg) {
+  const cats = [].concat(rules?.maxWeight?.categories || []);
+  return cats.length ? cats.reduce((s, c) => s + (weightByCategory[c] || 0), 0) : weightKg;
 }
 
 // items: { [productId]: qty }  →  lines, totals, errors, notices
@@ -75,7 +99,7 @@ export function computeCart(products, items, rules = {}) {
     if (!isAvailable(p)) { errors.push({ id, code: 'indisponible', message: `${p?.name || 'Un produit'} n'est plus disponible.` }); continue; }
     const max = maxFor(p, rules);
     if (qty > max) {
-      errors.push({ id, code: 'maximum', message: p.stock != null && max === p.stock ? `${p.name} : plus que ${p.stock} disponible${p.stock > 1 ? 's' : ''}.` : `${p.name} : ${max} maximum par commande.` });
+      errors.push({ id, code: 'maximum', message: maxMessage(p, max) });
     }
     if (p.minimum > 0 && qty < p.minimum) errors.push({ id, code: 'minimum', message: `${p.name} : ${p.minimum} minimum.` });
     lines.push({
@@ -88,6 +112,25 @@ export function computeCart(products, items, rules = {}) {
   const weightKg = lines.reduce((s, l) => s + l.weightKg, 0);
   const weightByCategory = {};
   for (const l of lines) weightByCategory[l.category] = (weightByCategory[l.category] || 0) + l.weightKg;
+  // Several formats of one variety share its stock in kilos.
+  const varieties = new Map();
+  for (const l of lines) {
+    const p = byId.get(l.id);
+    if (bagsLeft(p) == null) continue;
+    const v = varieties.get(varietyKey(p)) || { name: p.product || p.name, kg: p.varietyKg, taken: 0 };
+    v.taken += l.weightKg;
+    varieties.set(varietyKey(p), v);
+  }
+  for (const v of varieties.values()) {
+    const message = `${v.name} : plus que ${kg(v.kg)} disponibles.`;
+    if (v.taken > v.kg + 1e-9 && !errors.some(e => e.message === message)) errors.push({ code: 'stock', message });
+  }
+  // Limit per order (Pierre, 01/11/2026 : 60 kg of potatoes, all varieties together).
+  const mw = rules.maxWeight;
+  if (mw?.kg > 0 && lines.length) {
+    const w = limitedWeight(rules, weightByCategory, weightKg);
+    if (w > mw.kg + 1e-9) errors.push({ code: 'poidsMax', message: `${mw.text || `${kg(mw.kg)} maximum par commande.`} Votre commande en fait ${kg(w)}.` });
+  }
   if (!lines.length) errors.push({ code: 'vide', message: 'Choisissez au moins un produit.' });
   if (rules.minTotal > 0 && lines.length && totalCents < cents(rules.minTotal)) {
     errors.push({ code: 'minTotal', message: `Commande minimum : ${euros(cents(rules.minTotal))}.` });

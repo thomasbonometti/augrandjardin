@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { prixProduit, titreRayon, grouperRayons, parseHoraire, lireCreneaux, prochaineVente, prixHT, estNouveau, vedettes, produitsPros } from '../src/lib/vente.js';
 import { resumePdt, grouperCatalogue } from '../src/lib/pdt.js';
-import { rendreCategories, textePoids, maximum, echapper } from '../src/lib/commande-rendu.js';
+import { rendreCategories, textePoids, maximum, echapper, peutAjouter } from '../src/lib/commande-rendu.js';
 
 test('prix : au kilo, à l’unité, au poids, en promo', () => {
   assert.deepEqual(prixProduit({ venduA: '/kg', prixKg: 3.8 }), { montant: 3.8, ancien: null, unite: 'le kg' });
@@ -112,4 +112,18 @@ test('produits des pros : de la ferme et avec un prix, comme la grille de l’ou
     { nom: 'Tomate en promo', producteur: 'Au Grand Jardin', venduA: '/kg', prixKg: 5, promo: true, prixPromo: 4 },
   ];
   assert.deepEqual(produitsPros(produits).map((p) => p.nom), ['Carotte vrac', 'Basilic', 'Tomate en promo']);
+});
+
+test('commande : stock de la variété en kilos et 60 kg de pommes de terre au plus (outil, 01/11/2026)', () => {
+  const rules = { maxQtyPerLine: 20, maxWeight: { kg: 60, categories: ['Pommes de terre'], text: '60 kg…' } };
+  const F = (id, kg, extra = {}) => ({ id, name: id, product: 'Chérie', category: 'Pommes de terre', weightKg: kg, priceCents: 1000, enVente: true, varietyKg: 40, ...extra });
+  const produits = [F('c7', 7), F('c15', 15), F('g15', 15, { product: 'Goldmarie', varietyKg: null }), F('o10', 10, { product: 'Oignons', category: 'Oignons et échalotes', varietyKg: null })];
+  const [c7, c15, g15, o10] = produits;
+  assert.equal(maximum(c15, rules), 2, '40 kg : deux filets de 15 kg');
+  assert.equal(peutAjouter(c7, { c15: 2 }, produits, rules), true, '30 + 7 = 37 kg sur 40');
+  assert.equal(peutAjouter(c7, { c15: 2, c7: 1 }, produits, rules), false, '44 kg > 40 : la variété est pleine');
+  assert.equal(peutAjouter(g15, { g15: 4 }, produits, rules), false, '60 kg de pommes de terre atteints');
+  assert.equal(peutAjouter(g15, { g15: 3 }, produits, rules), true);
+  assert.equal(peutAjouter(o10, { g15: 4 }, produits, rules), true, 'les oignons ne comptent pas');
+  assert.equal(peutAjouter(g15, { g15: 3 }, produits, { maxQtyPerLine: 20 }), true, 'sans limite (outil pas encore à jour) : comme avant');
 });

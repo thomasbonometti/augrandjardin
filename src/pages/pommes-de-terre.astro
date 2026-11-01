@@ -78,6 +78,8 @@ const noteSaison = {
             <h2 class="bloc__titre" id="bloc-produits">1. Vos produits</h2>
             <p class="muted bloc__sous">{pdt.varietes ? `${pdt.varietes} variétés de la dernière récolte. ` : ''}Les stocks se mettent à jour à chaque commande.</p>
           </div>
+          {/* Limite de l'outil (rules.maxWeight, demande de Pierre du 01/11/2026) : affichée dès que l'outil la donne. */}
+          {agjConfig.rules?.maxWeight?.text && <p class="limite" data-limite>{agjConfig.rules.maxWeight.text}</p>}
           <div class="liste" data-liste set:html={listeHtml} />
         </section>
 
@@ -139,6 +141,7 @@ const noteSaison = {
   .prix:has(> :nth-child(3)) > :global(:first-child) { grid-column: 1 / -1; }
   .note-saison { padding: 2px 0 2px 14px; border-left: 3px solid var(--vert-vif-fond); color: var(--gris-fonce); font-size: 15px; line-height: 22px; }
   .note-saison strong { color: var(--texte); font-weight: 500; }
+  .limite { margin: 0 0 16px; padding: 12px 16px; border-radius: 8px; background: var(--sable); color: var(--texte); font-weight: 500; font-size: 15px; line-height: 22px; }
   .hero h1 { text-wrap: balance; }
   .hero__photo { height: 240px; }
   @media (min-width: 1100px) {

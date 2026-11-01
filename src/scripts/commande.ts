@@ -3,11 +3,11 @@
 // on gère les quantités et on envoie la commande à /api/agj/order (relayé vers le Worker « formulaires »).
 // Le serveur recalcule tout (prix, stock, avertissements) : il fait foi.
 import * as panierSecours from '../lib/agj/cart.js';
-import { rendreCategories, rendreLignesRecap, textePoids, maximum, euros, echapper } from '../lib/commande-rendu.js';
+import { rendreCategories, rendreLignesRecap, textePoids, maximum, peutAjouter, euros, echapper } from '../lib/commande-rendu.js';
 import { resumePdt } from '../lib/pdt.js';
 import { espacesInsecables as typo } from '../lib/typo.js';
 
-type Produit = { id: string; name: string; product?: string; format?: string; category?: string; priceCents: number; oldPriceCents?: number; weightKg?: number; stock?: number | null; minimum?: number | null; maximum?: number | null; ordre?: number; enVente: boolean; description?: string };
+type Produit = { id: string; name: string; product?: string; format?: string; category?: string; priceCents: number; oldPriceCents?: number; weightKg?: number; stock?: number | null; varietyKg?: number | null; minimum?: number | null; maximum?: number | null; ordre?: number; enVente: boolean; description?: string };
 // pause : envoyée par l'outil quand le réglage Notion « Fermé » est coché (date de reprise et message).
 type Catalogue = { open: boolean; live?: boolean; products: Produit[]; pause?: { until?: string | null; untilLabel?: string; message?: string } | null };
 
@@ -67,7 +67,17 @@ function majFormat(id: string) {
   bloc.querySelector('output')!.textContent = String(qte);
   bloc.classList.toggle('format--choisi', qte > 0);
   (bloc.querySelector('[data-action="moins"]') as HTMLButtonElement).disabled = qte <= 0;
-  (bloc.querySelector('[data-action="plus"]') as HTMLButtonElement).disabled = qte >= maximum(p, config.rules || {}) || (p.stock != null && p.stock <= 0);
+  (bloc.querySelector('[data-action="plus"]') as HTMLButtonElement).disabled = !peutAjouter(p, etat.items, catalogue.products, config.rules || {});
+}
+
+// Ajouter un filet change ce qui reste pour les autres formats (stock de la variété en kilos,
+// 60 kg de pommes de terre par commande) : tous les boutons « + » sont revus.
+function majBoutonsPlus() {
+  for (const bloc of liste.querySelectorAll<HTMLElement>('.format[data-id]')) {
+    const p = catalogue.products.find((x) => x.id === bloc.dataset.id);
+    const plus = bloc.querySelector<HTMLButtonElement>('[data-action="plus"]');
+    if (p && plus) plus.disabled = !peutAjouter(p, etat.items, catalogue.products, config.rules || {});
+  }
 }
 
 function majListe() {
@@ -87,6 +97,7 @@ liste.addEventListener('click', (e) => {
   const qte = Math.min(max, Math.max(0, (etat.items[id] || 0) + (btn.dataset.action === 'plus' ? 1 : -1)));
   if (qte) etat.items[id] = qte; else delete etat.items[id];
   majFormat(id);
+  majBoutonsPlus();
   // Un bouton devenu inactif perd le focus : on le donne à l'autre bouton du même format.
   if (btn.disabled) (btn.closest('.stepper')!.querySelector<HTMLButtonElement>(`[data-action="${btn.dataset.action === 'plus' ? 'moins' : 'plus'}"]`))?.focus();
   majRecap();
@@ -197,7 +208,8 @@ form.addEventListener('submit', async (e) => {
     liste.querySelector<HTMLElement>('[data-action="plus"]:not(:disabled)')?.focus();
     return;
   }
-  const erreurPanier = c.errors.find((x: any) => x.id);
+  // Erreurs du panier : un produit (x.id), le stock d'une variété ou la limite de poids par commande.
+  const erreurPanier = c.errors.find((x: any) => x.code !== 'vide');
   if (erreurPanier) { erreurEnvoi.textContent = typo(erreurPanier.message); return; }
   if (Object.keys(erreurs).length) {
     const premier = form.querySelector<HTMLElement>('[aria-invalid="true"]');

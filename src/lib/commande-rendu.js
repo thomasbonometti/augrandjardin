@@ -17,11 +17,33 @@ export function echapper(s) {
 const affichable = (p) => !!(p && p.enVente && p.name && p.priceCents > 0);
 export const commandable = (p) => affichable(p) && (p.stock == null || p.stock > 0);
 
+// Stock d'une variété en kilos (base « Pommes de terre — stocks » de l'outil, `varietyKg`) :
+// partagé par ses formats, Pierre remplit les filets à la demande (01/11/2026).
+export const cleVariete = (p) => `${p?.category || 'Autres'}|${p?.product || p?.name || ''}`;
+const filetsRestants = (p) => (p?.varietyKg != null && p.weightKg > 0 ? Math.floor((p.varietyKg + 1e-9) / p.weightKg) : null);
+
 export function maximum(p, rules = {}) {
   const plafonds = [rules.maxQtyPerLine || 99];
   if (p.maximum > 0) plafonds.push(p.maximum);
   if (p.stock != null) plafonds.push(p.stock);
+  if (filetsRestants(p) != null) plafonds.push(filetsRestants(p));
   return Math.max(0, Math.min(...plafonds));
+}
+
+// Un filet de plus : dans son maximum, dans les kilos qui restent pour sa variété (les autres
+// formats du panier compris) et dans la limite par commande (rules.maxWeight : 60 kg de pommes de terre).
+export function peutAjouter(p, items = {}, produits = [], rules = {}) {
+  if ((items[p.id] || 0) >= maximum(p, rules) || (p.stock != null && p.stock <= 0)) return false;
+  const poids = (x) => (x.weightKg || 0) * (items[x.id] || 0);
+  const ajout = p.weightKg || 0;
+  if (p.varietyKg != null && produits.filter((x) => cleVariete(x) === cleVariete(p)).reduce((s, x) => s + poids(x), 0) + ajout > p.varietyKg + 1e-9) return false;
+  const mw = rules.maxWeight;
+  if (mw?.kg > 0) {
+    const cats = [].concat(mw.categories || []);
+    const compte = (x) => !cats.length || cats.includes(x.category);
+    if (compte(p) && produits.filter(compte).reduce((s, x) => s + poids(x), 0) + ajout > mw.kg + 1e-9) return false;
+  }
+  return true;
 }
 
 // Même regroupement que l'outil (catalogView) : catégories dans l'ordre de agj.config.json, puis produits et formats.
@@ -47,10 +69,9 @@ const MOINS = icone('<path d="M5 12h14"/>');
 const PLUS = icone('<path d="M5 12h14"/><path d="M12 5v14"/>');
 const slug = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-function format(p, produit, items, rules, nonTrie) {
+function format(p, produit, items, rules, nonTrie, produits) {
   const qte = items[p.id] || 0;
-  const max = maximum(p, rules);
-  const epuise = p.stock != null && p.stock <= 0;
+  const epuise = (p.stock != null && p.stock <= 0) || filetsRestants(p) === 0;
   const libelle = `${p.format || p.name}`;
   const nomComplet = `${libelle.toLowerCase()} de ${produit.name}`;
   const kgc = parKg(p);
@@ -59,7 +80,7 @@ function format(p, produit, items, rules, nonTrie) {
     <div class="stepper" role="group" aria-label="${echapper(`Quantité, ${nomComplet}`)}">
       <button type="button" data-action="moins" aria-label="${echapper(`Enlever un ${nomComplet}`)}"${qte <= 0 ? ' disabled' : ''}>${MOINS}</button>
       <output aria-live="polite">${qte}</output>
-      <button type="button" data-action="plus" aria-label="${echapper(`Ajouter un ${nomComplet}`)}"${qte >= max || epuise ? ' disabled' : ''}>${PLUS}</button>
+      <button type="button" data-action="plus" aria-label="${echapper(`Ajouter un ${nomComplet}`)}"${epuise || !peutAjouter(p, items, produits, rules) ? ' disabled' : ''}>${PLUS}</button>
     </div>
     <p class="xs format__prix"><span class="fonce">${euros(p.priceCents)}</span>${p.oldPriceCents > p.priceCents ? ` <s aria-label="${echapper(`au lieu de ${euros(p.oldPriceCents)}`)}">${euros(p.oldPriceCents)}</s>` : ''}</p>
     ${nonTrie && kgc ? `<p class="xs muted">soit ${euros(kgc)}/kg</p>` : ''}
@@ -67,9 +88,10 @@ function format(p, produit, items, rules, nonTrie) {
   </div>`;
 }
 
-function produit(prod, items, rules, nonTrie) {
-  const tousEpuises = prod.formats.every((p) => p.stock != null && p.stock <= 0);
-  const peuDeStock = !tousEpuises && prod.formats.some((p) => p.stock != null && p.stock > 0 && p.stock <= 5);
+function produit(prod, items, rules, nonTrie, produits) {
+  const tousEpuises = prod.formats.every((p) => (p.stock != null && p.stock <= 0) || filetsRestants(p) === 0);
+  // Moins de 60 kg pour la variété : de quoi servir une seule grosse commande.
+  const peuDeStock = !tousEpuises && prod.formats.some((p) => (p.stock != null && p.stock > 0 && p.stock <= 5) || (p.varietyKg != null && p.varietyKg < 60));
   const lignes = prod.description.split('\n').map((l) => l.trim()).filter(Boolean);
   const etiquette = tousEpuises
     ? '<span class="chip chip-epuise chip-petit">Épuisée</span>'
@@ -79,7 +101,7 @@ function produit(prod, items, rules, nonTrie) {
       <div class="variete__nom"><h4>${echapper(prod.name)}</h4>${etiquette}</div>
       ${lignes.map((l, i) => `<p class="sm ${i === 0 ? 'muted' : 'variete__avis'}">${echapper(l)}</p>`).join('')}
     </div>
-    <div class="variete__formats">${prod.formats.map((p) => format(p, prod, items, rules, nonTrie)).join('')}</div>
+    <div class="variete__formats">${prod.formats.map((p) => format(p, prod, items, rules, nonTrie, produits)).join('')}</div>
   </li>`;
 }
 
@@ -91,7 +113,7 @@ export function rendreCategories(catalogue, config, items = {}) {
     return `<section class="categorie${nonTrie ? ' categorie--non-trie' : ''}" aria-labelledby="cat-${slug(cat.name)}">
     <h3 class="categorie__titre" id="cat-${slug(cat.name)}">${echapper(cat.name)}</h3>
     ${cat.intro ? `<p class="categorie__intro sm">${echapper(cat.intro)}</p>` : ''}
-    <ul class="varietes" role="list">${cat.products.map((p) => produit(p, items, config?.rules || {}, nonTrie)).join('')}</ul>
+    <ul class="varietes" role="list">${cat.products.map((p) => produit(p, items, config?.rules || {}, nonTrie, catalogue?.products || [])).join('')}</ul>
   </section>`;
   }).join('');
 }

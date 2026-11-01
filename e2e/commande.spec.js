@@ -50,6 +50,24 @@ test('panier : quantités, total, avertissements, panier gardé au rechargement'
   await expect(page.locator('[data-recap-lignes] .recap__ligne')).toHaveCount(1);
 });
 
+test('limite de poids par commande (60 kg de pommes de terre, outil du 01/11/2026) : mention visible, « + » grisé', async ({ page }) => {
+  const limite = await page.evaluate(() => JSON.parse(document.querySelector('#donnees-commande').textContent).config.rules?.maxWeight);
+  test.skip(!limite, 'l’outil ne donne pas encore de limite (pull request n° 15 de brief pas fusionnée)');
+  await expect(page.locator('[data-limite]')).toHaveText(limite.text);
+  // Les filets de 15 kg de pommes de terre triées, jusqu'à la limite.
+  const filets = page.locator('.categorie:not(.categorie--non-trie) .format', { hasText: '15 kg' });
+  let ajoutes = 0;
+  for (let i = 0; i < (await filets.count()) && ajoutes * 15 < limite.kg; i++) {
+    const plus = filets.nth(i).getByRole('button', { name: /Ajouter un/ });
+    while (ajoutes * 15 < limite.kg && await plus.isEnabled()) { await plus.click(); ajoutes++; }
+  }
+  expect(ajoutes * 15).toBe(limite.kg);
+  for (let i = 0; i < await filets.count(); i++) await expect(filets.nth(i).getByRole('button', { name: /Ajouter un/ })).toBeDisabled();
+  // Les oignons ne comptent pas.
+  const oignon = page.locator('.categorie', { hasText: 'Oignons' }).locator('.format:not(.format--epuise)').first();
+  if (await oignon.count()) await expect(oignon.getByRole('button', { name: /Ajouter un/ })).toBeEnabled();
+});
+
 test('validation : panier vide puis coordonnées manquantes', async ({ page }) => {
   await page.getByRole('button', { name: 'Commander' }).click();
   await expect(page.locator('[data-erreur-envoi]')).toContainText('Choisissez au moins un produit');
