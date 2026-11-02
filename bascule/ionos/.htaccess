@@ -15,4 +15,8 @@ RewriteRule ^contact-horaires\.html$ https://www.augrandjardin.fr/horaires-conta
 RewriteRule ^mentions-legales\.html$ https://www.augrandjardin.fr/mentions-legales/ [R=301,L]
 RewriteRule ^checkout\.html$ https://www.augrandjardin.fr/produits/ [R=301,L]
 RewriteRule ^index\.html$ https://www.augrandjardin.fr/ [R=301,L]
-RewriteRule ^(.*)$ https://www.augrandjardin.fr/$1 [R=301,L]
+# Le reste : la même adresse sur www. IONOS devine les pages .html (MultiViews) et réécrit $1 comme
+# REQUEST_URI : augrandjardin.fr/produits/ devenait www…/produits.html/. THE_REQUEST (« GET /produits/?src=qr
+# HTTP/1.1 ») garde l'adresse demandée ; NE : elle est déjà encodée, ne pas la réencoder.
+RewriteCond %{THE_REQUEST} ^\S+\s+(/[^?\s]*)
+RewriteRule ^ https://www.augrandjardin.fr%1 [R=301,L,NE]
