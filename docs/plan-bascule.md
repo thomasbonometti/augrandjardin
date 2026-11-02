@@ -56,6 +56,7 @@ Pour essayer une fonction sans l'ouvrir sur le site : une branche poussée sur G
    - `www` : A `217.160.0.25` et AAAA `2001:8d8:100f:f000::214` (corbeille disponible sur les deux). Le jour J, supprimer **les deux** : un AAAA oublié envoie les visiteurs en IPv6 vers l'ancien site.
    - Mail : MX `mx00.ionos.fr` et `mx01.ionos.fr`, TXT `v=spf1 include:_spf-eu.ionos.com ~all`, `_dmarc` : CNAME `dmarc.ionos.fr`, DKIM : CNAME `s1-ionos._domainkey` → `s1.dkim.ionos.com`, `s2-ionos._domainkey` → `s2.dkim.ionos.com`, `s42582890._domainkey` → `s42582890.dkim.ionos.com`, `autodiscover` : CNAME `adsredir.ionos.info`.
    - `produits` : CNAME `thomasbonometti.github.io`.
+   - Ajoutés le 02/11/2026 : CNAME `www` → `agj-site-2026.pages.dev` (à la place des A et AAAA de www) ; TXT `google-site-verification=…` sur `@` (Search Console, à garder).
    - `2024` : le même jeu (A, AAAA, MX, SPF, DKIM, autodiscover, `www.2024`) : ne pas toucher.
 5. **Certificat de augrandjardin.fr : valide** (Thomas dans Certificats SSL, et Claude dans Chrome le 28/10 : https://augrandjardin.fr s'ouvre sans alerte). La ligne « Certificat SSL » des détails du domaine affiche « Attribuer » : ne rien y changer.
 6. **Facultatif, dès maintenant** : Search Console (https://search.google.com/search-console), propriété « Domaine » `augrandjardin.fr`, vérifiée par un enregistrement TXT ajouté chez IONOS (sans effet sur le site ni sur le mail). S'il existe déjà une propriété pour l'ancien site, la garder. Le jour J, il ne restera que le plan du site à donner (étape 9).
