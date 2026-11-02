@@ -54,7 +54,7 @@ Si Notion ne répond pas pendant une construction, elle échoue et Cloudflare ga
 - `NOTION_TOKEN` : intégration Notion « Site Au Grand Jardin » (lecture + insertion), connectée aux pages « Au Grand Jardin 2025 » et « Site augrandjardin.fr » (Réglages du site, Questions fréquentes et Historique des listes compris). Dans Notion, elle est en fait connectée à toute la page « Au Grand Jardin » (vu le 22/10) : elle voit donc aussi les bases de l'outil de commande, mais le code du site ne les lit ni ne les écrit (il passe par l'API de l'outil).
 - Les accès des pros (e-mail et mot de passe) sont gérés par l'outil de commande depuis le lot 2 : `PRO_PASSWORD` et `PRO_SECRET` ne servent plus et peuvent être supprimés.
 
-Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne sur augrandjardin.fr : autorise l'indexation), `AGJ_URL` (adresse de l'outil, par défaut `https://formulaires.hey-d8b.workers.dev`), `ESPACE_PRO` (`ouvert` ou `ferme` : passe avant la case « Espace pro ouvert » de Réglages du site ; à mettre seulement dans l'environnement « Preview » pour tester l'espace pro sur un aperçu pendant qu'il est en veille), et de même `COMMANDE_PDT` et `INSCRIPTION_LISTE` (`ouverte` ou `fermee` : cases « Commandes de pommes de terre ouvertes » et « Inscription à la liste ouverte », décochées depuis le 28/10).
+Variables facultatives : `SITE_INDEXABLE=oui` (à la mise en ligne sur augrandjardin.fr : autorise l'indexation), `AGJ_URL` (adresse de l'outil, par défaut `https://formulaires.hey-d8b.workers.dev`), `ESPACE_PRO` (`ouvert` ou `ferme` : passe avant la case « Espace pro ouvert » de Réglages du site ; à mettre seulement dans l'environnement « Preview » pour tester l'espace pro sur un aperçu pendant qu'il est en veille), et de même `COMMANDE_PDT` et `INSCRIPTION_LISTE` (`ouverte` ou `fermee` : cases « Commandes de pommes de terre ouvertes » et « Inscription à la liste ouverte », cochées depuis le 02/11/2026 et le 28/10/2026).
 Jamais de secret dans le dépôt : en local, `.dev.vars` (ignoré par git).
 
 ## Travailler en local
@@ -73,9 +73,9 @@ Pour tester la commande sans toucher à l'outil en ligne : dans le dépôt `brie
 Les tests des fonctions qu'une case de « Réglages du site » ouvre ou ferme (commandes de pommes de terre, inscription à la liste) suivent `data/reglages.json` (`e2e/etat.js`). Les commandes de pommes de terre sont fermées aujourd'hui (pas de page) : leurs tests tournent sur une construction ouverte, `COMMANDE_PDT=ouverte INSCRIPTION_LISTE=ouverte npx astro build --outDir dist-ouvert`, servie comme `dist/`, avec `E2E_OUVERT=1`. Case décochée, `e2e/de-cote.spec.js` vérifie l'absence de la page Pommes de terre, ou le bloc « demandez-la à Pierre » à la place du formulaire d'inscription.
 Sur l'adresse de test : `BASE_URL=https://agj-site-2026.pages.dev npm run e2e` (lecture seule ; `E2E_COMMANDE=1` passe une vraie commande « Test »).
 
-## Bascule (plus tard)
+## Bascule (faite le 02/11/2026)
 
-Plan clic par clic : `docs/plan-bascule.md`. En résumé :
+Le site est en ligne sur https://www.augrandjardin.fr depuis le 2 novembre 2026, avec les commandes de pommes de terre et l'outil de commande en réel. Plan clic par clic et retour en arrière : `docs/plan-bascule.md`. En résumé :
 
 1. Pierre a relu les textes. Option A retenue (Thomas, 28/10). Restent de côté : l'espace pro et les commandes de pommes de terre (pas de page tant que la case est décochée) ; l'inscription à la liste, rouverte par Thomas le 28/10, part avec le site ; rien à faire le jour J.
 2. Adresse : **www.augrandjardin.fr** (déjà dans le code). Domaine `www.augrandjardin.fr` sur le projet Cloudflare Pages, puis CNAME `www` → `agj-site-2026.pages.dev` chez IONOS ; `SITE_INDEXABLE=oui` ; « Publier ».

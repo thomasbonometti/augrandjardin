@@ -1,6 +1,6 @@
 # Passage du nouveau site sur www.augrandjardin.fr — plan clic par clic
 
-Préparé le 28/10/2026 par Claude, à la demande de Thomas. **Option A retenue par Thomas le 28/10** (« on passe sur ta recommandation »). Copie dans le projet Claude « Au Grand Jardin » : `site-web/plan-bascule.md`. Fichiers prêts dans `bascule/` (dépôt `augrandjardin`, branche `site-2026`).
+**Fait le 02/11/2026** (option A, étapes 1 à 8 ; détail et vérifications dans `docs/passation.md`, « Mise en ligne, 02/11/2026 »). Préparé le 28/10/2026 par Claude, à la demande de Thomas. **Option A retenue par Thomas le 28/10** (« on passe sur ta recommandation »). Copie dans le projet Claude « Au Grand Jardin » : `site-web/plan-bascule.md`. Fichiers prêts dans `bascule/` (dépôt `augrandjardin`, branche `site-2026`).
 
 ## Ce qui sert quoi aujourd'hui (vérifié le 27/10)
 
