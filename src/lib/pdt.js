@@ -62,6 +62,8 @@ export function resumePdt(catalogue) {
   return {
     ouvert: !!catalogue?.open && dispo.length > 0,
     varietes,
+    // Oignons ou échalotes encore commandables : sinon, la description de la page ne les annonce pas (16/11/2026).
+    oignons: (catalogue?.products || []).some((p) => estDisponible(p) && /oignon|échalote/i.test(p.category || '')),
     formatsTitre: formats('et'),
     formatsCarte: formats('ou'),
     cartes: nonTrie ? [nonTrie, ...cartes].slice(0, 3) : cartes.slice(0, 2),

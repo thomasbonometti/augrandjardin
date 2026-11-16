@@ -80,6 +80,11 @@ test('page Pommes de terre : résumé du catalogue réel', () => {
   assert.equal(r.cartes[0].detail, 'non triées · sac 5 kg · 6,00 €');
   assert.equal(r.cartes[0].parKg, '1,20 €/kg');
   assert.equal(resumePdt({ open: false, products: [] }).ouvert, false);
+  // Oignons : annoncés seulement s'il en reste à commander
+  const oignon = { id: 'o5', name: 'Oignons jaunes — filet 5 kg', product: 'Oignons jaunes', category: 'Oignons et échalotes', enVente: true, priceCents: 1400, weightKg: 5 };
+  assert.equal(resumePdt({ open: true, products: [oignon] }).oignons, true);
+  assert.equal(resumePdt({ open: true, products: [{ ...oignon, stock: 0 }] }).oignons, false);
+  assert.equal(resumePdt({ open: true, products: [] }).oignons, false);
 });
 
 test('liste de commande : non trié en tête avec son texte et le prix au kilo, produits cachés absents', () => {
