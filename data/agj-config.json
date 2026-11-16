@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-01.1",
+  "version": "2026-11-16.1",
   "farm": {
     "name": "Au Grand Jardin",
     "address": "Ferme Au Grand Jardin, 43 rue Principale, 57670 Lostroff",
@@ -11,8 +11,8 @@
   "texts": {
     "intro": {
       "eyebrow": "Au Grand Jardin · Lostroff",
-      "title": "Commandez vos pommes de terre et vos oignons",
-      "text": "Choisissez vos filets et vos sacs, Pierre prépare votre commande. Quand elle est prête, vous recevez un e-mail pour choisir le jour où vous passez la chercher à la ferme. Vous réglez sur place.",
+      "title": "Commandez vos pommes de terre",
+      "text": "Choisissez vos filets, Pierre prépare votre commande. Quand elle est prête, vous recevez un e-mail pour choisir le jour où vous passez la chercher à la ferme. Vous réglez sur place.",
       "how": [
         "Vous choisissez vos produits.",
         "Vous recevez un e-mail de confirmation.",

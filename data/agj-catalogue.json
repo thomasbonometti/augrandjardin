@@ -47,7 +47,7 @@
       "oldPriceCents": null,
       "weightKg": 15,
       "stock": null,
-      "varietyKg": 658,
+      "varietyKg": 651,
       "minimum": null,
       "maximum": null,
       "ordre": 31,
@@ -98,7 +98,7 @@
       "oldPriceCents": null,
       "weightKg": 7,
       "stock": null,
-      "varietyKg": 658,
+      "varietyKg": 651,
       "minimum": null,
       "maximum": null,
       "ordre": 30,
@@ -115,7 +115,7 @@
       "oldPriceCents": null,
       "weightKg": 7,
       "stock": null,
-      "varietyKg": 780,
+      "varietyKg": 773,
       "minimum": null,
       "maximum": null,
       "ordre": 70,
@@ -132,7 +132,7 @@
       "oldPriceCents": null,
       "weightKg": 15,
       "stock": null,
-      "varietyKg": 780,
+      "varietyKg": 773,
       "minimum": null,
       "maximum": null,
       "ordre": 71,
@@ -140,5 +140,5 @@
     }
   ],
   "live": true,
-  "luLe": "2026-11-16T08:12:27.278Z"
+  "luLe": "2026-11-16T15:16:45.758Z"
 }
