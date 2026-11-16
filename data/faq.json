@@ -77,7 +77,7 @@
     "question": "Peut-on réserver ses légumes ?",
     "reponse": [
       {
-        "texte": "Non, il n’y a pas de réservation : les légumes sont en vente à la ferme, le jour de la vente.\nSeules les pommes de terre et les oignons se commandent à l’avance, sur ce site, quand Pierre ouvre les commandes."
+        "texte": "Non, il n’y a pas de réservation : les légumes sont en vente à la ferme, le jour de la vente.\nSeules les pommes de terre se commandent à l’avance, sur ce site, quand Pierre ouvre les commandes."
       }
     ],
     "pages": [
